@@ -1,0 +1,7 @@
+<root>
+  <facet id="jpt.jaxb">
+    <node name="classgen">
+      <attribute name="package" value="fr.esiag.isies.pds.model.acteur"/>
+    </node>
+  </facet>
+</root>
