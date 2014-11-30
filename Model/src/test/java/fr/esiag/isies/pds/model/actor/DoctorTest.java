@@ -1,6 +1,6 @@
 package fr.esiag.isies.pds.model.actor;
 
-import fr.esiag.isies.pds.model.actor.Doctor;
+import fr.esiag.isies.pds.model.Doctor;
 import junit.framework.TestCase;
 
 public class DoctorTest extends TestCase{

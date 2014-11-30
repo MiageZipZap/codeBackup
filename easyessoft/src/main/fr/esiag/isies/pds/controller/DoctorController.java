@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.esiag.isies.pds.businessRules.DoctorBusinessRules;
-import fr.esiag.isies.pds.model.actor.Doctor;
-import fr.esiag.isies.pds.util.UtilManager;
+import fr.esiag.isies.pds.dao.DoctorDao;
+import fr.esiag.isies.pds.model.Doctor;
 
 
 /**
@@ -23,6 +23,9 @@ import fr.esiag.isies.pds.util.UtilManager;
 @RequestMapping("/doctor")
 public class DoctorController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DoctorController.class);
+	
+	
+	private DoctorDao doctorDao;
 	
 	/**
 	 * 
@@ -46,7 +49,7 @@ public class DoctorController {
 	public String create(@ModelAttribute Doctor doctor,Model model){
 		doctor.setUpdateUser(SecurityContextHolder.getContext().getAuthentication().getName());
 		if (new DoctorBusinessRules().verify(doctor)) {
-			UtilManager.create(doctor);
+			doctorDao.create(doctor);
 			model.addAttribute("doctor",doctor);
 			LOGGER.info("EASYES Doctor creation OK");
 			return "doctor/display";

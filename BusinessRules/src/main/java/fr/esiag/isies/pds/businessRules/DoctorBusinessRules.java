@@ -1,6 +1,6 @@
 package fr.esiag.isies.pds.businessRules;
 
-import fr.esiag.isies.pds.model.actor.Doctor;
+import fr.esiag.isies.pds.model.Doctor;
 
 /**
  * 

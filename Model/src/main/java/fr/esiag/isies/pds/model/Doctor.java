@@ -1,4 +1,4 @@
-package fr.esiag.isies.pds.model.actor;
+package fr.esiag.isies.pds.model;
 
 /**
  * 

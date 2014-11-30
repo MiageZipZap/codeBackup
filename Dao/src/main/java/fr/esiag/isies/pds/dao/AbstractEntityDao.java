@@ -3,28 +3,24 @@ package fr.esiag.isies.pds.dao;
 import java.util.Date;
 
 import org.hibernate.Session;
-import org.springframework.core.GenericTypeResolver;
 
-import fr.esiag.isies.pds.model.actor.AbstractEntity;
-import fr.esiag.isies.pds.model.actor.Doctor;
+import fr.esiag.isies.pds.model.AbstractEntity;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 
 /**
+ * Generic Dao which permit to do general actions whith database
  * 
  * @author JLA & PFR
  * @param <T extends AbstractEntity> Generic Class
  */
-public class Dao<T extends AbstractEntity> {
+public abstract class AbstractEntityDao<T extends AbstractEntity> implements
+		IDao<T> {
 
 	/**
-	 * Insert item in DataBase
-	 * 
-	 * @param item
-	 * @return item which is inserted
+	 * Set the createDate at the date of today before inserted in database
 	 */
 	public T create(T item) {
 		item.setCreateDate(new Date());
-		//item.setUpdateUser("WILL BE THE USER LOGIN");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.persist(item);
@@ -33,18 +29,16 @@ public class Dao<T extends AbstractEntity> {
 		return item;
 	}
 
-	/**
-	 * Get a doctor by an id
-	 * @param id
-	 * @return the doctor
-	 */
-	@SuppressWarnings("unchecked")
-	public T getById(int id) {
+	
+	public abstract T getById(int id);
+
+	public T deleteById(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		org.hibernate.Query q = session.createQuery("from Doctor where id = "
-				+ id);
-		T item = (T) q.uniqueResult();
+		session.beginTransaction();
+		T item = getById(id);
+		session.delete(item);
+		session.getTransaction().commit();
 		session.close();
 		return item;
 	}

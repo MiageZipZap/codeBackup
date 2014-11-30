@@ -1,7 +1,7 @@
 package fr.esiag.isies.pds.businessRules;
 
 import junit.framework.TestCase;
-import fr.esiag.isies.pds.model.actor.Doctor;
+import fr.esiag.isies.pds.model.Doctor;
 
 public class DoctorBusinessRulesTest extends TestCase{
 

@@ -1,4 +1,4 @@
-package fr.esiag.isies.pds.model.actor;
+package fr.esiag.isies.pds.model;
 
 import java.util.Date;
 
@@ -7,13 +7,8 @@ import java.util.Date;
  * @author PFR
  *
  */
-public class AbstractEntity {
-	/**
-	 * Technical ID for the doctor
-	 */
-	private int id;
-	
-	
+public class AbstractEntity extends AbstractModel {
+		
 	/**
 	 * Date of the newest update
 	 */
@@ -28,14 +23,6 @@ public class AbstractEntity {
 	 * User who create entity
 	 */
 	private String updateUser;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Date getUpdateDate() {
 		return updateDate;
@@ -60,6 +47,4 @@ public class AbstractEntity {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	
-	
 }
