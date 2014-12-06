@@ -8,12 +8,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>EasyES Soft - ${param.title}</title>
-<script type="text/javascript" src="/IhmSpringMVC/js/jquery.js"></script>
-<script type="text/javascript" src="/IhmSpringMVC/js/easyes.js"></script>
-<script type="text/javascript" src="/IhmSpringMVC/js/geoloc.js"></script>
-<script type="text/javascript" src="/IhmSpringMVC/js/doctor.js"></script>
-<script type="text/javascript" src="/IhmSpringMVC/js/controlManager.js"></script>
-<script type="text/javascript" src="/IhmSpringMVC/js/bannerMessage.js"></script>
+<script type="text/javascript" src="/easyessoft/js/jquery.js"></script>
+<script type="text/javascript" src="/easyessoft/js/easyes.js"></script>
+<script type="text/javascript" src="/easyessoft/js/geoloc.js"></script>
+<script type="text/javascript" src="/easyessoft/js/doctor.js"></script>
+<script type="text/javascript" src="/easyessoft/js/controlManager.js"></script>
+<script type="text/javascript" src="/easyessoft/js/bannerMessage.js"></script>
 
 
 </head>
@@ -21,12 +21,12 @@
 <body>
 	<!-- entête -->
 	<div style="float: right">
-		<a href="/IhmSpringMVC/<c:url value='j_spring_security_logout' />">Déconnexion</a>
+		<a href="/easyessoft/<c:url value='j_spring_security_logout' />">Déconnexion</a>
 	</div>
 	<!-- #entête -->
 
 	<div id="page">
 		<div id="menu">
-			<a href="/IhmSpringMVC/ihm/doctor/form">Création d'un doctor</a> <a
-				href="/IhmSpringMVC/ihm/geoloc/get">Test mock Geoloc</a>
+			<a href="/easyessoft/ihm/doctor/form">Création d'un doctor</a> <a
+				href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a>
 		</div>
