@@ -35,7 +35,6 @@ public abstract class AbstractEntityDao<T extends AbstractEntity> implements
 	public T deleteById(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.beginTransaction();
 		T item = getById(id);
 		session.delete(item);
 		session.getTransaction().commit();
