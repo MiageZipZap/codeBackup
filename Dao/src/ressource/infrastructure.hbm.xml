@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.infrastructure" table="Infrastructure">
+		<id name="id" type="int">
+			<column name="ID" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="updateDate" type="date">
+			<column name="UPDATEDATE" length="255" not-null="false" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATEDATE" length="255" not-null="true" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATEUSER" length="255" not-null="true" />
+		</property>
+		<property name="label" type="string">
+			<column name="LABEL" length="255" not-null="true" />
+		</property>
+		<property name="capacity" type="Integer">
+			<column name="CAPACITY" length="255" not-null="true" />
+		</property>
+		</property>
+		<property name="typeRefInfra" type="TypeRefInfra">
+			<column name="CAPACITY" length="255" not-null="true" />
+		</property>
+		<property name="disabledFacilities" type="Boolean">
+			<column name="DISABLEDFACILITIES" length="255" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>
