@@ -22,7 +22,6 @@
 		<property name="capacity" type="Integer">
 			<column name="CAPACITY" length="255" not-null="true" />
 		</property>
-		</property>
 		<property name="typeRefInfra" type="TypeRefInfra">
 			<column name="CAPACITY" length="255" not-null="true" />
 		</property>
