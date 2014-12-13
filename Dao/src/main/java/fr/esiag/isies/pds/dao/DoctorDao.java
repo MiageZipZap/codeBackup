@@ -1,5 +1,7 @@
 package fr.esiag.isies.pds.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.model.Doctor;
@@ -18,5 +20,11 @@ public class DoctorDao extends AbstractEntityDao<Doctor> {
 		Doctor item = (Doctor) session.get(Doctor.class, id);
 		session.close();
 		return item;
+	}
+
+	@Override
+	public List<Doctor> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
