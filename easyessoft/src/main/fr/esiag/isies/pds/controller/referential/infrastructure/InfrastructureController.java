@@ -1,4 +1,4 @@
-package fr.esiag.isies.pds.controller.referential.infrastructure.contorller;
+package fr.esiag.isies.pds.controller.referential.infrastructure;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
