@@ -12,7 +12,10 @@ body {
 
 .business-header {
     height: 400px;
-    background:url(../img/EasyEsSoft-web-logo.png) center center no-repeat scroll;
+    width:100%;
+    background:url(../img/EasyEsSoft-web-logo.png) scroll;
+    background-repeat:no-repeat;
+    backgroun-position: center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
