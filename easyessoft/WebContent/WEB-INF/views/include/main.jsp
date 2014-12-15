@@ -36,9 +36,9 @@
 					<strong>ESIAG-MIAGE</strong> <br>71, rue Saint Simon<br>94017 Créteil<br>
 				</address>
 				<address>
-					<abbr title="Phone">P:</abbr>01 56 72 62 55 <br>
-					<abbr title="Fax">F:</abbr>01 56 72 62 50 <br> 
-					<abbr title="Email">E:</abbr> <a href="mailto:easyes@googlegroups.com">easyes@googlegroups.com</a>
+					<abbr title="Phone">Tel:</abbr>01 56 72 62 55 <br>
+					<abbr title="Fax">Fax:</abbr>01 56 72 62 50 <br> 
+					<abbr title="Email">E-mail:</abbr> <a href="mailto:easyes@googlegroups.com">easyes@googlegroups.com</a>
 				</address>
 			</div>
 		</div>
