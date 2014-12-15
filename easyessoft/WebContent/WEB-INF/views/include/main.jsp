@@ -24,7 +24,11 @@
 					</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Organismes de santé</a></li>
-
+							<li><a href="#">Personnel</a></li>
+							<li><a href="#">Infrastructures d'urgence</a></li>
+							<li class="divider"></li>
+							<li><a href="/easyessoft/ihm/doctor/form">Création d'un doctor</a></li>
+							<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>
 						</ul></li>
 					<!--li><a href="#">Contact</a></li-->
 					<li style="float: right"><a
