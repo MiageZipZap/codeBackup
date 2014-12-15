@@ -17,16 +17,12 @@
 
 		<div class="row">
 			<div class="col-sm-8">
-				<h2>Bienvenur sur la Démo Release 1</h2>
-				<p>Introduce the visitor to the business using clear,
-					informative text. Use well-targeted keywords within your sentences
-					to make sure search engines can find the business.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et
-					molestiae similique eligendi reiciendis sunt distinctio odit? Quia,
-					neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste
-					exercitationem nemo voluptates asperiores.</p>
+				<h2>Bienvenue sur la Démo Release 1</h2>
+				<p>Cette première release est consacré à l'administration des référentiels personnel soignant,
+				des organismes de santé et des infrastructures d'urgences.</p>
+				<p>Cette page correspondra à l'accueil de notre application. Pour commencer, connectez-vous</p>
 				<p>
-					<a class="btn btn-default btn-lg" href="#">Call to Action
+					<a class="btn btn-default btn-lg" href="/easyessoft/login.jsp">Se connecter
 						&raquo;</a>
 				</p>
 			</div>
@@ -49,12 +45,10 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<img class="img-circle img-responsive img-center"
-					src="http://placehold.it/300x300" alt="">
-				<h2>Marketing Box #1</h2>
-				<p>These marketing boxes are a great place to put some
-					information. These can contain summaries of what the company does,
-					promotional information, or anything else that is relevant to the
-					company. These will usually be below-the-fold.</p>
+					src="http://thumbs.dreamstime.com/z/user-manual-books-6555828.jpg" alt="">
+				<h2>Manuel d'utilisation de l'application</h2>
+				<p>Retrouver bientôt ici, un manuel pour vous permettre de decouvrir l'application quelque soit votre type d'organisme.
+				Il suffira lorsque cela sera disponible, de cliquer sur l'image pour y acceder </p>
 			</div>
 			<div class="col-sm-4">
 				<img class="img-circle img-responsive img-center"
