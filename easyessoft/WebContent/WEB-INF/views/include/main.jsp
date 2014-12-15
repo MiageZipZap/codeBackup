@@ -60,7 +60,7 @@
 
 		<div class="row">
 			<div class="col-sm-8">
-				<h2>What We Do</h2>
+				<h2>Bienvenur sur la Démo Release 1</h2>
 				<p>Introduce the visitor to the business using clear,
 					informative text. Use well-targeted keywords within your sentences
 					to make sure search engines can find the business.</p>
@@ -74,14 +74,14 @@
 				</p>
 			</div>
 			<div class="col-sm-4">
-				<h2>Contact Us</h2>
+				<h2>Nous contacter</h2>
 				<address>
-					<strong>Start Bootstrap</strong> <br>3481 Melrose Place <br>Beverly
-					Hills, CA 90210 <br>
+					<strong>ESIAG-MIAGE</strong> <br>71, rue Saint Simon<br>94017 Créteil<br>
 				</address>
 				<address>
-					<abbr title="Phone">P:</abbr>(123) 456-7890 <br> <abbr
-						title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+					<abbr title="Phone">P:</abbr>01 56 72 62 55 <br>
+					<abbr title="Fax">F:</abbr>01 56 72 62 50 <br> 
+					<abbr title="Email">E:</abbr> <a href="mailto:easyes@googlegroups.com">easyes@googlegroups.com</a>
 				</address>
 			</div>
 		</div>
@@ -126,7 +126,7 @@
 		<footer>
 			<div class="row">
 				<div class="col-lg-12">
-					<p>Copyright &copy; Your Website 2014</p>
+					<p>Copyright &copy; EasyEs Ltd 2015</p>
 				</div>
 			</div>
 			<!-- /.row -->
@@ -140,15 +140,3 @@
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="dist/js/bootstrap.min.js"></script>
-
-	<!-- #entête -->
-	<div class="container">
-		<div id="page">
-			<!-- entête -->
-			<div style="float: left">Bienvenue sur le Prototype</div>
-			<div id="menu">
-				<a href="/easyessoft/ihm/doctor/form">Création d'un doctor</a> <a
-					href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a>
-			</div>
-		</div>
-	</div>
