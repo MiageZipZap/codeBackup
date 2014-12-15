@@ -35,9 +35,5 @@ public class Doctor extends AbstractEntity {
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-	
-	
-
-	
 
 }
