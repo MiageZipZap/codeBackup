@@ -3,6 +3,8 @@
  */
 package fr.esiag.isies.pds.model.referential.organization;
 
+import java.util.Set;
+
 import fr.esiag.isies.pds.model.AbstractEntity;
 
 /**
@@ -57,6 +59,21 @@ public class Organization extends AbstractEntity {
 	 * Type of orga.
 	 */
 	private OrgaType orgaType;
+	
+	/**
+	 * List of services in the hospital
+	 */
+	//private Map<ServiceType, Integer> services;
+	private Set<ServiceType> servicesSet;
+	
+	public Set<ServiceType> getServicesSet() {
+		return servicesSet;
+	}
+
+	public void setServicesSet(Set<ServiceType> servicesSet) {
+		this.servicesSet = servicesSet;
+	}
+	
 	public String getName() {
 		return name;
 	}
