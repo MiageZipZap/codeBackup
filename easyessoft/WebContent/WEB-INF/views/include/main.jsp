@@ -17,10 +17,18 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="#">About</a></li>
-					<li><a href="#">Services</a></li>
+					<!--li><a href="#">Services</a></li-->
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">Administrer un référentiel
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Organismes de santé</a></li>
+
+						</ul></li>
 					<!--li><a href="#">Contact</a></li-->
-					<li style="float: right">
-						<a href="/easyessoft/<c:url value='j_spring_security_logout' />">Déconnexion</a>
+					<li style="float: right"><a
+						href="/easyessoft/<c:url value='j_spring_security_logout' />">Déconnexion</a>
 					</li>
 				</ul>
 			</div>
