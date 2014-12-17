@@ -1,5 +1,5 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<jsp:include page="../include/header.jsp">
+<jsp:include page="../../include/header.jsp">
 	<jsp:param value="Creation Staff" name="title" />
 </jsp:include>
 <div id="content">
@@ -33,4 +33,4 @@
 		</p>
 	</form:form>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../../include/footer.jsp" />
