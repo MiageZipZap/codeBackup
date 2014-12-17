@@ -3,8 +3,8 @@ package fr.esiag.isies.pds.model.referential.infrastructure;
 import fr.esiag.isies.pds.model.AbstractEntity;
 
 /**
- * 
- * @author PFR GKA MCH ODI This class is a model of infrastructure item
+ * This class is a model of infrastructure item
+ * @author PFR GKA MCH ODI 
  */
 public class Infrastructure extends AbstractEntity {
 

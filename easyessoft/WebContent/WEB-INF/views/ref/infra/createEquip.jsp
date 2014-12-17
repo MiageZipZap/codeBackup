@@ -27,15 +27,9 @@
 				<label>Type</label> :
 				<form:input path="typeRefInfra.code" type="text" id="type" />
 			</p>
-				<p>
-				
-				Accéssiblité PMR<br />				
-				<form:input type="checkbox" path="disabledFacilities" name="oui" id="oui" />
-				<label for="oui">Oui</label><br />
-				<form:input type="checkbox" path="disabledFacilities" name="non" id="non" />
-				<label for="oui">Non</label><br />
+								
+				<input type="hidden" path="disabledFacilities" value="true" />
 					
-				</p>
 		</fieldset>
 		
 		<p>

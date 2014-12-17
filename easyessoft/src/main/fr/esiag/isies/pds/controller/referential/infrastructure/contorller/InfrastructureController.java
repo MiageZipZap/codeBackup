@@ -16,20 +16,20 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
  * Get the http request which concern Infrastructure, do actions and return a
  * view
  * 
- * @author ADI, MCH, GKA, PFR
+ * @author ODI, MCH, GKA, PFR
  *
  */
 @Controller
 @RequestMapping("ref/infra")
 public class InfrastructureController {
 	/**
-	 * Logger
+	 * Logger declaration
 	 */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(InfrastructureController.class);
 
 	/**
-	 * persiste data and get data in the database
+	 * persist data and get data in the database
 	 */
 	private InfrastructureDao infrastructureDao;
 
