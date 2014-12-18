@@ -1,5 +1,6 @@
 /**
- * The object ControlManager is used to control form inputs and to display a message in a banner to inform users.
+ * The object ControlManager is used to control form inputs and to display a
+ * message in a banner to inform users.
  */
 
 ControlManager.INFO = 1;
@@ -14,7 +15,7 @@ function ControlManager() {
 	var messages = null;
 	var tabTempWarn = new Array();
 	var tabWarn = new Array();
-	
+
 	/**
 	 * setter of the messages list
 	 * 
@@ -67,7 +68,6 @@ function ControlManager() {
 		return str;
 	}
 
-	
 	function bannerMessage() {
 		if (bannerMessage.arguments.length == 3) {
 			bannerMessage_Var3.apply(this, bannerMessage.arguments);
@@ -117,7 +117,7 @@ function ControlManager() {
 	/**
 	 * Banner management
 	 * 
-	 * @param type 
+	 * @param type
 	 */
 	function bannerMessage_Var1(type) {
 		nbPerType[type]++;
@@ -151,8 +151,8 @@ function ControlManager() {
 	}
 
 			/**
-			 * Initialization (and reset) of controlManager
-			 * Delete the eventual previous errors and hide the banner
+			 * Initialization (and reset) of controlManager Delete the eventual
+			 * previous errors and hide the banner
 			 */
 			this.reset = function reset(idBanner) {
 				if (!idBanner) {
@@ -193,7 +193,8 @@ function ControlManager() {
 					$("#logo" + label + "" + tabMessage[i].id).remove();
 				}
 
-				// The warnings go in the temporary array tabTempWarn and tabWarn is reset
+				// The warnings go in the temporary array tabTempWarn and
+				// tabWarn is reset
 				tabTempWarn = tabWarn;
 				tabWarn = new Array();
 				$("#bannerMessage").children("div").html("");
@@ -202,7 +203,8 @@ function ControlManager() {
 			},
 			/**
 			 * 
-			 * @returns {Boolean} true if there is no error or not confirmed warning, false otherwise
+			 * @returns {Boolean} true if there is no error or not confirmed
+			 *          warning, false otherwise
 			 */
 			this.hasNoError = function hasNoError() {
 				var noError = true;
@@ -229,15 +231,16 @@ function ControlManager() {
 			},
 
 			/**
-			 * Add a message in the content page (info,
-			 * confirmation, warning, error)
+			 * Add a message in the content page (info, confirmation, warning,
+			 * error)
 			 * 
 			 * @param id :
 			 *            null if the id concern the all page
-			 * @param type 
+			 * @param type
 			 * @param message :
-			 *            Message code (bannerMessage.js) to display according the id
-			 *           
+			 *            Message code (bannerMessage.js) to display according
+			 *            the id
+			 * 
 			 * @param addVariable :
 			 *            Table of variables completing the message
 			 */
@@ -284,8 +287,8 @@ function ControlManager() {
 												+ "' class='msg-" + label
 												+ "'></span><span id='lbl"
 												+ label + "" + id
-												+ "' class='	 " + label
-												+ "'>" + prepareMessage({
+												+ "' class='	 " + label + "'>"
+												+ prepareMessage({
 													code : message,
 													tabVar : addVariable
 												}) + "</span></div></td></tr>");
@@ -293,12 +296,12 @@ function ControlManager() {
 
 					else if ($("#" + id).is("table")) {
 						$("#" + id).after(
-								"<p class='tableError' id='" + label
-										+ "Table" + id + "'><span id='logo"
-										+ label + "" + id + "' class='msg-"
-										+ label + "'></span><span id='lbl"
-										+ label + "" + id + "' class='"
-										+ label + "'>" + prepareMessage({
+								"<p class='tableError' id='" + label + "Table"
+										+ id + "'><span id='logo" + label + ""
+										+ id + "' class='msg-" + label
+										+ "'></span><span id='lbl" + label + ""
+										+ id + "' class='" + label + "'>"
+										+ prepareMessage({
 											code : message,
 											tabVar : addVariable
 										}) + "</span></p>");
@@ -329,26 +332,26 @@ function ControlManager() {
 }
 
 /**
- * Vérification de base d'un string
+ * string check
  * 
  * @param id :
- *            id de l'input à tester
+ *            id of input
  * @param lgMini :
- *            0 si non obligatoire, sinont taille minimum défini
+ *            0 if not required; else min length
  * @param lgMaxi :
- *            taille maximum défini
+ *            max length
  */
 String.check = function String_check(id, lgMini, lgMaxi) {
 	if (($("#" + id).val() == null || $("#" + id).val() == "") && lgMini != 0) {
-		controlManager.add(id, ControlManager.ALERT, "errObligatoire");
+		controlManager.add(id, ControlManager.ALERT, "errRequired");
 		return false;
 	} else if (!($("#" + id).val().length >= lgMini && $("#" + id).val().length <= lgMaxi)) {
 		if (lgMini == lgMaxi) {
 			controlManager.add(id, ControlManager.ALERT,
-					"errTailleMinEgalMax", [ lgMini ]);
+					"errLengthMinIsLengthMax", [ lgMini ]);
 		} else {
-			controlManager.add(id, ControlManager.ALERT, "errTaille", [
-					lgMini, lgMaxi ]);
+			controlManager.add(id, ControlManager.ALERT, "errLength", [ lgMini,
+					lgMaxi ]);
 		}
 
 		return false;
@@ -356,3 +359,39 @@ String.check = function String_check(id, lgMini, lgMaxi) {
 	return true;
 };
 
+/**
+ * integer check
+ * 
+ * @param id :
+ *            id of input
+ * @param required :
+ *            true if required, else false
+ * @param nbMin :
+ *            min number
+ * @param nbMaw :
+ *            max number
+ */
+Integer_check = function Integer_check(id, required, nbMin, nbMax) {
+	if ($("#" + id) == null || $("#" + id).val() == "") {
+		if (required) {
+			controlManager.add(id, ControlManager.ALERT, "errRequired");
+			return false;
+		} else {
+			return true;
+		}
+	}
+	var value = $("#" + id).val();
+	value.replace(",", ".");
+	$("#" + id).val(value);
+	if (!((parseFloat(value) == parseInt(value)) && !isNaN(value))) {
+		controlManager.add(id, ControlManager.ALERT, "errIntFormat");
+		return false;
+	} else if (nbMin != "undefined" && value < nbMin) {
+		controlManager.add(id, ControlManager.ALERT, "errNbInfNbMin", [ nbMin ]);
+		return false;
+	} else if (nbMax != "undefined" && value > nbMax) {
+		controlManager.add(id, ControlManager.WARN, "errNbSupNbMax", [ nbMax ]);
+		return false;
+	}
+	return true;
+};

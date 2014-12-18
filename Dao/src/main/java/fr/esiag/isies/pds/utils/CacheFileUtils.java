@@ -143,7 +143,7 @@ public class CacheFileUtils {
 	 * Create name of cache file. The full name of cache file is :
 	 * Prefix (cacheDirectory value), id of item which is managed, the timestamp
 	 * to date the file, the action and xml extension
-	 * 
+	 * => (id_timestamp_action.xml)
 	 * @return name of a cache file
 	 */
 	private static String createName(String className, Integer id, ActionEnum action) {

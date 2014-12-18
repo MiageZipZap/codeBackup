@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
+import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 import fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra;
 
 public class TestCacheFileUtils {
@@ -44,6 +45,9 @@ public class TestCacheFileUtils {
 	public void testCreate() {
 		Deencapsulation.setField(CacheFileUtils.class, "cacheDirectory",
 				"app-data/cacheFile/tu/");
+		
+		Infrastructure inf = new Infrastructure();
+		
 		CategoryRefInfra cat = new CategoryRefInfra();
 		cat.setId(1);
 		cat.setCode("Infra");
@@ -53,7 +57,14 @@ public class TestCacheFileUtils {
 		item.setCategory(cat);
 		item.setCode("XXX02");
 		item.setLabel("T");
-		assertTrue(CacheFileUtils.add(item, ActionEnum.CREATE));
+		
+		inf.setTypeRefInfra(item);
+		inf.setCapacity(12);
+		inf.setDisabledFacilities(true);
+		inf.setCode("toto");
+		inf.setLabel("totoLabel");
+		
+		assertTrue(CacheFileUtils.add(inf, ActionEnum.UPDATE));
 		assertFalse(CacheFileUtils.add(null, null));
 	}
 }

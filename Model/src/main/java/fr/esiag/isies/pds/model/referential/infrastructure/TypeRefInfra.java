@@ -20,4 +20,9 @@ public class TypeRefInfra extends AbstractType {
 		this.category = category;
 	}
 
+	@Override
+	public String toString() {
+		return getLabel();
+	}
+
 }

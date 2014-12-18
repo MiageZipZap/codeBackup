@@ -3,12 +3,15 @@ package fr.esiag.isies.pds.controller.referential.infrastructure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.esiag.isies.pds.dao.referential.infrastructure.EquipmentDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
+import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
 
 /**
@@ -17,6 +20,8 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
  * @author GKA, ODI,PFR,MCH
  *
  */
+@Controller
+@RequestMapping("ref/equip")
 public class EquipmentController {
 
 	/**
@@ -28,8 +33,29 @@ public class EquipmentController {
 	/**
 	 * persist data and get data in the database
 	 */
-	private EquipmentDao equipmentDao;
+	private EquipmentDao equipmentDao = new EquipmentDao();
+	
+	/**
+	 * Dao TypeRefInfra which get list of type of infrastructure referential
+	 */
+	private TypeRefInfraDao typeRefInfraDao = new TypeRefInfraDao();
+	
+	/**
+	 * Construct this class and initialize category item
+	 */
+	public EquipmentController() {
+		// TODO get by Dao in the future
+		categoryRefInfra = new CategoryRefInfra();
+		categoryRefInfra.setId(1);
+		categoryRefInfra.setCode("XXXINFTYP1");
+		categoryRefInfra.setLabel("Infrastructure");
+	}
 
+	/**
+	 * Category of Infrastructure
+	 */
+	private CategoryRefInfra categoryRefInfra;
+	
 	/**
 	 * 
 	 * @param model
@@ -38,8 +64,10 @@ public class EquipmentController {
 	@RequestMapping("createForm")
 	public String getCreateForm(Model model) {
 		model.addAttribute(new Equipment());
+		model.addAttribute("lstOfType",
+				typeRefInfraDao.getAllByCategory(categoryRefInfra));
 		LOGGER.info("EASYES Form display : Equipement creation ");
-		return "ref/infra/create";
+		return "ref/infra/createEquip";
 	}
 
 	/**
@@ -54,10 +82,10 @@ public class EquipmentController {
 		equipment.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
 		// if (new InfrastructureBusinessRules().verify(infrastructure)) {
-		equipmentDao.create(equipment);
-		model.addAttribute("equipement", equipment);
+		// TODO equipmentDao.create(equipment);
+		model.addAttribute("equipment", equipment);
 		LOGGER.info("EASYES Equipement creation OK");
-		return "ref/infra/display";
+		return "ref/infra/createEquipmentConfirm";
 		// }
 		// return null;
 

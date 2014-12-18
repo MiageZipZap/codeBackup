@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.esiag.isies.pds.dao.referential.infrastructure.InfrastructureDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
+import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 
 /**
@@ -31,7 +33,28 @@ public class InfrastructureController {
 	/**
 	 * persiste data and get data in the database
 	 */
-	private InfrastructureDao infrastructureDao;
+	private InfrastructureDao infrastructureDao = new InfrastructureDao();
+
+	/**
+	 * Dao TypeRefInfra which get list of type of infrastructure referential
+	 */
+	private TypeRefInfraDao typeRefInfraDao = new TypeRefInfraDao();
+
+	/**
+	 * Category of Infrastructure
+	 */
+	private CategoryRefInfra categoryRefInfra;
+
+	/**
+	 * Construct this class and initialize category item
+	 */
+	public InfrastructureController() {
+		// TODO get by Dao in the future
+		categoryRefInfra = new CategoryRefInfra();
+		categoryRefInfra.setId(1);
+		categoryRefInfra.setCode("XXXINFTYP1");
+		categoryRefInfra.setLabel("Infrastructure");
+	}
 
 	/**
 	 * 
@@ -41,8 +64,10 @@ public class InfrastructureController {
 	@RequestMapping("createForm")
 	public String getCreateForm(Model model) {
 		model.addAttribute(new Infrastructure());
+		model.addAttribute("lstOfType",
+				typeRefInfraDao.getAllByCategory(categoryRefInfra));
 		LOGGER.info("EASYES Form display : Infrastructure creation ");
-		return "ref/infra/create";
+		return "ref/infra/createInfra";
 	}
 
 	/**
@@ -57,10 +82,10 @@ public class InfrastructureController {
 		infrastructure.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
 		// if (new InfrastructureBusinessRules().verify(infrastructure)) {
-		infrastructureDao.create(infrastructure);
+		// TODO manage exception infrastructureDao.create(infrastructure);
 		model.addAttribute("infrastructure", infrastructure);
 		LOGGER.info("EASYES Infrastructure creation OK");
-		return "ref/infra/display";
+		return "ref/infra/createInfraConfirm";
 		// }
 		// return null;
 
