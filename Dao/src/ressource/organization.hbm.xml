@@ -7,16 +7,6 @@
 			<column name="IDTR_ORGANIZATION" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
-		
-		<property name="updateDate" type="date">
-			<column name="UPDATEDATE" length="45" not-null="false" />
-		</property>
-		<property name="createDate" type="date">
-			<column name="CREATEDATE" length="45" not-null="true" />
-		</property>
-		<property name="updateUser" type="string">
-			<column name="UPDATEUSER" length="45" not-null="true" />
-		</property>
 		<property name="name" type="string">
 			<column name="TR_ORGA_COMPANY_NAME" length="45" not-null="true" />
 		</property>
@@ -48,14 +38,24 @@
 			<column name="TR_ORGA_FAX" length="45" not-null="true" />
 		</property>
 		<property name="email" type="String">
-			<column name="TR_ORGA_EMAIL" length="45" not-null="true" />
+			<column name="TR_ORGA_EMAIL" length="255" not-null="true" />
 		</property>
-		<property name="latitude" type="String">
+		<property name="latitude" type="Float">
 			<column name="TR_ORGA_LATITUDE" length="45" not-null="true" />
 		</property>
-		<property name="longitude" type="String">
+		<property name="longitude" type="Float">
 			<column name="TR_ORGA_LONGITUDE" length="45" not-null="true" />
 		</property>
+		<property name="updateDate" type="date">
+			<column name="UPDATEDATE" length="45" not-null="false" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATEDATE" length="45" not-null="true" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATEUSER" length="45" not-null="true" />
+		</property>	
+		
 		<set name="servicesSet" table="tr_orga_serv_association"
 			inverse="true" lazy="true" fetch="select" cascade="all">
 			<key>

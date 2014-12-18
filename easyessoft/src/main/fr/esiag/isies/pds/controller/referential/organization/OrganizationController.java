@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
+import fr.esiag.isies.pds.model.referential.organization.OrgaType;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 
 /**
@@ -42,6 +43,7 @@ public class OrganizationController {
 	@RequestMapping("creationForm")
 	public String getForm(Model model) {
 		model.addAttribute("organization",new Organization());
+		model.addAttribute("OrgaType",new OrgaType());
 		model.addAttribute("list",new OrgaTypeDao().getAll());
 		return "ref/orga/create";
 	}

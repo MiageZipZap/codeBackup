@@ -56,6 +56,14 @@ public class Organization extends AbstractEntity {
 	 */
 	private String siret;
 	/*
+	 * SIRET number
+	 */
+	private Float latitude;
+	/*
+	 * SIRET number
+	 */
+	private Float longitude;
+	/*
 	 * Type of orga.
 	 */
 	private OrgaType orgaType;
@@ -134,6 +142,22 @@ public class Organization extends AbstractEntity {
 	public void setSiret(String siret) {
 		this.siret = siret;
 	}
+	public Float getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Float latitude) {
+		this.latitude = latitude;
+	}
+
+	public Float getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Float longitude) {
+		this.longitude = longitude;
+	}
+
 	public OrgaType getOrgaType() {
 		return orgaType;
 	}
