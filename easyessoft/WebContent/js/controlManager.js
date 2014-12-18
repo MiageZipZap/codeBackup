@@ -97,7 +97,7 @@ function ControlManager() {
 				txtImage = "not-ok";
 			$("#logoBanner").html(
 					"<img alt='message-error' src='/img/pictogrammes/picto-"
-							+ txtImage + ".png' />");
+					+ txtImage + ".png' />");
 
 			$("#banner").show();
 		}
@@ -133,7 +133,7 @@ function ControlManager() {
 				txtImage = "not-ok";
 			$("#logoBanner").html(
 					"<img alt='message-error' src='/img/pictogrammes/picto-"
-							+ txtImage + ".png' />");
+					+ txtImage + ".png' />");
 
 			$("#banner").show();
 		}
@@ -150,185 +150,185 @@ function ControlManager() {
 		}
 	}
 
-			/**
-			 * Initialization (and reset) of controlManager Delete the eventual
-			 * previous errors and hide the banner
-			 */
-			this.reset = function reset(idBanner) {
-				if (!idBanner) {
-					idBanner = "content";
-				}
-				if (!$("#" + idBanner)
-						.text()
-						.match(
-								"/^<div id='banner' class='banner'><div id='bannerMessage' class='bannerMessage'><div id='bannerLogo' class='bannerLogo'></div><div id='bannerAlert'></div><div id='bannerWarn'></div><div id='bannerConf'></div></div></div>/")) {
-					$("#banner").remove();
-					$("#" + idBanner)
-							.prepend(
-									"<div id='banner' class='banner'><div id='bannerMessage' class='bannerMessage'><div id='bannerLogo' class='bannerLogo'></div><div id='bannerAlert'></div><div id='bannerWarn'></div><div id='bannerConf'></div></div></div>");
-				}
+	/**
+	 * Initialization (and reset) of controlManager Delete the eventual
+	 * previous errors and hide the banner
+	 */
+	this.reset = function reset(idBanner) {
+		if (!idBanner) {
+			idBanner = "content";
+		}
+		if (!$("#" + idBanner)
+				.text()
+				.match(
+						"/^<div id='banner' class='banner'><div id='bannerMessage' class='bannerMessage'><div id='bannerLogo' class='bannerLogo'></div><div id='bannerAlert'></div><div id='bannerWarn'></div><div id='bannerConf'></div></div></div>/")) {
+			$("#banner").remove();
+			$("#" + idBanner)
+			.prepend(
+			"<div id='banner' class='banner'><div id='bannerMessage' class='bannerMessage'><div id='bannerLogo' class='bannerLogo'></div><div id='bannerAlert'></div><div id='bannerWarn'></div><div id='bannerConf'></div></div></div>");
+		}
 
-				for (var i = 0; i < ControlManager.ALERT; i++) {
-					nbPerType[i + 1] = 0;
-				}
-				// Messages resets
-				for (var i = 0; i < tabMessage.length; i++) {
-					var label = fnLabel(tabMessage[i].type);
-					if ($("#" + tabMessage[i].id).is("table")) {
-						$("#" + label + "Table" + tabMessage[i].id).remove();
-					} else if ($("#" + tabMessage[i].id).is("tr")) {
-						$("#" + label + "" + tabMessage[i].id).remove();
-					} else {
-						var elt = $("#" + tabMessage[i].id).closest("td");
-						if (typeof (elt.html()) == 'undefined') {
-							elt = $("#" + tabMessage[i].id).closest("p");
-							elt.children("span").removeClass(label);
-						} else {
-							elt.removeClass(label + "Td");
-							elt.children("br").remove();
-						}
-					}
-					$("#" + tabMessage[i].id).removeClass(label);
-					$("#lbl" + label + "" + tabMessage[i].id).remove();
-					$("#logo" + label + "" + tabMessage[i].id).remove();
-				}
-
-				// The warnings go in the temporary array tabTempWarn and
-				// tabWarn is reset
-				tabTempWarn = tabWarn;
-				tabWarn = new Array();
-				$("#bannerMessage").children("div").html("");
-				majorMessageType = 0;
-				$("#banner").hide();
-			},
-			/**
-			 * 
-			 * @returns {Boolean} true if there is no error or not confirmed
-			 *          warning, false otherwise
-			 */
-			this.hasNoError = function hasNoError() {
-				var noError = true;
-				// Errors
-				if (nbPerType[ControlManager.ALERT] > 0) {
-					noError = false;
+		for (var i = 0; i < ControlManager.ALERT; i++) {
+			nbPerType[i + 1] = 0;
+		}
+		// Messages resets
+		for (var i = 0; i < tabMessage.length; i++) {
+			var label = fnLabel(tabMessage[i].type);
+			if ($("#" + tabMessage[i].id).is("table")) {
+				$("#" + label + "Table" + tabMessage[i].id).remove();
+			} else if ($("#" + tabMessage[i].id).is("tr")) {
+				$("#" + label + "" + tabMessage[i].id).remove();
+			} else {
+				var elt = $("#" + tabMessage[i].id).closest("td");
+				if (typeof (elt.html()) == 'undefined') {
+					elt = $("#" + tabMessage[i].id).closest("p");
+					elt.children("span").removeClass(label);
 				} else {
-					noError = true;
+					elt.removeClass(label + "Td");
+					elt.children("br").remove();
 				}
+			}
+			$("#" + tabMessage[i].id).removeClass(label);
+			$("#lbl" + label + "" + tabMessage[i].id).remove();
+			$("#logo" + label + "" + tabMessage[i].id).remove();
+		}
 
-				// Warnings
-				for ( var i in tabWarn) {
-					var test = false;
-					for ( var j in tabTempWarn) {
-						if (tabWarn[i].id == tabTempWarn[j].id
-								&& tabWarn[i].message == tabTempWarn[j].message)
-							test = true;
-					}
-					if (!test) {
-						noError = false;
-					}
-				}
-				return noError;
-			},
+		// The warnings go in the temporary array tabTempWarn and
+		// tabWarn is reset
+		tabTempWarn = tabWarn;
+		tabWarn = new Array();
+		$("#bannerMessage").children("div").html("");
+		majorMessageType = 0;
+		$("#banner").hide();
+	},
+	/**
+	 * 
+	 * @returns {Boolean} true if there is no error or not confirmed
+	 *          warning, false otherwise
+	 */
+	this.hasNoError = function hasNoError() {
+		var noError = true;
+		// Errors
+		if (nbPerType[ControlManager.ALERT] > 0) {
+			noError = false;
+		} else {
+			noError = true;
+		}
 
-			/**
-			 * Add a message in the content page (info, confirmation, warning,
-			 * error)
-			 * 
-			 * @param id :
-			 *            null if the id concern the all page
-			 * @param type
-			 * @param message :
-			 *            Message code (bannerMessage.js) to display according
-			 *            the id
-			 * 
-			 * @param addVariable :
-			 *            Table of variables completing the message
-			 */
-			this.add = function add(id, type, message, addVariable) {
-				tabMessage[tabMessage.length] = {
-					type : type,
+		// Warnings
+		for ( var i in tabWarn) {
+			var test = false;
+			for ( var j in tabTempWarn) {
+				if (tabWarn[i].id == tabTempWarn[j].id
+						&& tabWarn[i].message == tabTempWarn[j].message)
+					test = true;
+			}
+			if (!test) {
+				noError = false;
+			}
+		}
+		return noError;
+	},
+
+	/**
+	 * Add a message in the content page (info, confirmation, warning,
+	 * error)
+	 * 
+	 * @param id :
+	 *            null if the id concern the all page
+	 * @param type
+	 * @param message :
+	 *            Message code (bannerMessage.js) to display according
+	 *            the id
+	 * 
+	 * @param addVariable :
+	 *            Table of variables completing the message
+	 */
+	this.add = function add(id, type, message, addVariable) {
+		tabMessage[tabMessage.length] = {
+				type : type,
+				message : message,
+				id : id
+		};
+
+		if (type == ControlManager.WARN) {
+			tabWarn[tabWarn.length] = {
 					message : message,
 					id : id
-				};
-
-				if (type == ControlManager.WARN) {
-					tabWarn[tabWarn.length] = {
-						message : message,
-						id : id
-					};
-				}
-
-				if (id != "") {
-					var label = fnLabel(type);
-					if (typeof $("#div" + label + "" + id).html() != 'undefined') {
-						var elt = $("#div" + label + "" + id);
-						elt.append("<span id='logo" + label + "" + id
-								+ "' class='msg-" + label + "'></span>");
-						elt.append("<span id='lbl" + label + "" + id
-								+ "' class='legend " + label + "'>"
-								+ prepareMessage({
-									code : message,
-									tabVar : addVariable
-								}) + "</span>");
-						$("#" + id).addClass(label);
-					}
-
-					else if ($("#" + id).is("tr")) {
-						$("#" + id)
-								.after(
-										"<tr id='"
-												+ label
-												+ ""
-												+ id
-												+ "'><td colspan='"
-												+ $("#" + id).children("td").length
-												+ "'><div style='text-align:center'><span id='logo"
-												+ label + "" + id
-												+ "' class='msg-" + label
-												+ "'></span><span id='lbl"
-												+ label + "" + id
-												+ "' class='	 " + label + "'>"
-												+ prepareMessage({
-													code : message,
-													tabVar : addVariable
-												}) + "</span></div></td></tr>");
-					}
-
-					else if ($("#" + id).is("table")) {
-						$("#" + id).after(
-								"<p class='tableError' id='" + label + "Table"
-										+ id + "'><span id='logo" + label + ""
-										+ id + "' class='msg-" + label
-										+ "'></span><span id='lbl" + label + ""
-										+ id + "' class='" + label + "'>"
-										+ prepareMessage({
-											code : message,
-											tabVar : addVariable
-										}) + "</span></p>");
-					} else {
-						var elt = $("#" + id).closest("td");
-						if (typeof (elt.html()) == 'undefined') {
-							elt = $("#" + id).closest("p");
-							elt.addClass(label);
-						} else {
-							elt.addClass(label + "Td");
-							elt.append("<br />");
-						}
-						elt.append("<span id='logo" + label + "" + id
-								+ "' class='msg-" + label + "'></span>");
-						elt.append("<span id='lbl" + label + "" + id
-								+ "' class='legend " + label + "'>"
-								+ prepareMessage({
-									code : message,
-									tabVar : addVariable
-								}) + "</span>");
-						$("#" + id).addClass(label);
-					}
-					bannerMessage(type);
-				} else {
-					bannerMessage(type, message, addVariable);
-				}
 			};
+		}
+
+		if (id != "") {
+			var label = fnLabel(type);
+			if (typeof $("#div" + label + "" + id).html() != 'undefined') {
+				var elt = $("#div" + label + "" + id);
+				elt.append("<span id='logo" + label + "" + id
+						+ "' class='msg-" + label + "'></span>");
+				elt.append("<span id='lbl" + label + "" + id
+						+ "' class='legend " + label + "'>"
+						+ prepareMessage({
+							code : message,
+							tabVar : addVariable
+						}) + "</span>");
+				$("#" + id).addClass(label);
+			}
+
+			else if ($("#" + id).is("tr")) {
+				$("#" + id)
+				.after(
+						"<tr id='"
+						+ label
+						+ ""
+						+ id
+						+ "'><td colspan='"
+						+ $("#" + id).children("td").length
+						+ "'><div style='text-align:center'><span id='logo"
+						+ label + "" + id
+						+ "' class='msg-" + label
+						+ "'></span><span id='lbl"
+						+ label + "" + id
+						+ "' class='	 " + label + "'>"
+						+ prepareMessage({
+							code : message,
+							tabVar : addVariable
+						}) + "</span></div></td></tr>");
+			}
+
+			else if ($("#" + id).is("table")) {
+				$("#" + id).after(
+						"<p class='tableError' id='" + label + "Table"
+						+ id + "'><span id='logo" + label + ""
+						+ id + "' class='msg-" + label
+						+ "'></span><span id='lbl" + label + ""
+						+ id + "' class='" + label + "'>"
+						+ prepareMessage({
+							code : message,
+							tabVar : addVariable
+						}) + "</span></p>");
+			} else {
+				var elt = $("#" + id).closest("td");
+				if (typeof (elt.html()) == 'undefined') {
+					elt = $("#" + id).closest("p");
+					elt.addClass(label);
+				} else {
+					elt.addClass(label + "Td");
+					elt.append("<br />");
+				}
+				elt.append("<span id='logo" + label + "" + id
+						+ "' class='msg-" + label + "'></span>");
+				elt.append("<span id='lbl" + label + "" + id
+						+ "' class='legend " + label + "'>"
+						+ prepareMessage({
+							code : message,
+							tabVar : addVariable
+						}) + "</span>");
+				$("#" + id).addClass(label);
+			}
+			bannerMessage(type);
+		} else {
+			bannerMessage(type, message, addVariable);
+		}
+	};
 }
 
 /**
@@ -351,7 +351,7 @@ String.check = function String_check(id, lgMini, lgMaxi) {
 					"errLengthMinIsLengthMax", [ lgMini ]);
 		} else {
 			controlManager.add(id, ControlManager.ALERT, "errLength", [ lgMini,
-					lgMaxi ]);
+			                                                            lgMaxi ]);
 		}
 
 		return false;

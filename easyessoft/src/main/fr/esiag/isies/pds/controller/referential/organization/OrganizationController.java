@@ -43,7 +43,6 @@ public class OrganizationController {
 	@RequestMapping("creationForm")
 	public String getForm(Model model) {
 		model.addAttribute("organization",new Organization());
-		model.addAttribute("OrgaType",new OrgaType());
 		model.addAttribute("list",new OrgaTypeDao().getAll());
 		return "ref/orga/create";
 	}
@@ -59,8 +58,8 @@ public class OrganizationController {
 			Model model) {
 		organization.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
-//		orgaDao.create(organization);
-//		model.addAttribute("organization", organization);
+		orgaDao.create(organization);
+		model.addAttribute("organization", organization);
 		return "ref/orga/display";
 		// }
 		// return null;
