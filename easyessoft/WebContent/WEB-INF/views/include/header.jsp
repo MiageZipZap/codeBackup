@@ -58,7 +58,7 @@
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Organismes de santé</a></li>
+							<li><a href="/easyessoft/ihm/ref/orga/creationForm">Organismes de santé</a></li>
 							<li><a href="#">Personnel</a></li>
 							<li><a href="#">Infrastructures d'urgence</a></li>
 							<li class="divider"></li>

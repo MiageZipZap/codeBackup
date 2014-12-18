@@ -12,24 +12,34 @@ public class OrgaType extends AbstractEntity {
 	/*
 	 * Code type
 	 */
-	private int typeCode;
+	private String typeCode;
 	/*
 	 * Label type
 	 */
-	private String label;
+	private String description;
+	/*
+	 * Legal Status type
+	 */
+	private String legalStatus;
 	
-	public int getTypeCode() {
+	
+	public String getTypeCode() {
 		return typeCode;
 	}
-	public void setTypeCode(int typeCode) {
+	public void setTypeCode(String typeCode) {
 		this.typeCode = typeCode;
 	}
-	public String getLabel() {
-		return label;
+	public String getDescription() {
+		return description;
 	}
-	public void setLabel(String label) {
-		this.label = label;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	
-	
+	public String getLegalStatus() {
+		return legalStatus;
+	}
+	public void setLegalStatus(String legalStatus) {
+		this.legalStatus = legalStatus;
+	}
+		
 }

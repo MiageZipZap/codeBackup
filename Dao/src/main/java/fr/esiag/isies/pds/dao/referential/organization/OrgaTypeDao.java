@@ -13,8 +13,11 @@ public class OrgaTypeDao extends AbstractEntityDao<OrgaType> {
 
 	@Override
 	public OrgaType getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+        OrgaType orgT=  (OrgaType) session.get(OrgaType.class, id);
+		session.close();
+		return orgT;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -23,6 +26,7 @@ public class OrgaTypeDao extends AbstractEntityDao<OrgaType> {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		List<OrgaType> list = (List<OrgaType>) session.createCriteria(OrgaType.class).list();
+		session.close();
 		return list;
 	}
 
