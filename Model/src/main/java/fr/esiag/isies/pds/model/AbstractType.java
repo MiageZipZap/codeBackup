@@ -27,7 +27,7 @@ public class AbstractType extends AbstractModel {
 		return label;
 	}
 
-	public void setLabel(String label) {
+	public void setLabel(String label) {	
 		this.label = label;
 	}
 }

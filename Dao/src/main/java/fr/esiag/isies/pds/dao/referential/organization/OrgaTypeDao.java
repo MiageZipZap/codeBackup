@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import fr.esiag.isies.pds.dao.AbstractEntityDao;
+import fr.esiag.isies.pds.dao.AbstractTypeDao;
 import fr.esiag.isies.pds.model.referential.organization.OrgaType;
-import fr.esiag.isies.pds.model.referential.organization.Organization;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 
-public class OrgaTypeDao extends AbstractEntityDao<OrgaType> {
+public class OrgaTypeDao extends AbstractTypeDao<OrgaType> {
 
 	@Override
 	public OrgaType getById(int id) {

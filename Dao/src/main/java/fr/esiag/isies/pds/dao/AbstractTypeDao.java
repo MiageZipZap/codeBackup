@@ -1,5 +1,7 @@
 package fr.esiag.isies.pds.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.model.AbstractType;
@@ -18,6 +20,8 @@ public abstract class AbstractTypeDao<T extends AbstractType> implements
 	}
 
 	public abstract T getById(int id);
+	
+	public abstract List<T> getAll();
 
 	public T deleteById(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();

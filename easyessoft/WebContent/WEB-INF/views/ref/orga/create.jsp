@@ -21,7 +21,7 @@
 
 							<c:forEach items="${list}" var="selectionType">
 								<option value="${selectionType.id}"><c:out
-										value="${selectionType.description}" /></option>
+										value="${selectionType.label}" /></option>
 							</c:forEach>
 						</select>
 					</div>

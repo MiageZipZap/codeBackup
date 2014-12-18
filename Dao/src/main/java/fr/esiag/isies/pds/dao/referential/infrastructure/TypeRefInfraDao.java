@@ -36,6 +36,12 @@ public class TypeRefInfraDao extends AbstractTypeDao<TypeRefInfra>{
 		return lstTypeRefInfra;
 	}
 
+	@Override
+	public List<TypeRefInfra> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

@@ -7,10 +7,10 @@
 			<column name="IDTR_ORGANIZATION_TYPE" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
-		<property name="typeCode" type="string">
+		<property name="code" type="string">
 			<column name="TR_ORGA_TYPE_CODE" length="45" not-null="false" />
 		</property>
-		<property name="description" type="string">
+		<property name="label" type="string">
 			<column name="TR_ORGA_TYPE_DESCRIPTION" length="45" not-null="false" />
 		</property>
 		<property name="legalStatus" type="string">
