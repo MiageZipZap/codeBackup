@@ -19,6 +19,7 @@
 <script type="text/javascript" src="/easyessoft/js/equip.js"></script>
 <script type="text/javascript" src="/easyessoft/js/controlManager.js"></script>
 <script type="text/javascript" src="/easyessoft/js/bannerMessage.js"></script>
+<script type="text/javascript" src="/easyessoft/dist/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
 <link href="/easyessoft/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +61,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/easyessoft/ihm/ref/orga/creationForm">Organismes de santé</a></li>
 							<li><a href="#">Personnel</a></li>
-							<li><a href="#">Infrastructures d'urgence</a></li>
+							<li><a href="/easyessoft/ihm/ref/emergencyDept/homePage">Infrastructures d'urgence</a></li>
 							<li class="divider"></li>
 							<li><a href="/easyessoft/ihm/doctor/form">Création d'un doctor</a></li>
 							<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>

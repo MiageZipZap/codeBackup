@@ -7,39 +7,48 @@
 	<div>
 		<h1>Creation d'une infrastructure</h1>
 	</div>
-	<form:form id="infraForm" method="post"
-		action="/easyessoft/ihm/ref/infra/create" commandName="infrastructure"
-		onsubmit="return false;">
-		<fieldset>
-			<legend>Informations Infrastructure</legend>
-			<p>
-				<label>Code</label> :
-				<form:input path="code" type="text" id="code" />
-			</p>
-			<p>
-				<label>Libellé</label> :
-				<form:input path="label" type="text" id="label" />
-			</p>
+	<div class="box-content">
+		<form:form id="infraForm" class="form-horizontal" method="post"
+			action="/easyessoft/ihm/ref/infra/create"
+			commandName="infrastructure" onsubmit="return false;">
+			<fieldset>
+				<legend>Informations Infrastructure</legend>
+				<p class="form-group">
+					<label class="col-sm-3 control-label">Code :</label>
+					<form:input path="code" type="text" id="code" />
+				</p>
+				<p class="form-group">
+					<label class="col-sm-3 control-label">Libellé :</label>
+					<form:input path="label" type="text" id="label" />
+				</p>
 
-			<p>
-				<label>Type</label> : <form:select path="typeRefInfra.id">
-					<c:forEach items="${lstOfType}" var="item">
-						<form:option value="${item.id}">${item.label}</form:option>
-					</c:forEach>
-				</form:select>
-			</p>
-			<p>
-				Capacité d'accueil : <form:input type="text" id="capacity" path="capacity" />
-			</p>
-			<p>
-				Accessibilité PMR : <form:checkbox path="disabledFacilities" />
-			</p>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Type :</label>
+					<div class="col-sm-1">
+						<form:select class="form-control" path="typeRefInfra.id">
+							<c:forEach items="${lstOfType}" var="item">
+								<form:option value="${item.id}">${item.label}</form:option>
+							</c:forEach>
+						</form:select>
+					</div>
+				</div>
+				<p class="form-group">
+					<label class="col-sm-3 control-label">Capacité d'accueil :</label>
+						<form:input size="4" type="text" id="capacity" path="capacity" />
+				</p>
+				<p class="form-group">
+					<label class="col-sm-3 control-label">Accessibilité PMR :</label>
+					<form:checkbox path="disabledFacilities" />
+				</p>
+			</fieldset>
 
-		</fieldset>
-
-		<p>
-			<input type="submit" value="create" id="createButInfra">
-		</p>
-	</form:form>
+			<p class="form-group">
+				<div class="col-sm-9 col-sm-offset-3">
+					<input type="submit" value="création de l'infrastructure"
+						class="btn btn-primary" id="createButInfra">
+				</div>
+			</p>
+		</form:form>
+	</div>
 </div>
 <jsp:include page="../../include/footer.jsp" />
