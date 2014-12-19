@@ -4,11 +4,19 @@
 	<jsp:param value="Creation Equipement" name="title" />
 </jsp:include>
 <div id="content">
-	<div>
-		<h1>Page d'accueil du référentiel des infrastructures de service d'urgence</h1>
-	</div>
-	<a href="/easyessoft/ihm/ref/equip/createForm">Création d'un équipement</a>
-	<a href="/easyessoft/ihm/ref/infra/createForm">Création d'une infrastructure</a>
+	<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="tagline">Référentiel des infrastructures d'un service d'urgence</h1>
+				</div>
+			</div>
+		</div>
+	<ul class="nav nav-pills nav-stacked">
+		<li><a href="/easyessoft/ihm/ref/equip/createForm">Création
+				d'un équipement</a></li>
+		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
+				d'une infrastructure</a></li>
+	</ul>
 </div>
 <jsp:include page="../../include/footer.jsp" />
 

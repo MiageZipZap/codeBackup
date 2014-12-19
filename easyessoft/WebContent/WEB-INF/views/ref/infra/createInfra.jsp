@@ -4,8 +4,12 @@
 	<jsp:param value="Creation Infrastructure" name="title" />
 </jsp:include>
 <div id="content">
-	<div>
-		<h1>Creation d'une infrastructure</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="tagline">Création d'une nouvelle infrastructure</h1>
+			</div>
+		</div>
 	</div>
 	<div class="box-content">
 		<form:form id="infraForm" class="form-horizontal" method="post"

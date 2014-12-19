@@ -56,7 +56,7 @@ function ControlManager() {
 		}
 		var str = messages[objMessage.code];
 		if (typeof (str) == 'undefined') {
-			str = "code non défini (" + objMessage.code + ") $1 $2 ...";
+			str = "code non defini (" + objMessage.code + ") $1 $2 ...";
 		}
 		if (typeof (objMessage.tabVar) == 'undefined') {
 			return str;

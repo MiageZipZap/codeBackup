@@ -3,21 +3,30 @@
 	<jsp:param value="Creation Medecin" name="title" />
 </jsp:include>
 <div id="content">
-	<p>L'infrastructure ${equipment.label} a bien été ajouté !</p>
-
-	<p>
-	<table>
-		<tr>
-			<th>Numéro de série</th>
-			<th>Libellé</th>
-			<th>Type</th>
-		</tr>
-		<tr>
-			<td>${equipment.serialNumber}</td>
-			<td>${equipment.label}</td>
-			<td>${equipment.typeRefInfra.id}</td>
-		</tr>
-	</table>
-	</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="tagline">Confirmation de création</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Numéro de série</th>
+					<th>Libellé</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>${equipment.serialNumber}</td>
+					<td>${equipment.label}</td>
+					<td>${equipment.typeRefInfra.id}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 <jsp:include page="../../include/footer.jsp" />
