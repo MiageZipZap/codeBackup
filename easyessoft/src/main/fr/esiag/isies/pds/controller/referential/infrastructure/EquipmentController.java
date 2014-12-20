@@ -9,14 +9,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.esiag.isies.pds.businessRules.refential.infrastructure.EquipmentBusinessRules;
+import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.EquipmentDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
 
 /**
- * Get the http request which concern Equipment, do actions and return a the right
- * view
+ * Get the http request which concern Equipment, do actions and return a the
+ * right view
+ * 
  * @author GKA, ODI,PFR,MCH
  *
  */
@@ -31,31 +34,33 @@ public class EquipmentController {
 			.getLogger(EquipmentController.class);
 
 	/**
-	 * persist data and get data in the database
+	 * Dao EquipmentDao which get list of equipment referential
 	 */
 	private EquipmentDao equipmentDao = new EquipmentDao();
-	
+
+	/**
+	 * Dao CategoryRefInfraDao which get list of category of infrastructure
+	 * referential
+	 */
+	private CategoryRefInfraDao categoryRefInfraDao = new CategoryRefInfraDao();
+
 	/**
 	 * Dao TypeRefInfra which get list of type of infrastructure referential
 	 */
 	private TypeRefInfraDao typeRefInfraDao = new TypeRefInfraDao();
-	
+
 	/**
 	 * Construct this class and initialize category item
 	 */
 	public EquipmentController() {
-		// TODO get by Dao in the future
-		categoryRefInfra = new CategoryRefInfra();
-		categoryRefInfra.setId(1);
-		categoryRefInfra.setCode("XXXINFTYP1");
-		categoryRefInfra.setLabel("Infrastructure");
+		categoryRefInfra = categoryRefInfraDao.getEquipCategory();
 	}
 
 	/**
 	 * Category of Infrastructure
 	 */
 	private CategoryRefInfra categoryRefInfra;
-	
+
 	/**
 	 * 
 	 * @param model
@@ -77,17 +82,16 @@ public class EquipmentController {
 	 * @return a confirmation of infrastructure creation
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@ModelAttribute Equipment equipment,
-			Model model) {
+	public String create(@ModelAttribute Equipment equipment, Model model) {
 		equipment.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
-		// if (new InfrastructureBusinessRules().verify(infrastructure)) {
-		// TODO equipmentDao.create(equipment);
-		model.addAttribute("equipment", equipment);
-		LOGGER.info("EASYES Equipement creation OK");
-		return "ref/infra/createEquipmentConfirm";
-		// }
-		// return null;
+		if (new EquipmentBusinessRules().verify(equipment)) {
+			// TODO equipmentDao.create(equipment);
+			model.addAttribute("equipment", equipment);
+			LOGGER.info("EASYES Equipement creation OK");
+			return "ref/infra/createEquipmentConfirm";
+		}
+		return null;
 
 	}
 }

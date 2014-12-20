@@ -9,8 +9,4 @@ $(function() {
 			$("#infraForm").submit();
 		}
 	});
-	
-//	$("#cbxDisabledFacilities").click(function() {
-//		$("#disabledFacilities")
-//	});
 });

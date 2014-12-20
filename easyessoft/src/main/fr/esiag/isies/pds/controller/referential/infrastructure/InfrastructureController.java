@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.esiag.isies.pds.businessRules.refential.infrastructure.InfrastructureBusinessRules;
+import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.InfrastructureDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
@@ -31,12 +33,18 @@ public class InfrastructureController {
 			.getLogger(InfrastructureController.class);
 
 	/**
-	 * persiste data and get data in the database
+	 * Dao InfrastructureDao which get list of infrastructure referential
 	 */
 	private InfrastructureDao infrastructureDao = new InfrastructureDao();
 
 	/**
-	 * Dao TypeRefInfra which get list of type of infrastructure referential
+	 * Dao CategoryRefInfraDao which get list of category of infrastructure
+	 * referential
+	 */
+	private CategoryRefInfraDao categoryRefInfraDao = new CategoryRefInfraDao();
+
+	/**
+	 * Dao TypeRefInfraDao which get list of type of infrastructure referential
 	 */
 	private TypeRefInfraDao typeRefInfraDao = new TypeRefInfraDao();
 
@@ -49,11 +57,7 @@ public class InfrastructureController {
 	 * Construct this class and initialize category item
 	 */
 	public InfrastructureController() {
-		// TODO get by Dao in the future
-		categoryRefInfra = new CategoryRefInfra();
-		categoryRefInfra.setId(1);
-		categoryRefInfra.setCode("XXXINFTYP1");
-		categoryRefInfra.setLabel("Infrastructure");
+		categoryRefInfra = categoryRefInfraDao.getInfraCategory();
 	}
 
 	/**
@@ -81,13 +85,13 @@ public class InfrastructureController {
 			Model model) {
 		infrastructure.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
-		// if (new InfrastructureBusinessRules().verify(infrastructure)) {
-		// TODO manage exception infrastructureDao.create(infrastructure);
-		model.addAttribute("infrastructure", infrastructure);
-		LOGGER.info("EASYES Infrastructure creation OK");
-		return "ref/infra/createInfraConfirm";
-		// }
-		// return null;
+		if (new InfrastructureBusinessRules().verify(infrastructure)) {
+			// TODO manage exception infrastructureDao.create(infrastructure);
+			model.addAttribute("infrastructure", infrastructure);
+			LOGGER.info("EASYES Infrastructure creation OK");
+			return "ref/infra/createInfraConfirm";
+		}
+		return null;
 
 	}
 }

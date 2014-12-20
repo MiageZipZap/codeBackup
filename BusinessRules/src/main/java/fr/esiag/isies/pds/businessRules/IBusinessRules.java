@@ -10,6 +10,7 @@ import fr.esiag.isies.pds.model.AbstractEntity;
  */
 public interface IBusinessRules<T extends AbstractEntity> {
 	/**
+	 * Method which verify an item
 	 * 
 	 * @param item
 	 * @return true if item is correct
