@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
-
 /**
  * Get the http request which concern Emergency Department view
  * @author GKA, ODI,PFR,MCH
