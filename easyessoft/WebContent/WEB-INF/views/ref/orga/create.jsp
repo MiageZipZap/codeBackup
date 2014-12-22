@@ -20,7 +20,7 @@
 						<form:select path="orgaType.id" class="form-control"
 							name="OrgaType" id="OrgaType">
 							<c:forEach items="${list}" var="selectionType">
-								<form:option value="${selectionType.id}">${selectionType.label}</form:option>
+								<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} ${selectionType.legalStatus}</form:option>
 							</c:forEach>
 						</form:select>
 					</div>
@@ -79,10 +79,17 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">départment</label>
+					<label class="col-sm-3 control-label">latitude</label>
 					<div class="col-sm-5">
-						<form:input type="text" path="department" id="department"
-							class="form-control" name="department" />
+						<form:input type="number" step="any" min="0" path="latitude" id="latitude"
+							class="form-control" name="latitude" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">longitude</label>
+					<div class="col-sm-5">
+						<form:input type="number" step="any" min="0" path="longitude" id="longitude"
+							class="form-control" name="longitude" />
 					</div>
 				</div>
 			</fieldset>
