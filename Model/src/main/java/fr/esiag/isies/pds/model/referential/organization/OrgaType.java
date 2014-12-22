@@ -19,6 +19,6 @@ public class OrgaType extends AbstractType {
 	}
 	public void setLegalStatus(String legalStatus) {
 		this.legalStatus = legalStatus;
-	}
+	}	
 		
 }

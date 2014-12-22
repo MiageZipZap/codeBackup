@@ -20,6 +20,10 @@ public class Organization extends AbstractEntity {
 	 */
 	private String name;
 	/*
+	 * SIRET number
+	 */
+	private String siret;
+	/*
 	 * Street number of the organization
 	 */
 	private int streetNumber;
@@ -60,28 +64,24 @@ public class Organization extends AbstractEntity {
 	 */
 	private String legalStatus;
 	/*
-	 * SIRET number
-	 */
-	private String siret;
-	/*
-	 * SIRET number
+	 * Latitude
 	 */
 	private Float latitude;
 	/*
-	 * SIRET number
+	 * Longitude
 	 */
 	private Float longitude;
 	/*
 	 * Type of orga.
 	 */
 	private OrgaType orgaType;
-	
+
 	/**
 	 * List of services in the hospital
 	 */
 	//private Map<ServiceType, Integer> services;
 	private Set<ServiceType> servicesSet;
-	
+
 	public Set<ServiceType> getServicesSet() {
 		return servicesSet;
 	}
@@ -89,7 +89,7 @@ public class Organization extends AbstractEntity {
 	public void setServicesSet(Set<ServiceType> servicesSet) {
 		this.servicesSet = servicesSet;
 	}
-	
+
 	public String getFax() {
 		return fax;
 	}
@@ -187,8 +187,6 @@ public class Organization extends AbstractEntity {
 	}
 	public void setOrgaType(OrgaType orgaType) {
 		this.orgaType = orgaType;
-	}
-	
-	
-	
+	}	
+
 }
