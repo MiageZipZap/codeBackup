@@ -16,7 +16,7 @@
 			action="/easyessoft/ihm/ref/infra/create"
 			commandName="infrastructure" onsubmit="return false;">
 			<fieldset>
-				<legend>Informations Infrastructure</legend>
+				<legend>Informations infrastructure</legend>
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Code :</label>
 					<form:input path="code" type="text" id="code" />
