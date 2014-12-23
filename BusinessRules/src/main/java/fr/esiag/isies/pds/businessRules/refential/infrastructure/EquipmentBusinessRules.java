@@ -1,6 +1,7 @@
 package fr.esiag.isies.pds.businessRules.refential.infrastructure;
 
 import fr.esiag.isies.pds.businessRules.IBusinessRules;
+import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
 
 /**
@@ -11,6 +12,8 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
  *
  */
 public class EquipmentBusinessRules implements IBusinessRules<Equipment> {
+	
+	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();
 
 	public boolean verify(Equipment item) {
 
@@ -26,7 +29,7 @@ public class EquipmentBusinessRules implements IBusinessRules<Equipment> {
 			return false;
 		}
 
-		if (!item.getTypeRefInfra().getCategory().getLabel().equals("EQUIPMENT")){
+		if (!item.getTypeRefInfra().getCategory().equals(cateRefInfraDao.getEquipCategory())){
 			return false;
 		}
 		

@@ -2,11 +2,14 @@ package fr.esiag.isies.pds.businessRules.referential.infrastructure;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import mockit.Mocked;
+import mockit.NonStrictExpectations;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.esiag.isies.pds.businessRules.refential.infrastructure.InfrastructureBusinessRules;
+import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 import fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra;
@@ -45,7 +48,7 @@ public class InfrastructureBusinessRulesTest {
 	/**
 	 * Infrastructure wich has a negative capacity
 	 */
-	private Infrastructure errCapcityInfra;
+	private Infrastructure errCapacityInfra;
 	/**
 	 * Infrastructure which a non valid code
 	 */
@@ -58,6 +61,11 @@ public class InfrastructureBusinessRulesTest {
 	 * Infrastructure which has a non valid label
 	 */
 	private Infrastructure errLabelInfra;
+	/**
+	 * Mocked DAO
+	 */
+	@Mocked
+	CategoryRefInfraDao categoryRefInfraDao;
 
 	@Before
 	public void init() {
@@ -86,11 +94,11 @@ public class InfrastructureBusinessRulesTest {
 		validInfra.setLabel("Salle d'attente");
 		validInfra.setTypeRefInfra(validTypeRefInfra);
 
-		errCapcityInfra = new Infrastructure();
-		errCapcityInfra.setCapacity(-1);
-		errCapcityInfra.setCode("1231231230");
-		errCapcityInfra.setLabel("Salle d'attente");
-		errCapcityInfra.setTypeRefInfra(validTypeRefInfra);
+		errCapacityInfra = new Infrastructure();
+		errCapacityInfra.setCapacity(-1);
+		errCapacityInfra.setCode("1231231230");
+		errCapacityInfra.setLabel("Salle d'attente");
+		errCapacityInfra.setTypeRefInfra(validTypeRefInfra);
 		
 		errCodeInfra = new Infrastructure();
 		errCodeInfra.setCapacity(1);
@@ -111,14 +119,21 @@ public class InfrastructureBusinessRulesTest {
 		errTypeInfra.setTypeRefInfra(errorTypeRefInfra);
 		
 	}
+	
+	
 
 	@Test
 	public void testVerify() {
+		new NonStrictExpectations(){{
+			categoryRefInfraDao.getInfraCategory(); result=validCategoryRefInfra;
+		}};
 		assertTrue(infraBR.verify(validInfra));
 		assertFalse(infraBR.verify(null));
-		assertFalse(infraBR.verify(errCapcityInfra));
+		assertFalse(infraBR.verify(errCapacityInfra));
 		assertFalse(infraBR.verify(errCodeInfra));
 		assertFalse(infraBR.verify(errLabelInfra));
 		assertFalse(infraBR.verify(errTypeInfra));
+		
 	}
+	
 }

@@ -1,6 +1,7 @@
 package fr.esiag.isies.pds.businessRules.refential.infrastructure;
 
 import fr.esiag.isies.pds.businessRules.IBusinessRules;
+import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 
 /**
@@ -13,6 +14,7 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 public class InfrastructureBusinessRules implements
 		IBusinessRules<Infrastructure> {
 
+	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();
 	public boolean verify(Infrastructure item) {
 
 		if (item == null) {
@@ -31,8 +33,7 @@ public class InfrastructureBusinessRules implements
 			return false;
 		}
 
-		if (!item.getTypeRefInfra().getCategory().getLabel()
-				.equals("Infrastructure")) {
+		if (!item.getTypeRefInfra().getCategory().equals(cateRefInfraDao.getInfraCategory())) {
 			return false;
 		}
 

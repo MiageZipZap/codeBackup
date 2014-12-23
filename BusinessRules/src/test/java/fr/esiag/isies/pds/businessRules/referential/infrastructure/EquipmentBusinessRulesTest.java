@@ -2,11 +2,14 @@ package fr.esiag.isies.pds.businessRules.referential.infrastructure;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import mockit.Mocked;
+import mockit.NonStrictExpectations;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.esiag.isies.pds.businessRules.refential.infrastructure.EquipmentBusinessRules;
+import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
 import fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra;
@@ -45,7 +48,7 @@ public class EquipmentBusinessRulesTest {
 	/**
 	 * Equipment which has a non valid serial number (ex :-+@11)
 	 */
-	private Equipment errCapcityInfra;
+	private Equipment errSerialNumber;
 	/**
 	 * Equipment which is linked to a wrong category (ex: Medicine)
 	 */
@@ -54,6 +57,13 @@ public class EquipmentBusinessRulesTest {
 	 * Equipment which has a non valid label( ex : less than 2 letters)
 	 */
 	private Equipment errLabelEquip;
+	/**
+	 * Mocked DAO
+	 */
+	@Mocked
+	CategoryRefInfraDao categoryRefInfraDao;
+	
+	
 
 	@Before
 	public void init() {
@@ -81,10 +91,10 @@ public class EquipmentBusinessRulesTest {
 		validEquip.setLabel("Lit mobile");
 		validEquip.setTypeRefInfra(validTypeRefInfra);
 
-		errCapcityInfra = new Equipment();
-		errCapcityInfra.setSerialNumber("-+@.11");
-		errCapcityInfra.setLabel("Lit mobile");
-		errCapcityInfra.setTypeRefInfra(validTypeRefInfra);
+		errSerialNumber = new Equipment();
+		errSerialNumber.setSerialNumber("-+@.11");
+		errSerialNumber.setLabel("Lit mobile");
+		errSerialNumber.setTypeRefInfra(validTypeRefInfra);
 		
 		
 		
@@ -102,9 +112,12 @@ public class EquipmentBusinessRulesTest {
 
 	@Test
 	public void testVerify() {
+		new NonStrictExpectations(){{
+			categoryRefInfraDao.getEquipCategory(); result=validCategoryRefInfra;
+		}};
 		assertTrue(equipmentBR.verify(validEquip));
 		assertFalse(equipmentBR.verify(null));
-		assertFalse(equipmentBR.verify(errCapcityInfra));
+		assertFalse(equipmentBR.verify(errSerialNumber));
 		assertFalse(equipmentBR.verify(errLabelEquip));
 		assertFalse(equipmentBR.verify(errTypeRefInfra));
 	}
