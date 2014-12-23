@@ -12,8 +12,8 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
  *
  */
 public class EquipmentBusinessRules implements IBusinessRules<Equipment> {
-	
-	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();  
+
+	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();
 
 	public boolean verify(Equipment item) {
 
@@ -29,12 +29,10 @@ public class EquipmentBusinessRules implements IBusinessRules<Equipment> {
 			return false;
 		}
 
-		if (!item.getTypeRefInfra().getCategory().equals(cateRefInfraDao.getEquipCategory())){
+		if (!item.getTypeRefInfra().getCategory().getCode()
+				.equals(cateRefInfraDao.getEquipCategory().getCode())) {
 			return false;
 		}
-		
-		
-	
 		return true;
 	}
 }

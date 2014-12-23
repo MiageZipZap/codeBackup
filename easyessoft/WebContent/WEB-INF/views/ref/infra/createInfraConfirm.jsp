@@ -3,8 +3,6 @@
 	<jsp:param value="Creation Medecin" name="title" />
 </jsp:include>
 <div id="content">
-	<p>L'infrastructure ${infrastructure.label} a bien été ajouté !</p>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">

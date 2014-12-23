@@ -14,7 +14,8 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 public class InfrastructureBusinessRules implements
 		IBusinessRules<Infrastructure> {
 
-	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();  
+	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();
+
 	public boolean verify(Infrastructure item) {
 
 		if (item == null) {
@@ -33,12 +34,12 @@ public class InfrastructureBusinessRules implements
 			return false;
 		}
 
-		if (!item.getTypeRefInfra().getCategory().equals(cateRefInfraDao.getInfraCategory())) {
+		if (!item.getTypeRefInfra().getCategory().getCode()
+				.equals(cateRefInfraDao.getInfraCategory().getCode())) {
 			return false;
 		}
 
 		return true;
-		
-		
+
 	}
 }

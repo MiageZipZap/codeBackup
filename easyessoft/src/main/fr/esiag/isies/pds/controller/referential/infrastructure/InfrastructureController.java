@@ -85,6 +85,9 @@ public class InfrastructureController {
 			Model model) {
 		infrastructure.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
+		
+		//Before that, verify that type is in the right category
+		infrastructure.getTypeRefInfra().setCategory(categoryRefInfraDao.getInfraCategory());
 		if (new InfrastructureBusinessRules().verify(infrastructure)) {
 			// TODO manage exception infrastructureDao.create(infrastructure);
 			model.addAttribute("infrastructure", infrastructure);
