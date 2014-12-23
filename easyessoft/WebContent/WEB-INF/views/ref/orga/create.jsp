@@ -4,6 +4,7 @@
 	<jsp:param name="title" value="Creation Organisme" />
 </jsp:include>
 <div id="content">
+
 	<div>
 		<h1>Creation d'un organisme</h1>
 	</div>
@@ -19,7 +20,8 @@
 					<div class="col-sm-5">
 						<form:select path="orgaType.id" class="form-control"
 							name="OrgaType" id="OrgaType">
-							<c:forEach items="${list}" var="selectionType">
+							<form:option value="0">Selectionnez un type</form:option>
+							<c:forEach items="${listTypeOrga}" var="selectionType">
 								<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} ${selectionType.legalStatus}</form:option>
 							</c:forEach>
 						</form:select>
@@ -79,19 +81,29 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">latitude</label>
+					<label class="col-sm-3 control-label">Département</label>
 					<div class="col-sm-5">
-						<form:input type="number" step="any" min="0" path="latitude" id="latitude"
-							class="form-control" name="latitude" />
+						<form:input type="text" path="department" id="department"
+							class="form-control" name="department" />
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">longitude</label>
-					<div class="col-sm-5">
-						<form:input type="number" step="any" min="0" path="longitude" id="longitude"
-							class="form-control" name="longitude" />
+				<fieldset>
+					<legend>Coordonnées GPS</legend>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">latitude</label>
+						<div class="col-sm-5">
+							<form:input type="number" step="any" min="0" path="latitude"
+								id="latitude" class="form-control" name="latitude" />
+						</div>
 					</div>
-				</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">longitude</label>
+						<div class="col-sm-5">
+							<form:input type="number" step="any" min="0" path="longitude"
+								id="longitude" class="form-control" name="longitude" />
+						</div>
+					</div>
+				</fieldset>
 			</fieldset>
 			<fieldset>
 				<legend>Contact</legend>
@@ -118,9 +130,9 @@
 				</div>
 			</fieldset>
 			<div class="form-group">
-				<div class="col-sm-9 col-sm-offset-3">
+				<p class="col-sm-9 col-sm-offset-3" id="finish">
 					<button type="submit" class="btn btn-primary" id="createButOrga">Créer</button>
-				</div>
+				</p>
 			</div>
 		</form:form>
 	</div>
