@@ -66,6 +66,7 @@ public class InfrastructureBusinessRulesTest {
 	 */
 	@Mocked
 	CategoryRefInfraDao categoryRefInfraDao;
+	
 
 	@Before
 	public void init() {

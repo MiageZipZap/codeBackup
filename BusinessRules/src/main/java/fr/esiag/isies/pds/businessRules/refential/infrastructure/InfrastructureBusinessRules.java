@@ -14,7 +14,7 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 public class InfrastructureBusinessRules implements
 		IBusinessRules<Infrastructure> {
 
-	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();
+	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();  
 	public boolean verify(Infrastructure item) {
 
 		if (item == null) {

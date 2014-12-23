@@ -13,7 +13,7 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
  */
 public class EquipmentBusinessRules implements IBusinessRules<Equipment> {
 	
-	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();
+	public CategoryRefInfraDao cateRefInfraDao = new CategoryRefInfraDao();  
 
 	public boolean verify(Equipment item) {
 

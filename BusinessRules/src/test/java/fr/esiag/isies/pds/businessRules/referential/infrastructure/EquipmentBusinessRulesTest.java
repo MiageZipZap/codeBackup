@@ -121,5 +121,6 @@ public class EquipmentBusinessRulesTest {
 		assertFalse(equipmentBR.verify(errLabelEquip));
 		assertFalse(equipmentBR.verify(errTypeRefInfra));
 	}
+	
 
 }
