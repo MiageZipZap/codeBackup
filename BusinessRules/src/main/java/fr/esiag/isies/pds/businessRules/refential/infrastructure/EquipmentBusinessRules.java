@@ -29,6 +29,8 @@ public class EquipmentBusinessRules implements IBusinessRules<Equipment> {
 		if (!item.getTypeRefInfra().getCategory().getLabel().equals("EQUIPMENT")){
 			return false;
 		}
+		
+		
 	
 		return true;
 	}
