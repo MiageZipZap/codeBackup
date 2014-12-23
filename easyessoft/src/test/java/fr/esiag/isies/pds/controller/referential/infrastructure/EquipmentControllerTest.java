@@ -97,7 +97,7 @@ public class EquipmentControllerTest {
 			securityContext.getAuthentication(); result = authentication;
 			authentication.getName(); result = "test-unitaire";
 			equipmentBusinessRules.verify(equipment); result = false;
-		}};
+		}}; 
 		assertEquals(equipmentController.create(equipment, model),null);
 	}
 

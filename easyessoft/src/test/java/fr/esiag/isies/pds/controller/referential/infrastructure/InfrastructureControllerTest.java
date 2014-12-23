@@ -86,7 +86,7 @@ public class InfrastructureControllerTest {
 			securityContext.getAuthentication(); result = authentication;
 			authentication.getName(); result = "test-unitaire";
 			infrastructureBusinessRules.verify(infrastructure); result = false;
-		}};
+		}}; 
 		assertEquals(infraController.create(infrastructure, model),null);
 	}
 }
