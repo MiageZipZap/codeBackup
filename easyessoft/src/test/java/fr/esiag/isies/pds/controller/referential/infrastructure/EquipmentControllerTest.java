@@ -93,6 +93,12 @@ public class EquipmentControllerTest {
 			equipmentBusinessRules.verify(equipment); result = true;
 		}};
 		assertEquals(equipmentController.create(equipment, model),"ref/infra/createEquipmentConfirm");
+		new NonStrictExpectations() {{
+			securityContext.getAuthentication(); result = authentication;
+			authentication.getName(); result = "test-unitaire";
+			equipmentBusinessRules.verify(equipment); result = false;
+		}};
+		assertEquals(equipmentController.create(equipment, model),null);
 	}
 
 }

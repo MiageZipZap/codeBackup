@@ -81,5 +81,12 @@ public class InfrastructureControllerTest {
 			infrastructureBusinessRules.verify(infrastructure); result = true;
 		}};
 		assertEquals(infraController.create(infrastructure, model),"ref/infra/createInfraConfirm");
+		
+		new NonStrictExpectations() {{
+			securityContext.getAuthentication(); result = authentication;
+			authentication.getName(); result = "test-unitaire";
+			infrastructureBusinessRules.verify(infrastructure); result = false;
+		}};
+		assertEquals(infraController.create(infrastructure, model),null);
 	}
 }
