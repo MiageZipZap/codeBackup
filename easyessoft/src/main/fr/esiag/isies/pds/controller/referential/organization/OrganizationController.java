@@ -47,7 +47,7 @@ public class OrganizationController {
 	@RequestMapping("creationForm")
 	public String getForm(Model model) {
 		model.addAttribute("organization",new Organization());
-		model.addAttribute("listTypeOrga",this.listTypeOrga);
+		model.addAttribute("listTypeOrga",listTypeOrga);
 		return "ref/orga/create";
 	}
 	

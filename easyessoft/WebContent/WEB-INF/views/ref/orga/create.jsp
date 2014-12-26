@@ -3,8 +3,14 @@
 <jsp:include page="../../include/header.jsp">
 	<jsp:param name="title" value="Creation Organisme" />
 </jsp:include>
-<div id="content">
+<style type="text/css">
+/* Adjust feedback icon position */
+.form-horizontal .has-feedback .form-control-feedback {
+	right: 25px;
+}
+</style>
 
+<div id="content">
 	<div>
 		<h1>Creation d'un organisme</h1>
 	</div>
@@ -15,12 +21,12 @@
 			<fieldset>
 				<legend>Type d'organisme</legend>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Choisir le type
-						d'organisme</label>
+					<label class="col-sm-3 control-label selectContainer">Choisir
+						le type d'organisme</label>
 					<div class="col-sm-5">
 						<form:select path="orgaType.id" class="form-control"
 							name="OrgaType" id="OrgaType">
-							<form:option value="0">Selectionnez un type</form:option>
+							<form:option value='0' label='<Selectionnez>' />
 							<c:forEach items="${listTypeOrga}" var="selectionType">
 								<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} ${selectionType.legalStatus}</form:option>
 							</c:forEach>
@@ -44,6 +50,8 @@
 							class="form-control" name="siret" />
 					</div>
 				</div>
+			</fieldset>
+			<fieldset>
 				<legend>Adresse</legend>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Numéro de rue</label>
@@ -52,8 +60,9 @@
 							class="form-control" name="streetNumber" />
 					</div>
 				</div>
+
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Type de voie</label>
+					<label class="col-sm-3 control-label">Type de voie </label>
 					<div class="col-sm-5">
 						<form:input type="text" path="streetType" id="streetType"
 							class="form-control" name="streetType" />
@@ -87,23 +96,24 @@
 							class="form-control" name="department" />
 					</div>
 				</div>
-				<fieldset>
-					<legend>Coordonnées GPS</legend>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">latitude</label>
-						<div class="col-sm-5">
-							<form:input type="number" step="any" min="0" path="latitude"
-								id="latitude" class="form-control" name="latitude" />
-						</div>
+			</fieldset>
+			<fieldset>
+				<legend>Coordonnées GPS</legend>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Latitude</label>
+					<div class="col-sm-5">
+						<form:input type="text" path="latitude" id="latitude"
+							class="form-control" name="latitude" />
 					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">longitude</label>
-						<div class="col-sm-5">
-							<form:input type="number" step="any" min="0" path="longitude"
-								id="longitude" class="form-control" name="longitude" />
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Longitude</label>
+					<div class="col-sm-5">
+						<form:input type="text" path="longitude" id="longitude"
+							class="form-control" name="longitude" />
 					</div>
-				</fieldset>
+				</div>
+			</fieldset>
 			</fieldset>
 			<fieldset>
 				<legend>Contact</legend>

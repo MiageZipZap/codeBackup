@@ -20,10 +20,12 @@
 <script type="text/javascript" src="/easyessoft/js/orga.js"/></script>
 <script type="text/javascript" src="/easyessoft/js/controlManager.js"></script>
 <script type="text/javascript" src="/easyessoft/js/bannerMessage.js"></script>
-<script type="text/javascript" src="/easyessoft/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/easyessoft/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="/easyessoft/dist/js/bootstrapValidator.js"></script>
 
 <!-- Bootstrap Core CSS -->
-<link href="/easyessoft/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/easyessoft/dist/css/bootstrap.css" rel="stylesheet">
+<link href="/easyessoft/dist/css/bootstrapValidator.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="/easyessoft/dist/css/business-frontpage.css" rel="stylesheet">
