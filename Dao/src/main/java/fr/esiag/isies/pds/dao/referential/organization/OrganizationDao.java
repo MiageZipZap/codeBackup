@@ -20,11 +20,11 @@ public class OrganizationDao extends AbstractEntityDao<Organization> {
 		return item;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Organization> getAll() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
+		@SuppressWarnings("unchecked")
 		List<Organization> list = (List<Organization>) session.createCriteria(Organization.class).list();
 		return list;
 	}
