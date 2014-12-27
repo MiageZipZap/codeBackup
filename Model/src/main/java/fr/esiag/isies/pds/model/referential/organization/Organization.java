@@ -3,8 +3,14 @@
  */
 package fr.esiag.isies.pds.model.referential.organization;
 
+import java.util.List;
 import java.util.Set;
 
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.constraint.Length;
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
 import fr.esiag.isies.pds.model.AbstractEntity;
 
 /**
@@ -18,6 +24,9 @@ public class Organization extends AbstractEntity {
 	/*
 	 * Name of the organization
 	 */
+	@NotNull
+	@NotEmpty
+	@Length(max=45)
 	private String name;
 	/*
 	 * SIRET number
@@ -187,6 +196,6 @@ public class Organization extends AbstractEntity {
 	}
 	public void setOrgaType(OrgaType orgaType) {
 		this.orgaType = orgaType;
-	}	
-
+	}
+	
 }
