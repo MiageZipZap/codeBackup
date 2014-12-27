@@ -15,7 +15,7 @@ import fr.esiag.isies.pds.model.referential.organization.Organization;
 
 /**
  * This class provide defined business rules verifications
- * @author Samuel
+ * @author SKO JLA OSA ADA JSB
  *
  */
 public class OrganizationBusinessRulesTest{
@@ -37,14 +37,30 @@ public class OrganizationBusinessRulesTest{
 	/**
 	 *---------Elements to test--------- 
 	 */
-		//test 
+	//organization type
+	private Organization wrongOrganizationType;
+	//name
+	private Organization wrongOrganizationName;
+	//siret
+	private Organization wrongOrganizationSiret;
 	
+	//TODO:adress class will be created and corresponding Test Class
+	
+	//gps coords
+	private Organization wrongOrganizationLatitude;
+	private Organization wrongOrganizationLongitude;
+	
+	//gps contact
+	private Organization wrongOrganizationFax;
+	private Organization wrongOrganizationEmail;
+	private Organization wrongOrganizationPhone;
 	
 	/**
+	 * 
 	 * Mocked DAO
 	 */
 	@Mocked
-	OrganizationDao categoryRefInfraDao;
+	OrganizationDao orgaDao;
 	
 	@Before
 	public void prepareTest() {
