@@ -12,10 +12,11 @@
         http://www.springframework.org/schema/mvc      http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="fr.esiag.isies.pds.controller" />
-
+	
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-
+	
+	<bean id="ovalGuardInterceptor" class="net.sf.oval.guard.GuardInterceptor"/>
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

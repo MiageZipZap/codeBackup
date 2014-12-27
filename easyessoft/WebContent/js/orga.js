@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	$('#orgaForm').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
@@ -138,8 +139,13 @@ $(document).ready(function() {
 			}
 
 		}
+		
 	});
-
+	controlManager.reset();
+	if (controlManager.hasNoError()) {
+		$("#orgaForm").removeAttr("onsubmit");
+		$("#orgaForm").submit();
+	}
 
 
 

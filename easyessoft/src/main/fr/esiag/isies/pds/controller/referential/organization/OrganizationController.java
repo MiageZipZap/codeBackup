@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.esiag.isies.pds.businessRules.referential.organization.OrganizationBusinessRules;
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
@@ -62,7 +63,8 @@ public class OrganizationController {
 			Model model) {
 		organization.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
-		
+		OrganizationBusinessRules obr = new OrganizationBusinessRules();
+		obr.test(organization);
 		orgaDao.create(organization);
 		model.addAttribute("organization", organization);
 		return "ref/orga/display";
