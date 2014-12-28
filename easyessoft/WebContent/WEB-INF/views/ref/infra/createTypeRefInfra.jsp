@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="tagline">Création d'une nouvelle entrée : TypeRefInfra</h1>
+				<h1 class="tagline">Création d'un nouveau type d'infrastructure</h1>
 			</div>
 		</div>
 	</div>
