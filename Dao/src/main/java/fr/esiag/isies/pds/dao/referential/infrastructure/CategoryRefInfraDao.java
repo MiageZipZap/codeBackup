@@ -36,6 +36,14 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 		categoryRefInfra.setLabel("Equipement");
 		return categoryRefInfra;
 	}
+	public CategoryRefInfra getMedicCategory() {
+		CategoryRefInfra categoryRefInfra = new CategoryRefInfra();
+		categoryRefInfra.setId(3);
+		categoryRefInfra.setCode("XXXMED0001");
+		categoryRefInfra.setLabel("Medicament");
+		return categoryRefInfra;
+	}
+	
 
 	@Override
 	public List<CategoryRefInfra> getAll() {

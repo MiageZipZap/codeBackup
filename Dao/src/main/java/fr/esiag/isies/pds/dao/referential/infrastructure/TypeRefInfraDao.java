@@ -22,7 +22,6 @@ public class TypeRefInfraDao extends AbstractTypeDao<TypeRefInfra>{
 		typeRefInfra.setCode("XXSALEX001");
 		typeRefInfra.setLabel("Salle d'examen");
 		typeRefInfra.setId(1);
-		typeRefInfra.setCategory(category);
 		TypeRefInfra typeRefInfra2 = new TypeRefInfra();
 		typeRefInfra2.setCategory(category);
 		typeRefInfra2.setCode("XXSALSL002");
@@ -32,7 +31,14 @@ public class TypeRefInfraDao extends AbstractTypeDao<TypeRefInfra>{
 		typeRefInfra2.setCode("XXXWW02LIT");
 		typeRefInfra2.setLabel("Lit électrique");
 		lstTypeRefInfra.add(typeRefInfra);
+		TypeRefInfra typeRefInfra3 = new TypeRefInfra();
+		typeRefInfra3.setCategory(category);
+		typeRefInfra3.setCode("XXMED00002");
+		typeRefInfra3.setLabel("Paracétamol");
+		typeRefInfra3.setId(3);
+		lstTypeRefInfra.add(typeRefInfra);
 		lstTypeRefInfra.add(typeRefInfra2);
+		lstTypeRefInfra.add(typeRefInfra3);
 		return lstTypeRefInfra;
 	}
 
