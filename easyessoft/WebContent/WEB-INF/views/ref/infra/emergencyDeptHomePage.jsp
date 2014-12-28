@@ -7,7 +7,7 @@
 	<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="tagline">Référentiel des infrastructures d'un service d'urgence</h1>
+					<h1 class="tagline">Référentiel des infrastructures d'un service d'urgences</h1>
 				</div>
 			</div>
 		</div>
@@ -16,6 +16,8 @@
 				d'un équipement</a></li>
 		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
 				d'une infrastructure</a></li>
+		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
+				d'un médicament</a></li>
 	</ul>
 </div>
 <jsp:include page="../../include/footer.jsp" />
