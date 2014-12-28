@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
+import javax.xml.transform.stream.StreamSource;
 
 import fr.esiag.isies.pds.model.AbstractModel;
 
@@ -23,7 +26,7 @@ import fr.esiag.isies.pds.model.AbstractModel;
  *
  */
 public class CacheFileUtils {
-	
+
 	// TODO ActionEnum
 
 	/**
@@ -43,7 +46,8 @@ public class CacheFileUtils {
 	 * @param item
 	 * @return true if it's OK.
 	 */
-	public static <T extends AbstractModel> boolean add(T item, ActionEnum action) {
+	public static <T extends AbstractModel> boolean add(T item,
+			ActionEnum action) {
 
 		if (item == null) {
 			return false;
@@ -62,12 +66,12 @@ public class CacheFileUtils {
 		JAXBContext jc;
 		try {
 			jc = JAXBContext.newInstance(clazz);
-			JAXBElement<T> je2 = new JAXBElement<T>(new QName(
+			JAXBElement<T> je = new JAXBElement<T>(new QName(
 					clazz.getSimpleName()), clazz, item);
 			Marshaller marshaller = jc.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			PrintStream printStream = new PrintStream(f);
-			marshaller.marshal(je2, printStream);
+			marshaller.marshal(je, printStream);
 			printStream.flush();
 			printStream.close();
 			return true;
@@ -130,23 +134,44 @@ public class CacheFileUtils {
 	 * 
 	 * @param clazz
 	 * @return List of T Object
+	 * @throws JAXBException
 	 */
 	public static <T extends AbstractModel> List<T> read(Class<T> clazz) {
-		// Return all object of type clazz
-		// read all file and get just T Object and leave other files
-		// Return the list and delete file which concern object which are
-		// returned in the list
-		return null;
+		JAXBContext jc;
+		String path = cacheDirectory + clazz.getSimpleName() + "/";
+		File directory = new File(path);
+		if (!(directory.exists() && directory.isDirectory())) {
+			return null;
+		}
+		try {
+			List<T> lst = new ArrayList<T>();
+			jc = JAXBContext.newInstance(clazz);
+
+			for (File f : directory.listFiles()) {
+				if (f.isFile()) {
+					StreamSource xml = new StreamSource(f);
+					Unmarshaller unmarshaller = jc.createUnmarshaller();
+					JAXBElement<T> je = unmarshaller.unmarshal(xml, clazz);
+					lst.add(je.getValue());
+				}
+			}
+			return lst;
+		} catch (JAXBException e) {
+			// TODO Logger
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
-	 * Create name of cache file. The full name of cache file is :
-	 * Prefix (cacheDirectory value), id of item which is managed, the timestamp
-	 * to date the file, the action and xml extension
-	 * => (id_timestamp_action.xml)
+	 * Create name of cache file. The full name of cache file is : Prefix
+	 * (cacheDirectory value), id of item which is managed, the timestamp to
+	 * date the file, the action and xml extension => (id_timestamp_action.xml)
+	 * 
 	 * @return name of a cache file
 	 */
-	private static String createName(String className, Integer id, ActionEnum action) {
+	private static String createName(String className, Integer id,
+			ActionEnum action) {
 		String tmp = cacheDirectory + className + "/";
 		tmp += id.toString() + "_";
 		tmp += new Date().getTime() + "_";

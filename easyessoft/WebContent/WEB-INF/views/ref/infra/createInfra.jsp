@@ -28,7 +28,7 @@
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Type :</label>
-					<div class="col-sm-1">
+					<div class="col-sm-5">
 						<form:select class="form-control" path="typeRefInfra.id">
 							<c:forEach items="${lstOfType}" var="item">
 								<form:option value="${item.id}">${item.label}</form:option>

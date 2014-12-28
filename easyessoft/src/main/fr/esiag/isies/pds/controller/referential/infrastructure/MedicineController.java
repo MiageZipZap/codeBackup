@@ -26,7 +26,7 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Medicine;
  *
  */
 @Controller
-@RequestMapping("ref/infra")
+@RequestMapping("ref/medicine")
 public class MedicineController {
 
 	/**
@@ -89,7 +89,7 @@ public class MedicineController {
 				.getAuthentication().getName());
 		
 		//Before that, verify that type is in the right category
-		medicine.getTypeRefInfra().setCategory(categoryRefInfraDao.getInfraCategory());
+		medicine.getTypeRefInfra().setCategory(categoryRefInfraDao.getMedicCategory());
 		if (new MedicineBusinessRules().verify(medicine)) {
 			// TODO manage exception medicineDao.create(medicine);
 			model.addAttribute("medicine", medicine);
