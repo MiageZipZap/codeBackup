@@ -16,10 +16,10 @@
 				d'un équipement</a></li>
 		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
 				d'une infrastructure</a></li>
-		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
+		<li><a href="/easyessoft/ihm/ref/medicine/createForm">Création
 				d'un médicament</a></li>
 				
-		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
+		<li><a href="/easyessoft/ihm/ref/typeRefInfra/createForm">Création
 				d'un type référentiel infrastructure</a></li>
 	</ul>
 </div>
