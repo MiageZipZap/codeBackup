@@ -18,6 +18,9 @@
 				d'une infrastructure</a></li>
 		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
 				d'un médicament</a></li>
+				
+		<li><a href="/easyessoft/ihm/ref/infra/createForm">Création
+				d'un type référentiel infrastructure</a></li>
 	</ul>
 </div>
 <jsp:include page="../../include/footer.jsp" />
