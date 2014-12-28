@@ -6,7 +6,7 @@
 $(function() {
 	$("#createButEquip").click(function() {
 		controlManager.reset();
-		String.check("label", 2, 50);
+		String.check("label", 2, 255);
 		String.check("serialNumber",10, 10);
 		if (controlManager.hasNoError()) {
 			$("#equipForm").removeAttr("onsubmit");

@@ -12,8 +12,8 @@
 		</div>
 	</div>
 	<div class="box-content">
-		<form:form id="infraForm" class="form-horizontal" method="post"
-			action="/easyessoft/ihm/ref/infra/create"
+		<form:form id="medicForm" class="form-horizontal" method="post"
+			action="/easyessoft/ihm/ref/medicine/create"
 			commandName="medicine" onsubmit="return false;">
 			<fieldset>
 				<legend>Informations médicament</legend>
@@ -30,7 +30,7 @@
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Type :</label>
-					<div class="col-sm-1">
+					<div class="col-sm-5">
 						<form:select class="form-control" path="typeRefInfra.id">
 							<c:forEach items="${lstOfType}" var="item">
 								<form:option value="${item.id}">${item.label}</form:option>

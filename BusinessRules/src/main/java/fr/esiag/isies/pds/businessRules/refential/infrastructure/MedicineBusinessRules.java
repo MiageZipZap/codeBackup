@@ -53,7 +53,7 @@ public class MedicineBusinessRules implements IBusinessRules<Medicine> {
 			}
 
 			if (!item.getTypeRefInfra().getCategory().getCode()
-					.equals(cateRefInfraDao.getInfraCategory().getCode())) {
+					.equals(cateRefInfraDao.getMedicCategory().getCode())) {
 				return false;
 			}
 
