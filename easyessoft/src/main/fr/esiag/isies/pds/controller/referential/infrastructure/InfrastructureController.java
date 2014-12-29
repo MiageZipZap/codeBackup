@@ -86,15 +86,17 @@ public class InfrastructureController {
 		infrastructure.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
 		
-		//Before that, verify that type is in the right category
-		infrastructure.getTypeRefInfra().setCategory(categoryRefInfraDao.getInfraCategory());
 		if (new InfrastructureBusinessRules().verify(infrastructure)) {
 			// TODO manage exception infrastructureDao.create(infrastructure);
 			model.addAttribute("infrastructure", infrastructure);
 			LOGGER.info("EASYES Infrastructure creation OK");
 			return "ref/infra/createInfraConfirm";
 		}
-		return null;
+		model.addAttribute("infrastructure", infrastructure);
+		model.addAttribute("lstOfType",
+				typeRefInfraDao.getAllByCategory(categoryRefInfra));
+		LOGGER.info("EASYES Form display : Infrastructure creation Error");
+		return "ref/infra/createInfra";
 
 	}
 }

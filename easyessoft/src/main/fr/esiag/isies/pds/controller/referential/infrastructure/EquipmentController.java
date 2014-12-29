@@ -91,7 +91,11 @@ public class EquipmentController {
 			LOGGER.info("EASYES Equipement creation OK");
 			return "ref/infra/createEquipmentConfirm";
 		}
-		return null;
+		model.addAttribute("equipment", equipment);
+		model.addAttribute("lstOfType",
+				typeRefInfraDao.getAllByCategory(categoryRefInfra));
+		LOGGER.info("EASYES Form display : Equipement creation Error ");
+		return "ref/infra/createEquip";
 
 	}
 }

@@ -23,7 +23,7 @@
 				</p>
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Libellé</label> :
-					<form:input path="label" type="text" id="label" />
+					<form:input path="label" value="${label}" type="text" id="label" />
 				</p>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Type :</label>
@@ -33,6 +33,7 @@
 								<form:option value="${item.id}">${item.label}</form:option>
 							</c:forEach>
 						</form:select>
+						<form:hidden path="typeRefInfra.category.code" value="${lstOfType[0].category.code}"/>
 					</div>
 				</div>
 			</fieldset>

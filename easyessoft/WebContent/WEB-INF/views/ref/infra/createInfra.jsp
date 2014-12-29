@@ -34,11 +34,12 @@
 								<form:option value="${item.id}">${item.label}</form:option>
 							</c:forEach>
 						</form:select>
+						<form:hidden path="typeRefInfra.category.code" value="${lstOfType[0].category.code}"/>
 					</div>
 				</div>
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Capacité d'accueil :</label>
-						<form:input size="4" type="text" id="capacity" path="capacity" />
+						<form:input size="4" type="text" id="capacity" value="capacity" path="capacity" />
 				</p>
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Accessibilité PMR :</label>
