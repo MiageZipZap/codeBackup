@@ -14,10 +14,6 @@ $(document).ready(function() {
 						value:1,
 						message: 'The Organization type is required'
 					},
-					stringLength: {
-						max: 200,
-						message: 'The title must be less than 200 characters long'
-					}
 				}
 			}, 
 			name: {
@@ -141,11 +137,11 @@ $(document).ready(function() {
 		}
 		
 	});
-	controlManager.reset();
-	if (controlManager.hasNoError()) {
-		$("#orgaForm").removeAttr("onsubmit");
-		$("#orgaForm").submit();
-	}
+//	controlManager.reset();
+//	if (controlManager.hasNoError()) {
+//		$("#orgaForm").removeAttr("onsubmit");
+//		$("#orgaForm").submit();
+//	}
 
 
 

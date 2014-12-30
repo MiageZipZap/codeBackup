@@ -64,7 +64,7 @@ public class OrganizationController {
 		organization.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
 		OrganizationBusinessRules obr = new OrganizationBusinessRules();
-		obr.test(organization);
+		obr.verify(organization);
 		orgaDao.create(organization);
 		model.addAttribute("organization", organization);
 		return "ref/orga/display";

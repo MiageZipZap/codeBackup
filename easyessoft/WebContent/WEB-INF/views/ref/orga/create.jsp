@@ -16,8 +16,7 @@
 	</div>
 	<div class="box-content">
 		<form:form id="orgaForm" class="form-horizontal" method="post"
-			action="/easyessoft/ihm/ref/orga/create" commandName="organization"
-			onsubmit="return false;">
+			action="/easyessoft/ihm/ref/orga/create" commandName="organization">
 			<fieldset>
 				<legend>Type d'organisme</legend>
 				<div class="form-group">
