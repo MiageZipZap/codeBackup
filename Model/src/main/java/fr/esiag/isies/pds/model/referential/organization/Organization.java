@@ -3,14 +3,15 @@
  */
 package fr.esiag.isies.pds.model.referential.organization;
 
-import java.util.List;
 import java.util.Set;
 
-import net.sf.oval.ConstraintViolation;
-import net.sf.oval.Validator;
-import net.sf.oval.constraint.Length;
+import net.sf.oval.constraint.Assert;
+import net.sf.oval.constraint.AssertTrue;
+import net.sf.oval.constraint.Digits;
+import net.sf.oval.constraint.MatchPattern;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
+import net.sf.oval.constraint.Size;
 import fr.esiag.isies.pds.model.AbstractEntity;
 
 /**
@@ -26,47 +27,62 @@ public class Organization extends AbstractEntity {
 	 */
 	@NotNull
 	@NotEmpty
-	@Length(max=45)
+	@Size(min=2, max=45)
 	private String name;
 	/*
 	 * SIRET number
 	 */
+	@Size(min=14, max=14)
+	@NotNull
+	@Digits
 	private String siret;
 	/*
 	 * Street number of the organization
 	 */
+	@Size(max=45)
 	private int streetNumber;
 	/*
 	 * Type of the street
 	 */
+	@Size(min=2, max=45)
 	private String streetType;
 	/*
 	 * Name of the street
 	 */
+	@Size(min=2, max=45)
 	private String streetName;
 	/*
 	 * Zip code of the organisation
 	 */
+	@Size(min=5, max=5)
+	@Digits
 	private String zipCode;
 	/*
 	 * City of the orga.
 	 */
+	@Size(min=2, max=45)
 	private String city;
 	/*
 	 * Department of the orga.
 	 */
+	@Size(min=2, max=45)
 	private String department;
 	/*
 	 * Phone number
 	 */
+	@MatchPattern(pattern = "^[0-9]{10}$")
+	@Digits
 	private String phone;
 	/*
 	 * Fax
 	 */
+	@MatchPattern(pattern = "^[0-9]{10}$")
+	@Digits
 	private String fax;
 	/*
 	 * Legal email
 	 */
+	@MatchPattern(pattern = {"^([a-z0-9]{1,}[\\.\\_\\-]?[a-z0-9]{1,})\\@([a-z0-9]{2,}\\.)([a-z]{2,2}|org|net|com|gov|edu|int|info|biz|museum|fr)$"})
 	private String email;
 	/*
 	 * Legal status
@@ -74,11 +90,14 @@ public class Organization extends AbstractEntity {
 	private String legalStatus;
 	/*
 	 * Latitude
+	 *
 	 */
+	@MatchPattern(pattern = {"^(-?\\d{0,2}([.]\\d{0,5})?)$"})
 	private Float latitude;
 	/*
 	 * Longitude
 	 */
+	@MatchPattern(pattern = {"^(-?\\d{0,3}([.]\\d{0,5})?)$"})
 	private Float longitude;
 	/*
 	 * Type of orga.
@@ -190,12 +209,14 @@ public class Organization extends AbstractEntity {
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
-
+	@NotNull
+	@Assert(expr = "_this.id!=0", lang = "groovy")
 	public OrgaType getOrgaType() {
 		return orgaType;
 	}
+
 	public void setOrgaType(OrgaType orgaType) {
 		this.orgaType = orgaType;
 	}
-	
+
 }
