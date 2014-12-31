@@ -49,7 +49,7 @@ public class OrganizationController {
 	public String getForm(Model model) {
 		model.addAttribute("organization",new Organization());
 		model.addAttribute("listTypeOrga",listTypeOrga);
-		return "ref/orga/create";
+		return "ref/orga/createOrganization";
 	}
 	
 	/**
