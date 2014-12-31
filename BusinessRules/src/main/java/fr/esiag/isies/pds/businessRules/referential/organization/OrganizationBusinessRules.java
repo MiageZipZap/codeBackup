@@ -11,8 +11,8 @@ import fr.esiag.isies.pds.businessRules.IBusinessRules;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 
 /**
- * This class provide defined business rules verifications
- * @author Samuel
+ * This class provide defined business rules verifications for organization Model
+ * @author JLA SKO OSA ADA JSB
  * TODO: remove system.out
  *
  */

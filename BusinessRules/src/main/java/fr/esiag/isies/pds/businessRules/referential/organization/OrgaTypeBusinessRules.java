@@ -11,7 +11,12 @@ import org.slf4j.LoggerFactory;
 
 import fr.esiag.isies.pds.businessRules.ITypeBusinessRules;
 import fr.esiag.isies.pds.model.referential.organization.OrgaType;
-
+/**
+ * This class provide defined business rules verifications for organization Model
+ * @author JLA SKO OSA ADA JSB
+ * TODO: remove system.out
+ *
+ */
 public class OrgaTypeBusinessRules implements ITypeBusinessRules<OrgaType> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrgaTypeBusinessRules.class);
 	Validator validator = new Validator();
