@@ -7,7 +7,11 @@ import org.hibernate.Session;
 import fr.esiag.isies.pds.dao.AbstractTypeDao;
 import fr.esiag.isies.pds.model.referential.organization.OrgaType;
 import fr.esiag.isies.pds.utils.HibernateUtil;
-
+/**
+ * This class provide persistence methods for Organization Type entity 
+ * @author JLA SKO OSA ADA JSB
+ * 
+ */
 public class OrgaTypeDao extends AbstractTypeDao<OrgaType> {
 
 	@Override

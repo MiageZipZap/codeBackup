@@ -8,7 +8,11 @@ import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.Doctor;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 import fr.esiag.isies.pds.utils.HibernateUtil;
-
+/**
+ * This class provide persistence methods for Organization entity 
+ * @author JLA SKO OSA ADA JSB
+ * 
+ */
 public class OrganizationDao extends AbstractEntityDao<Organization> {
 
 	@Override
