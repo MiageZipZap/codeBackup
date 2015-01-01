@@ -21,11 +21,20 @@
 					<div class="panel-body">
 						<div class="box-content">
 							<form:form id="orgaForm" class="form-horizontal" method="post"
-								action="/easyessoft/ihm/ref/orga/create"
-								commandName="organization">
+								action="/easyessoft/ihm/ref/orga/createHospital"
+								commandName="hospital">
 								<fieldset>
-									<form:hidden path="orgaType.id" class="form-control"
-										name="orgaType.id" id="orgaType.id" value="${orgaType.id}" />
+									<legend>Information Organisme Hospitalier</legend>
+									<div class="form-group">
+										<form:hidden path="orgaType.id" class="form-control" name="orgaType.id" id="orgaType.id" value="${orgaType.id}" />
+										<label class="col-sm-3 control-label">Finess</label>
+										<div class="col-sm-5">
+											<form:input type="text" path="finess" id="finess"
+												class="form-control" name="finess" />
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
 									<legend>Informations légales</legend>
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Raison Sociale</label>
@@ -132,7 +141,7 @@
 								<div class="form-group">
 									<div class="col-sm-9 col-sm-offset-3" id="finish">
 										<button type="submit" class="btn btn-primary btn-form"
-											id="createButOrga">Créer</button>
+											id="createButOrgaHosp">Créer</button>
 									</div>
 								</div>
 							</form:form>

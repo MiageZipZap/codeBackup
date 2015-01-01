@@ -21,12 +21,12 @@ public class OrgaTypeBusinessRules implements ITypeBusinessRules<OrgaType> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrgaTypeBusinessRules.class);
 	Validator validator = new Validator();
 	List<ConstraintViolation> violations;
-	
+
 	public boolean verify(OrgaType item) {
-		return false;
+		return true;
 	}
 
-	
+
 	public boolean isValidConstraints(OrgaType ot){
 		violations = validator.validate(ot);
 
@@ -40,6 +40,6 @@ public class OrgaTypeBusinessRules implements ITypeBusinessRules<OrgaType> {
 				System.out.println(exception.getInvalidValue().toString());
 			}
 		}
-			return false;
+		return false;
 	}
 }
