@@ -56,10 +56,8 @@ public class OrganizationController {
 	@RequestMapping(value ="/createHospitalForm",method = { RequestMethod.POST, RequestMethod.GET})
 	public String getFormHospital(Model model, @ModelAttribute OrgaType orgaType) {
 		Hospital hospital = new Hospital();
-		//		model.addAttribute("orgaType",orgaType);
 		model.addAttribute("hospital",hospital);
 		return "ref/orga/createOrgaHospital";
-		//		return "ref/orga/createOrganization";
 	}
 	@RequestMapping(value ="/createOrganization",method = { RequestMethod.POST, RequestMethod.GET})
 	public String getFormOrganization(Model model, @ModelAttribute OrgaType orgaType) {
@@ -86,7 +84,7 @@ public class OrganizationController {
 	 * @param model
 	 * @return creation confirmation
 	 */
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/createOrganization", method = RequestMethod.POST)
 	public String create(@ModelAttribute Organization organization,
 			Model model) {
 		organization.setUpdateUser(SecurityContextHolder.getContext()

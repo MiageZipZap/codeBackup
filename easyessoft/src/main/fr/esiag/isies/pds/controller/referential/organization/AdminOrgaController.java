@@ -29,6 +29,6 @@ public class AdminOrgaController {
 	@RequestMapping("organizationHome")
 	public String getHomePage(Model model) {
 		LOGGER.info("EASYES Form display : Organization Referential Admin Page");
-		return "ref/orga/RefAdmin";
+		return "ref/orga/adminPage";
 	}
 }

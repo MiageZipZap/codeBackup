@@ -33,7 +33,7 @@
 												name="id" id="id">
 												<form:option value='0' label='<Selectionnez>' />
 												<c:forEach items="${listTypeOrga}" var="selectionType">
-													<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} ${selectionType.legalStatus}</form:option>
+													<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} (${selectionType.legalStatus})</form:option>
 												</c:forEach>
 											</form:select>
 										</div>

@@ -3,6 +3,10 @@
 <jsp:include page="../../include/header.jsp">
 	<jsp:param name="title" value="Creation Organisme" />
 </jsp:include>
+<script type="text/javascript" src="/easyessoft/js/jquery.js">
+<script type="text/javascript" src="/easyessoft/js/orga.js" />
+</script>
+
 <style type="text/css">
 /* Adjust feedback icon position */
 .form-horizontal .has-feedback .form-control-feedback {
@@ -21,7 +25,7 @@
 					<div class="panel-body">
 						<div class="box-content">
 							<form:form id="orgaForm" class="form-horizontal" method="post"
-								action="/easyessoft/ihm/ref/orga/create"
+								action="/easyessoft/ihm/ref/orga/createOrganization"
 								commandName="organization">
 								<fieldset>
 									<form:hidden path="orgaType.id" class="form-control"
