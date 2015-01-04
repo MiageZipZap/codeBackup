@@ -35,7 +35,7 @@ public class MedicineBusinessRules implements IBusinessRules<Medicine> {
 			 */
 		
 				ucdCode_prefix=item.getUcdCode().substring(0,3);
-				ucdCode_Numeric=item.getUcdCode().substring(4, 10);
+				ucdCode_Numeric=item.getUcdCode().substring(3);
 				
 				pattern = Pattern.compile(ucdCode_PATTERN);
 				matcher = pattern.matcher(ucdCode_Numeric); 
