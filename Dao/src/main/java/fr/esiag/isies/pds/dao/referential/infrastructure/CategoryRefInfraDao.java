@@ -1,5 +1,6 @@
 package fr.esiag.isies.pds.dao.referential.infrastructure;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.esiag.isies.pds.dao.AbstractTypeDao;
@@ -26,7 +27,7 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	}
 	
 	/**
-	 * Get Equipment Category
+	 * Get TypeRefInfra Category
 	 * @return
 	 */
 	public CategoryRefInfra getEquipCategory() {
@@ -47,7 +48,12 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 
 	@Override
 	public List<CategoryRefInfra> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<CategoryRefInfra> lst = new ArrayList<CategoryRefInfra>();
+		lst.add(getEquipCategory());
+		lst.add(getInfraCategory());
+		lst.add(getMedicCategory());
+		
+		return lst;
 	}
 }
