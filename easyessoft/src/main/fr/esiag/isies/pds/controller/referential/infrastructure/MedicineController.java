@@ -61,7 +61,10 @@ public class MedicineController {
 	public MedicineController() {
 		categoryRefInfra = categoryRefInfraDao.getInfraCategory();
 	}
-
+	/**
+	 * Full UCD code
+	 */
+     private String fullUcdCode;
 	/**
 	 * 
 	 * @param model
@@ -90,13 +93,19 @@ public class MedicineController {
 		
 		//Before that, verify that type is in the right category
 		medicine.getTypeRefInfra().setCategory(categoryRefInfraDao.getMedicCategory());
+		fullUcdCode = "UCD"+medicine.getUcdCode();
+		medicine.setUcdCode(fullUcdCode);
 		if (new MedicineBusinessRules().verify(medicine)) {
 			// TODO manage exception medicineDao.create(medicine);
 			model.addAttribute("medicine", medicine);
 			LOGGER.info("EASYES Medicine creation OK");
 			return "ref/infra/createMedicineConfirm";
 		}
-		return null;
+		model.addAttribute("medicine", medicine);
+		model.addAttribute("lstOfType",
+				typeRefInfraDao.getAllByCategory(categoryRefInfra));
+		LOGGER.info("EASYES Form display : Medicine creation Error");
+		return "ref/infra/createMedicine";
 
 	}
 }

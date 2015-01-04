@@ -19,6 +19,9 @@ public class MedicineBusinessRules implements IBusinessRules<Medicine> {
 	private Pattern pattern;  
 	private Matcher matcher;  
 	private String ucdCode_PATTERN = "[0-9]{7}";
+	private String ucdCode_Numeric;
+	private String ucdCode_prefix;
+	
 
 	public boolean verify(Medicine item) {
 
@@ -28,16 +31,19 @@ public class MedicineBusinessRules implements IBusinessRules<Medicine> {
 			}
 			
 			/**
-			 * if the ucdCode is not composed of 7 integer return false
+			 * if the ucdCode is not composed of 7 integer + prefix=UCD return false
 			 */
 		
-			if (item.getUcdCode() != null){
+				ucdCode_prefix=item.getUcdCode().substring(0,3);
+				ucdCode_Numeric=item.getUcdCode().substring(4, 10);
+				
 				pattern = Pattern.compile(ucdCode_PATTERN);
-				matcher = pattern.matcher(item.getUcdCode()); 
-				if (!matcher.matches()) {  
-				    return false;
-				   }  
-			}
+				matcher = pattern.matcher(ucdCode_Numeric); 
+				if (!matcher.matches() && ucdCode_prefix !="UCD"){
+					return false;
+				}
+			
+			
 			/**
 			 * if the label length is inferior than 2 or superior than 255 return false
 			 */
