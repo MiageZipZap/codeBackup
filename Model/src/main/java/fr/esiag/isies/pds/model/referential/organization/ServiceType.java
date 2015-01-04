@@ -1,38 +1,24 @@
 package fr.esiag.isies.pds.model.referential.organization;
 
-import fr.esiag.isies.pds.model.AbstractEntity;
+import fr.esiag.isies.pds.model.AbstractType;
 
 /**
  * Model of service type
  * @author SKO JLA OSA ADA JSB
  *
  */
-public class ServiceType extends AbstractEntity {
-	
-	/*
-	 * Code of Service Type
+public class ServiceType extends AbstractType {
+	/**
+	 * indicate the type of organization for which the service is created
 	 */
-	private int code;
-	
-	/*
-	 * Label of Service Type
-	 */
-	private String label;
+	private String categoryService;
 
-	public int getCode() {
-		return code;
+	public String getCategoryService() {
+		return categoryService;
 	}
 
-	public void setCode(int code) {
-		this.code = code;
-	}
-
-	public String getLibelle() {
-		return label;
-	}
-
-	public void setLibelle(String label) {
-		this.label = label;
+	public void setCategoryService(String categoryService) {
+		this.categoryService = categoryService;
 	}
 	
 	

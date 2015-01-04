@@ -1,9 +1,9 @@
 <jsp:include page="../../include/header.jsp">
-	<jsp:param value="Creation organisation" name="title"/>
+	<jsp:param value="Creation Type d'organisation" name="title"/>
 </jsp:include>
-	<div id="orgaDisplay">
+	<div id="orgaTypeDisplay">
 		<p>
-			L'organisation ${orgaType.label}
+			Le Type d'organisation ${orgaType.label}
 			a bien été ajouté avec le numéro ${orgaType.id}
 		</p>
 	</div>
