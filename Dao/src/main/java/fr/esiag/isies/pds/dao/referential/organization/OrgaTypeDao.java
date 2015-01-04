@@ -23,14 +23,18 @@ public class OrgaTypeDao extends AbstractTypeDao<OrgaType> {
 		return orgT;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<OrgaType> getAll() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
+		@SuppressWarnings("unchecked")
 		List<OrgaType> list = (List<OrgaType>) session.createCriteria(OrgaType.class).list();
 		session.close();
 		return list;
 	}
+	
+	
+	
 
 }
