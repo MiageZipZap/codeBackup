@@ -9,6 +9,7 @@ $(function() {
 		String.check("label", 2, 255);
 		String.check("code",10, 10);
 		if (controlManager.hasNoError()) {
+			$("#" + $("#categoryRefInfra").val()).removeAttr("disabled");
 			$("#typerefinfraForm").removeAttr("onsubmit");
 			$("#typerefinfraForm").submit();
 		}

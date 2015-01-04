@@ -28,9 +28,10 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"> Category :</label>
 					<div class="col-sm-5">
-						<form:select class="form-control" path="categoryRefInfra.id">
+						<form:select id="categoryRefInfra" class="form-control" path="categoryRefInfra.id">
 							<c:forEach items="${lstOfCategory}" var="item">
 								<form:option value="${item.id}">${item.label}</form:option>
+								<form:hidden path="categoryRefInfra.code" value="${item.code}" id="${item.id}" disabled="disabled"/>
 							</c:forEach>
 						</form:select>
 					</div>
