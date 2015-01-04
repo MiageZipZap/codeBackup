@@ -23,7 +23,7 @@
 				<tr>
 					<td>${typeRefInfra.code}</td>
 					<td>${typeRefInfra.label}</td>
-					<td>${typeRefInfra.categoryRefInfra.id}</td>
+					<td>${typeRefInfra.category.id}</td>
 				</tr>
 			</tbody>
 		</table>

@@ -18,6 +18,7 @@
 				<script type="text/javascript" src="/easyessoft/js/infra.js"></script>
 				<script type="text/javascript" src="/easyessoft/js/equip.js"></script>
 				<script type="text/javascript" src="/easyessoft/js/medic.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/typerefinfra.js"></script>
 				</script>
 				<script type="text/javascript"
 					src="/easyessoft/js/controlManager.js"></script>
