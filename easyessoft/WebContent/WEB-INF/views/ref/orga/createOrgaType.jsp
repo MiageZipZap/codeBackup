@@ -1,7 +1,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../include/header.jsp">
-	<jsp:param name="title" value="Creation Organisme" />
+	<jsp:param name="title" value="Creation Type Organisme" />
 </jsp:include>
 <script type="text/javascript" src="/easyessoft/js/jquery.js">
 <script type="text/javascript" src="/easyessoft/js/orgaType.js" />

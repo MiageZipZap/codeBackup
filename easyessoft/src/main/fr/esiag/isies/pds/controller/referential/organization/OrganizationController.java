@@ -39,7 +39,9 @@ public class OrganizationController {
 	 * DAO of Organization Type object
 	 */
 	private OrgaTypeDao orgaTypeDao=new OrgaTypeDao();
-
+	/**
+	 * Load a List of Organization type referenced in the data base for a select option box
+	 */
 	private List<OrgaType> listTypeOrga = orgaTypeDao.getAll();
 
 	/**
