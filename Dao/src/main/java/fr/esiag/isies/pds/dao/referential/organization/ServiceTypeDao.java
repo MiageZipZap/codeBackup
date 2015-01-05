@@ -17,9 +17,9 @@ public class ServiceTypeDao extends AbstractTypeDao<ServiceType>{
 	public ServiceType getById(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		ServiceType orgT=  (ServiceType) session.get(ServiceType.class, id);
+		ServiceType srvT=  (ServiceType) session.get(ServiceType.class, id);
 		session.close();
-		return orgT;
+		return srvT;
 	}
 
 
@@ -33,10 +33,5 @@ public class ServiceTypeDao extends AbstractTypeDao<ServiceType>{
 		return list;
 	}
 
-	public static void main(String[] args) {
-		ServiceType service = new ServiceType();
-		ServiceTypeDao dao = new ServiceTypeDao();
-		System.out.println(dao.create(service));
-	}
 }
 

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	$('#orgaForm').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
@@ -16,13 +15,19 @@ $(document).ready(function() {
 					},
 				}
 			},
-			id: {
-				group: '.col-sm-5',
+			finess:{
 				validators: {
-					greaterThan: {
-						value:1,
-						message: 'The Organization type is required'
+					digits: {
+						message: 'The finess is a numeric value'
 					},
+					stringLength: {
+						min:10,
+						max:10,
+						message: 'The finess should be of 10 numbers'
+					},
+					notEmpty: {
+						message: 'The finess is required'
+					}
 				}
 			},
 			name: {
@@ -45,7 +50,7 @@ $(document).ready(function() {
 					stringLength: {
 						min:14,
 						max:14,
-						message: 'The siret should be 14 numbers'
+						message: 'The siret should be of 14 numbers'
 					},
 					notEmpty: {
 						message: 'The siret is required'
@@ -157,4 +162,5 @@ $(document).ready(function() {
 		}
 
 	});
+
 });

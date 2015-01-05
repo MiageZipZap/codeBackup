@@ -12,36 +12,34 @@
 			<meta name="author" content="EasyEs Soft development team">
 				<title>EasyES Soft - ${param.title}</title> <script
 					type="text/javascript" src="/easyessoft/js/jquery.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/easyes.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/geoloc.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/doctor.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/infra.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/equip.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/medic.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/typerefinfra.js"></script>
-				</script>
-				<script type="text/javascript"
-					src="/easyessoft/js/controlManager.js"></script>
-				<script type="text/javascript" src="/easyessoft/js/bannerMessage.js"></script>
-				<script type="text/javascript"
-					src="/easyessoft/dist/js/bootstrap.js"></script>
-				<script type="text/javascript"
-					src="/easyessoft/dist/js/bootstrapValidator.js"></script>
+<script type="text/javascript" src="/easyessoft/js/easyes.js"></script>
+<script type="text/javascript" src="/easyessoft/js/geoloc.js"></script>
+<script type="text/javascript" src="/easyessoft/js/doctor.js"></script>
+<script type="text/javascript" src="/easyessoft/js/infra.js"></script>
+<script type="text/javascript" src="/easyessoft/js/equip.js"></script>
+<script type="text/javascript" src="/easyessoft/js/medic.js"></script>
+<script type="text/javascript" src="/easyessoft/js/typerefinfra.js"></script>
+<script type="text/javascript" src="/easyessoft/js/controlManager.js"></script>
+<script type="text/javascript" src="/easyessoft/js/bannerMessage.js"></script>
+<script type="text/javascript" src="/easyessoft/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="/easyessoft/js/jquery.js"></script>
+<script type="text/javascript"
+	src="/easyessoft/dist/js/bootstrapValidator.js"></script>
 
-				<!-- Bootstrap Core CSS -->
-				<link href="/easyessoft/dist/css/bootstrap.css" rel="stylesheet">
-					<link href="/easyessoft/dist/css/bootstrapValidator.css"
-						rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="/easyessoft/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="/easyessoft/dist/css/bootstrapValidator.css"
+		rel="stylesheet">
 
-						<!-- Custom CSS -->
-						<link href="/easyessoft/dist/css/business-frontpage.css"
-							rel="stylesheet">
-							<link href="/easyessoft/dist/css/style.css" rel="stylesheet">
+		<!-- Custom CSS -->
+		<link href="/easyessoft/dist/css/business-frontpage.css"
+			rel="stylesheet">
+			<link href="/easyessoft/dist/css/style.css" rel="stylesheet">
 
-								<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-								<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+				<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+				<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
-								<!--[if lt IE 9]>
+				<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->

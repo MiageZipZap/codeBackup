@@ -65,8 +65,6 @@ public class ServiceTypeController {
 	@RequestMapping(value = "/creationServiceType", method = RequestMethod.POST)
 	public String create(@ModelAttribute ServiceType serviceType,
 			Model model) {
-//		serviceType.setUpdateUser(SecurityContextHolder.getContext()
-//				.getAuthentication().getName());
 		ServiceTypeBusinessRules stBR = new ServiceTypeBusinessRules();
 		if(stBR.verify(serviceType)){
 			serviceTypeDao.create(serviceType);
@@ -79,7 +77,7 @@ public class ServiceTypeController {
 	 * This method uses the OrgaTypeDAO to return a set of Category for which 
 	 * @return
 	 */
-	private List<String> initListCategory() {
+	public List<String> initListCategory() {
 		List<String> list = new ArrayList<String>();
 		for(OrgaType o : orgaTypeDao.getAll()){
 			if(!list.contains(o.getLabel())){

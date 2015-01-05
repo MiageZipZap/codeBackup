@@ -3,10 +3,7 @@
 <jsp:include page="../../include/header.jsp">
 	<jsp:param name="title" value="Creation Organisme" />
 </jsp:include>
-<script type="text/javascript" src="/easyessoft/js/jquery.js">
-<script type="text/javascript" src="/easyessoft/js/orga.js" />
-</script>
-
+<script type="text/javascript" src="/easyessoft/js/orga.js"></script>
 <style type="text/css">
 /* Adjust feedback icon position */
 .form-horizontal .has-feedback .form-control-feedback {

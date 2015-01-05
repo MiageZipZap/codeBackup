@@ -3,6 +3,8 @@
 <jsp:include page="../../include/header.jsp">
 	<jsp:param name="title" value="Creation Organisme - choose type" />
 </jsp:include>
+
+<script type="text/javascript" src="/easyessoft/js/orgaType.js"></script>
 <style type="text/css">
 /* Adjust feedback icon position */
 .form-horizontal .has-feedback .form-control-feedback {
@@ -20,8 +22,8 @@
 					</div>
 					<div class="panel-body">
 						<div class="box-content">
-							<form:form id="orgaForm" class="form-horizontal" method="post"
-								action="/easyessoft/ihm/ref/orga/createType"
+							<form:form id="orgaTypeForm" class="form-horizontal"
+								method="post" action="/easyessoft/ihm/ref/orga/addType"
 								commandName="orgaType">
 								<fieldset>
 									<legend>Type d'organisme</legend>
@@ -29,8 +31,7 @@
 										<label class="col-sm-3 control-label selectContainer">Choisir
 											le type d'organisme</label>
 										<div class="col-sm-5">
-											<form:select path="id" class="form-control"
-												name="id" id="id">
+											<form:select path="id" class="form-control" name="id" id="id">
 												<form:option value='0' label='<Selectionnez>' />
 												<c:forEach items="${listTypeOrga}" var="selectionType">
 													<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} (${selectionType.legalStatus})</form:option>

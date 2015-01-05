@@ -4,7 +4,7 @@
 	<jsp:param name="title" value="Creation Service" />
 </jsp:include>
 <script type="text/javascript" src="/easyessoft/js/jquery.js">
-<script type="text/javascript" src="/easyessoft/js/ServiceType.js" />
+<script type="text/javascript" src="/easyessoft/js/serviceType.js" />
 </script>
 <style type="text/css">
 /* Adjust feedback icon position */
@@ -23,7 +23,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="box-content">
-							<form:form id="orgaTypeForm" class="form-horizontal"
+							<form:form id="serviceTypeForm" class="form-horizontal"
 								method="post" action="/easyessoft/ihm/ref/orga/creationServiceType"
 								commandName="servicetype">
 								<fieldset>

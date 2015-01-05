@@ -3,6 +3,7 @@
 <jsp:include page="../../include/header.jsp">
 	<jsp:param name="title" value="Creation Organisme" />
 </jsp:include>
+<script type="text/javascript" src="/easyessoft/js/orga.js"></script>
 <style type="text/css">
 /* Adjust feedback icon position */
 .form-horizontal .has-feedback .form-control-feedback {
@@ -26,7 +27,8 @@
 								<fieldset>
 									<legend>Information Organisme Hospitalier</legend>
 									<div class="form-group">
-										<form:hidden path="orgaType.id" class="form-control" name="orgaType.id" id="orgaType.id" value="${orgaType.id}" />
+										<form:hidden path="orgaType.id" class="form-control"
+											name="orgaType.id" id="orgaType.id" value="${orgaType.id}" />
 										<label class="col-sm-3 control-label">Finess</label>
 										<div class="col-sm-5">
 											<form:input type="text" path="finess" id="finess"

@@ -28,7 +28,7 @@
 									</a> <a href="#">
 										<button type="button" class="btn btn-success btn-app"
 											role="button" disabled>
-											<i class="glyphicon glyphicon-eye-open"></i>les services
+											<i class="glyphicon glyphicon-eye-open"></i>les Types de service
 										</button>
 									</a>
 								</div>
@@ -46,11 +46,11 @@
 										<button type="button" class="btn btn-primary btn-app">
 											<i class="glyphicon glyphicon-plus-sign"></i> un organisme
 										</button>
-									</a> <a href="#">
+									</a> <a href="/easyessoft/ihm/ref/orga/creationFormServiceType">
 										<button type="button" class="btn btn-success btn-app"
-											role="button" disabled>
+											role="button">
 											<i class="glyphicon glyphicon-plus-sign app-icon-link"></i>un
-											service
+											type de service
 										</button>
 									</a>
 								</div>

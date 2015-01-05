@@ -17,5 +17,14 @@
 		<property name="categoryService" type="string">
 			<column name="TR_SERVICE_TYPE_CATEGORY" length="45" not-null="false" />
 		</property>
+		<set name="organizationSet" table="TR_ORGA_SERV_ASSOCIATION" 
+        	inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDTR_SERVICE_TYPE" not-null="true" />
+            </key>
+            <many-to-many entity-name="fr.esiag.isies.pds.model.referential.organization.Organization">
+                <column name="IDTR_ORGANIZATION" not-null="true" />
+            </many-to-many>
+        </set>
 	</class>
 </hibernate-mapping>

@@ -3,6 +3,7 @@
  */
 package fr.esiag.isies.pds.model.referential.organization;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import net.sf.oval.constraint.Assert;
@@ -44,7 +45,7 @@ public class Organization extends AbstractEntity {
 	/*
 	 * Type of the street
 	 */
-	@Size(min=2, max=45)
+	@Size(max=45)
 	private String streetType;
 	/*
 	 * Name of the street
@@ -82,7 +83,7 @@ public class Organization extends AbstractEntity {
 	/*
 	 * Legal email
 	 */
-	@MatchPattern(pattern = {"^([a-z0-9]{1,}[\\.\\_\\-]?[a-z0-9]{1,})\\@([a-z0-9]{2,}\\.)([a-z]{2,2}|org|net|com|gov|edu|int|info|biz|museum|fr)$"})
+	@MatchPattern(pattern = {"^([a-z0-9]{1,}[\\.\\_\\-]?[a-z0-9]{1,})\\@([a-z0-9\\-?]{2,}\\.)([a-z]{2,2}|org|net|com|gov|edu|int|info|biz|museum)$"})
 	private String email;
 	/*
 	 * Legal status
@@ -107,8 +108,8 @@ public class Organization extends AbstractEntity {
 	/**
 	 * List of services in the hospital
 	 */
-	//private Map<ServiceType, Integer> services;
-	private Set<ServiceType> servicesSet;
+	
+	private Set<ServiceType> servicesSet = new HashSet<ServiceType>(0);
 
 	public Set<ServiceType> getServicesSet() {
 		return servicesSet;

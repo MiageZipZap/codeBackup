@@ -1,16 +1,28 @@
 package fr.esiag.isies.pds.model.referential.organization;
 
-import fr.esiag.isies.pds.model.AbstractModel;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Service extends AbstractModel {
+import fr.esiag.isies.pds.model.AbstractEntity;
+
+public class Service extends AbstractEntity {
 	/**
 	 * The id of the organization in which the service is provided 
 	 */
 	private int idOrganizaton;
 	/**
-	 * The id of the organization in which the service is provided 
+	 * The id of the ServiceType provided 
 	 */
-	private int idTypeOfService;
+	private int idServiceTypeCurrent;
+	/**
+	 * The ids of services selected by user input 
+	 */
+	private ArrayList<Integer> listIdTypeOfServices= new ArrayList<Integer>();
+	/**
+	 * The set of Service types selected by the user  
+	 */
+	private Set<ServiceType> services = new HashSet<ServiceType>();
 	
 	public int getIdOrganizaton() {
 		return idOrganizaton;
@@ -18,13 +30,23 @@ public class Service extends AbstractModel {
 	public void setIdOrganizaton(int idOrganizaton) {
 		this.idOrganizaton = idOrganizaton;
 	}
-	public int getIdTypeOfService() {
-		return idTypeOfService;
+	public int getIdServiceTypeCurrent() {
+		return idServiceTypeCurrent;
 	}
-	public void setIdTypeOfService(int idTypeOfService) {
-		this.idTypeOfService = idTypeOfService;
+	public void setIdServiceTypeCurrent(int idServiceTypeCurrent) {
+		this.idServiceTypeCurrent = idServiceTypeCurrent;
+	}
+	public ArrayList<Integer> getListIdTypeOfServices() {
+		return listIdTypeOfServices;
+	}
+	public void setListIdTypeOfServices(ArrayList<Integer> listIdTypeOfServices) {
+		this.listIdTypeOfServices = listIdTypeOfServices;
+	}
+	public Set<ServiceType> getServices() {
+		return services;
+	}
+	public void setServices(Set<ServiceType> services) {
+		this.services = services;
 	}
 	
-	
-
 }
