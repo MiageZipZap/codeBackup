@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
-import fr.esiag.isies.pds.model.Doctor;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 /**
@@ -32,5 +31,13 @@ public class OrganizationDao extends AbstractEntityDao<Organization> {
 		List<Organization> list = (List<Organization>) session.createCriteria(Organization.class).list();
 		return list;
 	}
+
+	public Organization getBySiret(String mySiret){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Organization myOrganization = (Organization) session.get(Organization.class, mySiret);
+		return myOrganization;	
+	}
+	
 
 }

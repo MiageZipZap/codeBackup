@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import fr.esiag.isies.pds.businessRules.IBusinessRules;
+import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 
 /**
@@ -23,6 +24,7 @@ public class OrganizationBusinessRules implements IBusinessRules<Organization> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrganizationBusinessRules.class);
 	Validator validator = new Validator();
 	List<ConstraintViolation> violations;
+	private OrganizationDao myOrganizationDao = new OrganizationDao();
 	public boolean verify(Organization item) {
 		if(!isValidConstraints(item)){
 			return false;
@@ -48,7 +50,14 @@ public class OrganizationBusinessRules implements IBusinessRules<Organization> {
 		 * TODO: will be implemented with the "search function: find by Siret method" 
 		 * and will return true if siret is found in database
 		 * OrganizationDao to be used
+		 * Check by Oriel ==> return false if siret already exist in DB 
 		 */
+		//Check if SIRET already exist in DB
+		if (myOrganizationDao.getBySiret(siret) != null){
+			LOGGER.info("This Organization already exist in DB");
+			return false;
+		}
+		
 		if(siret.equals(null)){
 			LOGGER.info("Siret should not be null");
 		}
