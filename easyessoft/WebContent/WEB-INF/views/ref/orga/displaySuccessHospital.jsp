@@ -12,12 +12,10 @@
 
 			<input type="hidden" name="name" value="${hospital.name}" />
 			<input type="hidden" name="id" value="${hospital.id}" />
-
+			<button type="submit" class="btn btn-default btn-app" role="button">
+				<i class="glyphicon glyphicon-plus-sign"></i>Ajouter des services
+			</button>
 		</form:form>
-		<button type="submit" class="btn btn-default btn-app" role="button"
-			disabled>
-			<i class="glyphicon glyphicon-plus-sign"></i>Ajouter des services
-		</button>
 	</div>
 </div>
 <jsp:include page="../../include/footer.jsp" />

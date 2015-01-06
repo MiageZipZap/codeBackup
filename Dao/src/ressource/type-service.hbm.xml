@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="fr.esiag.isies.pds.model.referential.organization.ServiceType"
-		table="TR_SERVICE_TYPE">
+		table="TR_SERVICE_TYPE" dynamic-update="true">
 		<id name="id" type="int">
 			<column name="IDTR_SERVICE_TYPE" precision="5" scale="0" />
 			<generator class="increment" />
@@ -18,7 +18,7 @@
 			<column name="TR_SERVICE_TYPE_CATEGORY" length="45" not-null="false" />
 		</property>
 		<set name="organizationSet" table="TR_ORGA_SERV_ASSOCIATION" 
-        	inverse="false" lazy="true" fetch="select">
+        	inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IDTR_SERVICE_TYPE" not-null="true" />
             </key>

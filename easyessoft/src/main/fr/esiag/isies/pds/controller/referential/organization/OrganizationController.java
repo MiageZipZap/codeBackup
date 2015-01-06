@@ -46,8 +46,7 @@ public class OrganizationController {
 	 * ATTRIBUTES DECLARATIONS	*
 	 * **************************
 	 **/
-
-
+	
 	/**
 	 * DAO of Organization object
 	 */
@@ -89,6 +88,7 @@ public class OrganizationController {
 	public String getForm(Model model) {
 		model.addAttribute("orgaType",new OrgaType());
 		model.addAttribute("listTypeOrga",listTypeOrga);
+		LOGGER.info("EASYES Form display : Rendering Organization Type selection view");
 		return "ref/orga/chooseOrgaType";
 	}
 
@@ -96,8 +96,10 @@ public class OrganizationController {
 	public String getForm(@ModelAttribute("orgaType") OrgaType orgaType,
 			Model model,final RedirectAttributes redirectAttributes) {
 		if(orgaTypeBR.verify(orgaType)){
+			LOGGER.info("EASYES Form display : Pass Orgatype business rules");
 			model.addAttribute("orgaType", orgaType);
 			redirectAttributes.addFlashAttribute("orgaType", orgaType);
+			LOGGER.info("EASYES Form display : Redirect to the corresponding creation form");
 			return CreateOrgType(orgaType);
 		}
 		return "ref/orga/chooseOrgaType";
@@ -114,8 +116,10 @@ public class OrganizationController {
 	public String CreateOrgType(OrgaType orgaType){
 		String returnValue = "default";
 		if(orgaType.getId()==1 ||orgaType.getId()==2){
+			LOGGER.info("EASYES Form display : redirect to createHospitalForm controller");
 			returnValue="redirect:createHospitalForm";
 		}else{
+			LOGGER.info("EASYES Form display :  redirect to createHospitalForm controller");
 			returnValue="redirect:creationOrganizationForm";
 		}
 		return returnValue;
@@ -139,6 +143,7 @@ public class OrganizationController {
 		Organization organization = new Organization();
 		organization.setOrgaType(orgaType);
 		model.addAttribute("organization",organization);
+		LOGGER.info("EASYES Form display : display creationOrganizationForm");
 		return "ref/orga/createOrganizationForm";
 	}
 
@@ -210,12 +215,14 @@ public class OrganizationController {
 	 * @return success page if service added
 	 */
 	@RequestMapping(value = "/addNewService", method = RequestMethod.POST)
-	public String createService(@ModelAttribute("service") Service service,Model model) {
+	public String createService(@RequestParam("name") String name,@ModelAttribute("service") Service service,Model model) {
 		for(int idService:service.getListIdTypeOfServices()){
 			ServiceType servType = new ServiceTypeDao().getById(idService);
 			service.getServices().add(servType);
 		}
 		servicedao.addServices(service);
+		model.addAttribute("services",service.getServices());
+		model.addAttribute("name",name);
 		return "ref/orga/displaySuccessAddService";
 	}
 

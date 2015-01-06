@@ -30,6 +30,7 @@
 									<legend>Informations Type de service</legend>
 									<p>
 										L'organisation <b>"${name}"</b> avec le numéro <b>"${id}"</b>
+										<input type="hidden" value="${name}" name="name" />
 									</p>
 									<h4 class="page-header">Selection des services</h4>
 									<div class="row form-group">

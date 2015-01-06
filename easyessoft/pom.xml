@@ -59,7 +59,7 @@
 			<version>1.1.1</version>
 		</dependency>
 
-		<!-- jsp dependancy -->
+		<!-- jsp dependency -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
@@ -100,8 +100,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- test dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.2.3.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
 
-		<!-- bootstrap dependancy -->
+		<!-- bootstrap dependency -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>

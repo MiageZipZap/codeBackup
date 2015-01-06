@@ -36,7 +36,7 @@ public class ServiceDao extends AbstractEntityDao<Service>{
 	public Service addServices(Service service){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Organization orga = new OrganizationDao().getById(service.getIdOrganizaton());
+		Organization orga = (Organization)new OrganizationDao().getById(service.getIdOrganizaton());
 		orga.setServicesSet(service.getServices());
 		session.save(orga);
 		session.getTransaction().commit();
