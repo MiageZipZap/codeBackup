@@ -35,9 +35,9 @@ public class OrganizationBusinessRules implements IBusinessRules<Organization> {
 		}
 
 		//rule to verify that the siret validity
-		if(!verifySiret(item.getSiret())){
-			return false;
-		};
+//		if(!verifySiret(item.getSiret())){
+//			return false;
+//		};
 
 		/**
 		 * another business rules to check
