@@ -23,6 +23,10 @@ public class OrgaTypeBusinessRules implements ITypeBusinessRules<OrgaType> {
 	List<ConstraintViolation> violations;
 
 	public boolean verify(OrgaType item) {
+		
+		if(!isValidConstraints(item)){
+			return false;
+		}
 		return true;
 	}
 
