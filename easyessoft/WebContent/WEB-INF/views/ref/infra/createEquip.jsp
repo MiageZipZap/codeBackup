@@ -36,6 +36,16 @@
 						<form:hidden path="typeRefInfra.category.code" value="${lstOfType[0].category.code}"/>
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Hôpital :</label>
+					<div class="col-sm-5">
+						<form:select class="form-control" path="hospital.id">
+							<c:forEach items="${lstHospital}" var="item">
+								<form:option value="${item.id}">${item.name}</form:option>
+							</c:forEach>
+						</form:select>
+					</div>
+				</div>
 			</fieldset>
 
 			<div class="form-group">

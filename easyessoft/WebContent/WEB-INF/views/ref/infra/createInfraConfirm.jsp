@@ -19,6 +19,7 @@
 					<th>Capacité</th>
 					<th>Type</th>
 					<th>Accessibilité PMR</th>
+					<th>Hôpital</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,6 +31,7 @@
 					<td><c:if test="${infrastructure.disabledFacilities}">oui
 			</c:if> <c:if test="${!infrastructure.disabledFacilities}">non
 			</c:if></td>
+					<td>${infrastructure.hospital.id}</td>
 				</tr>
 			</tbody>
 		</table>

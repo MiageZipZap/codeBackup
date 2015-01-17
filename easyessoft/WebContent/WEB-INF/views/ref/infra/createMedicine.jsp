@@ -13,16 +13,16 @@
 	</div>
 	<div class="box-content">
 		<form:form id="medicForm" class="form-horizontal" method="post"
-			action="/easyessoft/ihm/ref/medicine/create"
-			commandName="medicine" onsubmit="return false;">
+			action="/easyessoft/ihm/ref/medicine/create" commandName="medicine"
+			onsubmit="return false;">
 			<fieldset>
 				<legend>Informations médicament</legend>
-				
+
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Libellé :</label>
 					<form:input path="label" type="text" id="label" />
 				</p>
-				
+
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Code UCD :</label>
 					<form:input path="ucdCode" type="text" id="ucdCode" />
@@ -36,20 +36,31 @@
 								<form:option value="${item.id}">${item.label}</form:option>
 							</c:forEach>
 						</form:select>
+						<form:hidden path="typeRefInfra.category.code"
+							value="${lstOfType[0].category.code}" />
 					</div>
 				</div>
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Quantité :</label>
-						<form:input size="4" type="text" id="quantity" path="quantity" />
+					<form:input size="4" type="text" id="quantity" path="quantity" />
 				</p>
-				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Hôpital :</label>
+					<div class="col-sm-5">
+						<form:select class="form-control" path="hospital.id">
+							<c:forEach items="${lstHospital}" var="item">
+								<form:option value="${item.id}">${item.name}</form:option>
+							</c:forEach>
+						</form:select>
+					</div>
+				</div>
 			</fieldset>
 
 			<p class="form-group">
-				<div class="col-sm-9 col-sm-offset-3">
-					<input type="submit" value="création du médicament"
-						class="btn btn-primary" id="createButMedicine">
-				</div>
+			<div class="col-sm-9 col-sm-offset-3">
+				<input type="submit" value="création du médicament"
+					class="btn btn-primary" id="createButMedicine">
+			</div>
 			</p>
 		</form:form>
 	</div>

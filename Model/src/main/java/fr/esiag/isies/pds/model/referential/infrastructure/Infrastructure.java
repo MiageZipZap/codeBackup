@@ -1,6 +1,7 @@
 package fr.esiag.isies.pds.model.referential.infrastructure;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
 
 /**
  * This class is a model of infrastructure item
@@ -24,8 +25,11 @@ public class Infrastructure extends AbstractEntity {
 	 * Capacity of infrastructure
 	 */
 	private Integer capacity;
-	//
-	// private Integer hospitalService;
+	
+	/**
+	 * Hospital which contains this infrastructure
+	 */
+	private Hospital hospital;
 
 	/**
 	 * Flag for disabled facilities
@@ -70,5 +74,13 @@ public class Infrastructure extends AbstractEntity {
 
 	public void setTypeRefInfra(TypeRefInfra typeRefInfra) {
 		this.typeRefInfra = typeRefInfra;
+	}
+
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
 	}
 }

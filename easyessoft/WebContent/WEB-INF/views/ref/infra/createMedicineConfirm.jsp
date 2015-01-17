@@ -18,6 +18,7 @@
 					<th>Code UCD</th>
 					<th>Type</th>
 					<th>Quantité</th>
+					<th>Hôpital</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,7 @@
 					<td>${medicine.ucdCode}</td>
 					<td>${medicine.typeRefInfra.id}</td>
 					<td>${medicine.quantity}</td>
+					<td>${medicine.hospital.id}</td>
 				</tr>
 			</tbody>
 		</table>

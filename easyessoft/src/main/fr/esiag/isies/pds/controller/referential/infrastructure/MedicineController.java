@@ -1,5 +1,8 @@
 package fr.esiag.isies.pds.controller.referential.infrastructure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,12 +18,11 @@ import fr.esiag.isies.pds.dao.referential.infrastructure.MedicineDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Medicine;
-
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
 
 /**
  * 
- * Get the http request which concern Medicine, do actions and return a
- * view
+ * Get the http request which concern Medicine, do actions and return a view
  * 
  * @author ADI, MCH, GKA, PFR
  *
@@ -36,7 +38,7 @@ public class MedicineController {
 			.getLogger(MedicineController.class);
 
 	/**
-	 * MedicineDao 
+	 * MedicineDao
 	 */
 	private MedicineDao medicineDao = new MedicineDao();
 
@@ -61,10 +63,12 @@ public class MedicineController {
 	public MedicineController() {
 		categoryRefInfra = categoryRefInfraDao.getInfraCategory();
 	}
+
 	/**
 	 * Full UCD code
 	 */
-     private String fullUcdCode;
+	private String fullUcdCode;
+
 	/**
 	 * 
 	 * @param model
@@ -72,6 +76,18 @@ public class MedicineController {
 	 */
 	@RequestMapping("createForm")
 	public String getCreateForm(Model model) {
+		// TODO Appel du dao hospital (getAll())
+		List<Hospital> lstHospital = new ArrayList<Hospital>();
+		Hospital h1 = new Hospital();
+		h1.setId(5);
+		h1.setName("Mondor");
+		Hospital h2 = new Hospital();
+		h2.setId(6);
+		h2.setName("Pitiée-Salpétrière");
+		lstHospital.add(h1);
+		lstHospital.add(h2);
+		model.addAttribute("lstHospital", lstHospital);
+		// -----------------------------------
 		model.addAttribute(new Medicine());
 		model.addAttribute("lstOfType",
 				typeRefInfraDao.getAllByCategory(categoryRefInfra));
@@ -86,14 +102,14 @@ public class MedicineController {
 	 * @return a confirmation of a medicine creation
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@ModelAttribute Medicine medicine,
-			Model model) {
+	public String create(@ModelAttribute Medicine medicine, Model model) {
 		medicine.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
-		
-		//Before that, verify that type is in the right category
-		medicine.getTypeRefInfra().setCategory(categoryRefInfraDao.getMedicCategory());
-		fullUcdCode = "UCD"+medicine.getUcdCode();
+
+		// Before that, verify that type is in the right category
+		medicine.getTypeRefInfra().setCategory(
+				categoryRefInfraDao.getMedicCategory());
+		fullUcdCode = "UCD" + medicine.getUcdCode();
 		medicine.setUcdCode(fullUcdCode);
 		if (new MedicineBusinessRules().verify(medicine)) {
 			// TODO manage exception medicineDao.create(medicine);
@@ -101,6 +117,7 @@ public class MedicineController {
 			LOGGER.info("EASYES Medicine creation OK");
 			return "ref/infra/createMedicineConfirm";
 		}
+		medicine.setUcdCode(medicine.getUcdCode().substring(3));
 		model.addAttribute("medicine", medicine);
 		model.addAttribute("lstOfType",
 				typeRefInfraDao.getAllByCategory(categoryRefInfra));

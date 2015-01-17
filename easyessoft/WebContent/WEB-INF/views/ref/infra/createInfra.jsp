@@ -7,7 +7,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="tagline">Création d'une nouvelle entrée : Infrastructure</h1>
+				<h1 class="tagline">Création d'une nouvelle entrée :
+					Infrastructure</h1>
 			</div>
 		</div>
 	</div>
@@ -34,24 +35,35 @@
 								<form:option value="${item.id}">${item.label}</form:option>
 							</c:forEach>
 						</form:select>
-						<form:hidden path="typeRefInfra.category.code" value="${lstOfType[0].category.code}"/>
+						<form:hidden path="typeRefInfra.category.code"
+							value="${lstOfType[0].category.code}" />
 					</div>
 				</div>
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Capacité d'accueil :</label>
-						<form:input size="4" type="text" id="capacity" value="capacity" path="capacity" />
+					<form:input size="4" type="text" id="capacity" path="capacity" />
 				</p>
 				<p class="form-group">
 					<label class="col-sm-3 control-label">Accessibilité PMR :</label>
 					<form:checkbox path="disabledFacilities" />
 				</p>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Hôpital :</label>
+					<div class="col-sm-5">
+						<form:select class="form-control" path="hospital.id">
+							<c:forEach items="${lstHospital}" var="item">
+								<form:option value="${item.id}">${item.name}</form:option>
+							</c:forEach>
+						</form:select>
+					</div>
+				</div>
 			</fieldset>
 
 			<p class="form-group">
-				<div class="col-sm-9 col-sm-offset-3">
-					<input type="submit" value="création de l'infrastructure"
-						class="btn btn-primary" id="createButInfra">
-				</div>
+			<div class="col-sm-9 col-sm-offset-3">
+				<input type="submit" value="création de l'infrastructure"
+					class="btn btn-primary" id="createButInfra">
+			</div>
 			</p>
 		</form:form>
 	</div>

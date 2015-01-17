@@ -17,6 +17,7 @@
 					<th>Numéro de série</th>
 					<th>Libellé</th>
 					<th>Type</th>
+					<th>Hôpital</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,6 +25,7 @@
 					<td>${equipment.serialNumber}</td>
 					<td>${equipment.label}</td>
 					<td>${equipment.typeRefInfra.id}</td>
+					<td>${equipment.hospital.id}</td>
 				</tr>
 			</tbody>
 		</table>

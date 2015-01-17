@@ -1,5 +1,8 @@
 package fr.esiag.isies.pds.controller.referential.infrastructure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +18,7 @@ import fr.esiag.isies.pds.dao.referential.infrastructure.EquipmentDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
 
 /**
  * Get the http request which concern Equipment, do actions and return a the
@@ -68,6 +72,18 @@ public class EquipmentController {
 	 */
 	@RequestMapping("createForm")
 	public String getCreateForm(Model model) {
+		//TODO Appel du dao hospital (getAll())
+		List<Hospital> lstHospital = new ArrayList<Hospital>();
+		Hospital h1 = new Hospital();
+		h1.setId(5);
+		h1.setName("Mondor");
+		Hospital h2 = new Hospital();
+		h2.setId(6);
+		h2.setName("Pitiée-Salpétrière");
+		lstHospital.add(h1);
+		lstHospital.add(h2);
+		model.addAttribute("lstHospital", lstHospital);
+		//-----------------------------------
 		model.addAttribute(new Equipment());
 		model.addAttribute("lstOfType",
 				typeRefInfraDao.getAllByCategory(categoryRefInfra));

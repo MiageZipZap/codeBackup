@@ -1,17 +1,20 @@
 package fr.esiag.isies.pds.model.referential.infrastructure;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
+
 /**
  * This class is a model for medicine items
+ * 
  * @author GKA,ODI,PFR,MCH
  *
  */
 public class Medicine extends AbstractEntity {
 	/**
-	 * Kind of serial number for a medicine 
+	 * Kind of serial number for a medicine
 	 */
 	private String ucdCode;
-	
+
 	/**
 	 * name of the medicine
 	 */
@@ -20,9 +23,17 @@ public class Medicine extends AbstractEntity {
 	 * amount of one type of medicine
 	 */
 	private Integer quantity;
-	
+
+	/**
+	 * Type of infrastructure referential
+	 */
 	private TypeRefInfra typeRefInfra;
-	
+
+	/**
+	 * Hospital which contains this equipment
+	 */
+	private Hospital hospital;
+
 	public String getUcdCode() {
 		return ucdCode;
 	}
@@ -55,6 +66,12 @@ public class Medicine extends AbstractEntity {
 		this.typeRefInfra = typeRefInfra;
 	}
 
-	
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
 
 }

@@ -1,6 +1,7 @@
 package fr.esiag.isies.pds.model.referential.infrastructure;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
 
 /**
  * This class is a model of equipment item
@@ -23,6 +24,11 @@ public class Equipment extends AbstractEntity {
 	 * Type of equipment
 	 */
 	private TypeRefInfra typeRefInfra;
+	
+	/**
+	 * Hospital which contains this equipment
+	 */
+	private Hospital hospital;
 
 	public String getSerialNumber() {
 		return serialNumber;
@@ -46,6 +52,14 @@ public class Equipment extends AbstractEntity {
 
 	public void setTypeRefInfra(TypeRefInfra typeRefInfra) {
 		this.typeRefInfra = typeRefInfra;
+	}
+
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
 	}
 
 	
