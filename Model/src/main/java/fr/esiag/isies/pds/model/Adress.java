@@ -19,6 +19,10 @@ public class Adress extends AbstractEntity {
 	 */
 	private String streetName;
 	/**
+	 * Region/Province/State of the Adress
+	 */
+	private String region;
+	/**
 	 * Zip Code of the Adress
 	 */
 	private String zipCode;
@@ -53,6 +57,14 @@ public class Adress extends AbstractEntity {
 	
 	public String getZipCode() {
 		return zipCode;
+	}
+	
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 	
 	public void setZipCode(String zipCode) {

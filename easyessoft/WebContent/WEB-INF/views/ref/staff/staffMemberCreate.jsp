@@ -7,10 +7,11 @@
 	<div>
 		<h1>Create a Staff Member</h1>
 	</div>
-	<form:form id="staffMemberForm" method="post"
+	<form:form id="form" method="post"
 		action="/easyessoft/ihm/ref/staff/create" commandName="staffMember"
 		onsubmit="">	
-	<!-- onsubmit="return false;"!-->		
+	<!-- onsubmit="return false;"!-->	
+		
 		<fieldset>
 			<legend>Staff Member Informations</legend>
 			<p>
@@ -23,7 +24,7 @@
 			</p>
 			<p>
 				<label>Birth date</label> :
-				<form:input path="birthDate" type="text" id="birthDate" />
+				<form:input path="birthdate" type="text" id="birthdate" />
 			</p>
 			<p>
 				<label>Gender</label> :
@@ -42,16 +43,16 @@
 				<form:input path="adress.streetName" type="text" id="addressStreetName" />
 			</p>
 			<p>
+				<label>Adress : Region/Province/State</label> :
+				<form:input path="adress.region" type="text" id="addressRegion" />
+			</p>
+			<p>
 				<label>Adress : Zip Code</label> :
 				<form:input path="adress.zipCode" type="text" id="addressZipCode" />
 			</p>
 			<p>
 				<label>Adress : City</label> :
 				<form:input path="adress.city" type="text" id="addressCity" />
-			</p>
-			<p>
-				<label>Adress : Department</label> :
-				<form:input path="adress.department" type="text" id="addressDepartment" />
 			</p>
 			<p>
 				<label>Phone Number (Work)</label> :
