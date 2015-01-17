@@ -22,7 +22,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="box-content">
-							<form:form id="orgaTypeForm" class="form-horizontal"
+							<form:form id="orgaTypeChoose" class="form-horizontal"
 								method="post" action="/easyessoft/ihm/ref/orga/addType"
 								commandName="orgaType">
 								<fieldset>

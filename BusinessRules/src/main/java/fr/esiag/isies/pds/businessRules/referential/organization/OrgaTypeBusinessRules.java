@@ -43,7 +43,8 @@ public class OrgaTypeBusinessRules implements ITypeBusinessRules<OrgaType> {
 				System.out.println(exception.getMessage().toString());
 				System.out.println(exception.getInvalidValue().toString());
 			}
+			return false;	
 		}
-		return false;
+		return true;
 	}
 }

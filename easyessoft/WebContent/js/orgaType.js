@@ -6,25 +6,30 @@ $(document).ready(function() {
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			id: {
-				group: '.col-sm-5',
-				validators: {
-					greaterThan: {
-						value:1,
-						message: 'The Organization type is required'
-					},
-				}
-			},
 			code: {
 				group: '.col-sm-5',
 				validators: {
-
+					stringLength: {
+						min:2,
+						max:45,
+						message: 'The code length should be between 2 and 45 caracters'
+					},
+					notEmpty:{
+						message: 'The organization name is required'
+					}
 				}
 			},
 			label: {
 				group: '.col-sm-5',
 				validators: {
-
+					stringLength: {
+						min:2,
+						max:45,
+						message: 'The code length should be between 2 and 45 caracters'
+					},
+					notEmpty:{
+						message: 'The organization name is required'
+					}
 				}
 			},
 			legalStatus: {

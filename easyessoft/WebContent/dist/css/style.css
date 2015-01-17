@@ -244,3 +244,11 @@
 	background-color: #b25050;
 	border-color: rgba(0, 0, 0, 0.3);
 }
+
+#page-500 {
+  background: #ebebeb;
+}
+#page-500 img {
+  display: block;
+  margin:30px auto;
+}

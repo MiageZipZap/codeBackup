@@ -10,21 +10,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Software for Life">
 			<meta name="author" content="EasyEs Soft development team">
-				<title>EasyES Soft - ${param.title}</title> <script
-					type="text/javascript" src="/easyessoft/js/jquery.js"></script>
-<script type="text/javascript" src="/easyessoft/js/easyes.js"></script>
-<script type="text/javascript" src="/easyessoft/js/geoloc.js"></script>
-<script type="text/javascript" src="/easyessoft/js/doctor.js"></script>
-<script type="text/javascript" src="/easyessoft/js/infra.js"></script>
-<script type="text/javascript" src="/easyessoft/js/equip.js"></script>
-<script type="text/javascript" src="/easyessoft/js/medic.js"></script>
-<script type="text/javascript" src="/easyessoft/js/typerefinfra.js"></script>
-<script type="text/javascript" src="/easyessoft/js/controlManager.js"></script>
-<script type="text/javascript" src="/easyessoft/js/bannerMessage.js"></script>
-<script type="text/javascript" src="/easyessoft/dist/js/bootstrap.js"></script>
-<script type="text/javascript" src="/easyessoft/js/jquery.js"></script>
-<script type="text/javascript"
-	src="/easyessoft/dist/js/bootstrapValidator.js"></script>
+				<title>EasyES Soft - ${param.title}</title> 
+				<script type="text/javascript" src="/easyessoft/js/jquery.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/easyes.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/geoloc.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/doctor.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/infra.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/equip.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/medic.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/typerefinfra.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/controlManager.js"></script>
+				<script type="text/javascript" src="/easyessoft/js/bannerMessage.js"></script>
+				<script type="text/javascript" src="/easyessoft/dist/js/bootstrap.js"></script>
+				<script type="text/javascript" src="/easyessoft/dist/js/bootstrapValidator.js"></script>
 
 <!-- Bootstrap Core CSS -->
 <link href="/easyessoft/dist/css/bootstrap.css" rel="stylesheet">

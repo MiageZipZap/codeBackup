@@ -3,7 +3,6 @@
 <jsp:include page="../../include/header.jsp">
 	<jsp:param name="title" value="Creation Service" />
 </jsp:include>
-<script type="text/javascript" src="/easyessoft/js/jquery.js">
 <script type="text/javascript" src="/easyessoft/js/serviceType.js" />
 </script>
 <style type="text/css">

@@ -38,7 +38,7 @@ public class OrgaTypeController {
 		OrgaType orgatype = new OrgaType();
 		//TODO:show the last code saved
 		orgatype.setCode("OTxx");
-		model.addAttribute("orgaType",orgatype);
+		model.addAttribute("orgatype",orgatype);
 		return "ref/orga/createOrgaType";
 	}
 
@@ -50,8 +50,6 @@ public class OrgaTypeController {
 	@RequestMapping(value = "/creationOrgaType", method = RequestMethod.POST)
 	public String create(@ModelAttribute OrgaType orgatype,
 			Model model) {
-//		orgatype.setUpdateUser(SecurityContextHolder.getContext()
-//				.getAuthentication().getName());
 		OrgaTypeBusinessRules otBR = new OrgaTypeBusinessRules();
 		if(otBR.verify(orgatype)){
 			orgaTypeDao.create(orgatype);
@@ -61,86 +59,6 @@ public class OrgaTypeController {
 		return null;//error page handler
 	}
 
-	}
+}
 
-	//	@RequestMapping(value ="/createHospitalForm",method = { RequestMethod.POST, RequestMethod.GET})
-	//	public String getFormHospital(Model model, @ModelAttribute OrgaType orgaType) {
-	//		Hospital hospital = new Hospital();
-	//		model.addAttribute("hospital",hospital);
-	//		return "ref/orga/createOrgaHospital";
-	//	}
-	//	@RequestMapping(value ="/createOrganization",method = { RequestMethod.POST, RequestMethod.GET})
-	//	public String getFormOrganization(Model model, @ModelAttribute OrgaType orgaType) {
-	//		Organization organization = new Organization();
-	//		organization.setOrgaType(orgaType);
-	//		model.addAttribute("organization",organization);
-	//		return "ref/orga/createOrganization";
-	//	}
-	//
-	//	@RequestMapping(value = "/createType", method = RequestMethod.POST)
-	//	public String getForm(@ModelAttribute("orgaType") OrgaType orgaType,
-	//			Model model,final RedirectAttributes redirectAttributes) {
-	//		OrgaTypeBusinessRules orgaTypeBR = new OrgaTypeBusinessRules();
-	//		if(orgaTypeBR.verify(orgaType)){
-	//			model.addAttribute("orgaType", orgaType);
-	//			redirectAttributes.addFlashAttribute("orgaType", orgaType);
-	//			return CreateOrgType(orgaType);
-	//		}
-	//		return "ref/orga/chooseOrgaType";
-	//	}
-	//
-	//	/**
-	//	 * @param organization
-	//	 * @param model
-	//	 * @return creation confirmation
-	//	 */
-	//	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	//	public String create(@ModelAttribute Organization organization,
-	//			Model model) {
-	//		organization.setUpdateUser(SecurityContextHolder.getContext()
-	//				.getAuthentication().getName());
-	//		OrganizationBusinessRules obr = new OrganizationBusinessRules();
-	//		if(obr.verify(organization)){
-	//			orgaDao.create(organization);
-	//			model.addAttribute("organization", organization);
-	//			return "ref/orga/display";
-	//		}
-	//		return null;
-	//	}
-	//	/**
-	//	 * @param organization
-	//	 * @param model
-	//	 * @return creation confirmation
-	//	 */
-	//	@RequestMapping(value = "/createHospital", method = RequestMethod.POST)
-	//	public String createHospital(@ModelAttribute Hospital hospital,
-	//			Model model) {
-	//		hospital.setUpdateUser(SecurityContextHolder.getContext()
-	//				.getAuthentication().getName());
-	//		OrganizationBusinessRules obr = new OrganizationBusinessRules();
-	//		if(obr.verify(hospital)){
-	//			orgaDao.create(hospital);
-	//			model.addAttribute("hospital", hospital);
-	//			return "ref/orga/displayHospital";
-	//		}
-	//		return null;
-	//	}
-	//
-	//	/**
-	//	 * This method is a method which detects the Organization Type selected by the user and return
-	//	 * the corresponding form controller with an http redirect
-	//	 * @param orgaType
-	//	 * @param model
-	//	 * @return value: the corresponding form controller
-	//	 * @return call : the controller called must accept GET method calls
-	//	 */
-	//	public String CreateOrgType(OrgaType orgaType){
-	//		String returnValue = "default";
-	//		if(orgaType.getId()==1){
-	//			returnValue="redirect:createHospitalForm";
-	//		}else{
-	//			returnValue="redirect:createOrganization";
-	//		}
-	//		return returnValue;
-	//	}
-	//}
+

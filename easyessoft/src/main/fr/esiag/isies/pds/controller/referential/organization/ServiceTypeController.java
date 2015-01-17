@@ -40,7 +40,7 @@ public class ServiceTypeController {
 	/**
 	 * Load a List of Organization type referenced in the data base for a select option box
 	 */
-	private List<String> listCategory = this.initListCategory();
+	private List<String> listCategory;
 	
 	/**
 	 * 
@@ -53,6 +53,7 @@ public class ServiceTypeController {
 		//TODO:show the last code saved
 		serviceType.setCode("OSxx");
 		model.addAttribute("servicetype",serviceType);
+		listCategory= this.initListCategory();
 		model.addAttribute("listCategory",this.listCategory);
 		return "ref/orga/createServiceType";
 	}
@@ -71,7 +72,7 @@ public class ServiceTypeController {
 			model.addAttribute("serviceType", serviceType);
 			return "ref/orga/displaySuccessServiceType";
 		}
-		return null;
+		return "ref/orga/error500";
 	}
 	/**
 	 * This method uses the OrgaTypeDAO to return a set of Category for which 

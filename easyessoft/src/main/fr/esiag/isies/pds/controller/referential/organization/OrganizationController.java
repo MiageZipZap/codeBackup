@@ -62,7 +62,7 @@ public class OrganizationController {
 	/**
 	 * Load a List of Organization type referenced in the data base for a select option box
 	 */
-	private List<OrgaType> listTypeOrga = orgaTypeDao.getAll();
+	private List<OrgaType> listTypeOrga;
 
 	/**
 	 * BussinessRules manager to verify business requirements for organization
@@ -87,6 +87,7 @@ public class OrganizationController {
 	@RequestMapping("creationForm")
 	public String getForm(Model model) {
 		model.addAttribute("orgaType",new OrgaType());
+		listTypeOrga = orgaTypeDao.getAll();
 		model.addAttribute("listTypeOrga",listTypeOrga);
 		LOGGER.info("EASYES Form display : Rendering Organization Type selection view");
 		return "ref/orga/chooseOrgaType";
@@ -95,6 +96,7 @@ public class OrganizationController {
 	@RequestMapping(value = "/addType", method = RequestMethod.POST)
 	public String getForm(@ModelAttribute("orgaType") OrgaType orgaType,
 			Model model,final RedirectAttributes redirectAttributes) {
+		orgaType=orgaTypeDao.getById(orgaType.getId());
 		if(orgaTypeBR.verify(orgaType)){
 			LOGGER.info("EASYES Form display : Pass Orgatype business rules");
 			model.addAttribute("orgaType", orgaType);
@@ -162,7 +164,7 @@ public class OrganizationController {
 			model.addAttribute("organization", organization);
 			return "ref/orga/displaySuccessOrganization";
 		}
-		return null; //TODO:return error handling page
+		return "ref/orga/error500"; //TODO:return error handling page
 	}
 
 	@RequestMapping(value ="/createHospitalForm",method = { RequestMethod.POST, RequestMethod.GET})
@@ -187,7 +189,7 @@ public class OrganizationController {
 			model.addAttribute("hospital", hospital);
 			return "ref/orga/displaySuccessHospital";
 		}
-		return null;
+		return "ref/orga/error500";
 	}
 
 
