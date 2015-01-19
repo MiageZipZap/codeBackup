@@ -1,12 +1,7 @@
 package fr.esiag.isies.pds.controller.referential.organization;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import javax.jws.WebParam.Mode;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -164,7 +159,7 @@ public class OrganizationController {
 			model.addAttribute("organization", organization);
 			return "ref/orga/displaySuccessOrganization";
 		}
-		return "ref/orga/error500"; //TODO:return error handling page
+		return "ref/orga/error500";
 	}
 
 	@RequestMapping(value ="/createHospitalForm",method = { RequestMethod.POST, RequestMethod.GET})
@@ -226,6 +221,20 @@ public class OrganizationController {
 		model.addAttribute("services",service.getServices());
 		model.addAttribute("name",name);
 		return "ref/orga/displaySuccessAddService";
+	}
+	
+	/**	
+	 * **********************************************						
+	 * DISPLAY LIST CONTROLLERS						*
+	 * **********************************************
+	 **/
+	@RequestMapping(value = "/displayOrganizations", method = RequestMethod.POST)
+	public String createService(Model model) {
+		//Fetch all column names for Organization Table
+		ArrayList<String> fields=orgaDao.getFieldsNames();
+		//Fetch all values in organization Table
+		//publish tableHeaders and tableValues in Model
+		return "ref/orga/displayOrganizationTable";
 	}
 
 }

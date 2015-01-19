@@ -1,8 +1,10 @@
 package fr.esiag.isies.pds.dao.referential.organization;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.metadata.ClassMetadata;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
@@ -37,6 +39,18 @@ public class OrganizationDao extends AbstractEntityDao<Organization> {
 		session.beginTransaction();
 		Organization myOrganization = (Organization) session.get(Organization.class, mySiret);
 		return myOrganization;	
+	}
+	
+	public ArrayList<String> getFieldsNames(){
+		ArrayList<String> list = new ArrayList<String>();
+		String[] listFields = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		ClassMetadata classMetadata = session.getSessionFactory().getClassMetadata(Organization.class);
+		listFields = classMetadata.getPropertyNames();
+		for(int i=0;i<listFields.length;i++){
+			list.add(listFields[i]);
+		}
+		return list;
 	}
 	
 
