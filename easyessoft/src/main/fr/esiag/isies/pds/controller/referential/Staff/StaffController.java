@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-@RequestMapping("ref/staff/member")
+@RequestMapping("ref/staffAdmin")
 public class StaffController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StaffController.class);
 	
@@ -26,7 +26,7 @@ public class StaffController {
 	 * @param model
 	 * @return form to create a Staff
 	 */
-	@RequestMapping("/create")
+	@RequestMapping("/staffHome")
 	public String getForm(Model model){
 		model.addAttribute(new StaffMember());
 		LOGGER.info("EASYES Form display :  creation ");
@@ -44,6 +44,6 @@ public class StaffController {
 			staffMemberDAO.create(StaffMember);
 			model.addAttribute("Staff",StaffMember);
 			LOGGER.info("EASYES Staff creation OK");
-			return "staff/display";		
+			return "ref/staff/menuStaffPage.jsp";		
 	}
 }
