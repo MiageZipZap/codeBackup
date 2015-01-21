@@ -20,9 +20,9 @@
 											<i class="glyphicon glyphicon-eye-open"></i> les types
 											d'organisme
 										</button>
-									</a> <a href="#">
+									</a> <a href="/easyessoft/ihm/ref/orga/displayOrganizations">
 										<button type="button" class="btn btn-primary btn-app"
-											role="button" disabled>
+											role="button">
 											<i class="glyphicon glyphicon-eye-open"></i> les organismes
 										</button>
 									</a> <a href="#">

@@ -1,7 +1,10 @@
 package fr.esiag.isies.pds.controller.referential.organization;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -228,12 +231,30 @@ public class OrganizationController {
 	 * DISPLAY LIST CONTROLLERS						*
 	 * **********************************************
 	 **/
-	@RequestMapping(value = "/displayOrganizations", method = RequestMethod.POST)
-	public String createService(Model model) {
+	@RequestMapping(value = "/displayOrganizations")
+	public String getOrgaTableView(Model model) {
 		//Fetch all column names for Organization Table
-		ArrayList<String> fields=orgaDao.getFieldsNames();
+		ArrayList<String> tableHeaders= new ArrayList<String>();
+		tableHeaders.add("Id");
+		tableHeaders.add("Type");
+		tableHeaders.add("N° Siret");
+		tableHeaders.add("Raison Sociale");
+		tableHeaders.add("N° Rue");
+		tableHeaders.add("Nom rue");
+		tableHeaders.add("Code Postal");
+		tableHeaders.add("Ville");
+		tableHeaders.add("Département");
+		tableHeaders.add("Latitude");
+		tableHeaders.add("Longitude");
+		tableHeaders.add("E-mail");
+		tableHeaders.add("Téléphone");
+		tableHeaders.add("Fax");
+		
 		//Fetch all values in organization Table
+		List<Organization> tableValues=orgaDao.getAll();
 		//publish tableHeaders and tableValues in Model
+		model.addAttribute("tableHeaders",tableHeaders);
+		model.addAttribute("tableValues",tableValues);
 		return "ref/orga/displayOrganizationTable";
 	}
 
