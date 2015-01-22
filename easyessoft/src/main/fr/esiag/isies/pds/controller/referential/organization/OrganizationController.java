@@ -249,6 +249,7 @@ public class OrganizationController {
 		tableHeaders.add("E-mail");
 		tableHeaders.add("Téléphone");
 		tableHeaders.add("Fax");
+		tableHeaders.add("Détails");
 		
 		//Fetch all values in organization Table
 		List<Organization> tableValues=orgaDao.getAll();

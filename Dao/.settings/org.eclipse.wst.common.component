@@ -2,5 +2,6 @@
     <wb-module deploy-name="Dao">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/ressource"/>
+        <wb-resource deploy-path="/" source-path="/src/files"/>
     </wb-module>
 </project-modules>
