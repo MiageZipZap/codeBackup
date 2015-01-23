@@ -1,9 +1,8 @@
 package fr.esiag.isies.pds.controller.referential.organization;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.esiag.isies.pds.businessRules.referential.organization.OrgaTypeBusinessRules;
 import fr.esiag.isies.pds.businessRules.referential.organization.OrganizationBusinessRules;
+import fr.esiag.isies.pds.controller.referential.infrastructure.EmergencyDeptController;
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.dao.referential.organization.ServiceDao;
@@ -232,31 +233,32 @@ public class OrganizationController {
 	 * **********************************************
 	 **/
 	@RequestMapping(value = "/displayOrganizations")
-	public String getOrgaTableView(Model model) {
-		//Fetch all column names for Organization Table
-		ArrayList<String> tableHeaders= new ArrayList<String>();
-		tableHeaders.add("Id");
-		tableHeaders.add("Type");
-		tableHeaders.add("N° Siret");
-		tableHeaders.add("Raison Sociale");
-		tableHeaders.add("N° Rue");
-		tableHeaders.add("Nom rue");
-		tableHeaders.add("Code Postal");
-		tableHeaders.add("Ville");
-		tableHeaders.add("Département");
-		tableHeaders.add("Latitude");
-		tableHeaders.add("Longitude");
-		tableHeaders.add("E-mail");
-		tableHeaders.add("Téléphone");
-		tableHeaders.add("Fax");
-		tableHeaders.add("Détails");
-		
+	public String getOrgaTableView(Model model) {		
 		//Fetch all values in organization Table
 		List<Organization> tableValues=orgaDao.getAll();
 		//publish tableHeaders and tableValues in Model
-		model.addAttribute("tableHeaders",tableHeaders);
 		model.addAttribute("tableValues",tableValues);
 		return "ref/orga/displayOrganizationTable";
+	}
+	
+
+	@RequestMapping(value = "/getOrganizationDetails/{idOrga}")
+	public String getOrgaDetailsView(@PathVariable("idOrga") int idOrga, Model model) {		
+		Organization organization = orgaDao.getById(idOrga);
+		Set<ServiceType> services = new HashSet<ServiceType>();
+		services = organization.getServicesSet();
+		LOGGER.info(String.valueOf(organization.getServicesSet().size()));
+		model.addAttribute("organization",organization);
+		model.addAttribute("services",services);
+		return "ref/orga/displayOrganizationDetails";
+	}
+	
+	@RequestMapping(value = "/getServiceDetails/{idOrga}/{idServ}")
+	public String getOrgaDetailsView(@PathVariable("idOrga") int idOrga,@PathVariable("idServ") int idServ, Model model) {				
+		if(idOrga==1){
+			return new EmergencyDeptController().read(idOrga, model);
+		}
+		return "/getOrganizationDetails/{idOrga}";
 	}
 
 }

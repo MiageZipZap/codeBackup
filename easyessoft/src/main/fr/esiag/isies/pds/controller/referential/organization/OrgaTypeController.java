@@ -36,8 +36,6 @@ public class OrgaTypeController {
 	@RequestMapping("creationFormOrgaType")
 	public String getForm(Model model) {
 		OrgaType orgatype = new OrgaType();
-		//TODO:show the last code saved
-		orgatype.setCode("OTxx");
 		model.addAttribute("orgatype",orgatype);
 		return "ref/orga/createOrgaType";
 	}

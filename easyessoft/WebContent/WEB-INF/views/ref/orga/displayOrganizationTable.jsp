@@ -1,4 +1,3 @@
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../include/header.jsp">
 	<jsp:param value="Creation organisation" name="title" />
@@ -21,9 +20,21 @@
 					<table id="table_id" class="display">
 						<thead>
 							<tr>
-								<c:forEach var="listHeader" items="${tableHeaders}">
-									<th>${listHeader}</th>
-								</c:forEach>
+								<td>Id</td>
+								<td>Type</td>
+								<td>Siret</td>
+								<td>Raison Sociale</td>
+								<td>N° Rue</td>
+								<td>Nom rue</td>
+								<td>Code Postal</td>
+								<td>Ville</td>
+								<td>Département</td>
+								<td>Latitude</td>
+								<td>Longitude</td>
+								<td>E-mail</td>
+								<td>Téléphone</td>
+								<td>fax</td>
+								<td>Détails</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -43,6 +54,9 @@
 									<td>${element.email}</td>
 									<td>${element.phone}</td>
 									<td>${element.fax}</td>
+									<td><a
+										href="/easyessoft/ihm/ref/orga/getOrganizationDetails/${element.id}"><i
+											class="glyphicon glyphicon-eye-open"></i></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -56,8 +70,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#table_id').DataTable( {
-		} );
+		$('#table_id').DataTable({});
 	});
 </script>
 
