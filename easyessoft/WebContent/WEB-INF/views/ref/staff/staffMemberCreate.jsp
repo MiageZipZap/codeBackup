@@ -7,10 +7,8 @@
 	<div>
 		<h1>Create a Staff Member</h1>
 	</div>
-	<form:form id="form" method="post"
-		action="/easyessoft/ihm/ref/staff/create" commandName="staffMember"
-		onsubmit="">	
-	<!-- onsubmit="return false;"!-->	
+
+	<form:form id="form" method="post" action="/easyessoft/ihm/ref/staffAdmin/member/createAction" commandName="staffMember">	
 		
 		<fieldset>
 			<legend>Staff Member Informations</legend>
@@ -20,12 +18,14 @@
 			</p>
 			<p>
 				<label>Last Name</label> :
-				<form:input path="lastName" type="text" id="lastname" />
-			</p>
+				<form:input path="lastName" type="text" id="lastName" />
+			</p>	
+<!--  
 			<p>
 				<label>Birth date</label> :
-				<form:input path="birthdate" type="text" id="birthdate" />
+				<form:input path="birthdate" type="date" id="birthdate" />
 			</p>
+-->
 			<p>
 				<label>Gender</label> :
 				<form:input path="gender" type="text" id="gender" />
@@ -34,10 +34,12 @@
 				<label>Adress : Street Number</label> :
 				<form:input path="adress.streetNumber" type="text" id="addressStreetNumber" />
 			</p>
+
 			<p>
 				<label>Adress : Street Type</label> :
 				<form:input path="adress.streetType" type="text" id="addressStreetType" />
 			</p>
+	
 			<p>
 				<label>Adress : Street Name</label> :
 				<form:input path="adress.streetName" type="text" id="addressStreetName" />
@@ -62,21 +64,19 @@
 				<label>Phone Number (Mobile)</label> :
 				<form:input path="phoneNumberMobile" type="text" id="phoneNumberMobile" />
 			</p>
+
 			<p>
 				<label>Mail Adress</label> :
 				<form:input path="mailAdress" type="text" id="mailAdress" />
-			</p>
+			</p>  
 			<p>
 				<label>Profession</label> :
-				<form:input path="profession" type="text" id="profession" />
+				<form:input path="profession.label" type="text" id="professionLabel" />
 			</p>
-		<!--  
-			<input type="hidden" path="disabledFacilities" value="true" />
-		-->
 		</fieldset>
 		
 		<p>
-			<input type="submit" value="create" id="createBut">
+			<input type="submit" value="create" id="createButton">
 		</p>
 	</form:form>
 </div>
