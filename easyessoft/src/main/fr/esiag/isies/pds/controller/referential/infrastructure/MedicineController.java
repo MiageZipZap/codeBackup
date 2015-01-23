@@ -105,10 +105,7 @@ public class MedicineController {
 	public String create(@ModelAttribute Medicine medicine, Model model) {
 		medicine.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
-
-		// Before that, verify that type is in the right category
-		medicine.getTypeRefInfra().setCategory(
-				categoryRefInfraDao.getMedicCategory());
+		
 		fullUcdCode = "UCD" + medicine.getUcdCode();
 		medicine.setUcdCode(fullUcdCode);
 		if (new MedicineBusinessRules().verify(medicine)) {

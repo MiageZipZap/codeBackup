@@ -15,4 +15,9 @@ public class EmergencyDeptControllerTest {
 	public void testGetHomePage() {
 		assertEquals(controller.getHomePage(model), "ref/infra/emergencyDeptHomePage");
 	}
+	
+	@Test
+	public void testRead() {
+		assertEquals(controller.read(1, model), "ref/infra/read");
+	}
 }

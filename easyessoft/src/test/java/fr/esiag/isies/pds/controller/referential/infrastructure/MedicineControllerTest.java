@@ -79,6 +79,7 @@ public class MedicineControllerTest {
 			securityContext.getAuthentication(); result = authentication;
 			authentication.getName(); result = "test-unitaire";
 			medicineBusinessRules.verify(medicine); result = true;
+			medicine.getUcdCode(); result = "1234567";
 		}};
 		assertEquals(medicineController.create(medicine, model),"ref/infra/createMedicineConfirm");
 		
@@ -87,6 +88,6 @@ public class MedicineControllerTest {
 			authentication.getName(); result = "test-unitaire";
 			medicineBusinessRules.verify(medicine); result = false;
 		}}; 
-		assertEquals(medicineController.create(medicine, model),null);
+		assertEquals(medicineController.create(medicine, model),"ref/infra/createMedicine");
 	}
 }

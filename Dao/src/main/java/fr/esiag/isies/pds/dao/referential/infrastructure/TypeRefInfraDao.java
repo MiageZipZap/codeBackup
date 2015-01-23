@@ -16,6 +16,7 @@ public class TypeRefInfraDao extends AbstractTypeDao<TypeRefInfra>{
 	}
 
 	public List<TypeRefInfra> getAllByCategory(CategoryRefInfra category) {
+		// TODO Hibernate
 		List<TypeRefInfra> lstTypeRefInfra = new ArrayList<TypeRefInfra>();
 		TypeRefInfra typeRefInfra = new TypeRefInfra();
 		typeRefInfra.setCategory(category);

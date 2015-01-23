@@ -64,7 +64,7 @@ public class MedicineBusinessRulesTest {
 	 * Mocked DAO
 	 */
 	@Mocked
-	CategoryRefInfraDao categoryRefInfraDao;
+	CategoryRefInfraDao cateRefInfraDao;
 	
 
 	@Before
@@ -125,7 +125,7 @@ public class MedicineBusinessRulesTest {
 	@Test
 	public void testVerify() {
 		new NonStrictExpectations(){{
-			categoryRefInfraDao.getInfraCategory(); result=validCategoryRefInfra;
+			cateRefInfraDao.getMedicCategory(); result=validCategoryRefInfra;
 		}};
 		assertTrue(medicBR.verify(validMedic));
 		assertFalse(medicBR.verify(null));
