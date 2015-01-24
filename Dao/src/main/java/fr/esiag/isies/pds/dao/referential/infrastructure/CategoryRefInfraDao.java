@@ -36,12 +36,12 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	 * @return
 	 */
 	public CategoryRefInfra getInfraCategory() {
-		return findByCode(properties.getProperty("infrastructure.category.code"));
-//		CategoryRefInfra categoryRefInfra = new CategoryRefInfra();
-//		categoryRefInfra.setId(1);
-//		categoryRefInfra.setCode("XXXINFTYP1");
-//		categoryRefInfra.setLabel("Infrastructure");
-//		return categoryRefInfra;
+		//return findByCode(properties.getProperty("infrastructure.category.code"));
+		CategoryRefInfra categoryRefInfra = new CategoryRefInfra();
+		categoryRefInfra.setId(1);
+		categoryRefInfra.setCode("XXXINFTYP1");
+		categoryRefInfra.setLabel("Infrastructure");
+		return categoryRefInfra;
 	}
 	
 	/**

@@ -4,14 +4,15 @@
 	<jsp:param value="Creation Médicament" name="title" />
 </jsp:include>
 <div id="content">
-	<div class="container">
+<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="tagline">Création d'une nouvelle entrée : Médicament</h1>
-			</div>
-		</div>
-	</div>
-	<div class="box-content">
+			<div class="col-lg-14">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1 class="boderline">Création d'un médicament</h1>
+					</div>
+					<div class="panel-body">
+						<div class="box-content">
 		<form:form id="medicForm" class="form-horizontal" method="post"
 			action="/easyessoft/ihm/ref/medicine/create" commandName="medicine"
 			onsubmit="return false;">
@@ -45,14 +46,21 @@
 					<form:input size="4" type="text" id="quantity" path="quantity" />
 				</p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Hôpital :</label>
-					<div class="col-sm-5">
-						<form:select class="form-control" path="hospital.id">
-							<c:forEach items="${lstHospital}" var="item">
-								<form:option value="${item.id}">${item.name}</form:option>
-							</c:forEach>
-						</form:select>
-					</div>
+					<c:choose>
+						<c:when test="${empty idHospital}">
+							<label class="col-sm-3 control-label">Hôpital :</label>
+							<div class="col-sm-5">
+								<form:select class="form-control" path="hospital.id">
+									<c:forEach items="${lstHospital}" var="item">
+										<form:option value="${item.id}">${item.name}</form:option>
+									</c:forEach>
+								</form:select>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<form:hidden path="hospital.id" value="${idHospital}" />
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</fieldset>
 
@@ -63,6 +71,6 @@
 			</div>
 			</p>
 		</form:form>
-	</div>
+	</div></div></div></div></div></div>
 </div>
 <jsp:include page="../../include/footer.jsp" />

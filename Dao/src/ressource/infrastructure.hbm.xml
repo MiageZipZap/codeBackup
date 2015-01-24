@@ -8,7 +8,7 @@
 			<generator class="increment" />
 		</id>
 		<property name="updateDate" type="date">
-			<column name="UPDATE_DATE" length="255" not-null="true" />
+			<column name="UPDATE_DATE" length="255" not-null="false" />
 		</property>
 		<property name="createDate" type="date">
 			<column name="CREATE_DATE" length="255" not-null="true" />

@@ -8,8 +8,7 @@
 </head>
 <body>
 	<div id="nom-application" class="">
-		<h1>EasyEs</h1>
-		<h3>Prototype</h3>
+		<h1>EasyEs Soft. Ltd</h1>
 		<span class="version">Version : 1.0</span>
 	</div>
 

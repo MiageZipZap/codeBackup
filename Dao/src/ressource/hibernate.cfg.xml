@@ -27,5 +27,12 @@
 		<mapping resource="organization.hbm.xml" />
 		<mapping resource="type-organization.hbm.xml" />
 		<mapping resource="type-service.hbm.xml" />
+		
+		<!-- infrastructure schema -->
+		<mapping resource="infrastructure.hbm.xml" />
+		<mapping resource="typeRefInfra.hbm.xml" />
+		<mapping resource="categoryRefInfra.hbm.xml" />
+		<mapping resource="equipment.hbm.xml" />
+		<mapping resource="medicine.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
