@@ -1,8 +1,5 @@
 package fr.esiag.isies.pds.controller.referential.infrastructure;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +13,7 @@ import fr.esiag.isies.pds.businessRules.refential.infrastructure.InfrastructureB
 import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.InfrastructureDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
+import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 import fr.esiag.isies.pds.model.referential.organization.Hospital;
@@ -41,6 +39,11 @@ public class InfrastructureController {
 	 */
 	private InfrastructureDao infrastructureDao = new InfrastructureDao();
 
+	/**
+	 * Dao OrganisationDao which get list of hospital
+	 */
+	OrganizationDao organizationDao = new OrganizationDao();
+	
 	/**
 	 * Dao CategoryRefInfraDao which get list of category of infrastructure
 	 * referential
@@ -71,18 +74,7 @@ public class InfrastructureController {
 	 */
 	@RequestMapping("createForm")
 	public String getCreateForm(Model model) {
-		// TODO Appel du dao hospital (getAll())
-		List<Hospital> lstHospital = new ArrayList<Hospital>();
-		Hospital h1 = new Hospital();
-		h1.setId(5);
-		h1.setName("Mondor");
-		Hospital h2 = new Hospital();
-		h2.setId(6);
-		h2.setName("Pitiée-Salpétrière");
-		lstHospital.add(h1);
-		lstHospital.add(h2);
-		model.addAttribute("lstHospital", lstHospital);
-		// -----------------------------------
+		model.addAttribute("lstHospital", organizationDao.<Hospital>getAllByType());
 		model.addAttribute(new Infrastructure());
 		model.addAttribute("lstOfType",
 				typeRefInfraDao.getAllByCategory(categoryRefInfra));

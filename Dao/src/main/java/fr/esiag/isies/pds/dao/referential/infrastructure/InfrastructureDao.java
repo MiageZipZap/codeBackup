@@ -2,8 +2,12 @@ package fr.esiag.isies.pds.dao.referential.infrastructure;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
+import fr.esiag.isies.pds.utils.HibernateUtil;
 
 /**
  * Dao for infrastructure class
@@ -12,7 +16,7 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
  *
  */
 public class InfrastructureDao extends AbstractEntityDao<Infrastructure> {
-	
+
 	/**
 	 * will be developed later
 	 */
@@ -22,9 +26,19 @@ public class InfrastructureDao extends AbstractEntityDao<Infrastructure> {
 		return null;
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	public List<Infrastructure>  getAllByIdHospital(int id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("from tr_infra_infrastructure where idtr_organization = :id ");
+		query.setParameter("id", id);
+		return (List<Infrastructure>) query.list();
+	}
 	@Override
 	public List<Infrastructure> getAll() {
-		// TODO Auto-generated method stub
+		//TODO
 		return null;
 	}
 

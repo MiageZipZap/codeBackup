@@ -1,12 +1,14 @@
 package fr.esiag.isies.pds.dao.referential.infrastructure;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.hibernate.Session;
+
 import fr.esiag.isies.pds.dao.AbstractTypeDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
+import fr.esiag.isies.pds.utils.HibernateUtil;
 
 public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	
@@ -36,12 +38,12 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	 * @return
 	 */
 	public CategoryRefInfra getInfraCategory() {
-		//return findByCode(properties.getProperty("infrastructure.category.code"));
-		CategoryRefInfra categoryRefInfra = new CategoryRefInfra();
-		categoryRefInfra.setId(1);
-		categoryRefInfra.setCode("XXXINFTYP1");
-		categoryRefInfra.setLabel("Infrastructure");
-		return categoryRefInfra;
+		return findByCode(properties.getProperty("infrastructure.category.code"));
+//		CategoryRefInfra categoryRefInfra = new CategoryRefInfra();
+//		categoryRefInfra.setId(1);
+//		categoryRefInfra.setCode("XXXINFTYP1");
+//		categoryRefInfra.setLabel("Infrastructure");
+//		return categoryRefInfra;
 	}
 	
 	/**
@@ -50,7 +52,12 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	 * @return
 	 */
 	private CategoryRefInfra findByCode(String code) {
-		//TODO Hibernate
+		List<CategoryRefInfra> tmp = getAll();
+		for (CategoryRefInfra item : tmp) {
+			if (item.getCode().equals(code)) {
+				return item;
+			}
+		}
 		return null;
 	}
 	
@@ -76,12 +83,11 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CategoryRefInfra> getAll() {
-		List<CategoryRefInfra> lst = new ArrayList<CategoryRefInfra>();
-		lst.add(getEquipCategory());
-		lst.add(getInfraCategory());
-		lst.add(getMedicCategory());
-		return lst;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		return (List<CategoryRefInfra>) session.createCriteria(CategoryRefInfra.class).list();
 	}
 }

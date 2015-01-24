@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 /**
@@ -40,5 +41,16 @@ public class OrganizationDao extends AbstractEntityDao<Organization> {
 		session.beginTransaction();
 		Organization myOrganization = (Organization) session.get(Organization.class, mySiret);
 		return myOrganization;	
+	}
+	
+	/**
+	 * get by type
+	 * @return get All organisation which are T Type
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> List<T> getAllByType() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		return (List<T>) session.createCriteria(Hospital.class).list();
 	}
 }
