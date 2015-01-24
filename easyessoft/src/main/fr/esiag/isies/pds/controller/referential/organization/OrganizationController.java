@@ -245,9 +245,8 @@ public class OrganizationController {
 	@RequestMapping(value = "/getOrganizationDetails/{idOrga}")
 	public String getOrgaDetailsView(@PathVariable("idOrga") int idOrga, Model model) {		
 		Organization organization = orgaDao.getById(idOrga);
-		Set<ServiceType> services = new HashSet<ServiceType>();
+		Set<ServiceType> services = new HashSet<ServiceType>(0);
 		services = organization.getServicesSet();
-		LOGGER.info(String.valueOf(organization.getServicesSet().size()));
 		model.addAttribute("organization",organization);
 		model.addAttribute("services",services);
 		return "ref/orga/displayOrganizationDetails";
@@ -255,10 +254,10 @@ public class OrganizationController {
 	
 	@RequestMapping(value = "/getServiceDetails/{idOrga}/{idServ}")
 	public String getOrgaDetailsView(@PathVariable("idOrga") int idOrga,@PathVariable("idServ") int idServ, Model model) {				
-		if(idOrga==1){
+		if(idServ==1){
 			return new EmergencyDeptController().read(idOrga, model);
 		}
-		return "/getOrganizationDetails/{idOrga}";
+		return "/getOrganizationDetails/"+String.valueOf(idOrga);
 	}
 
 }

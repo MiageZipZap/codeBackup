@@ -19,7 +19,7 @@
 			<column name="TR_SERVICE_TYPE_CATEGORY" length="45" not-null="false" />
 		</property>
 		<set name="organizationSet" table="TR_ORGA_SERV_ASSOCIATION"
-			inverse="false" lazy="true" fetch="select">
+			inverse="true" lazy="true" fetch="select">
 			<key>
 				<column name="IDTR_SERVICE_TYPE" not-null="true" />
 			</key>

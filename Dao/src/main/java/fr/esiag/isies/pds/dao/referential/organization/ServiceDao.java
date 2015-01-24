@@ -39,7 +39,7 @@ public class ServiceDao extends AbstractEntityDao<Service>{
 		Organization orga = (Organization)new OrganizationDao().getById(service.getIdOrganizaton());
 		orga.setServicesSet(service.getServices());
 		session.update(orga);
-		session.getTransaction().commit();
+		session.close();
 		return service;
 	}
 

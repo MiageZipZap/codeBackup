@@ -50,8 +50,6 @@ public class ServiceTypeController {
 	@RequestMapping("creationFormServiceType")
 	public String getForm(Model model) {
 		ServiceType serviceType = new ServiceType();
-		//TODO:show the last code saved
-		serviceType.setCode("OSxx");
 		model.addAttribute("servicetype",serviceType);
 		listCategory= this.initListCategory();
 		model.addAttribute("listCategory",this.listCategory);
@@ -87,5 +85,4 @@ public class ServiceTypeController {
 		}
 		return list;
 	}
-
 }
