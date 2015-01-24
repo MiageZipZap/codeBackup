@@ -2,31 +2,33 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="fr.esiag.isies.pds.model.referential.infrastructure" table="Infrastructure">
+	<class name="fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure" table="tr_infra_infrastructure">
 		<id name="id" type="int">
-			<column name="ID" precision="5" scale="0" />
+			<column name="idtr_infra_infrastructure" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
 		<property name="updateDate" type="date">
-			<column name="UPDATEDATE" length="255" not-null="false" />
+			<column name="UPDATE_DATE" length="255" not-null="true" />
 		</property>
 		<property name="createDate" type="date">
-			<column name="CREATEDATE" length="255" not-null="true" />
+			<column name="CREATE_DATE" length="255" not-null="true" />
 		</property>
 		<property name="updateUser" type="string">
-			<column name="UPDATEUSER" length="255" not-null="true" />
+			<column name="UPDATE_USER" length="255" not-null="true" />
 		</property>
 		<property name="label" type="string">
-			<column name="LABEL" length="255" not-null="true" />
+			<column name="tr_infra_label" length="255" not-null="true" />
 		</property>
-		<property name="capacity" type="Integer">
-			<column name="CAPACITY" length="255" not-null="true" />
+		<property name="code" type="string">
+			<column name="tr_infra_code" length="10" not-null="true" />
 		</property>
-		<property name="typeRefInfra" type="TypeRefInfra">
-			<column name="CAPACITY" length="255" not-null="true" />
+		<property name="capacity" type="int">
+			<column name="tr_infra_capacity"  not-null="true" />
 		</property>
-		<property name="disabledFacilities" type="Boolean">
-			<column name="DISABLEDFACILITIES" length="255" not-null="true" />
-		</property>
+		<many-to-one name="typeRefInfra" class="fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra" cascade="save-update"
+			column="idtr_infra_type_ref_infra" not-null="true" />
+		<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital" cascade="save-update"
+			column="idtr_organization" not-null="true" />
+		
 	</class>
 </hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.infrastructure.Equipment" table="tr_infra_equipment">
+		<id name="id" type="int">
+			<column name="idtr_infra_equipment" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="updateDate" type="date">
+			<column name="UPDATE_DATE" length="255" not-null="true" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATE_DATE" length="255" not-null="true" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATE_USER" length="255" not-null="true" />
+		</property>
+		<property name="label" type="string">
+			<column name="tr_infra_label" length="255" not-null="true" />
+		</property>
+		<property name="serialNumber" type="string">
+			<column name="tr_infra_serial_number" length="10" not-null="true" />
+		</property>
+		<many-to-one name="typeRefInfra" class="fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra" cascade="save-update"
+			column="idtr_infra_type_ref_infra" not-null="true" />
+		<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital" cascade="save-update"
+			column="idtr_organization" not-null="true" />
+		
+	</class>
+</hibernate-mapping>

@@ -103,7 +103,7 @@ public class InfrastructureController {
 				.getAuthentication().getName());
 
 		if (new InfrastructureBusinessRules().verify(infrastructure)) {
-			// TODO manage exception infrastructureDao.create(infrastructure);
+			infrastructureDao.create(infrastructure);
 			model.addAttribute("infrastructure", infrastructure);
 			LOGGER.info("EASYES Infrastructure creation OK");
 			return "ref/infra/createInfraConfirm";

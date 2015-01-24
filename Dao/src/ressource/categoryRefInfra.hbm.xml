@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra" table="tr_infra_category">
+		<id name="id" type="int">
+			<column name="idtr_infra_category" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="label" type="string">
+			<column name="tr_infra_label" length="255" not-null="true" />
+		</property>
+		<property name="code" type="string">
+			<column name="tr_infra_code" length="10" not-null="true" />
+		</property>
+		
+	</class>
+</hibernate-mapping>
