@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import fr.esiag.isies.pds.businessRules.refential.infrastructure.TypeRefInfraBusinessRules;
 import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra;
 
@@ -31,12 +32,12 @@ public class TypeRefInfraControllerTest {
 	Model model;
 	@Mocked
 	TypeRefInfra typeRefInfra;
-	/**
-	 * Class tested (methods)
-	 */
+
 	@Mocked
 	TypeRefInfraBusinessRules typeRefInfraBusinessRules;
 	
+	@Mocked
+	TypeRefInfraDao typeRefInfraDao;
 
 	CategoryRefInfra category;
 

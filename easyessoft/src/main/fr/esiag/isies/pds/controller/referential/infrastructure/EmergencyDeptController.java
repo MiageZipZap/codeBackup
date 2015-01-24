@@ -7,6 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.esiag.isies.pds.dao.referential.infrastructure.EquipmentDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.InfrastructureDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.MedicineDao;
+import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
+
 /**
  * Get the http request which concern Emergency Department view
  * 
@@ -22,6 +27,26 @@ public class EmergencyDeptController {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(EmergencyDeptController.class);
 
+	/**
+	 * Dao for infrastructure
+	 */
+	private InfrastructureDao infrastructureDao = new InfrastructureDao();
+	
+	/**
+	 * Dao for equipment
+	 */
+	private EquipmentDao equipmentDao = new EquipmentDao();
+	
+	/**
+	 * Dao for medicine
+	 */
+	private MedicineDao medicineDao = new MedicineDao();
+	
+	/**
+	 * Dao for medicine
+	 */
+	private OrganizationDao organizationDao = new OrganizationDao();
+	
 	/**
 	 * 
 	 * @param model
@@ -46,9 +71,10 @@ public class EmergencyDeptController {
 	@RequestMapping("read/{idHospital}")
 	public String read(@PathVariable("idHospital") int idHospital, Model model) {
 		//TODO get equipment, infrastructure and medicine by the idHospital in DAO
-		//model.addAttribute("equipments", listOfEquipments);
-		//model.addAttribute("infrastructures", listOfInfrastructures);
-		//model.addAttribute("medicines", listOfMedicines);
+		model.addAttribute("equipments", equipmentDao.getAllByIdHospital(idHospital));
+		model.addAttribute("infrastructures", infrastructureDao.getAllByIdHospital(idHospital));
+		model.addAttribute("medicines", medicineDao.getAllByIdHospital(idHospital));
+		model.addAttribute("hospital", organizationDao.getById(idHospital));
 		return "ref/infra/read";
 	}
 }

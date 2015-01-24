@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 
 import fr.esiag.isies.pds.businessRules.refential.infrastructure.MedicineBusinessRules;
 import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.MedicineDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Medicine;
@@ -28,6 +29,8 @@ public class MedicineControllerTest {
 	CategoryRefInfraDao categoryRefInfraDao;
 	@Mocked
 	TypeRefInfraDao typeRefInfraDao;
+	@Mocked
+	MedicineDao medicineDao;
 	@Mocked
 	Model model;
 	@Mocked

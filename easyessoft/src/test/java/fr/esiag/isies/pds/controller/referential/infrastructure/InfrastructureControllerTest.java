@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 
 import fr.esiag.isies.pds.businessRules.refential.infrastructure.InfrastructureBusinessRules;
 import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.InfrastructureDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
@@ -30,6 +31,8 @@ public class InfrastructureControllerTest {
 	TypeRefInfraDao typeRefInfraDao;
 	@Mocked
 	Model model;
+	@Mocked
+	InfrastructureDao infrastructureDao;
 	@Mocked
 	Infrastructure infrastructure;
 	@Mocked

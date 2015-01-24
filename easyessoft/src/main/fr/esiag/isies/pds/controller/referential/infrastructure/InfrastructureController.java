@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -68,12 +69,30 @@ public class InfrastructureController {
 	}
 
 	/**
-	 * 
+	 * Create Form without id Hospital
 	 * @param model
 	 * @return form to create an infrastructure
 	 */
 	@RequestMapping("createForm")
 	public String getCreateForm(Model model) {
+		return getForm(model);
+	}
+	
+	/**
+	 * Create Form with an id of an Hospital
+	 * 
+	 * @param model
+	 * @return form to create an equipment
+	 */
+	@RequestMapping("createForm/{idHospital}")
+	public String getCreateFormWithHospital(
+			@PathVariable("idHospital") int idHospital, Model model) {
+		model.addAttribute("idHospital", idHospital);
+		return getForm(model);
+	}
+
+	
+	private String getForm(Model model) {
 		model.addAttribute("lstHospital", organizationDao.<Hospital>getAllByType());
 		model.addAttribute(new Infrastructure());
 		model.addAttribute("lstOfType",
@@ -95,8 +114,8 @@ public class InfrastructureController {
 				.getAuthentication().getName());
 
 		if (new InfrastructureBusinessRules().verify(infrastructure)) {
-			infrastructureDao.create(infrastructure);
-			model.addAttribute("infrastructure", infrastructure);
+			Infrastructure infra = infrastructureDao.create(infrastructure);
+			model.addAttribute("infrastructure", infra);
 			LOGGER.info("EASYES Infrastructure creation OK");
 			return "ref/infra/createInfraConfirm";
 		}

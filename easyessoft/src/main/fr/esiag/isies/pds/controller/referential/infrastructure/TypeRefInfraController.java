@@ -68,7 +68,7 @@ public class TypeRefInfraController {
 	public String create(@ModelAttribute TypeRefInfra typeRefInfra, Model model) {
 		
 		if (new TypeRefInfraBusinessRules().verify(typeRefInfra)) {
-			// TODO TypeRefInfraDao.create(typeRefInfra);
+			typeRefInfraDao.create(typeRefInfra);
 			model.addAttribute("typeRefInfra", typeRefInfra);
 			LOGGER.info("EASYES TypeRefInfra creation OK");
 			return "ref/infra/createTypeRefInfraConfirm";

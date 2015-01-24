@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 
 import fr.esiag.isies.pds.businessRules.refential.infrastructure.EquipmentBusinessRules;
 import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.EquipmentDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
@@ -32,6 +33,8 @@ public class EquipmentControllerTest {
 	CategoryRefInfraDao categoryRefInfraDao;
 	@Mocked
 	TypeRefInfraDao typeRefInfraDao;
+	@Mocked
+	EquipmentDao equipmentDao;
 	@Mocked
 	Model model;
 	@Mocked

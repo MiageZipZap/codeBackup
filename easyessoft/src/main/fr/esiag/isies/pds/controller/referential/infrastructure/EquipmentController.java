@@ -1,14 +1,12 @@
 package fr.esiag.isies.pds.controller.referential.infrastructure;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,6 +14,7 @@ import fr.esiag.isies.pds.businessRules.refential.infrastructure.EquipmentBusine
 import fr.esiag.isies.pds.dao.referential.infrastructure.CategoryRefInfraDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.EquipmentDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.TypeRefInfraDao;
+import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
 import fr.esiag.isies.pds.model.referential.infrastructure.Equipment;
 import fr.esiag.isies.pds.model.referential.organization.Hospital;
@@ -43,6 +42,11 @@ public class EquipmentController {
 	private EquipmentDao equipmentDao = new EquipmentDao();
 
 	/**
+	 * Dao of Organization
+	 */
+	OrganizationDao organizationDao = new OrganizationDao();
+
+	/**
 	 * Dao CategoryRefInfraDao which get list of category of infrastructure
 	 * referential
 	 */
@@ -66,24 +70,32 @@ public class EquipmentController {
 	private CategoryRefInfra categoryRefInfra;
 
 	/**
+	 * Create Form without id Hospital
 	 * 
 	 * @param model
 	 * @return form to create an equipment
 	 */
 	@RequestMapping("createForm")
 	public String getCreateForm(Model model) {
-		//TODO Appel du dao hospital (getAll())
-		List<Hospital> lstHospital = new ArrayList<Hospital>();
-		Hospital h1 = new Hospital();
-		h1.setId(5);
-		h1.setName("Mondor");
-		Hospital h2 = new Hospital();
-		h2.setId(6);
-		h2.setName("Pitiée-Salpétrière");
-		lstHospital.add(h1);
-		lstHospital.add(h2);
-		model.addAttribute("lstHospital", lstHospital);
-		//-----------------------------------
+		return getForm(model);
+	}
+
+	/**
+	 * Create Form with an id of an Hospital
+	 * 
+	 * @param model
+	 * @return form to create an equipment
+	 */
+	@RequestMapping("createForm/{idHospital}")
+	public String getCreateFormWithHospital(
+			@PathVariable("idHospital") int idHospital, Model model) {
+		model.addAttribute("idHospital", idHospital);
+		return getForm(model);
+	}
+
+	private String getForm(Model model) {
+		model.addAttribute("lstHospital",
+				organizationDao.<Hospital> getAllByType());
 		model.addAttribute(new Equipment());
 		model.addAttribute("lstOfType",
 				typeRefInfraDao.getAllByCategory(categoryRefInfra));
@@ -102,8 +114,8 @@ public class EquipmentController {
 		equipment.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
 		if (new EquipmentBusinessRules().verify(equipment)) {
-			// TODO equipmentDao.create(equipment);
-			model.addAttribute("equipment", equipment);
+			Equipment eq = equipmentDao.create(equipment);
+			model.addAttribute("equipment", eq);
 			LOGGER.info("EASYES Equipement creation OK");
 			return "ref/infra/createEquipmentConfirm";
 		}

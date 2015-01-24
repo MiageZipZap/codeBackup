@@ -34,7 +34,9 @@ public class TypeRefInfraDao extends AbstractTypeDao<TypeRefInfra>{
 	public List<TypeRefInfra> getAll() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		return (List<TypeRefInfra>) session.createCriteria(TypeRefInfra.class).list();
+		List<TypeRefInfra> lst = (List<TypeRefInfra>) session.createCriteria(TypeRefInfra.class).list();
+		session.close();
+		return lst;
 	}
 
 	

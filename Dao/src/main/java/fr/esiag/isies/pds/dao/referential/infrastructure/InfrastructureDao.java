@@ -26,16 +26,23 @@ public class InfrastructureDao extends AbstractEntityDao<Infrastructure> {
 		return null;
 	}
 
-	
+	/**
+	 * Get all infrastructure which are in an hospital
+	 * @param id
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Infrastructure>  getAllByIdHospital(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("from tr_infra_infrastructure where idtr_organization = :id ");
+				.createQuery("from Infrastructure where hospital.id = :id ");
 		query.setParameter("id", id);
-		return (List<Infrastructure>) query.list();
+		List<Infrastructure> lst = (List<Infrastructure>) query.list();
+		session.close();
+		return lst;
 	}
+	
 	@Override
 	public List<Infrastructure> getAll() {
 		//TODO

@@ -22,10 +22,10 @@
 		<property name="serialNumber" type="string">
 			<column name="tr_infra_serial_number" length="10" not-null="true" />
 		</property>
-		<many-to-one name="typeRefInfra" class="fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra" cascade="save-update"
-			column="idtr_infra_type_ref_infra" not-null="true" />
-		<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital" cascade="save-update"
-			column="idtr_organization" not-null="true" />
+		<many-to-one name="typeRefInfra" class="fr.esiag.isies.pds.model.referential.infrastructure.TypeRefInfra" lazy="false"
+			column="idtr_infra_type_ref_infra" not-null="false" />
+		<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital" lazy="false"
+			column="idtr_organization" not-null="false" />
 		
 	</class>
 </hibernate-mapping>
