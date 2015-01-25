@@ -3,6 +3,10 @@ package fr.esiag.isies.pds.controller.referential.organization;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Set;
+
+import mockit.Mocked;
+import mockit.NonStrictExpectations;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +16,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import mockit.Mocked;
 import fr.esiag.isies.pds.businessRules.referential.organization.OrgaTypeBusinessRules;
 import fr.esiag.isies.pds.businessRules.referential.organization.OrganizationBusinessRules;
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.dao.referential.organization.ServiceDao;
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
 import fr.esiag.isies.pds.model.referential.organization.OrgaType;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
+import fr.esiag.isies.pds.model.referential.organization.Service;
+import fr.esiag.isies.pds.model.referential.organization.ServiceType;
 
 public class OrganizatioControllerTest {
 	
@@ -42,13 +48,34 @@ public class OrganizatioControllerTest {
 	OrgaType orgatype;	
 	@Mocked
 	RedirectAttributes redirectAttribute;
+	@Mocked
+	Set<ServiceType> servicesSet;
 	
 	OrganizationController organizationController;
+	
+	@Mocked
+	Organization trueOrga , falseOrga;
+	
+	@Mocked
+	Hospital trueHospital , falseHospital;
+	
+	@Mocked
+	String name;
+	
+	@Mocked
+	Integer id;
+	
+	@Mocked
+	Service service;
+	
+	@Mocked 
+	ServiceType serviceType;
+	
 	/**
 	 * Mock Spring Security
 	 */
 	@Mocked SecurityContext securityContext;
-	@Mocked Authentication authentication;
+	@Mocked Authentication authentification;
 	
 	List<OrgaType> listTypeOrga;
 	
@@ -83,5 +110,75 @@ public class OrganizatioControllerTest {
 		assertEquals(UrlCreateHopitalForm1, UrlCreateHopitalForm2);
 		assertEquals(UrlCreateHopitalForm1, "redirect:createHospitalForm");
 	}
-
+	
+	@Test
+	public void testgetFormOrganization(){
+		assertEquals(organizationController.getFormOrganization(model, orgatype),"ref/orga/createOrganizationForm");
+	}
+	
+	@Test
+	public void testCreate(){
+		// Parameters is init with values which 
+		new NonStrictExpectations() {{
+			securityContext.getAuthentication(); result = authentification;
+			authentification.getName(); result = "unitary-test";
+			organizationBR.verify(trueOrga); result = true;
+		}};
+		//Apply Test for organization wich have true informations
+		String urlForTrueOrganization = organizationController.create(trueOrga, model);
+		assertEquals(urlForTrueOrganization,"ref/orga/displaySuccessOrganization");
+		
+		new NonStrictExpectations() {{
+			securityContext.getAuthentication(); result = authentification;
+			authentification.getName(); result = "unitary-test";
+			organizationBR.verify(falseOrga); result = false;
+		}};
+		//Apply Test for organization wich have wrong informations
+		String urlForFalseOrganization = organizationController.create(falseOrga, model);
+		assertEquals(urlForFalseOrganization,"ref/orga/error500");
+		
+	}
+	
+	@Test
+	public void testGetFormHospital(){
+		assertEquals (organizationController.getFormHospital(model, orgatype),"ref/orga/createOrgaHospital");
+		}
+	
+	@Test
+	public void testCreateHospital(){
+		// Parameters is init with values which 
+				new NonStrictExpectations() {{
+					securityContext.getAuthentication(); result = authentification;
+					authentification.getName(); result = "unitary-test";
+					organizationBR.verify(trueHospital); result = true;
+				}};
+				//Apply Test for hospital wich have true informations
+				String urlForTrueHospital = organizationController.createHospital(trueHospital, model);
+				assertEquals(urlForTrueHospital,"ref/orga/displaySuccessHospital");
+				
+				new NonStrictExpectations() {{
+					securityContext.getAuthentication(); result = authentification;
+					authentification.getName(); result = "unitary-test";
+					organizationBR.verify(falseHospital); result = false;
+				}};
+				//Apply Test for hospital wich have wrong informations
+				String urlForFalseHospital = organizationController.createHospital(falseHospital, model);
+				assertEquals(urlForFalseHospital,"ref/orga/error500");
+	}
+	
+	@Test
+	public void testChooseAService(){
+	assertEquals (organizationController.chooseAService(name, id, model) , "ref/orga/chooseServiceOrgaForm");
+	}
+	
+	/*@Test
+	public void createService(){
+		new NonStrictExpectations() {{
+			service.getListIdTypeOfServices(); result = id;
+			//serviceType.get resul
+			
+		}};
+		assertEquals (organizationController.createService(name, service, model),"ref/orga/displaySuccessAddService");
+		
+	} TO COMPLETE*/
 }
