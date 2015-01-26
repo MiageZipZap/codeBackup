@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("ref/staffAdmin/member")
-public class StaffController {
+public class StaffMemberController {
 	
 	// Instantiate the Logger
-	private static final Logger LOGGER = LoggerFactory.getLogger(StaffController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StaffMemberController.class);
 	
 	// Instantiate the DAO
 	private StaffMemberDAO staffMemberDAO = new StaffMemberDAO();
@@ -56,7 +56,8 @@ public class StaffController {
 	public String addStaffMember(@ModelAttribute StaffMember staffMember,Model model){
 		LOGGER.info("EASYES Staff creation Create Action");
 		staffMemberDAO.create(staffMember);
-		model.addAttribute("Staff",staffMember);
+		LOGGER.info("EASYES Staff creation Create Action 2");
+		model.addAttribute("staffMember",staffMember);
 		return "ref/staff/staffMemberDisplay";		
 	}
 }

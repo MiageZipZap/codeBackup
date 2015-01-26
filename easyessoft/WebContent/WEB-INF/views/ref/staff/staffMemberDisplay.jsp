@@ -3,8 +3,8 @@
 </jsp:include>
 	<div id="staffDisplay">
 		<p>
-			Le médecin ${staff.surname} ${staff.firstname}
-			a bien été ajouté avec le numéro ${staff.id}
+			Le médecin ${staffMember.firstName} ${staffMember.lastName}
+			a bien été ajouté avec le numéro ${staffMember.firstName}
 		</p>
 	</div>
 <jsp:include page="../../include/footer.jsp"/>

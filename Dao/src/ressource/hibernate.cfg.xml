@@ -24,11 +24,15 @@
 
 		<property name="show_sql">true</property>
 		<mapping resource="doctor.hbm.xml"></mapping>
-
+		<mapping resource="adress.hbm.xml" />
+				
 		<mapping resource="organization.hbm.xml" />
 		<mapping resource="type-organization.hbm.xml" />
 		<mapping resource="type-service.hbm.xml" />
-
+		
+		<!--  Staff schema -->
+		<mapping resource="staffMember.hbm.xml" />
+				
 		<!-- infrastructure schema -->
 		<mapping resource="infrastructure.hbm.xml" />
 		<mapping resource="typeRefInfra.hbm.xml" />
