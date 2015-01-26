@@ -32,7 +32,7 @@
 						<ul>
 							<c:forEach var="element" items="${services}">
 								<li><a
-									href="/easyessoft/ihm/ref/orga/getServiceDetails/${organization.id}/${element.id}">${element.label}<i
+									href="/easyessoft/ihm/ref/orga/getServiceDetails/${organization.id}/${element.id}">${element.label} <i
 										class="glyphicon glyphicon-th-list"></i></a></li>
 							</c:forEach>
 						</ul>

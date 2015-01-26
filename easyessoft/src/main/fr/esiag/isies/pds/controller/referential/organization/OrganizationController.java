@@ -95,7 +95,6 @@ public class OrganizationController {
 	@RequestMapping(value = "/addType", method = RequestMethod.POST)
 	public String getForm(@ModelAttribute("orgaType") OrgaType orgaType,
 			Model model,final RedirectAttributes redirectAttributes) {
-		orgaType=orgaTypeDao.getById(orgaType.getId());
 		if(orgaTypeBR.verify(orgaType)){
 			LOGGER.info("EASYES Form display : Pass Orgatype business rules");
 			model.addAttribute("orgaType", orgaType);
@@ -255,7 +254,7 @@ public class OrganizationController {
 	@RequestMapping(value = "/getServiceDetails/{idOrga}/{idServ}")
 	public String getOrgaDetailsView(@PathVariable("idOrga") int idOrga,@PathVariable("idServ") int idServ, Model model) {				
 		if(idServ==1){
-			return new EmergencyDeptController().read(idOrga, model);
+			return "../../ihm/ref/emergencyDept/read/"+String.valueOf(idOrga);
 		}
 		return "/getOrganizationDetails/"+String.valueOf(idOrga);
 	}
