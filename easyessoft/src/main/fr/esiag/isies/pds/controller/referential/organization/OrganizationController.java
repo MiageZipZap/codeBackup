@@ -198,7 +198,8 @@ public class OrganizationController {
 	 **/
 	@RequestMapping(value = "/chooseService",method = RequestMethod.POST)
 	public String chooseAService(@RequestParam("name") String name, @RequestParam("id") Integer id, Model model) {
-		List <ServiceType> listServiceType = new ServiceTypeDao().getAll();
+		ServiceTypeDao stdao = (ServiceTypeDao) new ServiceTypeDao().getAll();
+		List <ServiceType> listServiceType = (List<ServiceType>) stdao;
 		model.addAttribute("name",name);
 		model.addAttribute("id",id);
 		Service service = new Service();

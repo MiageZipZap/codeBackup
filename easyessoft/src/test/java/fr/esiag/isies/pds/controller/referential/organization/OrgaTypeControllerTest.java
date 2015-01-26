@@ -2,6 +2,7 @@ package fr.esiag.isies.pds.controller.referential.organization;
 
 import static org.junit.Assert.assertEquals;
 import mockit.Mocked;
+import mockit.NonStrictExpectations;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 
 import fr.esiag.isies.pds.businessRules.referential.organization.OrgaTypeBusinessRules;
+import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.model.referential.organization.OrgaType;
 
 public class OrgaTypeControllerTest {
@@ -33,7 +35,10 @@ public class OrgaTypeControllerTest {
 	OrgaTypeBusinessRules orgaTypeBR;
 	
 	@Mocked
-	OrgaType trueOrgaType , falseOrgaType;
+	OrgaType orgaType , trueOrgaType , falseOrgaType;
+	
+	@Mocked
+	OrgaTypeDao	orgaTypeDao;
 	
 
 	@Before
@@ -48,13 +53,15 @@ public class OrgaTypeControllerTest {
 		
 	}
 
-	/*@Test
+	@Test
 	public void testCreate(){
 		// Parameters is init with values which 
 		new NonStrictExpectations() {{
 			securityContext.getAuthentication(); result = authentication;
 			authentication.getName(); result = "unitary-test";
 			orgaTypeBR.verify(trueOrgaType); result = true;
+			orgaTypeDao.create(orgaType); result = orgaType;
+			
 		}};
 		//Apply Test for organization wich have true informations
 		assertEquals(orgaTypeController.create(trueOrgaType, model),"ref/orga/displaySuccessOrgaType");
@@ -63,10 +70,11 @@ public class OrgaTypeControllerTest {
 			securityContext.getAuthentication(); result = authentication;
 			authentication.getName(); result = "unitary-test";
 			orgaTypeBR.verify(falseOrgaType); result = false;
+			orgaTypeDao.create(orgaType); result = orgaType;
 		}};
 		//Apply Test for organization wich have wrong informations
 		String urlForFalseOrganization = orgaTypeController.create(falseOrgaType, model);
-		assertEquals(urlForFalseOrganization,"null");
+		assertEquals(urlForFalseOrganization,null);
 		
-	}*/
+	}
 }
