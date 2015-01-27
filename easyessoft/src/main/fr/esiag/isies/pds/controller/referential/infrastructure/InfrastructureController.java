@@ -93,7 +93,7 @@ public class InfrastructureController {
 
 	
 	private String getForm(Model model) {
-		model.addAttribute("lstHospital", organizationDao.<Hospital>getAllByType());
+		model.addAttribute("lstHospital", organizationDao.<Hospital>getAllByType(Hospital.class));
 		model.addAttribute(new Infrastructure());
 		model.addAttribute("lstOfType",
 				typeRefInfraDao.getAllByCategory(categoryRefInfra));

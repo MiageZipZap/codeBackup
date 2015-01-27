@@ -95,7 +95,7 @@ public class EquipmentController {
 
 	private String getForm(Model model) {
 		model.addAttribute("lstHospital",
-				organizationDao.<Hospital> getAllByType());
+				organizationDao.<Hospital> getAllByType(Hospital.class));
 		model.addAttribute(new Equipment());
 		model.addAttribute("lstOfType",
 				typeRefInfraDao.getAllByCategory(categoryRefInfra));

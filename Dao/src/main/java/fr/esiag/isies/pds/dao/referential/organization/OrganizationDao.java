@@ -6,7 +6,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
-import fr.esiag.isies.pds.model.referential.organization.Hospital;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 /**
@@ -33,6 +32,7 @@ public class OrganizationDao extends AbstractEntityDao<Organization> {
 		Criteria criteria =session.createCriteria(Organization.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		@SuppressWarnings("unchecked")
 		List<Organization> list = (List<Organization>) criteria.list();
+		session.close();
 		return list;
 	}
 
@@ -40,17 +40,20 @@ public class OrganizationDao extends AbstractEntityDao<Organization> {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Organization myOrganization = (Organization) session.get(Organization.class, mySiret);
+		session.close();
 		return myOrganization;	
 	}
-	
+
 	/**
 	 * get by type
 	 * @return get All organisation which are T Type
 	 */
-	@SuppressWarnings("unchecked")
-	public <T> List<T> getAllByType() {
+	public <T> List<T> getAllByType(Class<T> clazz){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		return (List<T>) session.createCriteria(Hospital.class).list();
+		@SuppressWarnings("unchecked")
+		List<T> list  =(List<T>) session.createCriteria(clazz).list();
+		session.close();
+		return list;
 	}
 }
