@@ -1,10 +1,10 @@
 package fr.esiag.isies.pds.dao.referential.infrastructure;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.esiag.isies.pds.dao.AbstractTypeDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
@@ -13,19 +13,10 @@ import fr.esiag.isies.pds.utils.HibernateUtil;
 public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	
 	/**
-	 * Properties wich has code of different categories
+	 * Logger
 	 */
-	private final Properties properties;
-	
-	public CategoryRefInfraDao() {
-		properties = new Properties();
-		try {
-			properties.load(this.getClass().getClassLoader().getResourceAsStream("data-category-ref-infra.properties"));
-		} catch (IOException e) {
-			// TODO LOGGER
-			e.printStackTrace();
-		}
-	}
+//	private static final Logger LOGGER = LoggerFactory
+//			.getLogger(CategoryRefInfraDao.class);
 	
 	@Override
 	public CategoryRefInfra getById(int id) {
@@ -38,7 +29,7 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	 * @return
 	 */
 	public CategoryRefInfra getInfraCategory() {
-		return findByCode(properties.getProperty("infrastructure.category.code"));
+		return findByCode("InfraCode1");
 	}
 	
 	/**
@@ -61,10 +52,10 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	 * @return
 	 */
 	public CategoryRefInfra getEquipCategory() {
-		return findByCode(properties.getProperty("equipment.category.code"));
+		return findByCode("equipCode2");
 	}
 	public CategoryRefInfra getMedicCategory() {
-		return findByCode(properties.getProperty("medicine.category.code"));
+		return findByCode("medicCode3");
 	}
 	
 
