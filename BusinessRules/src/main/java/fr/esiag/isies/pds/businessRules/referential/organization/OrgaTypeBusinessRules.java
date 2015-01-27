@@ -23,15 +23,15 @@ public class OrgaTypeBusinessRules implements ITypeBusinessRules<OrgaType> {
 	List<ConstraintViolation> violations;
 
 	public boolean verify(OrgaType item) {
-		
-		if(!isValidConstraints(item)){
+		//TODO fix
+		/*if(!isValidConstraints(item)){
 			return false;
-		}
+		}*/
 		return true;
 	}
 
 
-	public boolean isValidConstraints(OrgaType ot){
+	/*public boolean isValidConstraints(OrgaType ot){
 		violations = validator.validate(ot);
 
 		if(violations.size()>0){
@@ -46,5 +46,5 @@ public class OrgaTypeBusinessRules implements ITypeBusinessRules<OrgaType> {
 			return false;	
 		}
 		return true;
-	}
+	}*/
 }
