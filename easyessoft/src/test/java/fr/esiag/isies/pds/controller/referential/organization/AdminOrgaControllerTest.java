@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 
 public class AdminOrgaControllerTest {
 
-	
 	AdminOrgaController adminOrgaController;
 	
 	@Mocked

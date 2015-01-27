@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.esiag.isies.pds.businessRules.referential.organization.OrgaTypeBusinessRules;
 import fr.esiag.isies.pds.businessRules.referential.organization.OrganizationBusinessRules;
-import fr.esiag.isies.pds.controller.referential.infrastructure.EmergencyDeptController;
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.dao.referential.organization.ServiceDao;
@@ -49,30 +49,49 @@ public class OrganizationController {
 	/**
 	 * DAO of Organization object
 	 */
-	private OrganizationDao orgaDao=new OrganizationDao();
+	@Autowired
+	private OrganizationDao orgaDao;
 	/**
 	 * DAO of Organization Type object
 	 */
-	private OrgaTypeDao orgaTypeDao=new OrgaTypeDao();
+	@Autowired
+	private OrgaTypeDao orgaTypeDao;
 	/**
 	 * DAO of Organization Type object
 	 */
+	@Autowired
+	private OrgaType orgatype;
+	/**
+	 * DAO of Organization Type DAO
+	 */
+	@Autowired
 	private ServiceDao servicedao;
 	/**
 	 * Load a List of Organization type referenced in the data base for a select option box
 	 */
+	@Autowired
 	private List<OrgaType> listTypeOrga;
 
 	/**
 	 * BussinessRules manager to verify business requirements for organization
 	 */
-	private OrganizationBusinessRules obr = new OrganizationBusinessRules();
+	@Autowired
+	private OrganizationBusinessRules obr;
 
 	/**
 	 * BussinessRules manager to verify business requirements for organization Type
 	 */
-	private OrgaTypeBusinessRules orgaTypeBR = new OrgaTypeBusinessRules();
-
+	@Autowired
+	private OrgaTypeBusinessRules orgaTypeBR;
+	
+	
+	public OrganizationController() {
+		orgaDao=new OrganizationDao();
+		orgaTypeDao=new OrgaTypeDao();
+		orgatype = new OrgaType();
+		obr = new OrganizationBusinessRules();
+		orgaTypeBR = new OrgaTypeBusinessRules();
+	}
 	/**	
 	 * **********************************************						
 	 * CONTROLLER MANAGEMENT FOR ORGATYPE CHOICE	*
@@ -85,7 +104,7 @@ public class OrganizationController {
 	 */
 	@RequestMapping("creationForm")
 	public String getForm(Model model) {
-		model.addAttribute("orgaType",new OrgaType());
+		model.addAttribute("orgaType",orgatype);
 		listTypeOrga = orgaTypeDao.getAll();
 		model.addAttribute("listTypeOrga",listTypeOrga);
 		LOGGER.info("EASYES Form display : Rendering Organization Type selection view");
@@ -258,5 +277,7 @@ public class OrganizationController {
 		}
 		return "/getOrganizationDetails/"+String.valueOf(idOrga);
 	}
+	
+	
 
 }
