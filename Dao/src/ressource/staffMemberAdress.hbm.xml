@@ -2,28 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="fr.esiag.isies.pds.model.Adress"
-		table="TR_STAFFMEMBER" dynamic-insert="true">
+	<class name="fr.esiag.isies.pds.model.Adress" table="TR_STAFF_MEMBER" dynamic-update="true">
 		<id name="id" type="int">
-			<column name="IDTR_STAFFMEMBER" precision="5" scale="0" />
-			<generator class="increment" />
+			<column name="IDTR_STAFF_MEMBER" precision="5" scale="0"  />
+			<generator class="native" />
 		</id>
-		<property name="firstName" type="string">
-			<column name="TR_STAFFMEMBER_FIRST_NAME" length="45" not-null="false" />
-		</property>
-		<property name="lastName" type="string">
-			<column name="TR_STAFFMEMBER_LAST_NAME" length="45" not-null="false" />
-		</property>
 		
-		<set name="servicesSet" table="TR_ORGA_SERV_ASSOCIATION" inverse="false" lazy="true" fetch="select" cascade="all" >
-            <key>
-                <column name="IDTR_ORGANIZATION" not-null="true" />
-            </key>
-            <many-to-many entity-name="fr.esiag.isies.pds.model.referential.organization.ServiceType">
-                <column name="IDTR_SERVICE_TYPE" not-null="true" />
-            </many-to-many>
-        </set>
-        
+		<property name="streetType" type="string">
+			<column name="TR_STAFF_MEMBER_STREET_TYPE" length="45" not-null="false" />
+		</property>
+		<property name="streetName" type="string">
+			<column name="TR_STAFF_MEMBER_STREET_NAME" length="45" not-null="false" />
+		</property>
+	        
       <!--  
         <many-to-one name="streetName" class="fr.esiag.isies.pds.model.referential.staff.Adress" not-null="true" lazy="false">
 			<column name="TR_STAFFMEMBER_ADRESS_STREET_NAME"></column>
