@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,39 +48,44 @@ public class OrganizationController {
 	/**
 	 * DAO of Organization object
 	 */
-	@Autowired
+	
 	private OrganizationDao orgaDao;
 	/**
 	 * DAO of Organization Type object
 	 */
-	@Autowired
+	
 	private OrgaTypeDao orgaTypeDao;
 	/**
 	 * DAO of Organization Type object
 	 */
-	@Autowired
+	
 	private OrgaType orgatype;
+	/**
+	 * DAO of Service Type object
+	 */
+	
+	private Service service;
 	/**
 	 * DAO of Organization Type DAO
 	 */
-	@Autowired
+	
 	private ServiceDao servicedao;
 	/**
 	 * Load a List of Organization type referenced in the data base for a select option box
 	 */
-	@Autowired
+	
 	private List<OrgaType> listTypeOrga;
 
 	/**
 	 * BussinessRules manager to verify business requirements for organization
 	 */
-	@Autowired
+	
 	private OrganizationBusinessRules obr;
 
 	/**
 	 * BussinessRules manager to verify business requirements for organization Type
 	 */
-	@Autowired
+	
 	private OrgaTypeBusinessRules orgaTypeBR;
 	
 	
@@ -220,10 +224,10 @@ public class OrganizationController {
 		List <ServiceType> listServiceType = new ServiceTypeDao().getAll();
 		model.addAttribute("name",name);
 		model.addAttribute("id",id);
-		Service service = new Service();
+		service = new Service();
+		this.servicedao = new ServiceDao(); // prepare the Dao for further operation
 		model.addAttribute("service",service);
 		model.addAttribute("listServiceType",listServiceType);
-		this.servicedao = new ServiceDao();
 		return "ref/orga/chooseServiceOrgaForm";
 	}
 	/**
@@ -278,6 +282,4 @@ public class OrganizationController {
 		return "/getOrganizationDetails/"+String.valueOf(idOrga);
 	}
 	
-	
-
 }
