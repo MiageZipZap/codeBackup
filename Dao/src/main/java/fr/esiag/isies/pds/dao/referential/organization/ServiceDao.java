@@ -1,15 +1,11 @@
 package fr.esiag.isies.pds.dao.referential.organization;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 import fr.esiag.isies.pds.model.referential.organization.Service;
-import fr.esiag.isies.pds.model.referential.organization.ServiceType;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 
 public class ServiceDao extends AbstractEntityDao<Service>{
