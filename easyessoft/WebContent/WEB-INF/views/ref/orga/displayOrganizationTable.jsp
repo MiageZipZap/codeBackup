@@ -8,7 +8,8 @@
 	src="/easyessoft/dist/js/dataTables.bootstrap.js"></script>
 <script type="text/javascript"
 	src="/easyessoft/dist/js/jquery.dataTables.js"></script>
-
+<script type="text/javascript"
+	src="/easyessoft/js/dataTableConfiguration.js"></script>
 <div class="row">
 	<div class="col-lg-14">
 		<div class="panel panel-default">
@@ -66,13 +67,4 @@
 		</div>
 	</div>
 </div>
-
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#table_id').DataTable({});
-	});
-</script>
-
-
 <jsp:include page="../../include/footer.jsp" />
