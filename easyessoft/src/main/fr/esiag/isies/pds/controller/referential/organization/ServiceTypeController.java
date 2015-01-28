@@ -37,6 +37,7 @@ public class ServiceTypeController {
 	 * DAO of Organization Type object
 	 */
 	private OrgaTypeDao orgaTypeDao=new OrgaTypeDao();
+	private ServiceTypeBusinessRules stBR = new ServiceTypeBusinessRules();
 	/**
 	 * Load a List of Organization type referenced in the data base for a select option box
 	 */
@@ -52,6 +53,12 @@ public class ServiceTypeController {
 		ServiceType serviceType = new ServiceType();
 		model.addAttribute("servicetype",serviceType);
 		listCategory= this.initListCategory();
+		if(listCategory.isEmpty()){
+			stBR.setMessages(new ArrayList<String>());
+			stBR.getMessages().add("Merci de créer un type d'Organization avant de créer un service");
+			model.addAttribute("listTypeOrga",stBR.getMessages());
+			return "ref/orga/error400";
+		}
 		model.addAttribute("listCategory",this.listCategory);
 		return "ref/orga/createServiceType";
 	}
@@ -64,7 +71,6 @@ public class ServiceTypeController {
 	@RequestMapping(value = "/creationServiceType", method = RequestMethod.POST)
 	public String create(@ModelAttribute ServiceType serviceType,
 			Model model) {
-		ServiceTypeBusinessRules stBR = new ServiceTypeBusinessRules();
 		if(stBR.verify(serviceType)){
 			serviceTypeDao.create(serviceType);
 			model.addAttribute("serviceType", serviceType);

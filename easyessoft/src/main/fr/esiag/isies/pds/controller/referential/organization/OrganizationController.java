@@ -1,5 +1,6 @@
 package fr.esiag.isies.pds.controller.referential.organization;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +32,7 @@ import fr.esiag.isies.pds.model.referential.organization.ServiceType;
 /**
  * Get the http request, do actions and return a view for Organizations management
  * @author SKO JLA OSA ADA JSB
- *
+ *TODO: messagesHandler
  */
 @Controller
 @RequestMapping("ref/orga")
@@ -118,6 +119,12 @@ public class OrganizationController {
 	public String getForm(Model model) {
 		model.addAttribute("orgaType",orgatype);
 		listTypeOrga = orgaTypeDao.getAll();
+		if(listTypeOrga.isEmpty()){
+			obr.setMessages(new ArrayList<String>());
+			obr.getMessages().add("Merci de créer un type d'Organization avant de créer un organisme");
+			model.addAttribute("listTypeOrga",obr.getMessages());
+			return "ref/orga/error400";
+		}
 		model.addAttribute("listTypeOrga",listTypeOrga);
 		LOGGER.info("EASYES Form display : Rendering Organization Type selection view");
 		return "ref/orga/chooseOrgaType";
@@ -126,6 +133,7 @@ public class OrganizationController {
 	@RequestMapping(value = "/addType", method = RequestMethod.POST)
 	public String getRedirectForm(@ModelAttribute("orgaType") OrgaType orgaType,
 			Model model,final RedirectAttributes redirectAttributes) {
+		orgaTypeBR.setMessages(new ArrayList<String>());
 		if(orgaTypeBR.verify(orgaType)){
 			LOGGER.info("EASYES Form display : Pass Orgatype business rules");
 			model.addAttribute("orgaType", orgaType);
@@ -188,6 +196,7 @@ public class OrganizationController {
 			Model model) {
 		organization.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
+		obr.setMessages(new ArrayList<String>());
 		if(obr.verify(organization)){
 			orgaDao.create(organization);
 			model.addAttribute("organization", organization);
@@ -216,6 +225,7 @@ public class OrganizationController {
 			Model model) {
 		hospital.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
+		obr.setMessages(new ArrayList<String>());
 		if(obr.verify(hospital)){
 			LOGGER.info("EASYES Form process : create an Hospital organization");
 			orgaDao.create(hospital);
