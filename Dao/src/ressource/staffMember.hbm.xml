@@ -2,27 +2,47 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="fr.esiag.isies.pds.model.referential.staff.StaffMember" table="TR_STAFF_MEMBER" dynamic-update="true">
+	<class name="fr.esiag.isies.pds.model.referential.staff.StaffMember" table="tr_staff_member" dynamic-update="true">
 		<id name="id" type="int">
-			<column name="IDTR_STAFF_MEMBER" precision="5" scale="0" />
+			<column name="idtr_staff_member" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
 		
 		<one-to-one name="adress" class="fr.esiag.isies.pds.model.Adress"/>
+		
 		<property name="staffNumber" type="string">
-			<column name="TR_STAFF_MEMBER_NUMBER" length="45" not-null="false" />
+			<column name="tr_staff_member_number" length="45" not-null="false" />
 		</property>
 		<property name="firstName" type="string">
-			<column name="TR_STAFF_MEMBER_FIRST_NAME" length="45" not-null="false" />
+			<column name="tr_staff_member_first_name" length="45" not-null="false" />
 		</property>
 		<property name="lastName" type="string">
-			<column name="TR_STAFF_MEMBER_LAST_NAME" length="45" not-null="false" />
+			<column name="tr_staff_member_last_name" length="45" not-null="false" />
+		</property>
+		<property name="gender" type="character">
+			<column name="tr_staff_member_gender" length="45" not-null="false" />
+		</property>
+		<property name="birthdate" type="date">
+			<column name="tr_staff_member_birth_date" not-null="false" />
+		</property>
+
+		<property name="phoneNumberWork" type="string">
+			<column name="tr_staff_member_phone_number_work" length="20" not-null="false" />
+		</property>
+		<property name="phoneNumberMobile" type="string">
+			<column name="tr_staff_member_phone_number_mobile" length="20" not-null="false" />
+		</property>
+		<property name="mailAdress" type="string">
+			<column name="tr_staff_member_mail_adress" length="45" not-null="false" />
 		</property>
 		
+	   	<!--  
+		<property name="orgaType" type="int">
+			<column name="tr_staff_member_orga_type" length="11" not-null="false" />
+		</property>
+		
+		
 
-	<!--  
-
-    
         
 		<many-to-one name="adress" class="fr.esiag.isies.pds.model.Adress" cascade="save-update" lazy="false" column="IDTR_STAFF_MEMBER"  insert="false" update="false"/>
 

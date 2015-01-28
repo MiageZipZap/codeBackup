@@ -2,17 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="fr.esiag.isies.pds.model.Adress" table="TR_STAFF_MEMBER" dynamic-update="true">
+	<class name="fr.esiag.isies.pds.model.Adress" table="tr_staff_member" dynamic-update="true">
 		<id name="id" type="int">
-			<column name="IDTR_STAFF_MEMBER" precision="5" scale="0"  />
+			<column name="idtr_staff_member" precision="5" scale="0"  />
 			<generator class="native" />
 		</id>
 		
 		<property name="streetType" type="string">
-			<column name="TR_STAFF_MEMBER_STREET_TYPE" length="45" not-null="false" />
+			<column name="tr_staff_member_street_type" length="45" not-null="false" />
 		</property>
 		<property name="streetName" type="string">
-			<column name="TR_STAFF_MEMBER_STREET_NAME" length="45" not-null="false" />
+			<column name="tr_staff_member_street_name" length="45" not-null="false" />
 		</property>
 	        
       <!--  
