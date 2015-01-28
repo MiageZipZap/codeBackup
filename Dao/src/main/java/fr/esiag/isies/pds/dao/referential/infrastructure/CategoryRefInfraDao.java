@@ -3,8 +3,6 @@ package fr.esiag.isies.pds.dao.referential.infrastructure;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import fr.esiag.isies.pds.dao.AbstractTypeDao;
 import fr.esiag.isies.pds.model.referential.infrastructure.CategoryRefInfra;
@@ -29,7 +27,7 @@ public class CategoryRefInfraDao extends AbstractTypeDao<CategoryRefInfra> {
 	 * @return
 	 */
 	public CategoryRefInfra getInfraCategory() {
-		return findByCode("InfraCode1");
+		return findByCode("infraCode1");
 	}
 	
 	/**
