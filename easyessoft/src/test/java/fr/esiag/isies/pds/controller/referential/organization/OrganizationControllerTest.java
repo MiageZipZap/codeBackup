@@ -23,6 +23,7 @@ import fr.esiag.isies.pds.businessRules.referential.organization.OrganizationBus
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.dao.referential.organization.ServiceDao;
+import fr.esiag.isies.pds.dao.referential.organization.ServiceTypeDao;
 import fr.esiag.isies.pds.model.referential.organization.Hospital;
 import fr.esiag.isies.pds.model.referential.organization.OrgaType;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
@@ -66,6 +67,10 @@ public class OrganizationControllerTest {
 	Service service;
 	@Mocked 
 	ServiceType serviceType;
+	@Mocked 
+	ServiceTypeDao ServiceTypeDao;
+	@Mocked 
+	Set<ServiceType> services;
 
 	public OrganizationController organizationController;
 	public Integer id;
@@ -200,8 +205,6 @@ public class OrganizationControllerTest {
 	@Test
 	public void testCreateService(){
 		new NonStrictExpectations() {
-			@Mocked ServiceType servType;
-			@Mocked Set<ServiceType> services;
 		{
 			ArrayList<Integer> list = new ArrayList<Integer>();
 			list.add(1);
