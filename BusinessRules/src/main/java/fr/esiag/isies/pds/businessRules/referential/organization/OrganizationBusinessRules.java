@@ -28,6 +28,7 @@ public class OrganizationBusinessRules implements IBusinessRules<Organization> {
 	Validator validator = new Validator();
 	List<ConstraintViolation> violations;
 	private OrganizationDao myOrganizationDao = new OrganizationDao();
+	
 	public boolean verify(Organization item) {
 		messages = new ArrayList<String>();
 		if(!isValidConstraints(item)){
@@ -60,7 +61,7 @@ public class OrganizationBusinessRules implements IBusinessRules<Organization> {
 		 * Check by Oriel ==> return false if siret already exist in DB 
 		 */
 		//Check if SIRET already exist in DB
-		if (myOrganizationDao.getBySiret(siret) != null){
+		if (myOrganizationDao.findBySiret(siret) != null){
 			LOGGER.info("This Organization already exist in DB");
 			return false;
 		}
@@ -95,12 +96,20 @@ public class OrganizationBusinessRules implements IBusinessRules<Organization> {
 			for(ConstraintViolation exception:violations){
 				LOGGER.info(exception.getMessage().toString());
 				LOGGER.info(exception.getInvalidValue().toString());
-				System.out.println(exception.getMessage().toString());
-				System.out.println(exception.getInvalidValue().toString());
 			}
 			return false;
 		}
 		return true;
 	}
+
+	public ArrayList<String> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(ArrayList<String> messages) {
+		this.messages = messages;
+	}
+	
+	
 
 }

@@ -6,8 +6,13 @@
 <div class="container-fluid">
 	<div class="row">
 		<div id="page-500" class="col-xs-12 text-center">
-			<h1>Erreur 500</h1>
+			<h1>Erreur 400</h1>
 			<h3>Oops, Erreur Interne Serveur</h3>
+			<c:if test="${not empty messages}">
+				<c:forEach var="element" items="${messages}">
+					<li>${element}</li>
+				</c:forEach>
+			</c:if>
 			<img src="/easyessoft/dist/img/logo-200.png" alt="" /> <a
 				href="/easyessoft" class="btn btn-default btn-label-left"><span><i
 					class="fa fa-reply"></i></span> Retour à la page d'Acceuil</a>

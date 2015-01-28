@@ -27,7 +27,6 @@ public class OrgaTypeController {
 	 * DAO of Organization Type object
 	 */
 	private OrgaTypeDao orgaTypeDao=new OrgaTypeDao();
-
 	/**
 	 * 
 	 * @param model
@@ -37,6 +36,7 @@ public class OrgaTypeController {
 	public String getForm(Model model) {
 		OrgaType orgatype = new OrgaType();
 		model.addAttribute("orgatype",orgatype);
+		LOGGER.info("EASYES Form display : orgaType Form");
 		return "ref/orga/createOrgaType";
 	}
 
@@ -50,11 +50,16 @@ public class OrgaTypeController {
 			Model model) {
 		OrgaTypeBusinessRules otBR = new OrgaTypeBusinessRules();
 		if(otBR.verify(orgatype)){
+			LOGGER.info("EASYES Form process : create a orgatype");
 			orgaTypeDao.create(orgatype);
 			model.addAttribute("orgatype", orgatype);
+			LOGGER.info("EASYES Form display : creation success Orgatype page");
 			return "ref/orga/displaySuccessOrgaType";
 		}
-		return null;//error page handler
+
+		LOGGER.info("EASYES Form display : error message for orgatype creation");
+		model.addAttribute("messages", otBR.getMessages());
+		return "ref/orga/error400";
 	}
 
 }

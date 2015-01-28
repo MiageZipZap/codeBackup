@@ -191,14 +191,17 @@ public class OrganizationController {
 		if(obr.verify(organization)){
 			orgaDao.create(organization);
 			model.addAttribute("organization", organization);
+			LOGGER.info("EASYES Form process : Create an organization");
 			return "ref/orga/displaySuccessOrganization";
 		}
-		return "ref/orga/error500";
+		model.addAttribute("messages", obr.getMessages());
+		return "ref/orga/error400";
 	}
 
 	@RequestMapping(value ="/createHospitalForm",method = { RequestMethod.POST, RequestMethod.GET})
 	public String getFormHospital(Model model, @ModelAttribute OrgaType orgaType) {
 		Hospital hospital = new Hospital();
+		LOGGER.info("EASYES Form display : createHospitalForm");
 		model.addAttribute("hospital",hospital);
 		return "ref/orga/createOrgaHospital";
 	}
@@ -214,11 +217,14 @@ public class OrganizationController {
 		hospital.setUpdateUser(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
 		if(obr.verify(hospital)){
+			LOGGER.info("EASYES Form process : create an Hospital organization");
 			orgaDao.create(hospital);
 			model.addAttribute("hospital", hospital);
 			return "ref/orga/displaySuccessHospital";
 		}
-		return "ref/orga/error500";
+		LOGGER.info("EASYES Form display : error message");
+		model.addAttribute("messages", obr.getMessages());
+		return "ref/orga/error400";
 	}
 
 
@@ -235,6 +241,7 @@ public class OrganizationController {
 		service = new Service();
 		model.addAttribute("service",service);
 		model.addAttribute("listServiceType",listServiceType);
+		LOGGER.info("EASYES Form display : service box chooser page");
 		return "ref/orga/chooseServiceOrgaForm";
 	}
 	/**
@@ -248,11 +255,14 @@ public class OrganizationController {
 	public String createService(@RequestParam("name") String name,@ModelAttribute("service") Service service,Model model) {
 		for(int idService:service.getListIdTypeOfServices()){
 			servType = serviceTypeDao.getById(idService);
+			LOGGER.info("EASYES Form process : add service to an organization");
+
 			service.getServices().add(servType);
 		}
 		servicedao.addServices(service);
 		model.addAttribute("services",service.getServices());
 		model.addAttribute("name",name);
+		LOGGER.info("EASYES Form display : service added success page");
 		return "ref/orga/displaySuccessAddService";
 	}
 	
@@ -267,6 +277,7 @@ public class OrganizationController {
 		List<Organization> tableValues=orgaDao.getAll();
 		//publish tableHeaders and tableValues in Model
 		model.addAttribute("tableValues",tableValues);
+		LOGGER.info("EASYES Form display : organizations Table list");
 		return "ref/orga/displayOrganizationTable";
 	}
 	
@@ -278,12 +289,13 @@ public class OrganizationController {
 		services = organization.getServicesSet();
 		model.addAttribute("organization",organization);
 		model.addAttribute("services",services);
+		LOGGER.info("EASYES Form display : organization Details");
 		return "ref/orga/displayOrganizationDetails";
 	}
 	
 	@RequestMapping(value = "/getServiceDetails/{idOrga}/{idServ}")
 	public String getOrgaDetailsView(@PathVariable("idOrga") int idOrga,@PathVariable("idServ") int idServ, Model model) {				
-		if(idServ==1){
+		LOGGER.info("EASYES Form process : show service details requests");if(idServ==1){
 			return "../../ihm/ref/emergencyDept/read/"+String.valueOf(idOrga);
 		}
 		return "/getOrganizationDetails/"+String.valueOf(idOrga);

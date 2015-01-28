@@ -1,9 +1,12 @@
 package fr.esiag.isies.pds.dao.referential.organization;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
@@ -36,10 +39,18 @@ public class OrganizationDao extends AbstractEntityDao<Organization> {
 		return list;
 	}
 
-	public Organization getBySiret(String mySiret){
+	public Organization findBySiret(String mySiret){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Organization myOrganization = (Organization) session.get(Organization.class, mySiret);
+		Criteria criteria =session.createCriteria(Organization.class);
+		Organization myOrganization=null;
+		try{
+			myOrganization=(Organization) criteria.add(Restrictions.eq("siret", mySiret)).uniqueResult();
+		}catch (HibernateException e) {
+			@SuppressWarnings("unchecked")
+			List<Organization> list = (List<Organization>) criteria.add(Restrictions.eq("siret", mySiret)).list();
+			myOrganization = list.get(0);
+		}
 		session.close();
 		return myOrganization;	
 	}

@@ -70,7 +70,7 @@ public class ServiceTypeController {
 			model.addAttribute("serviceType", serviceType);
 			return "ref/orga/displaySuccessServiceType";
 		}
-		return "ref/orga/error500";
+		return "ref/orga/error400";
 	}
 	/**
 	 * This method uses the OrgaTypeDAO to return a set of Category for which 
