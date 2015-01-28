@@ -61,19 +61,22 @@ public class OrganizationController {
 	
 	private OrgaType orgatype;
 	/**
-	 * DAO of Service Type object
+	 * Service object
 	 */
-	
 	private Service service;
 	/**
-	 * DAO of Organization Type DAO
+	 * Service Type object
 	 */
-	
+	private ServiceType servType;
+	/**
+	 * DAO of Services and Service Type DAO
+	 */
+	private ServiceTypeDao serviceTypeDao;
 	private ServiceDao servicedao;
 	/**
 	 * Load a List of Organization type referenced in the data base for a select option box
 	 */
-	
+
 	private List<OrgaType> listTypeOrga;
 
 	/**
@@ -90,11 +93,16 @@ public class OrganizationController {
 	
 	
 	public OrganizationController() {
+		 // prepare the Dao for further operation
 		orgaDao=new OrganizationDao();
 		orgaTypeDao=new OrgaTypeDao();
+		serviceTypeDao=new ServiceTypeDao();
+		servicedao = new ServiceDao();
+		//most used instances
 		orgatype = new OrgaType();
 		obr = new OrganizationBusinessRules();
 		orgaTypeBR = new OrgaTypeBusinessRules();
+		
 	}
 	/**	
 	 * **********************************************						
@@ -116,7 +124,7 @@ public class OrganizationController {
 	}
 
 	@RequestMapping(value = "/addType", method = RequestMethod.POST)
-	public String getForm(@ModelAttribute("orgaType") OrgaType orgaType,
+	public String getRedirectForm(@ModelAttribute("orgaType") OrgaType orgaType,
 			Model model,final RedirectAttributes redirectAttributes) {
 		if(orgaTypeBR.verify(orgaType)){
 			LOGGER.info("EASYES Form display : Pass Orgatype business rules");
@@ -225,7 +233,6 @@ public class OrganizationController {
 		model.addAttribute("name",name);
 		model.addAttribute("id",id);
 		service = new Service();
-		this.servicedao = new ServiceDao(); // prepare the Dao for further operation
 		model.addAttribute("service",service);
 		model.addAttribute("listServiceType",listServiceType);
 		return "ref/orga/chooseServiceOrgaForm";
@@ -240,7 +247,7 @@ public class OrganizationController {
 	@RequestMapping(value = "/addNewService", method = RequestMethod.POST)
 	public String createService(@RequestParam("name") String name,@ModelAttribute("service") Service service,Model model) {
 		for(int idService:service.getListIdTypeOfServices()){
-			ServiceType servType = new ServiceTypeDao().getById(idService);
+			servType = serviceTypeDao.getById(idService);
 			service.getServices().add(servType);
 		}
 		servicedao.addServices(service);

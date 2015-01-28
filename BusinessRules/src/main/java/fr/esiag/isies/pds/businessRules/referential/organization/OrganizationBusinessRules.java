@@ -1,5 +1,6 @@
 package fr.esiag.isies.pds.businessRules.referential.organization;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,23 +22,29 @@ public class OrganizationBusinessRules implements IBusinessRules<Organization> {
 	/**
 	 * 
 	 */
+	public ArrayList<String> messages;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrganizationBusinessRules.class);
 	Validator validator = new Validator();
 	List<ConstraintViolation> violations;
 	private OrganizationDao myOrganizationDao = new OrganizationDao();
 	public boolean verify(Organization item) {
+		messages = new ArrayList<String>();
 		if(!isValidConstraints(item)){
+			messages.add("Erreur de validation");
 			return false;
 		}
 		//rule to verify coords value
 		if(!verifyCoords(item)){
+			messages.add("Erreur coordonnées GPS");
 			return false;
 		}
 
 		//rule to verify that the siret validity
-//		if(!verifySiret(item.getSiret())){
-//			return false;
-//		};
+		if(!verifySiret(item.getSiret())){
+			messages.add("Erreur Siret: l'enregistrement existe déjà");
+			return false;
+		};
 
 		/**
 		 * another business rules to check

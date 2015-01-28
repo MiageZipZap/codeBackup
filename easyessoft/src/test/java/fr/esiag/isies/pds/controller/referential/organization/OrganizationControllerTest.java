@@ -2,8 +2,10 @@ package fr.esiag.isies.pds.controller.referential.organization;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Set;
 
+import mockit.Expectations;
 import mockit.Mocked;
 import mockit.NonStrictExpectations;
 
@@ -36,7 +38,9 @@ public class OrganizationControllerTest {
 	@Mocked
 	OrganizationDao orgaDao;
 	@Mocked
-	OrgaTypeDao orgaTypeDao;	
+	OrgaTypeDao orgaTypeDao;
+	@Mocked
+	OrgaType orgaType;
 
 	Model model;
 	@Mocked
@@ -87,22 +91,34 @@ public class OrganizationControllerTest {
 
 	@Test
 	public void testFormHospital(){	
-		OrgaType orgatype = new OrgaType();
-		assertEquals(organizationController.getForm(orgatype , model,redirectAttribute), "ref/orga/chooseOrgaType");
+		validateOrgatype();
+		assertEquals(organizationController.getRedirectForm(orgaType , model,redirectAttribute), "ref/orga/chooseOrgaType");
+	}
+
+	private Expectations validateOrgatype()
+	{
+		return new NonStrictExpectations()
+		{{
+			orgaTypeBR.verify(orgaType);
+			result = false;
+		}};
 	}
 
 	@Test
 	public void testCreateOrgaType(){
-		OrgaType orgatype = new OrgaType();
-		orgatype.setId(1);//correspond to an Hospital Organization
-		String UrlCreateHopitalForm1 = organizationController.CreateOrgType(orgatype);
+		new NonStrictExpectations() {{
+			orgaType.getId();result = 1;
+		}};//correspond to an Hospital Organization
+		String UrlCreateHopitalForm1 = organizationController.CreateOrgType(orgaType);
 
-		orgatype = new OrgaType();
-		orgatype.setId(2);//correspond to an Hospital Organization
-		String UrlCreateHopitalForm2 = organizationController.CreateOrgType(orgatype);
+		new NonStrictExpectations() {{
+			orgaType.getId();result = 2;
+		}};
+		//correspond to an Hospital Organization
+		String UrlCreateHopitalForm2 = organizationController.CreateOrgType(orgaType);
 
 		assertEquals(UrlCreateHopitalForm1, UrlCreateHopitalForm2);
-		assertEquals(UrlCreateHopitalForm1, "redirect:createHospitalForm");
+		assertEquals("redirect:createHospitalForm",UrlCreateHopitalForm1);
 	}
 
 	@Test
@@ -159,7 +175,7 @@ public class OrganizationControllerTest {
 		//Apply Test for hospital wich have true informations
 		String urlForTrueHospital = organizationController.createHospital(trueHospital, model);
 		assertEquals("ref/orga/displaySuccessHospital",urlForTrueHospital);
-		
+
 		// Parameters is init with mocked values to test method
 		new NonStrictExpectations() {{
 			securityContext.getAuthentication(); result = authentification;
@@ -171,7 +187,7 @@ public class OrganizationControllerTest {
 		assertEquals(urlForFalseHospital,"ref/orga/error500");
 	}
 
-	/*@Test
+	@Test
 	public void testChooseAService(){
 		new NonStrictExpectations() {{
 			ArrayList<ServiceType> list = new ArrayList<ServiceType>();
@@ -179,18 +195,22 @@ public class OrganizationControllerTest {
 			service.getListIdTypeOfServices(); result = list;
 		}};
 	assertEquals (organizationController.chooseAService(name, id, model) , "ref/orga/chooseServiceOrgaForm");
-	}*/
+	}
 
-	/*@Test
+	@Test
 	public void testCreateService(){
-		new NonStrictExpectations() {{
+		new NonStrictExpectations() {
+			@Mocked ServiceType servType;
+			@Mocked Set<ServiceType> services;
+		{
 			ArrayList<Integer> list = new ArrayList<Integer>();
 			list.add(1);
 			service.getListIdTypeOfServices(); result = list;
+			service.getServices(); result = services;
 		}};
 		assertEquals (organizationController.createService(name, service, model),"ref/orga/displaySuccessAddService");
 
-	}*/
+	}
 	/**
 	 * Control when we call method "GetOrgaTableView" she respond by the correct url
 	 */
