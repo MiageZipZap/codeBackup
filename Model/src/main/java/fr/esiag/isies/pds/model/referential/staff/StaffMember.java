@@ -3,8 +3,8 @@ package fr.esiag.isies.pds.model.referential.staff;
 import fr.esiag.isies.pds.model.referential.organization.Service;
 import fr.esiag.isies.pds.model.referential.staff.Profession;
 import fr.esiag.isies.pds.model.referential.staff.Authorization;
-import fr.esiag.isies.pds.model.Adress;
 import fr.esiag.isies.pds.model.AbstractEntity;
+
 import java.util.Date;
 
 /**
@@ -14,7 +14,27 @@ import java.util.Date;
 
 public class StaffMember extends AbstractEntity {
 	/**
-	 * Number ID of the Staff member
+	 * Id of the Staff member
+	 */
+	private int idStaffMember;
+	/**
+	 * Id of the Staff member's profession
+	 */
+	private int idProfession;
+	/**
+	 * Id of the Staff member's speciality
+	 */
+	private int idSpeciality;
+	/**
+	 * Id of the Staff member's organization
+	 */
+	private int idOrganization;
+	/**
+	 * Id of the Staff member's service
+	 */
+	private int idService;
+	/**
+	 * Number Number ID of the Staff member
 	 */
 	private String staffNumber;
 	/**
@@ -34,9 +54,29 @@ public class StaffMember extends AbstractEntity {
 	 */
 	private Character gender;
 	/**
-	 * Adress of the Staff member
+	 * Street Number of the Adress
 	 */
-	private Adress adress;
+	private String streetNumber;
+	/**
+	 * Street Type of the Adress
+	 */
+	private String streetType;
+	/**
+	 * Street Name of the Adress
+	 */
+	private String streetName;
+	/**
+	 * Region/Province/State of the Adress
+	 */
+	private String region;
+	/**
+	 * Zip Code of the Adress
+	 */
+	private String zipCode;
+	/**
+	 * City of the Adress
+	 */
+	private String city;
 	/**
 	 * Work phone number of the Staff member
 	 */
@@ -50,6 +90,14 @@ public class StaffMember extends AbstractEntity {
 	 */
 	private String mailAdress;	
 	/**
+	 * ADELI of the Staff member
+	 */
+	private String codeADELI;
+	/**
+	 * RPPS of the Staff member
+	 */
+	private String codeRPPS;
+	/**
 	 * Profession of the Staff member
 	 */
 	private Profession profession;
@@ -61,7 +109,47 @@ public class StaffMember extends AbstractEntity {
 	 * Authorization of the Staff member
 	 */
 	private Authorization authorization;
-	
+
+	public int getIdStaffMember() {
+		return idStaffMember;
+	}
+
+	public void setIdStaffMember(int idStaffMember) {
+		this.idStaffMember = idStaffMember;
+	}
+
+	public int getIdProfession() {
+		return idProfession;
+	}
+
+	public void setIdProfession(int idProfession) {
+		this.idProfession = idProfession;
+	}
+
+	public int getIdSpeciality() {
+		return idSpeciality;
+	}
+
+	public void setIdSpeciality(int idSpeciality) {
+		this.idSpeciality = idSpeciality;
+	}
+
+	public int getIdOrganization() {
+		return idOrganization;
+	}
+
+	public void setIdOrganization(int idOrganization) {
+		this.idOrganization = idOrganization;
+	}
+
+	public int getIdService() {
+		return idService;
+	}
+
+	public void setIdService(int idService) {
+		this.idService = idService;
+	}
+
 	public String getStaffNumber() {
 		return staffNumber;
 	}
@@ -102,12 +190,52 @@ public class StaffMember extends AbstractEntity {
 		this.gender = gender;
 	}
 	
-	public Adress getAdress() {
-		return adress;
+	public String getStreetNumber() {
+		return streetNumber;
 	}
 	
-	public void setAdress(Adress adress) {
-		this.adress = adress;
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+	
+	public String getStreetType() {
+		return streetType;
+	}
+	
+	public void setStreetType(String streetType) {
+		this.streetType = streetType;
+	}
+	
+	public String getStreetName() {
+		return streetName;
+	}
+	
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+	
+	public String getZipCode() {
+		return zipCode;
+	}
+	
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	public String getPhoneNumberWork() {
@@ -133,6 +261,22 @@ public class StaffMember extends AbstractEntity {
 	public void setMailAdress(String mailAdress) {
 		this.mailAdress = mailAdress;
 	}
+
+	public String getCodeADELI() {
+		return codeADELI;
+	}
+
+	public void setCodeADELI(String codeADELI) {
+		this.codeADELI = codeADELI;
+	}
+
+	public String getCodeRPPS() {
+		return codeRPPS;
+	}
+
+	public void setCodeRPPS(String codeRPPS) {
+		this.codeRPPS = codeRPPS;
+	}
 	
 	public Profession getProfession() {
 		return profession;
@@ -157,4 +301,24 @@ public class StaffMember extends AbstractEntity {
 	public void setAuthorization(Authorization authorization) {
 		this.authorization = authorization;
 	}
+	
+
+
+	/**
+	 * This is a test
+	 */
+	
+	private int idTest;
+
+	public int getIdTest() {
+		return idTest;
+	}
+
+	public void setIdTest(int idTest) {
+		this.idTest = idTest;
+	}
+
+
+	
+
 }

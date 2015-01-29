@@ -8,7 +8,18 @@
 			<generator class="increment" />
 		</id>
 		
-		<one-to-one name="adress" class="fr.esiag.isies.pds.model.Adress"/>
+		<property name="idProfession" type="int">
+			<column name="tr_staff_member_id_profession" length="5" not-null="false" />
+		</property>
+		<property name="idSpeciality" type="int">
+			<column name="tr_staff_member_id_speciality" length="5" not-null="false" />
+		</property>
+		<property name="idOrganization" type="int">
+			<column name="tr_staff_member_id_organization" length="5" not-null="false" />
+		</property>
+		<property name="idService" type="int">
+			<column name="tr_staff_member_id_service" length="5" not-null="false" />
+		</property>
 		
 		<property name="staffNumber" type="string">
 			<column name="tr_staff_member_number" length="45" not-null="false" />
@@ -26,6 +37,25 @@
 			<column name="tr_staff_member_birth_date" not-null="false" />
 		</property>
 
+		<property name="streetNumber" type="string">
+			<column name="tr_staff_member_street_number" length="10" not-null="false" />
+		</property>
+		<property name="streetType" type="string">
+			<column name="tr_staff_member_street_type" length="45" not-null="false" />
+		</property>
+		<property name="streetName" type="string">
+			<column name="tr_staff_member_street_name" length="45" not-null="false" />
+		</property>
+		<property name="region" type="string">
+			<column name="tr_staff_member_region" length="45" not-null="false" />
+		</property>
+		<property name="zipCode" type="string">
+			<column name="tr_staff_member_zip_code" length="20" not-null="false" />
+		</property>
+		<property name="city" type="string">
+			<column name="tr_staff_member_city" length="45" not-null="false" />
+		</property>
+		
 		<property name="phoneNumberWork" type="string">
 			<column name="tr_staff_member_phone_number_work" length="20" not-null="false" />
 		</property>
@@ -36,17 +66,29 @@
 			<column name="tr_staff_member_mail_adress" length="45" not-null="false" />
 		</property>
 		
-	   	<!--  
+		<property name="codeADELI" type="string">
+			<column name="tr_staff_member_ADELI" length="20" not-null="false" />
+		</property>
+		<property name="codeRPPS" type="string">
+			<column name="tr_staff_member_RPPS" length="20" not-null="false" />
+		</property>
+		
+	   	<!--  	
+		<set name="speciality" table="tr_staff_speciality" inverse="false" lazy="true" fetch="join" cascade="all">
+			<key>
+				<column name="idtr_staff_member" not-null="true" />
+			</key>
+			<many-to-many entity-name="fr.esiag.isies.pds.model.referential.staff.Speciality">
+				<column name="idtr_staff_speciality" not-null="true" />
+			</many-to-many>
+		</set>
+	
 		<property name="orgaType" type="int">
 			<column name="tr_staff_member_orga_type" length="11" not-null="false" />
 		</property>
-		
-		
-
-        
+	
 		<many-to-one name="adress" class="fr.esiag.isies.pds.model.Adress" cascade="save-update" lazy="false" column="IDTR_STAFF_MEMBER"  insert="false" update="false"/>
 
-     
         <many-to-one name="streetName" class="fr.esiag.isies.pds.model.referential.staff.Adress" not-null="true" lazy="false">
 			<column name="TR_STAFFMEMBER_ADRESS_STREET_NAME"></column>
 		</many-to-one>
@@ -56,8 +98,6 @@
 			not-null="true" lazy="false">
 			<column name="IDTR_ORGANIZATION_TYPE"></column>
 		</many-to-one>
-		
-		
 		
 		<joined-subclass
 			name="fr.esiag.isies.pds.model.referential.organization.Hospital"

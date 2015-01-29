@@ -1,15 +1,54 @@
-//$(document).on('change', '#listOrganizationType', function(e) {
-//    alert(this.options[e.target.selectedIndex].val());
-//});
-
+       $(document).ready(function() {
+    	    $("#listProfessionType").change(function() {
+    	    	
+	        	$('#listProfession').val(0);
+	        	$('#listSpeciality').val(0);
+	        	
+    	        if($("#listProfessionType").val() != 0) {
+    	        	$("#listProfession").prop("disabled", false);
+    	        	
+        	    	if($("#listProfessionType").val() == 1) {
+            	    	$("#rppsField").show();		
+            	    	$("#adeliField").hide();	
+        	    	} else {
+            	    	$("#rppsField").hide();	
+            	    	$("#adeliField").show(); 	
+        	    	}
+        	    	
+        	    	if(($("#listProfessionType").val() == 1) || ($("#listProfessionType").val() == 2)) {
+        	        	$('#listSpeciality').prop("disabled", false);
+           	        	$("#listSpeciality option").hide();
+           	        	$("#listSpeciality ." + $("#listProfessionType option:selected").attr('class') + "").show();
+           	        }
+           	        else {
+           	        	$('#listSpeciality').prop("disabled", true);
+           	        }
+        	    	
+    	        	$("#listProfession option").hide();
+    	        	$("#listProfession ." + $("#listProfessionType option:selected").attr('class') + "").show();
+    	        	//$("#listOrganization").find('option:visible:first').css('background','blue');
+    	        }
+    	        else {
+    	        	$('#listProfession').prop("disabled", true);
+    	        	$('#listSpeciality').prop("disabled", true);
+        	    	$("#rppsField").hide();	
+        	    	$("#adeliField").hide(); 	
+    	        }
+    	    });
+    	});
 
 
        $(document).ready(function() {
     	    $("#listOrganizationType").change(function() {
+    	    	
+	        	$('#listOrganization').val(0);
+	        	$('#listService').val(0);
+	        	
     	        if($("#listOrganizationType").val() != 0) {
-    	        	$('#listOrganization').prop("disabled", false);
+    	        	$("#listOrganization").prop("disabled", false);
     	        	$("#listOrganization option").hide();
     	        	$("#listOrganization ." + $("#listOrganizationType option:selected").attr('class') + "").show();
+    	        	//$("#listOrganization").find('option:visible:first').css('background','blue');
     	        }
     	        else {
     	        	$('#listOrganization').prop("disabled", true);
@@ -23,13 +62,15 @@
    	        if($("#listOrganization").val() != 0) {
    	        	$('#listService').prop("disabled", false);
    	        	$("#listService option").hide();
-   	        	//$("#listOrganization ." + $("#listOrganizationType option:selected").attr('class') + "").show();
+   	        	$("#listService ." + $("#listOrganization option:selected").attr('class') + "").show();
+   	        	
+   	        	if($("#listService ." + $("#listOrganization option:selected").attr('class') + " :hidden").length){
+   	        		$('#listService').prop("disabled", true);
+   	        	}
    	        }
    	        else {
    	        	$('#listService').prop("disabled", true);
    	        }
-   	    	alert("okok" + $("#listOrganization").val());
-   	        //$(".yourDropDownClass").change();
    	    });
    	});
 /*

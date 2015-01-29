@@ -6,11 +6,21 @@
 
 	<br />
 	
+	<br />
+			
+	<div>
+		<h1>Confirmation</h1>
+	</div>
+			
+	<br />
+	
 	<div id="staffDisplay">
 	
-		<p>Le médecin ${staffMember.firstName} ${staffMember.lastName} a bien été ajouté avec le matricule N° ${staffMember.staffNumber}.</p>
+		<p>${staffMember.firstName} ${staffMember.lastName} a bien été ajouté avec le matricule N° ${staffMember.staffNumber}.</p>
 		
-		<a href="/easyessoft/ihm/ref/staffAdmin/member/createForm">Ajouter une autre personne</a>
+		<br />
+		
+		<a href="/easyessoft/ihm/ref/staffAdmin/member/createForm" class="btn btn-primary btn-lg active" role="button">Ajouter une autre personne</a>
 		
 	</div>
 	

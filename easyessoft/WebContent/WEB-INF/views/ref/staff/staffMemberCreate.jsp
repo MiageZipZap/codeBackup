@@ -65,32 +65,32 @@
 			
 					<p>
 						<label>Numero de la voie</label>
-						<form:input type="text" id="addressStreetNumber" class="form-control" path="adress.streetNumber" placeholder="Numero" />
+						<form:input type="text" id="streetNumber" class="form-control" path="streetNumber" placeholder="Numero" />
 					</p>
 					
 					<p>
 						<label>Type de voie</label>
-						<form:input type="text" id="addressStreetType" class="form-control" path="adress.streetType" placeholder="Séléctionnez"/>
+						<form:input type="text" id="streetType" class="form-control" path="streetType" placeholder="Séléctionnez"/>
 					</p>
 	
 					<p>
 						<label>Nom de la voie</label>
-						<form:input type="text" id="adressStreetName" class="form-control" path="adress.streetName" placeholder="Nom de la voie"/>
+						<form:input type="text" id="streetName" class="form-control" path="streetName" placeholder="Nom de la voie"/>
 					</p>
 					
 					<p>
 						<label>Région</label>
-						<form:input type="text" id="addressRegion" class="form-control" path="adress.region" placeholder="Région"/>
+						<form:input type="text" id="region" class="form-control" path="region" placeholder="Région"/>
 					</p>
 			
 					<p>
 						<label>Code postal</label>
-						<form:input type="text" id="addressZipCode" class="form-control" path="adress.zipCode" placeholder="Code postal" />
+						<form:input type="text" id="zipCode" class="form-control" path="zipCode" placeholder="Code postal" />
 					</p>
 					
 					<p>
 						<label>Ville</label>
-						<form:input type="text" id="addressCity" class="form-control" path="adress.city" placeholder="Ville" />
+						<form:input type="text" id="city" class="form-control" path="city" placeholder="Ville" />
 					</p>
 			
 				</div>
@@ -127,29 +127,44 @@
 
 					<p>
 						<label>Type de profession</label>
-						<form:select id="id" class="form-control" path="id" name="id" >
+						<form:select id="listProfessionType" class="form-control" path="idTest" >
 							<form:option value='0' label='<Selectionnez>' />
-								<c:forEach items="${listTypeOrga}" var="selectionType">
-									<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} (${selectionType.legalStatus})</form:option>
+								<c:forEach items="${listProfessionType}" var="professionType">
+									<form:option class="professionType${professionType.id}" value="${professionType.id}">${professionType.type}</form:option>
 								</c:forEach>
 						</form:select>
 					</p>
 					
 					<p>
 						<label>Profession</label>
-						<form:select id="id" class="form-control" path="id" name="id" >
+						<form:select disabled="true" id="listProfession" class="form-control" path="idProfession" >
 							<form:option value='0' label='<Selectionnez>' />
-								<c:forEach items="${listTypeOrga}" var="selectionType">
-									<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label} (${selectionType.legalStatus})</form:option>
+								<c:forEach items="${listProfession}" var="profession">
+									<form:option class="professionType${profession.type}" value="${profession.id}">${profession.label}</form:option>
 								</c:forEach>
 						</form:select>
 					</p>
 					
 					<p>
-						<label>Spécialité</label> :
-						<form:input type="text" id="professionLabel" class="form-control" path="profession.label" value="${orga.label} sisi ${listTypeOrga}" placeholder="Profession"/>
-					</p>			
-			
+						<label>Specialité</label>
+						<form:select disabled="true" id="listSpeciality" class="form-control" path="idSpeciality" >
+							<form:option value='0' label='<Selectionnez>' />
+								<c:forEach items="${listSpeciality}" var="speciality">
+									<form:option class="professionType${speciality.code}" value="${speciality.id}">${speciality.label}</form:option>
+								</c:forEach>
+						</form:select>
+					</p>	
+					
+					<p id="rppsField" style="display: none;" >
+						<label>RPPS</label>
+						<form:input type="text" id="codeRPPS" class="form-control" path="codeRPPS" placeholder="Code RPPS de la personne"/>
+					</p>	
+					
+					<p id="adeliField" style="display: none;" >
+						<label>ADELI</label>
+						<form:input type="text" id="codeADELI" class="form-control" path="codeADELI" placeholder="Code ADELI de la personne"/>
+					</p>	
+
 				</div>
 			
 			<br />
@@ -160,7 +175,7 @@
 			
 					<p>
 						<label>Type d'organisme</label>
-						<form:select id="listOrganizationType" class="form-control" path="id" name="listOrganizationType">
+						<form:select id="listOrganizationType" class="form-control" path="idTest">
 							<form:option value='0' label='<Selectionnez>' />
 								<c:forEach items="${listOrganizationType}" var="organizationType">
 									<form:option class="organizationType${organizationType.id}" value="${organizationType.id}">${organizationType.label} (${organizationType.legalStatus})</form:option>
@@ -170,7 +185,7 @@
 
 					<p>
 					<label>Organisme</label>
-					<form:select disabled="true" id="listOrganization" class="form-control" path="id" name="listOrganization">
+					<form:select disabled="true" id="listOrganization" class="form-control" path="idOrganization">
 						<form:option value='0' label='<Selectionnez>' />
 							<c:forEach items="${listOrganization}" var="organization">
 								<form:option class="organizationType${organization.orgaType.id}" value="${organization.id}">${organization.name}</form:option>
@@ -180,10 +195,10 @@
 					
 					<p>
 					<label>Service</label>
-					<form:select disabled="true" id="listService" class="form-control" path="id" name="listService">
+					<form:select disabled="true" id="listService" class="form-control" path="idService" >
 						<form:option value='0' label='<Selectionnez>' />
 							<c:forEach items="${listService}" var="service">
-								<form:option value="${service.id}">okok</form:option>
+								<form:option class="organizationType${service.id}" value="${service.id}">${service.categoryService}</form:option>
 							</c:forEach>
 						</form:select>
 					</p>
