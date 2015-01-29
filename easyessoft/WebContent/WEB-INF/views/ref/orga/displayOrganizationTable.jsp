@@ -11,7 +11,7 @@
 <script type="text/javascript"
 	src="/easyessoft/js/dataTableConfiguration.js"></script>
 <div class="row">
-	<div class="col-lg-14">
+	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="boderline">Liste des organismes</h1>
