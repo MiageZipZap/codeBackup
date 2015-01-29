@@ -31,7 +31,6 @@
 		
 		<!--  Staff schema -->
 		<mapping resource="staffMember.hbm.xml" />
-		<mapping resource="staffMemberAdress.hbm.xml" />
 				
 		<!-- infrastructure schema -->
 		<mapping resource="infrastructure.hbm.xml" />
