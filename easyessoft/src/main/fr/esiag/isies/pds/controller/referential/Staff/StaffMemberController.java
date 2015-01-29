@@ -18,17 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fr.esiag.isies.pds.model.referential.organization.OrgaType;
-import fr.esiag.isies.pds.model.referential.organization.Organization;
-import fr.esiag.isies.pds.model.referential.organization.ServiceType;
 import fr.esiag.isies.pds.model.referential.staff.Profession;
 import fr.esiag.isies.pds.model.referential.staff.Speciality;
 import fr.esiag.isies.pds.model.referential.staff.StaffMember;
-import fr.esiag.isies.pds.dao.referential.staff.SpecialityDAO;
 import fr.esiag.isies.pds.dao.referential.staff.StaffMemberDAO;
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
-import fr.esiag.isies.pds.dao.referential.organization.ServiceDao;
 import fr.esiag.isies.pds.dao.referential.organization.ServiceTypeDao;
 
 /**
@@ -48,7 +43,6 @@ public class StaffMemberController {
 	private OrganizationDao organizationDAO;
 	private OrgaTypeDao organizationTypeDAO;
 	private ServiceTypeDao serviceTypeDAO;
-	private SpecialityDAO specialityDAO;
 	
 
 	
@@ -57,7 +51,6 @@ public class StaffMemberController {
 		organizationDAO = new OrganizationDao();
 		organizationTypeDAO = new OrgaTypeDao();
 		serviceTypeDAO = new ServiceTypeDao();
-		specialityDAO = new SpecialityDAO();
 	}
 
 	/**
