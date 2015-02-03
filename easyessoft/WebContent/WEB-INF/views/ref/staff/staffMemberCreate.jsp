@@ -198,7 +198,7 @@
 					<form:select disabled="true" id="listService" class="form-control" path="idService" >
 						<form:option value='0' label='<Selectionnez>' />
 							<c:forEach items="${listService}" var="service">
-								<form:option class="organizationType${service.id}" value="${service.id}">${service.categoryService}</form:option>
+								<form:option class="organizationType${service.id}" value="${service.id}">${service.label}</form:option>
 							</c:forEach>
 						</form:select>
 					</p>

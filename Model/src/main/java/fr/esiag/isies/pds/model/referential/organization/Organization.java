@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.sf.oval.constraint.Assert;
-import net.sf.oval.constraint.AssertTrue;
 import net.sf.oval.constraint.Digits;
 import net.sf.oval.constraint.MatchPattern;
 import net.sf.oval.constraint.NotEmpty;
