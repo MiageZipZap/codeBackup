@@ -7,7 +7,7 @@
 		<property name="hibernate.bytecode.use_reflection_optimizer">false</property> 
 			<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
 			<property name="hibernate.connection.password">pds,M2,77</property>
-			<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/easyesdb</property> 
+			<property name="hibernate.connection.url">jdbc:mysql://deployserver:3306/easyesdb</property> 
 			<property name="hibernate.connection.username">easyesdb</property> <property 
 			name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 			<property name="hibernate.hbm2ddl.auto">update</property>
