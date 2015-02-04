@@ -56,7 +56,7 @@
 		<property name="updateUser" type="string">
 			<column name="UPDATEUSER" length="45" not-null="false" />
 		</property>
-		<set name="servicesSet" table="TR_ORGA_SERV_ASSOCIATION" inverse="false"
+		<set name="servicesSet" table="tr_orga_serv_association" inverse="false"
 			lazy="true" fetch="join" cascade="all">
 			<key>
 				<column name="IDTR_ORGANIZATION" not-null="true" />
