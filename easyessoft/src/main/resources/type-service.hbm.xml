@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="fr.esiag.isies.pds.model.referential.organization.ServiceType"
-		table="TR_SERVICE_TYPE" dynamic-update="true">
+		table="tr_service_type" dynamic-update="true">
 		<id name="id" type="int">
 			<column name="IDTR_SERVICE_TYPE" precision="5" scale="0" />
 			<generator class="increment" />

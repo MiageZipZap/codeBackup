@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="fr.esiag.isies.pds.model.referential.organization.Service"
-		table="TR_ORGA_SERV_ASSOCIATION">
+		table="tr_orga_serv_association">
 		<composite-id name="id">
 			<key-property type="int" name="idOrganizaton" column="tr_organization_idtr_organization" />
 			<key-property type="int" name="idServiceTypeCurrent" column="tr_service_type_tr_service_type_code" />

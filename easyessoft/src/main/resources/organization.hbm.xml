@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="fr.esiag.isies.pds.model.referential.organization.Organization"
-		table="TR_ORGANIZATION" dynamic-insert="true">
+		table="tr_organization" dynamic-insert="true">
 		<id name="id" type="int">
 			<column name="IDTR_ORGANIZATION" precision="5" scale="0" />
 			<generator class="increment" />
