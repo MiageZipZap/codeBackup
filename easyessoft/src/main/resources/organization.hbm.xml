@@ -73,7 +73,7 @@
 		</many-to-one>
 		<joined-subclass
 			name="fr.esiag.isies.pds.model.referential.organization.Hospital"
-			table="TR_ORGA_HOSPITAL" lazy="false">
+			table="tr_orga_hospital" lazy="false">
 			<key column="IDTR_ORGANIZATION" />
 			<property name="finess" type="string" column="TR_HOSPITAL_FINESS" />
 		</joined-subclass>
