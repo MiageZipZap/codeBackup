@@ -17,8 +17,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="#">About</a></li>
-				<!--li><a href="#">Services</a></li-->
+				<li><a href="#">A propos</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Administrer
 						un référentiel <span class="caret"></span>
@@ -32,6 +31,16 @@
 						<li class="divider"></li>
 						<li><a href="/easyessoft/ihm/doctor/form">Création d'un
 								doctor</a></li>
+						<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>
+					</ul></li>
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Centre d'Appel<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="/easyessoft/ihm/emerg/callcenter/CallHome">Traiter les appels</a></li>
+						<li class="divider"></li>
+						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
 						<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>
 					</ul></li>
 				<!--li><a href="#">Contact</a></li-->
