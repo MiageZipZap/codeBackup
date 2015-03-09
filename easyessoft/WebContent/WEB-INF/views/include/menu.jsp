@@ -41,7 +41,7 @@
 						<li><a href="/easyessoft/ihm/emerg/callcenter/CallHome">Traiter les appels</a></li>
 						<li class="divider"></li>
 						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
-						<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>
+						<li><a href="/easyessoft/ihm/geoloc/get">monitorer l'engorgement des urgences</a></li>
 					</ul></li>
 				<!--li><a href="#">Contact</a></li-->
 				<li style="float: right"><a
