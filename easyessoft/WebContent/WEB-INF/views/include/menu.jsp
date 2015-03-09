@@ -43,6 +43,12 @@
 						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
 						<li><a href="/easyessoft/ihm/geoloc/get">monitorer l'engorgement des urgences</a></li>
 					</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Optimisation de l'infrastructure<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#">Optimisation des services d'urgence</a></li>
+					</ul></li>
 				<!--li><a href="#">Contact</a></li-->
 				<li style="float: right"><a
 					href="/easyessoft/<c:url value='j_spring_security_logout' />">Déconnexion</a>
