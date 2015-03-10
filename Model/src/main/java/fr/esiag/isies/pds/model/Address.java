@@ -1,35 +1,40 @@
 package fr.esiag.isies.pds.model;
 
 /**
- * This class is a model of an Adress
+ * This class is a model of an Address
  * @author JASS KVI LAD YEL
  */
 
-public class Adress extends AbstractEntity {	
+public class Address extends AbstractEntity {	
 	/**
-	 * Street Number of the Adress
+	 * Street Number of the Address
 	 */
 	private String streetNumber;
 	/**
-	 * Street Type of the Adress
+	 * Street Type of the Address
 	 */
 	private String streetType;
 	/**
-	 * Street Name of the Adress
+	 * Street Name of the Address
 	 */
 	private String streetName;
 	/**
-	 * Region/Province/State of the Adress
+	 * Region/Province/State of the Address
 	 */
 	private String region;
 	/**
-	 * Zip Code of the Adress
+	 * Department of the Address
+	 */
+	private String department;
+	/**
+	 * Zip Code of the Address
 	 */
 	private String zipCode;
 	/**
-	 * City of the Adress
+	 * City of the Address
 	 */
 	private String city;
+	
 	
 	public String getStreetNumber() {
 		return streetNumber;
@@ -59,6 +64,13 @@ public class Adress extends AbstractEntity {
 		return zipCode;
 	}
 	
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 	public String getRegion() {
 		return region;
 	}
@@ -66,7 +78,7 @@ public class Adress extends AbstractEntity {
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	
+
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
@@ -78,4 +90,5 @@ public class Adress extends AbstractEntity {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 }
