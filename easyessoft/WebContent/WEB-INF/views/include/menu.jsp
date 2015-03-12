@@ -25,7 +25,8 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/easyessoft/ihm/ref/orgaAdmin/organizationHome">Organismes
 								de santé</a></li>
-						<li><a href="/easyessoft/ihm/ref/staffAdmin/member/createForm">Personnel</a></li>
+						<li><a
+							href="/easyessoft/ihm/ref/staffAdmin/member/createForm">Personnel</a></li>
 						<li><a href="/easyessoft/ihm/ref/emergencyDept/homePage">Infrastructures
 								d'urgence</a></li>
 						<li class="divider"></li>
@@ -33,24 +34,30 @@
 								doctor</a></li>
 						<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>
 					</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Gestion des patients<span class="caret"></span>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Centre
+						d'Appel<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="/easyessoft/ihm/admin/appointment/appointmentHome">Rendez-vous</a></li>
-						<li class="divider"></li>
-					
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Centre d'Appel<span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="/easyessoft/ihm/emerg/callcenter/CallHome">Traiter les appels</a></li>
+						<li><a href="/easyessoft/ihm/emerg/callcenter/CallHome">Traiter
+								les appels</a></li>
 						<li class="divider"></li>
 						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
-						<li><a href="/easyessoft/ihm/geoloc/get">monitorer l'engorgement des urgences</a></li>
+						<li><a href="/easyessoft/ihm/geoloc/get">monitorer
+								l'engorgement des urgences</a></li>
 					</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Optimisation de l'infrastructure<span class="caret"></span>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Gestion
+						des patients<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a
+							href="/easyessoft/ihm/admin/appointment/appointmentHome">Rendez-vous</a></li>
+						<li class="divider"></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Optimisation
+						de l'infrastructure<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">Optimisation des services d'urgence</a></li>
