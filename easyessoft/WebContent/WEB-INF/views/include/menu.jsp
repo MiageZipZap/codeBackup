@@ -20,18 +20,19 @@
 				<li><a href="#">A propos</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Administrer
-						un référentiel <span class="caret"></span>
+						un rÃ©fÃ©rentiel <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/easyessoft/ihm/ref/orgaAdmin/organizationHome">Organismes
-								de santé</a></li>
+								de santÃ©</a></li>
 						<li><a
 							href="/easyessoft/ihm/ref/staffAdmin/member/createForm">Personnel</a></li>
 						<li><a href="/easyessoft/ihm/ref/emergencyDept/homePage">Infrastructures
 								d'urgence</a></li>
 						<li class="divider"></li>
-						<li><a href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Création d'un
-								doctor</a></li>
+						<li><a
+							href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">CrÃ©ation
+								d'un doctor</a></li>
 						<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -42,8 +43,7 @@
 						<li><a href="/easyessoft/ihm/emerg/callcenter/CallHome">Traiter
 								les appels</a></li>
 						<li class="divider"></li>
-						<li><a href="/easyessoft/ihm/vehicle/optimalvehicle/vehiclealgorithm">Déterminer le véhicule optimal</a></li>
-						<li class="divider"></li>
+						<li><a href="/easyessoft/ihm/vehicle/optimalvehicle/vehiclealgorithm">DÃ©terminer le vÃ©hicule optimal</a></li>
 						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -56,16 +56,19 @@
 						<li class="divider"></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Outils d'analyses
-					<span class="caret"></span>
+					data-toggle="dropdown" role="button" aria-expanded="false">Outils
+						d'analyses <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="/easyessoft/ihm/optim/emergencyOptim">Optimisation des services d'urgence</a></li>
-						<li><a href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Monitorer l'engorgement des services d'urgences</a></li>
+						<li><a href="/easyessoft/ihm/optim/emergencyOptim">Optimisation
+								des services d'urgence</a></li>
+						<li><a
+							href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Monitorer
+								l'engorgement des services d'urgences</a></li>
 					</ul></li>
 				<!--li><a href="#">Contact</a></li-->
 				<li style="float: right"><a
-					href="/easyessoft/<c:url value='j_spring_security_logout' />">Déconnexion</a>
+					href="/easyessoft/<c:url value='j_spring_security_logout' />">DÃ©connexion</a>
 				</li>
 			</ul>
 		</div>
