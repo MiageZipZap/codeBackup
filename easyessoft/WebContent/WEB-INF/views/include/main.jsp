@@ -4,19 +4,12 @@
 	<!-- Note: The background image is set within the business-casual.css file. -->
 	<header class="business-header">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="tagline">EasyEs Soft. Ltd</h1>
-				</div>
-			</div>
+			<h1 class="tagline">EasyEs Soft. Ltd</h1>
 		</div>
 	</header>
-
 	<!-- Page Content -->
 	<div class="container">
-
 		<hr>
-
 		<div class="row">
 			<div class="col-sm-8">
 				<h2>Bienvenue sur la Démo Release 1</h2>

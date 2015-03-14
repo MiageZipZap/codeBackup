@@ -30,7 +30,7 @@
 						<li><a href="/easyessoft/ihm/ref/emergencyDept/homePage">Infrastructures
 								d'urgence</a></li>
 						<li class="divider"></li>
-						<li><a href="/easyessoft/ihm/doctor/form">Création d'un
+						<li><a href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Création d'un
 								doctor</a></li>
 						<li><a href="/easyessoft/ihm/geoloc/get">Test mock Geoloc</a></li>
 					</ul></li>
@@ -43,8 +43,6 @@
 								les appels</a></li>
 						<li class="divider"></li>
 						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
-						<li><a href="/easyessoft/ihm/geoloc/get">monitorer
-								l'engorgement des urgences</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Gestion
@@ -56,11 +54,12 @@
 						<li class="divider"></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Optimisation
+					data-toggle="dropdown" role="button" aria-expanded="false">Outils d'analyses
 					<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/easyessoft/ihm/optim/emergencyOptim">Optimisation des services d'urgence</a></li>
+						<li><a href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Monitorer l'engorgement des services d'urgences</a></li>
 					</ul></li>
 				<!--li><a href="#">Contact</a></li-->
 				<li style="float: right"><a
