@@ -57,10 +57,10 @@
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Optimisation
-						de l'infrastructure<span class="caret"></span>
+					<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Optimisation des services d'urgence</a></li>
+						<li><a href="/easyessoft/ihm/optim/emergencyOptim">Optimisation des services d'urgence</a></li>
 					</ul></li>
 				<!--li><a href="#">Contact</a></li-->
 				<li style="float: right"><a
