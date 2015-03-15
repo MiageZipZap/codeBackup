@@ -140,7 +140,6 @@ function init(json) {
 						fd.graph.eachNode(function(n) {
 							if (n.id != node.id)
 								delete n.selected;
-							n.setData('dim', 7, 'end');
 							n.eachAdjacency(function(adj) {
 								adj.setDataset('end', {
 									lineWidth : 0.4,
@@ -150,7 +149,6 @@ function init(json) {
 						});
 						if (!node.selected) {
 							node.selected = true;
-							node.setData('dim', 17, 'end');
 							node.eachAdjacency(function(adj) {
 								adj.setDataset('end', {
 									lineWidth : 3,
@@ -162,7 +160,7 @@ function init(json) {
 						}
 						// trigger animation to final styles
 						fd.fx.animate({
-							modes : [ 'node-property:dim',
+							modes : [
 									'edge-property:lineWidth:color' ],
 							duration : 500
 						});
