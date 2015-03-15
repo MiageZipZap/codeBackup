@@ -32,6 +32,9 @@
 		
 		<!--  Staff schema -->
 		<mapping resource="staffMember.hbm.xml" />
+		
+		<!-- Optimisation Shema -->
+		<mapping resource="emergency_queue_optim.xml" />
 				
 		<!-- infrastructure schema -->
 		<mapping resource="infrastructure.hbm.xml" />

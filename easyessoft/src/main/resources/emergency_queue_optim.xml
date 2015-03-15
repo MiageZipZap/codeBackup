@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping> 
+	<class name="fr.esiag.isies.pds.model.optimisation.EmergencyFrequentationTrafficLog" table="tb_emergency_optimisation_history">
+		<id name="id" type="int">
+			<column name="id_activity_emergency" precision="11" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="idPatient" type="int">
+			<column name="id_patient" length="255" not-null="false" />
+		</property>
+		<property name="idDoctor" type="int">
+			<column name="id_doctor" length="255" not-null="true" />
+		</property>
+		<property name="dateInputPatient" type="timestamp">
+			<column name="date_input_patient" length="255" not-null="true" />
+		</property>
+		<property name="dateExitBox" type="timestamp">
+			<column name="date_exit_box" length="255" not-null="false" />
+		</property>	
+		<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital" lazy="false"
+			column="id_organization" not-null="true" />
+			
+		<many-to-one name="infra" class="fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure" lazy="false"
+			column="id_infra" not-null="true" />
+	</class>
+</hibernate-mapping>
