@@ -1,6 +1,5 @@
 package fr.esiag.isies.pds.businessRules;
 
-import fr.esiag.isies.pds.model.AbstractEntity;
 
 /**
  * 
@@ -8,7 +7,7 @@ import fr.esiag.isies.pds.model.AbstractEntity;
  *
  * @param <T extends AbstractEntity>
  */
-public interface IBusinessRules<T extends AbstractEntity> {
+public interface IBusinessRules<T> {
 	/**
 	 * Method which verify an item
 	 * 
