@@ -9,9 +9,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.esiag.isies.pds.model.interactionNetwork.AbstractInteraction;
-import fr.esiag.isies.pds.model.interactionNetwork.InteractionNetwork;
-import fr.esiag.isies.pds.model.interactionNetwork.Person;
+import fr.esiag.isies.pds.businessRules.optimisation.interactionNetwork.InteractionNetworkBusinessRules;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.AbstractInteraction;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.InteractionNetwork;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Person;
 
 public class InteractionNetworkBusinessRulesTest {
 	/*

@@ -1,4 +1,4 @@
-package fr.esiag.isies.pds.controller.interactionNetwork;
+package fr.esiag.isies.pds.controller.optimisation.interactionNetwork;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fr.esiag.isies.pds.businessRules.interactionNetwork.InteractionNetworkBusinessRules;
-import fr.esiag.isies.pds.model.interactionNetwork.AbstractInteraction;
-import fr.esiag.isies.pds.model.interactionNetwork.Disease;
-import fr.esiag.isies.pds.model.interactionNetwork.DiseaseInteraction;
-import fr.esiag.isies.pds.model.interactionNetwork.InfrastructureInteraction;
-import fr.esiag.isies.pds.model.interactionNetwork.InteractionNetwork;
-import fr.esiag.isies.pds.model.interactionNetwork.MedicineInteraction;
-import fr.esiag.isies.pds.model.interactionNetwork.Patient;
-import fr.esiag.isies.pds.model.interactionNetwork.Person;
+import fr.esiag.isies.pds.businessRules.optimisation.interactionNetwork.InteractionNetworkBusinessRules;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.AbstractInteraction;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Disease;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.DiseaseInteraction;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.InfrastructureInteraction;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.InteractionNetwork;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.MedicineInteraction;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Patient;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Person;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 import fr.esiag.isies.pds.model.referential.infrastructure.Medicine;
 

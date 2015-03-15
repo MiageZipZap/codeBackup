@@ -1,7 +1,7 @@
-package fr.esiag.isies.pds.businessRules.interactionNetwork;
+package fr.esiag.isies.pds.businessRules.optimisation.interactionNetwork;
 
 import fr.esiag.isies.pds.businessRules.IBusinessRules;
-import fr.esiag.isies.pds.model.interactionNetwork.InteractionNetworkCriteria;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.InteractionNetworkCriteria;
 
 
 /**

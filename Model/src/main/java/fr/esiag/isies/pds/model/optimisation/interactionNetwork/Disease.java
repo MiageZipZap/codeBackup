@@ -1,15 +1,14 @@
-package fr.esiag.isies.pds.model.interactionNetwork;
+package fr.esiag.isies.pds.model.optimisation.interactionNetwork;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
 
 /**
- * Class which represents a person (abstract) A person maybe a patient or a
- * staff member
+ * Mock of Disease class with information which i need for InteractionNetwork !
  * 
  * @author PFR
  *
  */
-public class Person extends AbstractEntity {
+public class Disease extends AbstractEntity {
 	private String name;
 
 	public String getName() {

@@ -7,8 +7,9 @@ import mockit.NonStrictExpectations;
 import org.junit.Test;
 import org.springframework.ui.Model;
 
-import fr.esiag.isies.pds.businessRules.interactionNetwork.InteractionNetworkCriteriaBusinessRules;
-import fr.esiag.isies.pds.model.interactionNetwork.InteractionNetworkCriteria;
+import fr.esiag.isies.pds.businessRules.optimisation.interactionNetwork.InteractionNetworkCriteriaBusinessRules;
+import fr.esiag.isies.pds.controller.optimisation.interactionNetwork.InteractionNetworkController;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.InteractionNetworkCriteria;
 
 public class InteractionNetworkControllerTest {
 	InteractionNetworkController controller = new InteractionNetworkController();
