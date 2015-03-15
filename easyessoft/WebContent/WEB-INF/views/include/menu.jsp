@@ -43,7 +43,9 @@
 						<li><a href="/easyessoft/ihm/emerg/callcenter/CallHome">Traiter
 								les appels</a></li>
 						<li class="divider"></li>
-						<li><a href="/easyessoft/ihm/vehicle/optimalvehicle/vehiclealgorithm">Déterminer le véhicule optimal</a></li>
+						<li><a
+							href="/easyessoft/ihm/vehicle/optimalvehicle/vehiclealgorithm">Déterminer
+								le véhicule optimal</a></li>
 						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -65,6 +67,8 @@
 						<li><a
 							href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Monitorer
 								l'engorgement des services d'urgences</a></li>
+						<li><a href="/easyessoft/ihm/interactionNetwork/view">Reseau
+								d'interaction</a></li>
 					</ul></li>
 				<!--li><a href="#">Contact</a></li-->
 				<li style="float: right"><a
