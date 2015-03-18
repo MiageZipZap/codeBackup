@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="fr.esiag.isies.pds.model.emergency.callcenter.IncidentLocalization"
+		table="tp_incident_address" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="idtp_incident_address" precision="5"
+				scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="incidentAddress" type="string" length="45" not-null="false">
+			<column name="tp_incident_address" not-null="false" />
+		</property>
+		<property name="latitude" type="float">
+			<column name="tp_incident_longitude" not-null="false" />
+		</property>
+		<property name="longitude" type="float">
+			<column name="tp_incident_latidude" not-null="false" />
+		</property>	
+	</class>
+</hibernate-mapping>

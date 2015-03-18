@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.emergency.callcenter.InjuredPatient"
+		table="tp_emergency_incident_patient" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="tp_emergency_incident_patient_id" precision="5"
+				scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="remarks" type="string">
+			<column name="tp_emergency_incident_patient_remarks" length="254"
+				not-null="false" />
+		</property>
+		<property name="diagnostic" type="string">
+			<column name="tp_emergency_incident_patient_diagnostic"
+				length="254" not-null="false" />
+		</property>
+		<one-to-one name="person" class="fr.esiag.isies.pds.model.Person"
+			cascade="save-update"></one-to-one>
+		<many-to-one name="ticket"
+			class="fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket"
+			fetch="select">
+			<column name="idtp_emergency_incident_ticket" not-null="true" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>
