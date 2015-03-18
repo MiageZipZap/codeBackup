@@ -10,6 +10,9 @@
 .col-xs-offset-2 {
 	margin-left: 10% !important;
 }
+.col-xs-10 {
+    width: 90%;
+}
 </style>
 
 <div class="row">
@@ -23,35 +26,40 @@
 					<div class="row" id="test">
 						<div class="col-xs-12">
 							<div class="row">
-								<ul id="messages-menu" class="nav msg-menu">
-									<li><a href="index.html" class="" id="msg-inbox"> <i
-											class="fa fa-inbox"></i> <span class="hidden-xs">Carte des Interventions</span>
+								<ul id="messages-menu" class="nav nav-list msg-menu">
+									<li><a href="#" class="" id="msg-inbox"> <i
+											class="fa fa-inbox"></i> <span class="hidden-xs">Carte
+												des Interventions</span>
 									</a></li>
-									<li><a href="index.html" class="" id="msg-inbox"> <i
+									<li><a href="#" class="" id="msg-inbox"> <i
 											class="fa fa-inbox"></i> <span class="hidden-xs">Interventions
 												en attentes (3)</span>
 									</a></li>
-									<li><a href="index.html" class="" id="msg-starred"> <i
-											class="fa fa-star"></i> <span class="hidden-xs">Interventions en cours</span>
+									<li><a href="#" class="" id="msg-starred"> <i
+											class="fa fa-star"></i> <span class="hidden-xs">Interventions
+												en cours</span>
 									</a></li>
-									<li><a href="index.html" class="" id="msg-important">
-											<i class="fa fa-bookmark"></i> <span class="hidden-xs">Alertes & Messages</span>
+									<li><a href="#" class="" id="msg-important">
+											<i class="fa fa-bookmark"></i> <span class="hidden-xs">Alertes
+												& Messages</span>
 									</a></li>
-									<li><a href="index.html" class="" id="msg-sent"> <i
-											class="fa fa-reply"></i> <span class="hidden-xs">Sent
-												Mail</span>
-									</a></li>
-									<li><a href="index.html" class="" id="msg-draft"> <i
-											class="fa fa-pencil"></i> <span class="hidden-xs">Drafts
-												(2)</span>
-									</a></li>
-									<li><a href="index.html" class="" id="msg-trash"> <i
-											class="fa fa-trash-o"></i> <span class="hidden-xs">Trash</span>
-									</a></li>
+									<li><a href="#" class="" id="msg-sent"> <i
+											class="fafa-reply"></i> <span class="hidden-xs">Interventions
+												closes</span></a></li>
+									<li class="divider"></li>
+									<li><a href="#" class="" id="msg-draft"><i
+											class="fa fa-pencil"></i> <span class="hidden-xs">Nouveau
+												dossier</span> </a></li>
+									<li><a href="#" class="" id="msg-draft"><i
+											class="fa fa-pencil"></i> <span class="hidden-xs">Dossiers
+												en cours (5)</span> </a></li>
+									<li><a href="#" class="" id="msg-trash"><i
+											class="fa fa-trash-o"></i> <span class="hidden-xs">Dossiers
+												clos</span> </a></li>
 								</ul>
 								<div id="messages-list" class="col-xs-10 col-xs-offset-2">
 									<div class="row one-list-message msg-inbox-item" id="msg-one">
-										<a href="#">
+										<a href="/easyessoft/ihm/emerg/callcenter/createIncidentLocation">
 											<button type="button" class="btn btn-default btn-app"
 												role="button">
 												<i class="glyphicon glyphicon-plus-sign"></i> Nouveau Cas
@@ -61,7 +69,7 @@
 									<div class="row one-list-message msg-inbox-item" id="msg-one">
 										<div class="col-xs-1 checkbox">
 											<label> <input type="checkbox"> Yana Z. <i
-												class="fa fa-square-o small"></i>
+												class="glyphicons glyphicons-vector-path-square small"></i>
 											</label>
 										</div>
 										<div class="col-xs-9 message-title">

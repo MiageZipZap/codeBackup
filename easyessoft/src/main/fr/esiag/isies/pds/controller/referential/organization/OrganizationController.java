@@ -57,7 +57,7 @@ public class OrganizationController {
 	
 	private OrgaTypeDao orgaTypeDao;
 	/**
-	 * DAO of Organization Type object
+	 * Organization Type object
 	 */
 	
 	private OrgaType orgatype;

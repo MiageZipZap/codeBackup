@@ -5,6 +5,7 @@ import mockit.Mocked;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.ui.Model;
+
 public class EmergencyCallCenterControllerTest {
 	
 	EmergencyCallCenterController emerCallCenterController;
