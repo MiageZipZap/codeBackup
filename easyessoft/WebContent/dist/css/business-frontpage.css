@@ -11,18 +11,22 @@ body {
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
 
 .business-header {
-    height: 400px;
+    height: 80%;
     width:100%;
     background:url(../img/EasyEsSoft-web-logo.png) scroll;
     background-repeat:no-repeat;
     backgroun-position: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+    -o-background-size: 100% 100%;
 }
 .navbar-nav{
 	float: none;
+}
+.navbar {
+position: relative;
+margin-bottom: 2px;
 }
 /* Customize the text color and shadow color and to optimize text legibility. */
 
