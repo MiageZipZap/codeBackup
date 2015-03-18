@@ -33,8 +33,7 @@ public class Address extends AbstractEntity {
 	/**
 	 * City of the Address
 	 */
-	private String city;
-	
+	private String city;	
 	
 	public String getStreetNumber() {
 		return streetNumber;
@@ -90,5 +89,4 @@ public class Address extends AbstractEntity {
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 }
