@@ -24,17 +24,26 @@
 
 
 		<property name="show_sql">true</property>
+		<!-- exemple schema -->
 		<mapping resource="doctor.hbm.xml"></mapping>
+		
+		<!-- shared schema -->
+		<mapping resource="person.hbm.xml"></mapping>
 				
+		<!-- organization schema -->
 		<mapping resource="organization.hbm.xml" />
 		<mapping resource="type-organization.hbm.xml" />
 		<mapping resource="type-service.hbm.xml" />
 		
+		<!-- emergencyIncident schema -->
+		<mapping resource="emergencyIncidentLocation.hbm.xml" />
+		<mapping resource="emergencyIntervention.hbm.xml" />
+		<mapping resource="emergencyTicket.hbm.xml" />
+		<mapping resource="injuredPatient.hbm.xml" />
+		<mapping resource="type-incident.hbm.xml"></mapping>
+		
 		<!--  Staff schema -->
 		<mapping resource="staffMember.hbm.xml" />
-		
-		<!-- Optimisation Shema -->
-		<mapping resource="emergency_queue_optim.xml" />
 				
 		<!-- infrastructure schema -->
 		<mapping resource="infrastructure.hbm.xml" />
