@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.esiag.isies.pds.dao.optimisation.Emergency.EmergencyFrequentationTrafficLogDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
+import fr.esiag.isies.pds.model.optimisation.EmergencyFrequentationTrafficLog;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 
 @Controller
@@ -21,36 +22,49 @@ import fr.esiag.isies.pds.model.referential.organization.Organization;
 public class OptimizationInfrastructureController {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(OptimizationInfrastructureController.class);
-	private static EmergencyFrequentationTrafficLogDao eFTLD;
+	private static EmergencyFrequentationTrafficLogDao emergencyLog;
 	private OrganizationDao myOrgaDao;
-	private ArrayList<Organization> orgaOfHistory;
+	private final ArrayList<Organization> orgaOfHistory;
+	private ArrayList<EmergencyFrequentationTrafficLog> allEventsForOrga;
+	private static Organization orgaChoosenToAnalyze;
 	
 	public OptimizationInfrastructureController(){
-		 eFTLD = new EmergencyFrequentationTrafficLogDao();
+		emergencyLog = new EmergencyFrequentationTrafficLogDao();
 		 myOrgaDao = new OrganizationDao();
 		 orgaOfHistory = new ArrayList<Organization>();
+		 orgaChoosenToAnalyze = new Organization();
+		 allEventsForOrga = new ArrayList<EmergencyFrequentationTrafficLog>();
 	}
 	@RequestMapping("emergencyOptim")
 	public String getHomePage(Model model) {
-		List<Integer> ResultOrga = eFTLD.getAllOrganizationInEmergencyTrafficLog();
+		System.out.println("Mon arrayliste contient :"+orgaOfHistory.size());
+		if(orgaOfHistory.isEmpty()){
+		List<Integer> ResultOrga = emergencyLog.getAllOrganizationInEmergencyTrafficLog();
 		if(ResultOrga.isEmpty()){
 			//A completer 
 		}
+		System.out.println(ResultOrga.size());
 		for (int i = 0; i < ResultOrga.size(); i++) {
 			Organization orgaConcernByHistory = myOrgaDao.getById(ResultOrga.get(i));
 			orgaOfHistory.add(orgaConcernByHistory);
 		}
-		Organization orga = new Organization();
-		model.addAttribute("organization",orga);
+		model.addAttribute("organization",orgaChoosenToAnalyze);
 		model.addAttribute("orgaOfHistory",orgaOfHistory);
+		System.out.println(orgaOfHistory.size());
 		LOGGER.info("EASYES Form display : Emergency service optimisation Page");
-		return "/optim/optimEmergencyChooseDepartment";
+		return "/optim/optimEmergencyChooseHospital";
+		}
+		else
+		{
+			orgaOfHistory.clear();
+			return getHomePage(model);
+		}
 	}
 	@RequestMapping(value = "/analyzeEmergencyService", method = RequestMethod.POST)
 	public String analyzeEmergencyService(@ModelAttribute("Organization") Organization organization,
 			Model model,final RedirectAttributes redirectAttributes) {
-				System.out.println(organization.getId());
-				return "ref/orga/error400";
+		allEventsForOrga = emergencyLog.getById(organization.getId());
+		return "ref/orga/error400";
 		
 	}
 }
