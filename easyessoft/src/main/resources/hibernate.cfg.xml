@@ -46,5 +46,8 @@
 		<mapping resource="categoryRefInfra.hbm.xml" />
 		<mapping resource="equipment.hbm.xml" />
 		<mapping resource="medicine.hbm.xml" />
+		
+		<!-- Optimisation Shema -->
+		<mapping resource="emergency_queue_optim.xml" />
 	</session-factory>
 </hibernate-configuration>
