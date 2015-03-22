@@ -23,30 +23,17 @@ public class Address extends AbstractEntity {
 	 */
 	private String region;
 	/**
+	 * Department of the Address
+	 */
+	private String department;
+	/**
 	 * Zip Code of the Address
 	 */
 	private String zipCode;
 	/**
 	 * City of the Address
 	 */
-	private String city;
-	/**
-	 * Phone number of the Address
-	 */
-	private String phoneNumberWork;
-	/**
-	 * phone number work.
-	 */
-	private String phoneNumberMobile;
-	/**
-	 * Mail adress
-	 */
-	private String mailAddress;
-	/**
-	 * Owner of the adress
-	 */
-	private Person person;
-	
+	private String city;	
 	
 	public String getStreetNumber() {
 		return streetNumber;
@@ -76,16 +63,23 @@ public class Address extends AbstractEntity {
 		return zipCode;
 	}
 	
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+	public String getDepartment() {
+		return department;
 	}
-	
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 	public String getRegion() {
 		return region;
 	}
 
 	public void setRegion(String region) {
 		this.region = region;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 	
 	public String getCity() {
@@ -94,37 +88,5 @@ public class Address extends AbstractEntity {
 	
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public String getPhoneNumberWork() {
-		return phoneNumberWork;
-	}
-
-	public void setPhoneNumberWork(String phoneNumberWork) {
-		this.phoneNumberWork = phoneNumberWork;
-	}
-
-	public String getPhoneNumberMobile() {
-		return phoneNumberMobile;
-	}
-
-	public void setPhoneNumberMobile(String phoneNumberMobile) {
-		this.phoneNumberMobile = phoneNumberMobile;
-	}
-
-	public String getMailAddress() {
-		return mailAddress;
-	}
-
-	public void setMailAddress(String mailAddress) {
-		this.mailAddress = mailAddress;
-	}
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
 	}
 }
