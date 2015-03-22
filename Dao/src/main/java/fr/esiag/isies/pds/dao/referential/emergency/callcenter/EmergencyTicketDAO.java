@@ -7,7 +7,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
-import fr.esiag.isies.pds.model.Address;
 import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 

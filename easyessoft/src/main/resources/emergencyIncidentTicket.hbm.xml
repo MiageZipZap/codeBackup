@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket"
+		table="tp_emergency_incident_ticket" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="idtp_emergency_incident_ticket" precision="5"
+				scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="openedDate" type="timestamp">
+			<column name="tp_emergency_incident_opened_date" not-null="false" />
+		</property>
+		<property name="closedDate" type="timestamp">
+			<column name="tp_emergency_incident_closed_date" not-null="false" />
+		</property>
+		<property name="idLocation" type="int">
+			<column name="tp_incident_address_idtp_incident_address"
+				precision="5" scale="0" />
+		</property>
+		<property name="idCaller" type="int">
+			<column name="tp_common_person_idtp_common_person" precision="5"
+				scale="0" />
+		</property>
+		<property name="idTicketState" type="int">
+			<column name="tp_emergency_incident_status_idtp" precision="5"
+				scale="0" />
+		</property>
+		<property name="remarks" type="string" length="4000"
+			not-null="false">
+			<column name="tp_emergency_incident_remarks" not-null="false" />
+		</property>
+		<property name="diagnostics" type="string" length="4000"
+			not-null="false">
+			<column name="tp_emergency_incident_diagnostics" not-null="false" />
+		</property>
+		<one-to-one name="caller" class="fr.esiag.isies.pds.model.Person"
+			cascade="all"></one-to-one>
+		<one-to-one name="location"
+			class="fr.esiag.isies.pds.model.emergency.callcenter.IncidentLocalization"
+			cascade="all"></one-to-one>
+		<one-to-one name="emergencyIncidentIntervention"
+			class="fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentIntervention"
+			cascade="all"></one-to-one>
+		<one-to-one name="state"
+			class="fr.esiag.isies.pds.model.emergency.callcenter.IncidentState"
+			cascade="all"></one-to-one>
+		<one-to-one name="priority"
+			class="fr.esiag.isies.pds.model.emergency.callcenter.IncidentPriority"
+			cascade="all"></one-to-one>
+	</class>
+</hibernate-mapping>
