@@ -1,4 +1,4 @@
-package fr.esiag.isies.pds.model.referential.staff;
+package fr.esiag.isies.pds.model.referential.person.staff;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
 

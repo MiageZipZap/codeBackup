@@ -1,30 +1,22 @@
 package fr.esiag.isies.pds.controller.referential.Staff;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import fr.esiag.isies.pds.model.referential.staff.Profession;
-import fr.esiag.isies.pds.model.referential.staff.Speciality;
-import fr.esiag.isies.pds.model.referential.staff.StaffMember;
-import fr.esiag.isies.pds.dao.referential.staff.StaffMemberDAO;
 import fr.esiag.isies.pds.dao.referential.organization.OrgaTypeDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.dao.referential.organization.ServiceTypeDao;
+import fr.esiag.isies.pds.dao.referential.person.staff.StaffMemberDAO;
+import fr.esiag.isies.pds.model.referential.person.staff.Profession;
+import fr.esiag.isies.pds.model.referential.person.staff.Speciality;
+import fr.esiag.isies.pds.model.referential.person.staff.StaffMember;
+
 
 /**
  * Get the HTTP request, do actions (Database) and return a view (JSP)
