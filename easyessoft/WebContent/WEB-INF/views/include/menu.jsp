@@ -25,8 +25,8 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/easyessoft/ihm/ref/orgaAdmin/organizationHome">Organismes
 								de santé</a></li>
-						<li><a
-							href="/easyessoft/ihm/ref/staffAdmin/member/createForm">Personnel</a></li>
+						<li><a href="/easyessoft/ihm/ref/person/staffMembercreateForm">Create a staff Member</a></li>
+						<li><a href="/easyessoft/ihm/ref/person/patientCreateForm">Patient</a></li>
 						<li><a href="/easyessoft/ihm/ref/emergencyDept/homePage">Infrastructures
 								d'urgence</a></li>
 						<li class="divider"></li>
