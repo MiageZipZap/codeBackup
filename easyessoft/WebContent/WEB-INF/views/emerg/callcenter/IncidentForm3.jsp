@@ -3,6 +3,7 @@
 <jsp:include page="../../include/header.jsp">
 	<jsp:param name="title" value="Ouvrir une intervention" />
 </jsp:include>
+<head>
 <script type="text/javascript"
 	src="/easyessoft/js/CallCenterAjaxGetListPatients.js"></script>
 <!-- JQuery dependency already loaded by header-->
@@ -19,6 +20,7 @@
 	right: 30px;
 }
 </style>
+</head>
 <div id="content">
 	<div class="container">
 		<div class="row">
@@ -30,10 +32,10 @@
 					<div class="panel-body">
 						<div class="box-content">
 							<h1 class="page-header">Ouverture du ticket</h1>
-							<form:form id="orgaForm" role="form" class="form-horizontal"
+							<form:form id="IncidentForm" role="form" class="form-horizontal"
 								method="POST"
-								action="/easyessoft/ihm/emerg/callcenter/createLocationTraitement"
-								commandName="location">
+								action="/easyessoft/ihm/emerg/callcenter/createIncidentTicket"
+								commandName="interventionTicket">
 								<div class="form-group">
 									<fieldset>
 										<legend>Description des victimes</legend>
@@ -42,40 +44,34 @@
 												victime</label>
 											<div class="col-sm-2">
 												<input type="text" id="injPatientNumber"
-													class="form-control" name="injPatientNumber" />
+													path="injPatientNumber" class="form-control"
+													name="injPatientNumber" />
 											</div>
-											<button type="button" id="dynamicPatientbutton"
-												class="btn btn-default btn-label-left">
-												<span><i class="fa fa-clock-o txt-danger"></i></span>
-												patients
-											</button>
-										</div>
-										<div class="form-group" id="dynamicPatientForms"></div>
-										<div id="main">
-											<input type="button" id="btAdd" value="Add Element"
-												class="bt" /> <input type="button" id="btRemove"
-												value="Remove Element" class="bt" /> <input type="button"
-												id="btRemoveAll" value="Remove All" class="bt" /><br />
 										</div>
 										<div class="form-group">
 											<label class="col-sm-2 control-label" for="form-styles">Remarques</label>
 											<div class="col-sm-10">
-												<textarea class="form-control" rows="5" id="wysiwig_simple"></textarea>
+												<textarea class="form-control" rows="5" name="remarks"
+													id="wysiwig_simple"></textarea>
+												<input id="testRemarks" type="hidden" path="remarks" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-2 control-label" for="form-styles">Diagnostic</label>
 											<div class="col-sm-10">
-												<textarea class="form-control" rows="5" id="wysiwig_full"></textarea>
+												<textarea class="form-control" rows="5" name="diagnostics"
+													id="wysiwig_full"></textarea>
+												<input type="hidden" path="diagnostics" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Contraintes</label>
 											<div class="col-sm-2">
 												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="fa fa-github-square"></i></span> <input type="text"
-														class="form-control" placeholder="Allongement">
+													<input type="text" path="nbStretcher" class="form-control"
+														placeholder="nb Allongement" name="nbStretcher"
+														id="nbStretcher"><span class="input-group-addon"><i
+														class="fa fa-github-square"></i></span>
 												</div>
 											</div>
 											<div class="col-sm-2">
@@ -88,9 +84,13 @@
 											<div class="col-sm-2">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="fa fa-money"></i></span> <input type="text"
-														class="form-control" placeholder="Priorité"> <span
-														class="input-group-addon"><i class="fa fa-usd"></i></span>
+														class="fa fa-money"></i></span>
+													<form:select path="priority" class="form-control"
+														name="priority" id="priority">
+														<c:forEach items="${priorities}" var="selectionType">
+															<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label}</form:option>
+														</c:forEach>
+													</form:select>
 												</div>
 											</div>
 										</div>

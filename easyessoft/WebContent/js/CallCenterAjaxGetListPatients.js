@@ -1,29 +1,53 @@
 $(document).ready(function() {
-	// check name availability on focus lost
-	$('#dynamicPatientbutton').click(function() {
-		variableFields();
-		getPatients();
-	});
-
+	//check name availability on focus lost
+//	$('#dynamicPatientbutton').click(function() {
+//
+//		getPatients();
+//	});
+	variableFields();
 
 	//
 });
 
+function getTextArea(){
+	alert("test");
+	var simpleContent =$('#testRemarks').val('toto');
+	alert(simpleContent.val());
+	console.debug(tinyMCE.activeEditor.getContent());
+//	alert(simpleContent.value);
+//	simpleContent.value=tinyMCE.get('remarks').getContent();
+//	$('diagnostics').value=tinyMCE.get('diagnostics').getContent();
+}
 function getPatients() {
 	var patients;
 	var injPatientNumber = +$('#injPatientNumber').val();
 	if(injPatientNumber==0) 
 		return false;
 	$.getJSON("patients/jsonList/",{injPatientNumber:injPatientNumber}, function(patients) {
-		var options = $("#dynamicPatientForms");
-		options.append("<p>");
+		var options = $("#dynamicPatientForms")
 		$.each(patients, function() {
-			options.append(this.person.surname);
-			options.append("</p>");
+			options.append('<div id="'+this.person.name+'">');
+			options.append($('<div id="'+this.person.name+'">').load('/easyessoft/ajax/person.jsp'));
+			options.append($("</div>"));
+//			$(this).children("div:first").html('/easyessoft/ajax/person.jsp');
 		});
 	})
 };
-
+function getVehicules() {
+	var vehicules;
+	var injPatientNumber = +$('#injPatientNumber').val();
+	if(injPatientNumber==0) 
+		return false;
+	$.getJSON("vehicules/jsonList/",{injPatientNumber:injPatientNumber}, function(patients) {
+		var options = $("#dynamicPatientForms");
+		$.each(patients, function() {
+			options.append('<div id="'+this.person.name+'">');
+			options.append($('<div id="'+this.person.name+'">').load('/easyessoft/ajax/person.jsp'));
+			options.append($("</div>"));
+//			$(this).children("div:first").html('/easyessoft/ajax/person.jsp');
+		});
+	})
+};
 function variableFields() {
 	var iCnt = 0;
 	// CREATE A "DIV" ELEMENT AND DESIGN IT USING JQUERY ".css()" CLASS.
