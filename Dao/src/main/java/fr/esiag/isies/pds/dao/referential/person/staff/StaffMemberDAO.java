@@ -1,9 +1,9 @@
-package fr.esiag.isies.pds.dao.referential.staff;
+package fr.esiag.isies.pds.dao.referential.person.staff;
 
 import java.util.List;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
-import fr.esiag.isies.pds.model.referential.staff.StaffMember;
+import fr.esiag.isies.pds.model.referential.person.staff.StaffMember;
 
 /**
  * DAO for StaffMember class

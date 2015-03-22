@@ -4,47 +4,42 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.bytecode.use_reflection_optimizer">false</property> 
-			<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
-			<property name="hibernate.connection.password">pds,M2,77</property>
-			<property name="hibernate.connection.url">jdbc:mysql://deployserver:3306/easyesdb</property>
-			<!--property name="hibernate.connection.url">jdbc:mysql://localhost:3306/easyesdb</property--> 
-			<property name="hibernate.connection.username">easyesdb</property> <property 
-			name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-			<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.password">pds,M2,77</property>
+		<property name="hibernate.connection.url">jdbc:mysql://deployserver:3306/easyesdb</property>
+		<!-- property name="hibernate.connection.url">jdbc:mysql://localhost:3306/easyesdb</property -->
+		<property name="hibernate.connection.username">easyesdb</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 
-		<!-- <property name="hibernate.connection.driver_class">org.h2.Driver</property>
-		<property name="hibernate.connection.password">sa</property>
-		<property name="hibernate.connection.url">jdbc:h2:~/test</property>
-		<property name="hibernate.connection.username">sa</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
-		<property name="hibernate.hbm2ddl.auto">create-drop</property>
-		<property name="schemaUpdate">true</property> -->
-
-
+		<!-- <property name="hibernate.connection.driver_class">org.h2.Driver</property> 
+			<property name="hibernate.connection.password">sa</property> <property name="hibernate.connection.url">jdbc:h2:~/test</property> 
+			<property name="hibernate.connection.username">sa</property> <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property> 
+			<property name="hibernate.hbm2ddl.auto">create-drop</property> <property 
+			name="schemaUpdate">true</property> -->
 
 		<property name="show_sql">true</property>
 		<!-- exemple schema -->
 		<mapping resource="doctor.hbm.xml"></mapping>
-		
+
 		<!-- shared schema -->
-		<mapping resource="person.hbm.xml"></mapping>
-				
+		<mapping resource="person.hbm.xml" />
+		<mapping resource="address.hbm.xml" />
+		<mapping resource="medical-record.hbm.xml" />
+
 		<!-- organization schema -->
 		<mapping resource="organization.hbm.xml" />
 		<mapping resource="type-organization.hbm.xml" />
 		<mapping resource="type-service.hbm.xml" />
-		
+
 		<!-- emergencyIncident schema -->
 		<mapping resource="emergencyIncidentLocation.hbm.xml" />
 		<mapping resource="emergencyIntervention.hbm.xml" />
 		<mapping resource="emergencyTicket.hbm.xml" />
 		<mapping resource="injuredPatient.hbm.xml" />
 		<mapping resource="type-incident.hbm.xml"></mapping>
-		
-		<!--  Staff schema -->
-		<mapping resource="staffMember.hbm.xml" />
-				
+
 		<!-- infrastructure schema -->
 		<mapping resource="infrastructure.hbm.xml" />
 		<mapping resource="typeRefInfra.hbm.xml" />
