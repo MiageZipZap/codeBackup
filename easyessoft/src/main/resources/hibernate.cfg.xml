@@ -34,6 +34,7 @@
 		<mapping resource="type-service.hbm.xml" />
 
 		<!-- emergencyIncident schema -->
+		<mapping resource="caller.hbm.xml" />
 		<mapping resource="emergencyIncidentState.hbm.xml" />
 		<mapping resource="emergencyIncidentPriority.hbm.xml" />
 		<mapping resource="emergencyIncidentLocation.hbm.xml" />
