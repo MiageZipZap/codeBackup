@@ -44,6 +44,7 @@ public class EmergencyFrequentationTrafficLogDao{
 		Query query = session.createQuery("SELECT MIN(dateInputPatient) from EmergencyFrequentationTrafficLog where hospital.id = :id ");
 		query.setParameter("id", orga);
 		List result = query.list();
+		session.close();
 		return result;
 	}
 	
@@ -53,6 +54,7 @@ public class EmergencyFrequentationTrafficLogDao{
 		Query query = session.createQuery("SELECT MAX(dateInputPatient) from EmergencyFrequentationTrafficLog where hospital.id = :id ");
 		query.setParameter("id", orga);
 		List result = query.list();
+		session.close();
 		return result;
 	}
 	public List waitingPatient(int orga, java.util.Date minDate) throws ParseException{
@@ -62,6 +64,7 @@ public class EmergencyFrequentationTrafficLogDao{
 		query.setParameter("date", minDate);
 		query.setParameter("idorga", orga);
 		List result = query.list();
+		session.close();
 		return result;
 	}
 }
