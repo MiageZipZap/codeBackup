@@ -5,7 +5,6 @@ public class Person extends AbstractEntity{
 	private String surname;
 	private String age;
 	private String sex;
-	private String tel;
 	
 	public String getName() {
 		return name;
@@ -30,12 +29,6 @@ public class Person extends AbstractEntity{
 	}
 	public void setSex(String sex) {
 		this.sex = sex;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
 	}
 	
 }

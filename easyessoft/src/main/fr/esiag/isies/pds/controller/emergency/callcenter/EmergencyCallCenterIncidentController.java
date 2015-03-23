@@ -19,7 +19,7 @@ import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncident
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncidentStateDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyTicketDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.IncidentLocalizationDAO;
-import fr.esiag.isies.pds.model.Person;
+import fr.esiag.isies.pds.model.emergency.callcenter.Caller;
 import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket;
 import fr.esiag.isies.pds.model.emergency.callcenter.IncidentLocalization;
 import fr.esiag.isies.pds.model.emergency.callcenter.IncidentPriority;
@@ -40,7 +40,7 @@ public class EmergencyCallCenterIncidentController {
 	/**
 	 * Contact or Caller person
 	 */
-	private Person caller;
+	private Caller caller;
 	/**
 	 * EmergencyIncident Object
 	 */
@@ -59,7 +59,7 @@ public class EmergencyCallCenterIncidentController {
 
 	public void init(){
 		location = new IncidentLocalization();
-		caller = new Person();
+		caller = new Caller();
 		ticket= new EmergencyIncidentTicket();
 	}
 	/**	
@@ -88,7 +88,7 @@ public class EmergencyCallCenterIncidentController {
 	}
 
 	@RequestMapping(value ="/createIncidentContact",method = { RequestMethod.POST})
-	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket, @ModelAttribute("caller") Person caller) {
+	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket, @ModelAttribute("caller") Caller caller) {
 		model.addAttribute("caller",new PersonDAO().create(caller));
 		System.out.println("id location dans ticket :"+ticket.getLocation().getId());
 		ticket.setCaller(caller);

@@ -2,14 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class
-		name="fr.esiag.isies.pds.model.Person"
-		table="tp_common_person" dynamic-insert="true">
+	<class name="fr.esiag.isies.pds.model.Person" discriminator-value="null" table="tp_common_person"
+		dynamic-insert="true">
 		<id name="id" type="int">
-			<column name="idtp_common_person" precision="5"
-				scale="0" />
+			<column name="idtp_common_person" precision="5" scale="0" />
 			<generator class="increment" />
 		</id>
+		<discriminator column="tp_common_person_tel" />
 		<property name="name" type="string">
 			<column name="tp_common_person_name" length="45" not-null="false" />
 		</property>
@@ -22,8 +21,9 @@
 		<property name="sex" type="string">
 			<column name="tp_common_person_sex" length="45" not-null="false" />
 		</property>
-		<property name="tel" type="string">
-			<column name="tp_common_person_tel" length="45" not-null="false" />
-		</property>
+		<subclass 
+			name="fr.esiag.isies.pds.model.emergency.callcenter.Caller" discriminator-value="not null">
+			<property name="tel" type="string"/>
+		</subclass>
 	</class>
 </hibernate-mapping>

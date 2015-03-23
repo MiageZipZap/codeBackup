@@ -25,6 +25,7 @@ import fr.esiag.isies.pds.model.referential.organization.ServiceType;
 @Controller
 @RequestMapping("ref/orga")
 public class ServiceTypeController {
+	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(OrgaTypeController.class);
 

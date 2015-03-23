@@ -22,7 +22,7 @@ public class EmergencyIncidentTicket extends AbstractEntity{
 	private int nbStretcher;
 	private String diagnostics;
 	private String remarks;
-	private Person caller;
+	private Caller caller;
 	private IncidentState state;
 //	private IncidentState incidentState;
 	private IncidentPriority priority;
@@ -56,10 +56,10 @@ public class EmergencyIncidentTicket extends AbstractEntity{
 //	public void setIncidentState(IncidentState incidentState) {
 //		this.incidentState = incidentState;
 //	}
-	public Person getCaller() {
+	public Caller getCaller() {
 		return caller;
 	}
-	public void setCaller(Person caller) {
+	public void setCaller(Caller caller) {
 		this.caller = caller;
 	}
 	public IncidentLocalization getLocation() {
