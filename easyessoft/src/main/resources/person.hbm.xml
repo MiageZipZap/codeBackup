@@ -2,43 +2,28 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="fr.esiag.isies.pds.model.Person" table="tr_person"
-		 dynamic-insert="true" >
+	<class
+		name="fr.esiag.isies.pds.model.Person"
+		table="tp_common_person" dynamic-insert="true">
 		<id name="id" type="int">
-		<column name="IDTR_PERSON" precision="5" scale="0" />
+			<column name="idtp_common_person" precision="5"
+				scale="0" />
 			<generator class="increment" />
 		</id>
 		<property name="name" type="string">
-			<column name="tr_person_first_name" length="45" not-null="false" />
+			<column name="tp_common_person_name" length="45" not-null="false" />
 		</property>
 		<property name="surname" type="string">
-			<column name="tr_person_last_name" length="45" not-null="false" />
-		</property>
-		<property name="sex" type="string">
-			<column name="tr_person_sex" length="45" not-null="false" />
+			<column name="tp_common_person_surname" length="45" not-null="false" />
 		</property>
 		<property name="age" type="string">
-			<column name="tr_person_age" not-null="false" />
+			<column name="tp_common_person_age" length="45" not-null="false" />
 		</property>
-       <one-to-one name="address"
-			class="fr.esiag.isies.pds.model.Address"
-			cascade="save-update" />  
-		<joined-subclass
-			name="fr.esiag.isies.pds.model.referential.person.staff.StaffMember"
-			table="tr_person_staffMember" lazy="false">
-			<key column="IDTR_PERSON" />
-			<property name="codeRPPS" type="string" column="TR_STAFFMEMBER_RPPS" />
-		</joined-subclass>
-		<joined-subclass
-			name="fr.esiag.isies.pds.model.referential.person.patient.Patient"
-			table="tr_person_patient" lazy="false">
-			<key column="IDTR_PERSON" />
-			<property name="statusPatient" type="string" column="TR_PATIENT_STATUS" />
-			<property name="typePatient" type="string" column="TR_PATIENT_TYPE" />
-			<property name="nir" type="string" column="TR_PATIENT_NIR" />
-	  		<one-to-one name="medicalRecord"
-			class="fr.esiag.isies.pds.model.referential.medicalRecord.MedicalRecord"
-			cascade="save-update" />
-		</joined-subclass>
+		<property name="sex" type="string">
+			<column name="tp_common_person_sex" length="45" not-null="false" />
+		</property>
+		<property name="tel" type="string">
+			<column name="tp_common_person_tel" length="45" not-null="false" />
+		</property>
 	</class>
 </hibernate-mapping>
