@@ -36,7 +36,7 @@
 			not-null="false">
 			<column name="tp_emergency_incident_diagnostics" not-null="false" />
 		</property>
-		<one-to-one name="caller" class="fr.esiag.isies.pds.model.Person"
+		<one-to-one name="caller" class="fr.esiag.isies.pds.model.emergency.callcenter.Caller"
 			cascade="all"></one-to-one>
 		<one-to-one name="location"
 			class="fr.esiag.isies.pds.model.emergency.callcenter.IncidentLocalization"

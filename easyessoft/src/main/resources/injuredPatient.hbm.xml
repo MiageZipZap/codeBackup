@@ -17,7 +17,7 @@
 			<column name="tp_emergency_incident_patient_diagnostic"
 				length="254" not-null="false" />
 		</property>
-		<one-to-one name="person" class="fr.esiag.isies.pds.model.Person"
+		<one-to-one name="caller" class="fr.esiag.isies.pds.model.emergency.callcenter.Caller"
 			cascade="save-update"></one-to-one>
 		<many-to-one name="ticket"
 			class="fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket"

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import fr.esiag.isies.pds.dao.PersonDAO;
+import fr.esiag.isies.pds.dao.referential.emergency.callcenter.CallerDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncidentPriorityDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncidentStateDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyTicketDAO;
@@ -89,7 +89,7 @@ public class EmergencyCallCenterIncidentController {
 
 	@RequestMapping(value ="/createIncidentContact",method = { RequestMethod.POST})
 	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket, @ModelAttribute("caller") Caller caller) {
-		model.addAttribute("caller",new PersonDAO().create(caller));
+		model.addAttribute("caller",new CallerDAO().create(caller));
 		System.out.println("id location dans ticket :"+ticket.getLocation().getId());
 		ticket.setCaller(caller);
 		ticket.setIdCaller(caller.getId());

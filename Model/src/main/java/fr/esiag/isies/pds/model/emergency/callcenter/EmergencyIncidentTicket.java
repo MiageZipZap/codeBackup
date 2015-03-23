@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
-import fr.esiag.isies.pds.model.Person;
 /**
  * @author Samuel
  * 
