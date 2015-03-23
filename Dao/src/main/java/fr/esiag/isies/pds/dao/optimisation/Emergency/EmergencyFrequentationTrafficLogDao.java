@@ -1,5 +1,8 @@
 package fr.esiag.isies.pds.dao.optimisation.Emergency;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +36,32 @@ public class EmergencyFrequentationTrafficLogDao{
 		ArrayList<EmergencyFrequentationTrafficLog> lst = (ArrayList<EmergencyFrequentationTrafficLog>) query.list();
 		session.close();
 		return lst;
+	}
+	
+	public List minDateOfHistory(int orga) throws ParseException{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT MIN(dateInputPatient) from EmergencyFrequentationTrafficLog where hospital.id = :id ");
+		query.setParameter("id", orga);
+		List result = query.list();
+		return result;
+	}
+	
+	public List maxDateOfHistory(int orga) throws ParseException{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT MAX(dateInputPatient) from EmergencyFrequentationTrafficLog where hospital.id = :id ");
+		query.setParameter("id", orga);
+		List result = query.list();
+		return result;
+	}
+	public List waitingPatient(int orga, java.util.Date minDate) throws ParseException{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT count(*) from EmergencyFrequentationTrafficLog where dateInputPatient < :date AND dateExitBox > :date AND hospital.id = :idorga ");
+		query.setParameter("date", minDate);
+		query.setParameter("idorga", orga);
+		List result = query.list();
+		return result;
 	}
 }
