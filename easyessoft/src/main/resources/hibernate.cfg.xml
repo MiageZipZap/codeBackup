@@ -34,9 +34,11 @@
 		<mapping resource="type-service.hbm.xml" />
 
 		<!-- emergencyIncident schema -->
+		<mapping resource="emergencyIncidentState.hbm.xml" />
+		<mapping resource="emergencyIncidentPriority.hbm.xml" />
 		<mapping resource="emergencyIncidentLocation.hbm.xml" />
 		<mapping resource="emergencyIntervention.hbm.xml" />
-		<mapping resource="emergencyTicket.hbm.xml" />
+		<mapping resource="emergencyIncidentTicket.hbm.xml" />
 		<mapping resource="injuredPatient.hbm.xml" />
 		<mapping resource="type-incident.hbm.xml"></mapping>
 
