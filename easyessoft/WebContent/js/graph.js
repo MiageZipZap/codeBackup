@@ -171,9 +171,15 @@ function init(json) {
 								+ "</h4><b> Interaction(s) :</b><ul><li>", list = [];
 						node.eachAdjacency(function(adj) {
 							if (adj.getData('alpha')) {
-								if (adj.data.date != null) {
-									list.push(adj.nodeTo.name + "<ul><li>"
-											+ adj.data.date + "</li></ul>");
+								var str = "";
+								if (adj.data.date && adj.data.date != "undefined") {
+									str += "<li>" + adj.data.date + "</li>";
+								}
+								if (adj.data.infrastructure && adj.data.infrastructure != "undefined"){
+									str += "<li>" + adj.data.infrastructure + "</li>";
+								}
+								if (str != "") {
+									list.push(adj.nodeTo.name + "<ul>" + str + "</ul>");
 								} else {
 									list.push(adj.nodeTo.name);
 								}

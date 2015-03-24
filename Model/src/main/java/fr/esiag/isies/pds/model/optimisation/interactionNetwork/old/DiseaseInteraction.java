@@ -1,4 +1,5 @@
-package fr.esiag.isies.pds.model.optimisation.interactionNetwork;
+package fr.esiag.isies.pds.model.optimisation.interactionNetwork.old;
+
 
 
 public class DiseaseInteraction extends AbstractInteraction<Disease, Patient> {

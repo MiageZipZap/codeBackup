@@ -1,4 +1,4 @@
-package fr.esiag.isies.pds.model.optimisation.interactionNetwork;
+package fr.esiag.isies.pds.model.optimisation.interactionNetwork.old;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

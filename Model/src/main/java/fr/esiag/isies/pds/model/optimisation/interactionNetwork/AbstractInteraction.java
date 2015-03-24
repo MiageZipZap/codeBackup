@@ -3,6 +3,7 @@ package fr.esiag.isies.pds.model.optimisation.interactionNetwork;
 import java.util.Date;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
+import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 
 /**
  * abstract class which represents an interaction in general case.
@@ -15,52 +16,52 @@ public abstract class AbstractInteraction<T extends AbstractEntity, Z extends Ab
 	/**
 	 * interaction begin date
 	 */
-	private Date beginDate;
+	private Date interactionDate;
 	
 	/**
-	 * interaction end date
+	 * Person which is in interaction
 	 */
-	private Date endDate;
+	private T personInteract;
 	
 	/**
-	 * Item which is in interaction
+	 * Second person who is in interaction
 	 */
-	private T itemWithInteract;
+	private Z person2Interact;
 	
 	/**
-	 * Person who is in interaction
+	 * infrastructure which represents the place of interaction
 	 */
-	private Z personInteract;
+	private Infrastructure infrastructure;
 	
-	public Z getPersonInteract() {
+	public Infrastructure getInfrastructure() {
+		return infrastructure;
+	}
+	
+	public void setInfrastructure(Infrastructure infrastructure) {
+		this.infrastructure = infrastructure;
+	}
+	
+	public Date getInteractionDate() {
+		return interactionDate;
+	}
+	
+	public void setInteractionDate(Date interactionDate) {
+		this.interactionDate = interactionDate;
+	}
+
+	public Z getPerson2Interact() {
+		return person2Interact;
+	}
+
+	public void setPerson2Interact(Z person2Interact) {
+		this.person2Interact = person2Interact;
+	}
+
+	public T getPersonInteract() {
 		return personInteract;
 	}
-	
-	public void setPersonInteract(Z personInteract) {
+
+	public void setPersonInteract(T personInteract) {
 		this.personInteract = personInteract;
-	}
-	
-	public Date getBeginDate() {
-		return beginDate;
-	}
-	
-	public void setBeginDate(Date beginDate) {
-		this.beginDate = beginDate;
-	}
-	
-	public Date getEndDate() {
-		return endDate;
-	}
-	
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-	
-	public T getItemWithInteract() {
-		return itemWithInteract;
-	}
-	
-	public void setItemWithInteract(T itemWithInteract) {
-		this.itemWithInteract = itemWithInteract;
 	}
 }

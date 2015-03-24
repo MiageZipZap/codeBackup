@@ -10,65 +10,95 @@
 <script type="text/javascript" src="/easyessoft/js/jit.js"></script>
 <script type="text/javascript">
 	$(function() {
+		var mapOfPerson2Interact = {};
+		var mapOfPersonInteract = {};
 		var json = "";
 		<c:forEach items="${interactionNetwork.interactions}" var="item" varStatus="cpt">
-		if ("${cpt.index}" != "0") {
-			json = json + ',';
+			var adjacenciesPrefix = "${item.person2Interact['class'].simpleName}";
+			// second person who is in interaction
+			if (!mapOfPerson2Interact[adjacenciesPrefix + "_" + "${item.person2Interact.id}"]) {
+				// create item if not exist in map
+				var lbl = "${item.person2Interact.name}";
+				lbl.replace("'", "\'");
+				mapOfPerson2Interact[adjacenciesPrefix + "_" + "${item.person2Interact.id}"]
+					= {"label" : lbl, "count" : 1};
+			} else {
+				// add one at count variable (item appears again)
+				mapOfPerson2Interact[adjacenciesPrefix + "_" + "${item.person2Interact.id}"].count += 1;
+			}
+			
+			// person interact
+			var personPrefix = "${item.personInteract['class'].simpleName}";
+			if (!mapOfPersonInteract[personPrefix + "_" + "${item.personInteract.id}"]) {
+				// create person if not exist in map
+				var lbl = "${item.personInteract.name}";
+				lbl.replace("'", "\'");
+				mapOfPersonInteract[personPrefix + "_" + "${item.personInteract.id}"]
+					= {"label" : lbl, "count" : 1, "adjacencies" : {}};
+				mapOfPersonInteract[personPrefix + "_" + "${item.personInteract.id}"].adjacencies[adjacenciesPrefix + "_" + "${item.person2Interact.id}"]
+					= {"id" : adjacenciesPrefix + "_" + "${item.person2Interact.id}", "infrastructure" : "${item.infrastructure.label}"};
+			} else {
+				// add adjacencies
+				mapOfPersonInteract[personPrefix + "_" + "${item.personInteract.id}"].adjacencies[adjacenciesPrefix + "_" + "${item.person2Interact.id}"]
+					= {"id" : adjacenciesPrefix + "_" + "${item.person2Interact.id}", "infrastructure" : "${item.infrastructure.label}"};
+				mapOfPersonInteract[personPrefix + "_" + "${item.personInteract.id}"].count += 1;
+			}
+			
+			
+		</c:forEach>
+		var cpt = 0;
+		for (var item in mapOfPersonInteract) {
+			if (cpt != 0) {
+				json = json + ',';
+			}
+			cpt += 1;
+			var name = mapOfPersonInteract[item].label;
+			name.replace("'", "\'");
+			var dim = mapOfPersonInteract[item].count;
+			dim += 3;
+			var type = "square";
+			var color = "#83548B";
+			// Change type and color according to person (if the person is Patient or Staff)
+			if (item.startsWith("Patient")) {
+				type = "circle";
+				color = "#83548B";
+			} else if (item.startsWith("StaffMember")) {
+				type = "square";
+				color = "#940001";
+			}
+			json = json + '{' + '"id" : "' + item + '",'
+					+ '"name" : "' + name + '",' + '"data" : {'
+					+ '"$color": "'+color+'",' + '"$type": "'+type+'", "$dim":"' + dim
+					+ '"},' + '"adjacencies" : [';
+			var cpt2 = 0;
+			for (var item2 in mapOfPersonInteract[item].adjacencies) {
+				if (cpt2 != 0) {
+					json = json + ',';
+				}
+				cpt2 += 1;
+				json = json + '{' + '"nodeFrom" : "' + item + '",' + '"nodeTo" : "' + item2 + '",' + '"data" : {"infrastructure":"'+mapOfPersonInteract[item].adjacencies[item2].infrastructure+'"}' + '}';
+			}
+			json = json + ']' + '}';
 		}
-		var name = "${item.key.name}";
-		name.replace("'", "\'");
-		var prefixPerson = "Person_";
-		var dim = ${fn:length(item.value)};
-		dim += 3;
-		
-		json = json + '{' + '"id" : "' + prefixPerson + '${item.key.id}",'
-				+ '"name" : "' + name + '",' + '"data" : {'
-				+ '"$color": "#70A35E",' + '"$type": "star", "$dim":"' + dim
-				+ '"},' + '"adjacencies" : [';
-		<c:forEach items="${item.value}" var="item2" varStatus="cpt2">
-		if ("${cpt2.index}" != "0") {
-			json = json + ',';
+		for (var item in mapOfPerson2Interact) {
+			var type = "square";
+			var color = "#83548B";
+			// Change type and color according to person (if the person is Patient or Staff)
+			if (item.startsWith("Patient")) {
+				type = "circle";
+				color = "#83548B";
+			} else if (item.startsWith("StaffMember")) {
+				type = "square";
+				color = "#940001";
+			}
+			var name = mapOfPerson2Interact[item].label;
+			var dim = mapOfPerson2Interact[item].count;
+			dim += 3;
+			json = json + ',' + '{"id" : "' + item + '",'
+					+ '"name" : "' + name + '",' + '"data" : {'
+					+ '"$color": "' + color + '",' + '"$type": "' + type + '", "$dim":"' + dim
+					+ '"}' + '}';
 		}
-		var adjacenciesPrefix = "${item2.itemWithInteract['class'].simpleName}"
-		json = json + '{' + '"nodeFrom" : "' + prefixPerson
-				+ '${item.key.id}",' + '"nodeTo" : "' + adjacenciesPrefix
-				+ '_${item2.itemWithInteract.id}",' + '"data" : {}' + '}';
-		</c:forEach>
-		json = json + ']' + '}';
-		</c:forEach>
-		var prefix = "Medicine_";
-		<c:forEach items="${interactionNetwork.medicines}" var="item" varStatus="cpt">
-			var name = "${item.key.label}";
-			var dim = ${item.value};
-			dim += 3;
-			name.replace("'", "\'");
-			json = json + ',' + '{"id" : "' + prefix + '${item.key.id}",'
-					+ '"name" : "' + name + '",' + '"data" : {'
-					+ '"$color": "#940001",' + '"$type": "square", "$dim":"' + dim
-					+ '"}' + '}';
-		</c:forEach>
-		var prefix = "Infrastructure_";
-		<c:forEach items="${interactionNetwork.infrastructures}" var="item" varStatus="cpt">
-			var name = "${item.key.label}";
-			var dim = ${item.value};
-			dim += 3;
-			name.replace("'", "\'");
-			json = json + ',' + '{"id" : "' + prefix + '${item.key.id}",'
-					+ '"name" : "' + name + '",' + '"data" : {'
-					+ '"$color": "#83548B",' + '"$type": "circle", "$dim":"' + dim
-					+ '"}' + '}';
-		</c:forEach>
-		var prefix = "Disease_";
-		<c:forEach items="${interactionNetwork.diseases}" var="item" varStatus="cpt">
-			var name = "${item.key.name}";
-			var dim = ${item.value};
-			dim += 3;
-			name.replace("'", "\'");
-			json = json + ',' + '{"id" : "' + prefix + '${item.key.id}",'
-					+ '"name" : "' + name + '",' + '"data" : {'
-					+ '"$color": "#83548B",' + '"$type": "square", "$dim":"' + dim
-					+ '"}' + '}';
-		</c:forEach>
 		json = '[' + json + ']';
 		init(JSON.parse(json));
 	});

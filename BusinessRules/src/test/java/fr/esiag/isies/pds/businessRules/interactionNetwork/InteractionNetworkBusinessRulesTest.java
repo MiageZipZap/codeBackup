@@ -3,16 +3,14 @@ package fr.esiag.isies.pds.businessRules.interactionNetwork;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.esiag.isies.pds.businessRules.optimisation.interactionNetwork.InteractionNetworkBusinessRules;
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.AbstractInteraction;
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.InteractionNetwork;
-import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Person;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Patient;
+import fr.esiag.isies.pds.model.optimisation.interactionNetwork.PatientToPatientInteraction;
 
 public class InteractionNetworkBusinessRulesTest {
 	/*
@@ -34,9 +32,9 @@ public class InteractionNetworkBusinessRulesTest {
 	public void init() {
 		interactionNetworkBusinessRules = new InteractionNetworkBusinessRules();
 
-		List<AbstractInteraction<?,?>> lst = new ArrayList<AbstractInteraction<?,?>>();
+		AbstractInteraction<Patient,Patient> item = new PatientToPatientInteraction();
 		validInteractionNetwork = new InteractionNetwork();
-		validInteractionNetwork.getInteractions().put(new Person(), lst);
+		validInteractionNetwork.getInteractions().add(item);
 		
 		emptyInteractionNetwork = new InteractionNetwork();
 
