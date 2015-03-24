@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.AbstractInteraction;
-import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Patient;
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.PatientToPatientInteraction;
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.PatientToStaffInteraction;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
+import fr.esiag.isies.pds.model.referential.person.patient.Patient;
 import fr.esiag.isies.pds.model.referential.person.staff.StaffMember;
 
 public class InteractionNetworkDao {
@@ -25,28 +25,28 @@ public class InteractionNetworkDao {
 		i3.setId(3);
 		
 		Patient p = new Patient();
-		p.setName("Annick");
+		p.setFirstName("Annick");
 		p.setId(3);
 		StaffMember p2 = new StaffMember();
-		p2.setName("Peter");
+		p2.setFirstName("Peter");
 		p2.setId(4);
 		Patient p3 = new Patient();
-		p3.setName("Jacques");
+		p3.setFirstName("Jacques");
 		p3.setId(1);
 		Patient p4 = new Patient();
-		p4.setName("Frank");
+		p4.setFirstName("Frank");
 		p4.setId(2);
 		Patient p6 = new Patient();
-		p6.setName("Camille");
+		p6.setFirstName("Camille");
 		p6.setId(6);
 		StaffMember p7 = new StaffMember();
-		p7.setName("Guy");
+		p7.setFirstName("Guy");
 		p7.setId(7);
 		Patient p8 = new Patient();
-		p8.setName("Johanna");
+		p8.setFirstName("Johanna");
 		p8.setId(8);
 		Patient p9 = new Patient();
-		p9.setName("Samuel");
+		p9.setFirstName("Samuel");
 		p9.setId(9);
 		
 		AbstractInteraction<Patient, StaffMember> p2s1 = new PatientToStaffInteraction();

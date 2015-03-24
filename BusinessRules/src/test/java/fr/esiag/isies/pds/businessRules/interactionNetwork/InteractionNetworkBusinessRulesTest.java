@@ -9,8 +9,8 @@ import org.junit.Test;
 import fr.esiag.isies.pds.businessRules.optimisation.interactionNetwork.InteractionNetworkBusinessRules;
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.AbstractInteraction;
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.InteractionNetwork;
-import fr.esiag.isies.pds.model.optimisation.interactionNetwork.Patient;
 import fr.esiag.isies.pds.model.optimisation.interactionNetwork.PatientToPatientInteraction;
+import fr.esiag.isies.pds.model.referential.person.patient.Patient;
 
 public class InteractionNetworkBusinessRulesTest {
 	/*

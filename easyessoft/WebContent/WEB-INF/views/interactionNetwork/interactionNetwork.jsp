@@ -18,7 +18,7 @@
 			// second person who is in interaction
 			if (!mapOfPerson2Interact[adjacenciesPrefix + "_" + "${item.person2Interact.id}"]) {
 				// create item if not exist in map
-				var lbl = "${item.person2Interact.name}";
+				var lbl = "${item.person2Interact.firstName}";
 				lbl.replace("'", "\'");
 				mapOfPerson2Interact[adjacenciesPrefix + "_" + "${item.person2Interact.id}"]
 					= {"label" : lbl, "count" : 1};
@@ -31,7 +31,7 @@
 			var personPrefix = "${item.personInteract['class'].simpleName}";
 			if (!mapOfPersonInteract[personPrefix + "_" + "${item.personInteract.id}"]) {
 				// create person if not exist in map
-				var lbl = "${item.personInteract.name}";
+				var lbl = "${item.personInteract.firstName}";
 				lbl.replace("'", "\'");
 				mapOfPersonInteract[personPrefix + "_" + "${item.personInteract.id}"]
 					= {"label" : lbl, "count" : 1, "adjacencies" : {}};
