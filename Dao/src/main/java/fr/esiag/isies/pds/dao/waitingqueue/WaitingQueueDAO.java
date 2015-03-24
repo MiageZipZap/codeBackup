@@ -46,17 +46,64 @@ public class WaitingQueueDAO extends AbstractEntityDao<WaitingQueue>{
 		//this.create(patientInQueue);
 	}
 	
-	
-	
+	public void updatePatientStatus(EmergencyActivity ea){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.update(ea);
+		session.getTransaction().commit();
+		session.close();
+	}
 	
 	@Override
 	public WaitingQueue getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+public List<WaitingQueue> getPatientsByPriority(int idService, int idOrganization, int priority) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria criteria =session.createCriteria(WaitingQueue.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		Criteria crit = session.createCriteria(WaitingQueue.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+				
+		DetachedCriteria dc = DetachedCriteria.forClass(WaitingQueue.class, "table0");
+		dc.add(Restrictions.eq("idService", idService));
+		dc.add(Restrictions.eq("idOrganization", idOrganization));
+		dc.add(Restrictions.eq("priority", priority));
+		dc.add(Restrictions.eq("idBox", 1));
+		dc.add(Restrictions.eq("idDoctor", -1));
+		dc.add(Restrictions.gt("idPatient", 0));
+        dc.add(Restrictions.between("timeQueueState", new Date(System.currentTimeMillis() - 60 * 60 * 12 * 1000), new Date()));
+      
+		//dc.setProjection(Property.forName("timeQueueState").max());
+		//dc.setProjection(Projections.groupProperty("idPatient"));
+		dc.setProjection(Projections.projectionList()
+		        	.add(Projections.groupProperty("idPatient"))
+		            .add(Projections.max("timeQueueState")) 
+		        );		
+		
 
-	@Override
-	public List<WaitingQueue> getAll() {
+		DetachedCriteria dc2 = DetachedCriteria.forClass(WaitingQueue.class, "table0");
+		//crit2.add(Property.forName("timeQueueState").eq(dc));
+		dc2.setProjection(Projections.property("lastTimeQueueState"));
+		
+		Criteria crit1 = session.createCriteria(WaitingQueue.class, "table2").setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		//crit1.add(Property.forName("timeQueueState").in(dc2));
+		//crit1.setProjection(Projections.property("lastTimeQueueState"));
+		crit1.add(Subqueries.propertiesIn(new String[] {"idPatient","timeQueueState"}, dc));
+		//crit.add(Subqueries.propertiesIn(new String[] {"timeQueueState"}, maxDateQuery));
+		
+		List<WaitingQueue> inList2 = crit1.list(); 
+		
+		
+		System.out.println(inList2.size());
+
+		
+		return inList2;
+	}
+
+	public List<WaitingQueue> getPatientsByPriority2(int idService, int idOrganization, int priority) {
 		
 		System.out.println("getALl");
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -65,11 +112,15 @@ public class WaitingQueueDAO extends AbstractEntityDao<WaitingQueue>{
 		
 		Criteria crit = session.createCriteria(WaitingQueue.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
-		
+		//.ge >=	//.gt >
+		//.eq ==	//
 		
 		DetachedCriteria dc = DetachedCriteria.forClass(WaitingQueue.class, "table0");
-		dc.add(Restrictions.ge("idOrganization", 43));
-		dc.add(Restrictions.ge("idService", 1));
+		dc.add(Restrictions.eq("idService", idService));
+		dc.add(Restrictions.eq("idOrganization", idOrganization));
+		dc.add(Restrictions.eq("priority", priority));
+		dc.add(Restrictions.eq("idBox", 1));
+		dc.add(Restrictions.eq("idDoctor", -1));
 		dc.add(Restrictions.gt("idPatient", 0) );
         dc.add(Restrictions.between("timeQueueState", new Date(System.currentTimeMillis() - 60 * 60 * 12 * 1000), new Date()));
       
@@ -177,15 +228,14 @@ public class WaitingQueueDAO extends AbstractEntityDao<WaitingQueue>{
                 ).list();
 		 */
 	}
-	
-	public void updatePatientStatus(EmergencyActivity ea){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.update(ea);
-		session.getTransaction().commit();
-		session.close();
+
+	@Override
+	public List<WaitingQueue> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
+
 	/*
 	 *
 

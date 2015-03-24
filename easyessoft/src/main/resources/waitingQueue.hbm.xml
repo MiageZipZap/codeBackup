@@ -40,6 +40,10 @@
 		<property name="idDoctor" type="int">
 			<column name="tp_waiting_queue_id_doctor" length="5" not-null="true" />
 		</property>
+		
+		<one-to-one name="patient"
+			class="fr.esiag.isies.pds.model.referential.person.patient.Patient"
+			cascade="save-update" />
 
 	   	<!--  	
 		<set name="speciality" table="tr_staff_speciality" inverse="false" lazy="true" fetch="join" cascade="all">

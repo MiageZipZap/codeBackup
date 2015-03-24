@@ -169,13 +169,35 @@ public class WaitingQueueController {
 		System.out.println(navigationScreen);
 		System.out.println(idService);
 		System.out.println(idOrganization);
-
+		
+		WaitingQueueManager waitingQueueManager = new WaitingQueueManager(idService, idOrganization);
+			 
+		//waitingQueueManager.insertPatientInQueue(14, 12, 11, 5, 100);
+		//waitingQueueManager.insertPatientInQueue(14, 12, 12, 4, 100);
+		//waitingQueueManager.insertPatientInQueue(14, 12, 13, 3, 100);
+		//waitingQueueManager.insertPatientInQueue(14, 12, 14, 2, 100);
+		//waitingQueueManager.insertPatientInQueue(14, 12, 15, 1, 100);
+		//waitingQueueManager.insertPatientInQueue(14, 12, 16, 3, 100);
 		//
+	
+	
+	
+		
+		
+		//SimpleDateFormat printFormat = new SimpleDateFormat("HH:mm:ss");
+		//Date date = parseFormat.parse("2011-04-23 09:30:51:01");
+		
+		
+		//System.out.println("date " + );
+		
+
+		
+		// Adding variables to JSP
 		model.addAttribute(new WaitingQueue()); 
 		model.addAttribute("navigationScreen", navigationScreen);
 		model.addAttribute("idService", idService);
 		model.addAttribute("idOrganization", idOrganization);
-		model.addAttribute("listPatient", waitingQueueDAO.getAll());
+		model.addAttribute("listPatient", waitingQueueManager.getPatientsInQueue());
 		
 		return "waitingqueue/waitingQueueStaff";
 	}	

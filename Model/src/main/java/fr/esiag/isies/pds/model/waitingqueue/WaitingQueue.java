@@ -1,6 +1,8 @@
 package fr.esiag.isies.pds.model.waitingqueue;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
+import fr.esiag.isies.pds.model.Person;
+import fr.esiag.isies.pds.model.referential.person.patient.Patient;
 
 import java.util.Date;
 
@@ -49,8 +51,11 @@ public class WaitingQueue extends AbstractEntity {
 	/**
 	 * Waiting Time of the patient (dynamic, not mapped)
 	 */
-	private int waitingTime;	
-
+	private int waitingTime;
+	/**
+	 * Owner of the adress
+	 */
+	private Patient patient;
 	
 	public int getIdQueueState() {
 		return idQueueState;
@@ -130,6 +135,14 @@ public class WaitingQueue extends AbstractEntity {
 
 	public void setWaitingTime(int waitingTime) {
 		this.waitingTime = waitingTime;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 }

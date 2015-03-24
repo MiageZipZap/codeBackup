@@ -3,11 +3,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
 <%@ page import="fr.esiag.isies.pds.model.waitingqueue.WaitingQueue" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <c:set var="navigationScreen" value="${navigationScreen}"/>
 <c:set var="listPatient" value="${listPatient}"/>
 
 <% 
+	String[] priorityColor = new String[]{"danger","danger","warning","success", "info"};
+	String[] priorityLabel = new String[]{"Vitale","&nbsp;&nbsp;Critique &nbsp;&nbsp;","&nbsp;&nbsp;&nbsp;Urgent&nbsp;&nbsp;&nbsp;&nbsp;","&nbsp;Standard&nbsp;&nbsp;", "Non urgent"};
+	SimpleDateFormat dateFormat_hour = new SimpleDateFormat("HH:mm");
 	String navigationScreen = (String) pageContext.getAttribute("navigationScreen");
 	List<WaitingQueue> listPatient = (List<WaitingQueue>) pageContext.getAttribute("listPatient");
 %>
@@ -83,7 +87,7 @@
 	<div class="frame" id="mainFrame">	
 		<h1>Activit&eacute; du service</h1>
 		<br />
-		<div class="alert alert-warning" role="alert"><strong>Consultation :</strong> Le Dr. Zlatan est appelé au Box 3</div>
+		<div class="alert alert-warning" role="alert"><strong>Consultation :</strong> Le Dr. House est appelé au Box 3</div>
 		<br/>
 	    <ul id="navigationScreen" class="nav nav-pills nav-justified">
 	      <li role="presentation" <% if(navigationScreen.compareTo("waitingRoom") == 0) { %>class="active"<% } %>><a href="/easyessoft/ihm/waitingQueue/screenStaff?navigationScreen=waitingRoom&idService=${idService}&idOrganization=${idOrganization}">Salle d'attente</a></li>
@@ -105,13 +109,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%  for(int iPatient = -1; iPatient < listPatient.size() ; iPatient+=1) {  %>
+					<%  for(int iPatient = 0; iPatient < listPatient.size() ; iPatient+=1) {  %>
 						<tr style="background-color: rgba(255, 255, 255, 0.9);">
-						    <td>1</td>
-						    <td>Vitale</td>
-						    <td>Modric</td>
-						    <td>Lucas</td>
-						    <td>14:00</td>
+						    <td><%=iPatient+1 %></td>
+							<td style="text-align: center;"><span class="label label-<%=priorityColor[listPatient.get(iPatient).getPriority()-1] %>" style="font-size: 14px;"><%=priorityLabel[listPatient.get(iPatient).getPriority()-1] %></span></td>
+						    <td><%=listPatient.get(iPatient).getPatient().getFirstName() %></td>
+						    <td><%=listPatient.get(iPatient).getPatient().getLastName() %></td>
+						    <td><%=dateFormat_hour.format(listPatient.get(iPatient).getTimeQueueState()) %></td>
 						    <td>Consultation</td>
 						    <td>15 mn</td>
 						</tr>
