@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.waitingqueue.WaitingQueue" table="tp_waiting_queue" dynamic-update="true">
+		
+		<id name="id" type="int">
+			<column name="idtp_waiting_queue" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+				
+		<property name="idOrganization" type="int">
+			<column name="tp_waiting_queue_id_organization" length="5" not-null="true" />
+		</property>
+		
+		<property name="idService" type="int">
+			<column name="tp_waiting_queue_id_service" length="5" not-null="true" />
+		</property>
+		
+		<property name="timeQueueState" type="java.util.Date">
+			<column name="tp_waiting_queue_time_queue_state" length="255" not-null="true" sql-type="datetime" default="now()" />
+		</property>
+		
+		<property name="idPatient" type="int">
+			<column name="tp_waiting_queue_id_patient" length="10" not-null="true" />
+		</property>
+		
+		<property name="priority" type="int">
+			<column name="tp_waiting_queue_priority" length="1" not-null="true" />
+		</property>
+		
+		<property name="idMedicalProcedure" type="int">
+			<column name="tp_waiting_queue_medical_procedure" length="5" not-null="true" />
+		</property>
+		
+		<property name="idBox" type="int">
+			<column name="tp_waiting_queue_id_box" length="5" not-null="true" />
+		</property>
+		
+		<property name="idDoctor" type="int">
+			<column name="tp_waiting_queue_id_doctor" length="5" not-null="true" />
+		</property>
+
+	   	<!--  	
+		<set name="speciality" table="tr_staff_speciality" inverse="false" lazy="true" fetch="join" cascade="all">
+			<key>
+				<column name="idtr_waiting_queue" not-null="true" />
+			</key>
+			<many-to-many entity-name="fr.esiag.isies.pds.model.referential.staff.Speciality">
+				<column name="idtr_staff_speciality" not-null="true" />
+			</many-to-many>
+		</set>
+	
+		<property name="orgaType" type="int">
+			<column name="tr_waiting_queue_orga_type" length="11" not-null="false" />
+		</property>
+	
+		<many-to-one name="adress" class="fr.esiag.isies.pds.model.Adress" cascade="save-update" lazy="false" column="IDtr_waiting_queue"  insert="false" update="false"/>
+
+        <many-to-one name="streetName" class="fr.esiag.isies.pds.model.referential.staff.Adress" not-null="true" lazy="false">
+			<column name="TR_STAFFMEMBER_ADRESS_STREET_NAME"></column>
+		</many-to-one>
+	
+		<many-to-one name="orgaType"
+			class="fr.esiag.isies.pds.model.referential.organization.OrgaType"
+			not-null="true" lazy="false">
+			<column name="IDTR_ORGANIZATION_TYPE"></column>
+		</many-to-one>
+		
+		<joined-subclass
+			name="fr.esiag.isies.pds.model.referential.organization.Hospital"
+			table="TR_ORGA_HOSPITAL" lazy="false">
+			<key column="IDTR_ORGANIZATION"/>
+			<property name="finess" type="string" column="TR_HOSPITAL_FINESS" />
+		</joined-subclass>
+		 -->
+	</class>
+</hibernate-mapping>
