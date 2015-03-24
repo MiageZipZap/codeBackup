@@ -1,6 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="fr.esiag.isies.pds.model.optimisation.*"%>
+<%@ page import="fr.esiag.isies.pds.model.referential.organization.*"%>
+<%@ page import="java.util.*"%>
+<% ArrayList<AnalyzeResultEmergencyService> resultOfFrequentation;
+resultOfFrequentation = (ArrayList<AnalyzeResultEmergencyService>) request.getAttribute("resultOfFrequentation");
+Object totalCapacityOfWaitingSalle = request.getAttribute("totalCapacityOfWaitingSalle"); 
+%>
+
+
 <jsp:include page="../include/header.jsp">
-	<jsp:param value="Visualisation situation service d'urgence" name="title" />
+	<jsp:param value="Visualisation situation service d'urgence"
+		name="title" />
 </jsp:include>
 <link href="/easyessoft/dist/css/jquery.dataTables.css" rel="stylesheet">
 <script type="text/javascript"
@@ -9,42 +19,52 @@
 	src="/easyessoft/dist/js/jquery.dataTables.js"></script>
 <script type="text/javascript"
 	src="/easyessoft/js/dataTableConfiguration.js"></script>
-<script 
-	src="/easyessoft/js/highcharts.js"></script>
-<script 
-	src="/easyessoft/js/exporting.js"></script>
-	<div class="row">
+<script src="/easyessoft/js/highcharts.js"></script>
+<script src="/easyessoft/js/exporting.js"></script>
+<div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-			<div class="panel-heading">
-				<h4 class="boderline">Nombre de box d'examen : ${BoxNumber}</h4>
-			</div>
-	<div class="panel-heading">
-				<h4 class="boderline">Capacité des salles d'attentes du service d'urgence de ${organization.name}: ${totalCapacityOfWaitingSalle} places</h4>
-			</div>
-			<div class="panel-heading">
-				<h5 class="boderline">La pic de fréquentation a été relevé le :${dateMinDate} de ${hourMinDate} à ${hourMaxDate}</h5>
-			</div>
-			  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-<!--<script type="text/javascript">
+				<div class="panel-heading">
+					<h4 class="boderline">Nombre de box d'examen : ${BoxNumber}</h4>
+				</div>
+				<div class="panel-heading">
+					<h4 class="boderline">Un pic de fréquentation chronique a été detecté le
+						:${dateMinDate} de ${hourMinDate} à ${hourMaxDate}</h4>
+				</div>
+				<div id="container"
+					style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<script type="text/javascript">
 $(function () {
     $('#container').highcharts({
         title: {
-            text: 'Monthly Average Temperature',
+            text: 'Analyse du service d\'urgence',
             x: -20 //center
         },
         subtitle: {
-            text: 'Source: WorldClimate.com',
+            text: 'représentation graphique',
             x: -20
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            categories: 
+<%
+out.println("[");
+for(int i=0; i<resultOfFrequentation.size() ; i++)
+{
+
+ out.println("'"+resultOfFrequentation.get(i).gethourOfPassage()+"'");
+
+	if(i != resultOfFrequentation.size()-1)
+	{
+	  out.println(",");
+	}
+}//end for
+out.println("]");
+%>
         },
         yAxis: {
             title: {
-                text: 'Temperature (°C)'
+                text: 'Patient en attente de prise en charge'
             },
             plotLines: [{
                 value: 0,
@@ -53,7 +73,7 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: '°C'
+            valueSuffix: ' patients'
         },
         legend: {
             layout: 'vertical',
@@ -63,13 +83,40 @@ $(function () {
         },
         series: [{
             name: 'Patient en attente',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }]
+            data: 
+            <%out.println("[");
+        for(int i=0; i<resultOfFrequentation.size() ; i++){
+
+ 	out.println(resultOfFrequentation.get(i).getNbwaitingPatient());
+
+
+	if(i != resultOfFrequentation.size()-1)
+	{
+	  out.println(",");
+	}
+}//end for
+out.println("]");
+%>
+        },{
+        	name:'capacité salle d\'attente',
+        	data:
+        		 <%out.println("[");
+            for(int i=0; i<resultOfFrequentation.size() ; i++){
+
+     	out.println(totalCapacityOfWaitingSalle);
+     	if(i != resultOfFrequentation.size()-1)
+    	{
+    	  out.println(",");
+    	}
+    }//end for
+    out.println("]}");  
+    %>   
+        ]
     });
 });
-</script>-->
+</script>
 			</div>
 		</div>
 	</div>
-	</div>
+</div>
 <jsp:include page="../include/footer.jsp" />
