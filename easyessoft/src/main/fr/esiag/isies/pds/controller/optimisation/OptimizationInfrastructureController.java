@@ -34,7 +34,7 @@ public class OptimizationInfrastructureController {
 	private static Organization  							   orgaChoosenToAnalyze;
 	private static InfrastructureDao                           infrastructureDao;
 	private static List<Infrastructure>                        infrastructureForHospital;
-	private static int										   totalCapacityOfWaitingSalle;
+	private static int										   totalCapacityOfWaitingSalle,myBoxNumber;
 	private static Date 									   minDate,maxDate,analyzeStartminDate,analyzeStartmaxDate;
 	private static String									   dateMinDate,heureMinDate;
 	private static ArrayList<AnalyzeResultEmergencyService>    resultOfFrequentation;
@@ -48,11 +48,11 @@ public class OptimizationInfrastructureController {
 		infrastructureDao    = new InfrastructureDao();
 	}
 	@RequestMapping("emergencyOptim")
-	public String getHomePage(Model model) {
+	public String getViewChooseHospital(Model model) {
 		if(orgaOfHistory.isEmpty()){
 			List<Integer> ResultOrga = emergencyLog.getAllOrganizationInEmergencyTrafficLog();
 		if(ResultOrga.isEmpty()){
-			//A completer lors de l'US correspondante
+			return "ref/orga/error400";
 		}
 		for (int i = 0; i < ResultOrga.size(); i++) {
 			Organization orgaConcernByHistory = myOrgaDao.getById(ResultOrga.get(i));
@@ -66,7 +66,7 @@ public class OptimizationInfrastructureController {
 		else
 		{
 			orgaOfHistory.clear();
-			return getHomePage(model);
+			return getViewChooseHospital(model);
 		}
 	}
 	
@@ -75,15 +75,18 @@ public class OptimizationInfrastructureController {
 			,Model model,final RedirectAttributes redirectAttributes) throws ParseException {
 		// recovery of number boxes of emergency service
 		infrastructureForHospital = infrastructureDao.getAllByIdHospital(organization.getId());
-		//Add attribute to model
-		model.addAttribute("BoxNumber",infrastructureForHospital.size());
 		//Recovery  capacity of waiting rooms
 		totalCapacityOfWaitingSalle = 0;
+		myBoxNumber = 0;
 		for(int i =0; i<infrastructureForHospital.size(); i++){
 			if(infrastructureForHospital.get(i).getCode().equals("WAITSALLE")){
 				totalCapacityOfWaitingSalle = infrastructureForHospital.get(i).getCapacity() + totalCapacityOfWaitingSalle;
 			}
+			if(infrastructureForHospital.get(i).getLabel().equals("Box d'examen")){
+				myBoxNumber= myBoxNumber +1;
+			}
 		}
+		model.addAttribute("BoxNumber",myBoxNumber);
 		//Add attribute to model
 		model.addAttribute("totalCapacityOfWaitingSalle",totalCapacityOfWaitingSalle);
 		//Recovery of min and max date of history

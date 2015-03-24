@@ -31,18 +31,6 @@ public class Address extends AbstractEntity {
 	 */
 	private String city;
 	/**
-	 * Phone number of the Address
-	 */
-	private String phoneNumberWork;
-	/**
-	 * phone number work.
-	 */
-	private String phoneNumberMobile;
-	/**
-	 * Mail adress
-	 */
-	private String mailAddress;
-	/**
 	 * Owner of the adress
 	 */
 	private Person person;
@@ -94,30 +82,6 @@ public class Address extends AbstractEntity {
 	
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public String getPhoneNumberWork() {
-		return phoneNumberWork;
-	}
-
-	public void setPhoneNumberWork(String phoneNumberWork) {
-		this.phoneNumberWork = phoneNumberWork;
-	}
-
-	public String getPhoneNumberMobile() {
-		return phoneNumberMobile;
-	}
-
-	public void setPhoneNumberMobile(String phoneNumberMobile) {
-		this.phoneNumberMobile = phoneNumberMobile;
-	}
-
-	public String getMailAddress() {
-		return mailAddress;
-	}
-
-	public void setMailAddress(String mailAddress) {
-		this.mailAddress = mailAddress;
 	}
 
 	public Person getPerson() {

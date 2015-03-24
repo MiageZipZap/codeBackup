@@ -16,7 +16,13 @@
 			<column name="tr_medical_record_weight" length="45" not-null="false" />
 		</property>
 		<property name="bloodGroup" type="string">
-			<column name="tr_medical_blood_group" length="45" not-null="false" />
+			<column name="tr_medical_record_blood_group" length="45" not-null="false" />
+		</property>
+		<property name="statusPatient" type="string">
+			<column name="tr_medical_record_status_patient" length="45" not-null="false" />
+		</property>
+		<property name="typePatient" type="string">
+			<column name="tr_medical_record_type_patient" length="45" not-null="false" />
 		</property>
 		<one-to-one name="patient"
 			class="fr.esiag.isies.pds.model.referential.person.patient.Patient"

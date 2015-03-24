@@ -21,6 +21,14 @@ public class MedicalRecord extends AbstractEntity{
 	 */
 	private String bloodGroup;
 	/**
+	 * Type of patient
+	 */
+	private String typePatient;
+	/**
+	 * Status of patient 
+	 */
+	private String statusPatient;
+	/**
 	 * Patient which own the medical record 
 	 */
 	private Patient patient;
@@ -55,5 +63,21 @@ public class MedicalRecord extends AbstractEntity{
 
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+
+	public String getTypePatient() {
+		return typePatient;
+	}
+
+	public void setTypePatient(String typePatient) {
+		this.typePatient = typePatient;
+	}
+
+	public String getStatusPatient() {
+		return statusPatient;
+	}
+
+	public void setStatusPatient(String statusPatient) {
+		this.statusPatient = statusPatient;
 	}
 }

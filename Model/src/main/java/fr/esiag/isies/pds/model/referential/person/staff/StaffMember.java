@@ -15,10 +15,6 @@ public class StaffMember extends Person {
 	 */
 	private String staffNumber;
 	/**
-	 * RPPS of the Staff member
-	 */
-	private String codeRPPS;
-	/**
 	 * Profession of the Staff member
 	 */
 	private int idProfession;
@@ -33,14 +29,31 @@ public class StaffMember extends Person {
 	/**
 	 * Service of the Staff member
 	 */
-	private Service IdService;
+	private Service idService;
 	/**
-	 * Authorization of the Staff member
+	 * RPPS of the Phone Number Work
 	 */
-	private Authorization authorization;
+	private String phoneNumberWork;
 	/**
-	 * Â¨Personal info of StaffMember
+	 * RPPS of the Phone Number Mobile
 	 */
+	private String phoneNumberMobile;
+	/**
+	 * RPPS of the Mail adress
+	 */
+	private String mailAdress;
+	/**
+	 * RPPS of the Staff member
+	 */
+	private String codeRPPS;
+	/**
+	 * RPPS of the Staff member
+	 */
+	private String codeADELI;
+	/**
+	 * RPPS of the Staff member
+	 */
+	private String availability;
 
 	public String getCodeRPPS() {
 		return codeRPPS;
@@ -67,19 +80,11 @@ public class StaffMember extends Person {
 	}
 
 	public Service getIdService() {
-		return IdService;
+		return idService;
 	}
 
-	public void setIdService(Service IdService) {
-		this.IdService = IdService;
-	}
-
-	public Authorization getAuthorization() {
-		return authorization;
-	}
-
-	public void setAuthorization(Authorization authorization) {
-		this.authorization = authorization;
+	public void setIdService(Service idService) {
+		this.idService = idService;
 	}
 
 	public int getIdSpeciality() {
@@ -96,5 +101,45 @@ public class StaffMember extends Person {
 
 	public void setIdOrganization(int idOrganization) {
 		this.idOrganization = idOrganization;
+	}
+
+	public String getPhoneNumberWork() {
+		return phoneNumberWork;
+	}
+
+	public void setPhoneNumberWork(String phoneNumberWork) {
+		this.phoneNumberWork = phoneNumberWork;
+	}
+
+	public String getPhoneNumberMobile() {
+		return phoneNumberMobile;
+	}
+
+	public void setPhoneNumberMobile(String phoneNumberMobile) {
+		this.phoneNumberMobile = phoneNumberMobile;
+	}
+
+	public String getMailAdress() {
+		return mailAdress;
+	}
+
+	public void setMailAdress(String mailAdress) {
+		this.mailAdress = mailAdress;
+	}
+
+	public String getCodeADELI() {
+		return codeADELI;
+	}
+
+	public void setCodeADELI(String codeADELI) {
+		this.codeADELI = codeADELI;
+	}
+
+	public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
 	}
 }
