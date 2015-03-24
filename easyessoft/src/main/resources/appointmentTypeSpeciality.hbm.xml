@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.hospital.administrative.AppointmentTypeSpeciality" table="tr_admin_appoint_reason_speciality">
+		<id name="id" type="int">
+			<column name="idtr_admin_appoint_reason_speciality" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="label" type="string">
+			<column name="tr_admin_appoint_reason_speciality_label" length="255" not-null="false" />
+		</property>
+		<property name="code" type="string">
+			<column name="tr_admin_appoint_reason_speciality_code" length="11" not-null="false" />
+		</property>
+		<many-to-one name="appointmentType" class="fr.esiag.isies.pds.model.hospital.administrative.AppointmentType" lazy="false"
+			column="idtr_admin_appoint_reason" not-null="true" />
+		
+	</class>
+</hibernate-mapping>

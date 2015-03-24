@@ -1,13 +1,19 @@
 package fr.esiag.isies.pds.dao.hospital.administrative;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractTypeDao;
 import fr.esiag.isies.pds.model.hospital.administrative.AppointmentType;
+import fr.esiag.isies.pds.model.hospital.administrative.AppointmentTypeSpeciality;
 import fr.esiag.isies.pds.utils.HibernateUtil;
-
+/**
+ * DAO class for appointment type
+ * @author Glawdys
+ *
+ */
 public class AppointmentTypeDao extends AbstractTypeDao<AppointmentType> {
 
 	@Override
@@ -26,29 +32,17 @@ public class AppointmentTypeDao extends AbstractTypeDao<AppointmentType> {
 		return lst;
 	}
 
-	public AppointmentType getTypeNormal() {
-		return findByCode("normal");
-	}
 	
-	public AppointmentType getTypeExamen() {
-		return findByCode("exament");
-	}
-	public AppointmentType getTypeHospitalization() {
-		return findByCode("hospitalization");
-	}
-	
-	/**
-	 * Get Appointment by code
-	 * @param code
-	 * @return
-	 */
-	public AppointmentType findByCode(String code) {
+	/*public List<AppointmentType> getAllBySpeciality(AppointmentTypeSpeciality appointmentTS) {
+		List<AppointmentType> lstAppointmentType = new ArrayList<AppointmentType>();
 		List<AppointmentType> tmp = getAll();
 		for (AppointmentType item : tmp) {
-			if (item.getCode().equals(code)) {
-				return item;
+			if (item.getAppointTS().getCode().equals(appointmentTS.getCode())) {
+				lstAppointmentType.add(item);
 			}
 		}
-		return null;
-	}
+		return lstAppointmentType;
+	}*/
+
+
 }

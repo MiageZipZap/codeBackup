@@ -6,7 +6,7 @@ import fr.esiag.isies.pds.model.AbstractEntity;
  * @author Glawdys
  *
  */
-public class MedicalAct extends AbstractEntity {
+public abstract class MedicalAct extends AbstractEntity {
 	/**
 	 * Act code
 	 */
@@ -18,7 +18,7 @@ public class MedicalAct extends AbstractEntity {
 	/**
 	 * Type of the act
 	 */
-	private TypeAct typeAct;
+	private int idtypeAct;
 	/**
 	 * Act time
 	 */
@@ -36,17 +36,18 @@ public class MedicalAct extends AbstractEntity {
 	public void setNameAct(String nameAct) {
 		this.nameAct = nameAct;
 	}
-	public TypeAct getTypeAct() {
-		return typeAct;
-	}
-	public void setTypeAct(TypeAct typeAct) {
-		this.typeAct = typeAct;
-	}
+	
 	public Integer getActTime() {
 		return actTime;
 	}
 	public void setActTime(Integer actTime) {
 		this.actTime = actTime;
+	}
+	public int getIdtypeAct() {
+		return idtypeAct;
+	}
+	public void setIdtypeAct(int idtypeAct) {
+		this.idtypeAct = idtypeAct;
 	}
 	
 }

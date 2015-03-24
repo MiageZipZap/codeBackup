@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.hospital.medical.BiologicalAct" table="tr_medical_nabm">
+		<id name="id" type="int">
+			<column name="idtr_medical_nabm" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="updateDate" type="date">
+			<column name="UPDATE_DATE" length="255" not-null="false" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATE_DATE" length="255" not-null="true" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATE_USER" length="255" not-null="true" />
+		</property>
+		<property name="codeAct" type="string">
+			<column name="tr_medical_nabm_code" length="255" not-null="true" />
+		</property>
+		<property name="nameAct" type="string">
+			<column name="tr_medical_nabm_label" length="255" not-null="true" />
+		</property>
+		<property name="actTime" type="int">
+			<column name="tr_medical_nabm_treatment_time"  not-null="true" />
+		</property>
+		<property name="actPrice" type="double">
+			<column name="tr_medical_nabm_coefB"  not-null="true" />
+		</property>
+		<property name="conflictingCode" type="string">
+			<column name="tr_medical_nabm_incompatible_code" length="255" not-null="true" />
+		</property>
+		<property name="biologistInitiative" type="int">
+			<column name="tr_medical_nabm_biologist_initiative"  not-null="true" />
+		</property>
+		<property name="SSRefund" type="int">
+			<column name="tr_medical_nabm_refunt"  not-null="true" />
+		</property>
+		<property name="bloodTest" type="int">
+			<column name="tr_medical_nabm_blood_test" not-null="true" />
+		</property>
+				
+		<many-to-one name="idtypeAct" class="fr.esiag.isies.pds.model.hospital.medical.TypeAct" lazy="false"
+			column="idtr_medical_act_speciality" not-null="true" />
+		
+		
+		
+	</class>
+</hibernate-mapping>

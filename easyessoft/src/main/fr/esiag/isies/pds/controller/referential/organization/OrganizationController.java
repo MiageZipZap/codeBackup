@@ -57,7 +57,7 @@ public class OrganizationController {
 	
 	private OrgaTypeDao orgaTypeDao;
 	/**
-	 * Organization Type object
+	 * DAO of Organization Type object
 	 */
 	
 	private OrgaType orgatype;
@@ -308,7 +308,12 @@ public class OrganizationController {
 		LOGGER.info("EASYES Form process : show service details requests");if(idServ==1){
 			return "../../ihm/ref/emergencyDept/read/"+String.valueOf(idOrga);
 		}
-		return "/getOrganizationDetails/"+String.valueOf(idOrga);
+		return "ref/orga/getOrganizationDetails/"+String.valueOf(idOrga)+"/"+String.valueOf(idServ);
 	}
-	
+	@RequestMapping(value = "/getServiceDetails/newAppointment/{idOrga}/{idServ}")
+	public String getPatient(@PathVariable("idOrga") int idOrga,@PathVariable("idServ") int idServ, Model model) {				
+		LOGGER.info("EASYES Form process : show hospital patient");
+			return "../../ihm/admin/appointment/getPatient/"+String.valueOf(idOrga);
+	}	
 }
+

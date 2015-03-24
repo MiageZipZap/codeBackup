@@ -9,7 +9,7 @@ public class CcamAct extends MedicalAct {
 	/**
 	 * Price of the act
 	 */
-	private float actPrice;
+	private double actPrice;
 	/**
 	 * Comment on the medical act
 	 */
@@ -19,14 +19,24 @@ public class CcamAct extends MedicalAct {
 	 */
 	private String exonerationRule;
 	/**
+	 * Refund policy
+	 */
+	
+	private String refund;
+	/**
 	 * Grouping code
 	 */
 	private String groupingCode;
 	
-	public float getActPrice() {
+	/**
+	 * Whether the act is considered like a principal act
+	 */
+	private  int isPrincipal;
+	
+	public double getActPrice() {
 		return actPrice;
 	}
-	public void setActPrice(float actPrice) {
+	public void setActPrice(double actPrice) {
 		this.actPrice = actPrice;
 	}
 	public String getActNote() {
@@ -46,6 +56,19 @@ public class CcamAct extends MedicalAct {
 	}
 	public void setGroupingCode(String groupingCode) {
 		this.groupingCode = groupingCode;
+	}
+	
+	public String getRefund() {
+		return refund;
+	}
+	public void setRefund(String refund) {
+		this.refund = refund;
+	}
+	public int getIsPrincipal() {
+		return isPrincipal;
+	}
+	public void setIsPrincipal(int isPrincipal) {
+		this.isPrincipal = isPrincipal;
 	}
 
 }

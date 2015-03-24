@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.hospital.administrative.Appointment" table="bt_admin_appointment">
+		<id name="id" type="int">
+			<column name="idbt_admin_appointment" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="updateDate" type="date">
+			<column name="UPDATE_DATE" length="255" not-null="false" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATE_DATE" length="255" not-null="true" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATE_USER" length="255" not-null="true" />
+		</property>
+		<property name="patientLastName" type="string">
+			<column name="bt_admin_appointment_patient_last_name" length="255" not-null="true" />
+		</property>
+		<property name="patientFirstName" type="string">
+			<column name="bt_admin_appointment_patient_first_name" length="255" not-null="true" />
+		</property>
+		<property name="patientGender" type="string">
+			<column name="bt_admin_appointment_patient_last_gender" length="255" not-null="true" />
+		</property>
+		<property name="patientBirthDate" type="date">
+			<column name="bt_admin_appointment_patient_birth_date"  not-null="true" />
+		</property>
+		<property name="doctorName" type="string">
+			<column name="bt_admin_appointment_doctor_name" length="255" not-null="true" />
+		</property>
+		<property name="newPatient" type="boolean">
+			<column name="bt_admin_appointment_new_patient"  not-null="true" />
+		</property>
+		
+		<many-to-one name="appointmentReason" class="fr.esiag.isies.pds.model.hospital.administrative.AppointmentType" lazy="false"
+			column="idtr_admin_appoint_reason" not-null="true" />
+		<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital" lazy="false"
+			column="idtr_organization" not-null="true" />
+		
+		
+	</class>
+</hibernate-mapping>

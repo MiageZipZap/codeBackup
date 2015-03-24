@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.esiag.isies.pds.businessRules.hospital.administrative.AppointmentBusinessRules;
-import fr.esiag.isies.pds.businessRules.refential.infrastructure.InfrastructureBusinessRules;
-import fr.esiag.isies.pds.controller.referential.infrastructure.InfrastructureController;
 import fr.esiag.isies.pds.dao.hospital.administrative.AppointmentDao;
 import fr.esiag.isies.pds.dao.hospital.administrative.AppointmentTypeDao;
+import fr.esiag.isies.pds.dao.hospital.administrative.AppointmentTypeSpecialityDao;
+import fr.esiag.isies.pds.dao.referential.infrastructure.InfrastructureDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
+import fr.esiag.isies.pds.dao.referential.organization.ServiceDao;
 import fr.esiag.isies.pds.model.hospital.administrative.Appointment;
 import fr.esiag.isies.pds.model.hospital.administrative.AppointmentType;
 import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
@@ -55,6 +56,15 @@ public class AppointmentController {
 	 */
 	private AppointmentTypeDao appointmentTypeDao;
 	
+	private InfrastructureDao infra = new InfrastructureDao();
+
+	private ServiceDao serviceDao = new ServiceDao();
+	/**
+	 * appointment type speciality dao
+	 */
+	
+	private AppointmentTypeSpecialityDao appointmentTSDao;
+	
 	/**
 	 * Appointment type
 	 */
@@ -75,34 +85,20 @@ public class AppointmentController {
 	public AppointmentController() {
 		appointmentDao= new AppointmentDao();
 		appointmentTypeDao = new AppointmentTypeDao();
+		appointmentTSDao = new AppointmentTypeSpecialityDao();
 		getListDoctor();
-		getListDate();
 		getListHeure();
 	 	}
-	//*************** BEGINING MOCK*****************//
-		//Liste de date	
-		@SuppressWarnings("deprecation")
-		public static Date generateRandomDate() {  
-		     int year, month, day=0;  		     
-		     year = 2015;  
-		         month = (int)(Math.random()*4+1);  
-		     switch (month) {   
-		     case 3:  
-		     case 5:  	     
-		         day = (int)(Math.random()*31+1);  
-		         break;  
-		     case 4:  
-		     case 6:  	     
-		         day = (int)(Math.random()*30+1);  
-		         break;       
-		     }  	  
-		         return new Date(month,day,year);  
-		  }  
+	
 		//*******Mock random hour
 		public String generateRandomHour(){
-			int limit = 19;
+			int max =19;
+			int min = 9;
+			int limit = max-min +1;
 			Random randomHour = new Random();
-			return randomHour.nextInt(limit)+"h";
+			int i = randomHour.nextInt()%limit;
+			int rd = min+ i;
+			return rd +"h";
 		}
 		
 		//*** MOCK DOCTOR
@@ -119,27 +115,7 @@ public class AppointmentController {
 	     
 	     return lstDoctor;
 	   }
-	//*** MOCK Date
-	public List <Date> getListDate (){
-		int size = 15;	
-		for (int i=1; i<=size; i++) {  
-	         lstDate.add(generateRandomDate());
-		}
-		Iterator it=lstDate.iterator();
-		Date thisDate;  
-	     while (it.hasNext()) {
-	    	 thisDate = (Date)(it.next());
-	    	 System.out.println(thisDate);
-	     }
-	     while(it.hasNext()) {  
-	            Object element = (Date)(it.next());  
-	            Set uniqueEntries = new HashSet();  
-	                 if (!uniqueEntries.add(element)){
-	                	 it.remove();
-	                 }
-	     }
-	     return lstDate;
-	   }
+	
 	
 	
 	//*** MOCK HOUR*****
@@ -156,13 +132,13 @@ public class AppointmentController {
 		    	 //to remove
 		    	 System.out.println(thisHour);
 		     }
-		     while(ith.hasNext()) {  
+		     /*while(ith.hasNext()) {  
 		            Object elementHour = (Date)(ith.next());  
 		            Set uniqueEntriesHour = new HashSet();  
 		                 if (!uniqueEntriesHour.add(elementHour)){
 		                	 ith.remove();
 		                 }
-		     }
+		     }*/
 			return lstHour;
 	}
 	//****************END MOCK*************************
@@ -182,14 +158,20 @@ public class AppointmentController {
 	 */
 	private String getForm(Model model) {
 		model.addAttribute("lstHospital", organizationDao.<Hospital>getAllByType(Hospital.class));
+		model.addAttribute("lstService", serviceDao.getServicesByOrga(33));
 		model.addAttribute(new Appointment());
-		model.addAttribute("lstDate",lstDate);
 		model.addAttribute("lstHour",lstHour);
 		model.addAttribute("lstDoctor",lstDoctor);
-		model.addAttribute("lstOfType",
-				appointmentDao.getAll());
+		model.addAttribute("lstReason",
+				appointmentTypeDao.getAll());
+		
+
+		/*model.addAttribute("lstReasonSpeciality",
+				appointmentTSDao.getAllByIdSpeciality(2));*/
+	
+
 		LOGGER.info("EASYES Form display : appointment creation ");
-		return "admin/appointment/createAppointment";
+		return "admin/createAppointment";
 	}
 	
 	/**
@@ -211,11 +193,12 @@ public class AppointmentController {
 			return "admin/appointment/createAppointmentConfirm";
 		}
 		model.addAttribute("appointment", appointment);
-		model.addAttribute("lstDate",lstDate);
 		model.addAttribute("lstHour",lstHour);
 		model.addAttribute("lstDoctor",lstDoctor);
-		model.addAttribute("lstOfType",
-				appointmentDao.getAll());
+		model.addAttribute("lstReason",
+				appointmentTypeDao.getAll());
+		/*model.addAttribute("lstReasonSpeciality",
+				appointmentTSDao.getAllByIdSpeciality(2));*/
 		LOGGER.info("EASYES Form display : Appointment creation Error");
 		return "admin/appointment/createAppointment";
 	}
