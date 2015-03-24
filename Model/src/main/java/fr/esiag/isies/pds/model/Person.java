@@ -1,34 +1,44 @@
 package fr.esiag.isies.pds.model;
 
-public class Person extends AbstractEntity{
-	private String name;
-	private String surname;
-	private String age;
-	private String sex;
+import java.util.Date;
+
+public class Person extends AbstractEntity {
 	
-	public String getName() {
-		return name;
+	private String firstName;
+	private String lastName;
+	private Character gender;
+	private Date birthdate;
+	private Address address;
+	
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getSurname() {
-		return surname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getAge() {
-		return age;
+	public Character getGender() {
+		return gender;
 	}
-	public void setAge(String age) {
-		this.age = age;
+	public void setGender(Character gender) {
+		this.gender = gender;
 	}
-	public String getSex() {
-		return sex;
+	public Date getBirthdate() {
+		return birthdate;
 	}
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 }
