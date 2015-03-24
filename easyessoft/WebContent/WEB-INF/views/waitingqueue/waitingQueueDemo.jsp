@@ -39,7 +39,7 @@
       rgba(0, 0, 0, 0.75)
     ),
     /* bottom, image */
-    url('http://bhlbd.com/wp-content/uploads/2014/07/Hospital-lobby-ceiling-and-pillars.jpg');
+    url('../../dist/img/waitingqueue/waitingqueue_background.jpg');
 			 background-size: 100%;
 		padding: 0;
 	}

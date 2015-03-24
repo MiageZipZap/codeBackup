@@ -26,7 +26,8 @@
 	}
 	 
 	body {
-		background-image:url('http://bhlbd.com/wp-content/uploads/2014/07/Hospital-lobby-ceiling-and-pillars.jpg'); background-size: 100% 100%;;
+		background-image:url('../../dist/img/waitingqueue/waitingqueue_background.jpg');
+		background-size: 100% 100%;
 	}
 	
 	label {

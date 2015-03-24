@@ -20,6 +20,10 @@
 
 <style>
 
+	body {
+		padding-top: 0px;
+	}
+	
 	label {
 		font-weight: normal;
 		color: white;
