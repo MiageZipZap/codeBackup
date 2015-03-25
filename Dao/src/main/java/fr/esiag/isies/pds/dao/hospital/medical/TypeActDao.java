@@ -15,12 +15,12 @@ public class TypeActDao extends AbstractTypeDao<TypeAct> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<TypeAct> getAll() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		@SuppressWarnings("unchecked")
 		List<TypeAct> lst = (List<TypeAct>) session.createCriteria(TypeAct.class).list();
 		session.close();
 		return lst;

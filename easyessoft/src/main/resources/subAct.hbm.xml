@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.hospital.medical.SubAct"
+		table="tr_medical_sub_act">
+		<id name="id" type="int">
+			<column name="idtr_medical_sub_act" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="subIdCcam"
+			class="fr.esiag.isies.pds.model.hospital.medical.CcamAct"
+			not-null="true">
+			<column name="idtr_medical_ccam"></column>
+		</many-to-one>
+		<many-to-one name="subIdNabm"
+			class="fr.esiag.isies.pds.model.hospital.medical.BiologicalAct"
+			not-null="true">
+			<column name="idtr_medical_nabm"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

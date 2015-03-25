@@ -22,5 +22,6 @@
 		<property name="firstname" type="string">
 			<column name="FIRSTNAME" length="255" not-null="true" />
 		</property>
+		
 	</class>
 </hibernate-mapping>

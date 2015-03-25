@@ -1,6 +1,8 @@
 package fr.esiag.isies.pds.dao.referential.organization;
 
 import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
@@ -37,6 +39,19 @@ public class ServiceDao extends AbstractEntityDao<Service>{
 		session.update(orga);
 		session.close();
 		return service;
+	}
+	
+	@SuppressWarnings("unchecked")
+
+	public List<Service> getServicesByOrga(int id){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("from Service where idOrganization = :id ");
+		query.setParameter("id", id);
+		List<Service> lst = (List<Service>)query.list();
+		session.close();
+		return lst;
 	}
 
 }
