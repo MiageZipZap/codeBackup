@@ -43,9 +43,6 @@
 		<property name="actNote" type="string">
 			<column name="tr_medical_ccam_notes" length="3500" not-null="true" />
 		</property>
-		<property name="newPatient" type="boolean">
-			<column name="bt_admin_appointment_new_patient"  not-null="true" />
-		</property>
 		
 		<many-to-one name="idtypeAct" class="fr.esiag.isies.pds.model.hospital.medical.TypeAct" lazy="false"
 			column="idtr_medical_act_speciality" not-null="true" />

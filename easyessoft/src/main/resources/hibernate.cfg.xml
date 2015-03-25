@@ -12,7 +12,8 @@
 		<property name="hibernate.connection.url">jdbc:mysql://deployserver:3306/easyesdb</property>
 		<property name="hibernate.connection.username">easyesdb</property>
 		<property name="hibernate.connection.password">pds,M2,77</property> 
-	<!--	
+		
+		<!--
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/easyesdb</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property> 
@@ -60,5 +61,20 @@
 		
 		<!-- Optimisation Shema -->
 		<mapping resource="emergency_queue_optim.xml" />
+		
+		<!-- appointment schema -->
+		<mapping resource="appointment.hbm.xml" />
+		<mapping resource="appointmentType.hbm.xml" />
+		<mapping resource="appointmentTypeSpeciality.hbm.xml" />
+		
+		<!-- medical schema -->
+		<mapping resource="ccamAct.hbm.xml" />
+		<mapping resource="biologicalAct.hbm.xml" />
+		<mapping resource="subAct.hbm.xml" />
+		<mapping resource="eligibleAct.hbm.xml" />
+		<mapping resource="typeAct.hbm.xml" />
+		
+		
+		
 	</session-factory>
 </hibernate-configuration>
