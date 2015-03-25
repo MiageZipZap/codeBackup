@@ -1,44 +1,39 @@
-package fr.esiag.isies.pds.dao.optimisation.Emergency;
+package fr.esiag.isies.pds.dao.optimisation.emergency;
 
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
-import fr.esiag.isies.pds.model.AbstractEntity;
 import fr.esiag.isies.pds.model.optimisation.EmergencyFrequentationTrafficLog;
-import fr.esiag.isies.pds.model.referential.organization.Organization;
-import fr.esiag.isies.pds.model.referential.organization.ServiceType;
 import fr.esiag.isies.pds.utils.HibernateUtil;
+/**
+ * DAO Class to communicate with DB for frequentation emmergency
+ * @author Oriel Samama
+ *
+ */
+public class EmergencyFrequentationTrafficLogDao extends AbstractEntityDao<EmergencyFrequentationTrafficLog>{
 
-public class EmergencyFrequentationTrafficLogDao{
-
-	
-	public List<Integer>  getAllOrganizationInEmergencyTrafficLog() {
+	/**
+	 * Method to recovery all ids of Emergency Service wich concern by history
+	 * @return List<Integer> of ids
+	 */
+	public List<Integer>  getIdOfAllOrganizationInEmergencyTrafficLog() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("SELECT DISTINCT hospital.id FROM EmergencyFrequentationTrafficLog");
 		List<Integer> lst = (List<Integer>) query.list();
 		session.close();
 		return lst;
 	}
-	
-
-	public ArrayList<EmergencyFrequentationTrafficLog> getById(int id) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		Query query = session.createQuery("from EmergencyFrequentationTrafficLog where hospital.id = :id ");
-		query.setParameter("id", id);
-		ArrayList<EmergencyFrequentationTrafficLog> lst = (ArrayList<EmergencyFrequentationTrafficLog>) query.list();
-		session.close();
-		return lst;
-	}
-	
-	public List minDateOfHistory(int orga) throws ParseException{
+	/**
+	 * Method to recovery Minimum date of history frequentation about emergency service
+	 * @param orga
+	 * @return List date
+	 * @throws ParseException
+	 */
+	public List getMinDateOfHistory(int orga) throws ParseException{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session.createQuery("SELECT MIN(dateInputPatient) from EmergencyFrequentationTrafficLog where hospital.id = :id ");
@@ -47,8 +42,13 @@ public class EmergencyFrequentationTrafficLogDao{
 		session.close();
 		return result;
 	}
-	
-	public List maxDateOfHistory(int orga) throws ParseException{
+	/**
+	 * Method to recovery Maximum date of history frequentation about emergency service
+	 * @param orga
+	 * @return List Date
+	 * @throws ParseException
+	 */
+	public List getMaxDateOfHistory(int orga) throws ParseException{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session.createQuery("SELECT MAX(dateInputPatient) from EmergencyFrequentationTrafficLog where hospital.id = :id ");
@@ -57,14 +57,36 @@ public class EmergencyFrequentationTrafficLogDao{
 		session.close();
 		return result;
 	}
-	public List waitingPatient(int orga, java.util.Date minDate) throws ParseException{
+	/**
+	 * Method wich return for a date the patient wich attending in emergency service
+	 * @param orga
+	 * @param minDate
+	 * @return List Integer
+	 * @throws ParseException
+	 */
+	public List getWaitingPatientAtDate(int orga, java.util.Date Date) throws ParseException{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session.createQuery("SELECT count(*) from EmergencyFrequentationTrafficLog where dateInputPatient < :date AND dateExitBox > :date AND hospital.id = :idorga ");
-		query.setParameter("date", minDate);
+		query.setParameter("date", Date);
 		query.setParameter("idorga", orga);
 		List result = query.list();
 		session.close();
 		return result;
 	}
+
+
+	@Override
+	public EmergencyFrequentationTrafficLog getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<EmergencyFrequentationTrafficLog> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

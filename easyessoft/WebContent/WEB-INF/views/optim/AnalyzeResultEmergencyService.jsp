@@ -19,8 +19,8 @@ Object totalCapacityOfWaitingSalle = request.getAttribute("totalCapacityOfWaitin
 	src="/easyessoft/dist/js/jquery.dataTables.js"></script>
 <script type="text/javascript"
 	src="/easyessoft/js/dataTableConfiguration.js"></script>
-<script src="/easyessoft/js/highcharts.js"></script>
-<script src="/easyessoft/js/exporting.js"></script>
+<script src="/easyessoft/dist/js/highcharts.js"></script>
+<script src="/easyessoft/dist/js/exporting.js"></script>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -87,7 +87,7 @@ out.println("]");
             <%out.println("[");
         for(int i=0; i<resultOfFrequentation.size() ; i++){
 
- 	out.println(resultOfFrequentation.get(i).getNbwaitingPatient());
+ 	out.println(resultOfFrequentation.get(i).getNbWaitingPatient());
 
 
 	if(i != resultOfFrequentation.size()-1)

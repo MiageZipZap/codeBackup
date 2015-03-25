@@ -15,6 +15,8 @@ public class EmergencyFrequentationTrafficLog extends AbstractEntity{
 	Date dateInputPatient;
 	Date dateExitBox;
 	
+	public EmergencyFrequentationTrafficLog(){}
+	
 	public EmergencyFrequentationTrafficLog(Hospital hospital, int idPatient, int idDoctor, Infrastructure infra,
 		 Date dateInputPatient,Date dateExitBox) {
 		this.hospital = hospital;

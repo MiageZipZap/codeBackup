@@ -1,6 +1,5 @@
 package fr.esiag.isies.pds.model.optimisation;
 
-import java.util.Date;
 
 public class AnalyzeResultEmergencyService {
 	
@@ -15,14 +14,14 @@ public class AnalyzeResultEmergencyService {
 	public String gethourOfPassage() {
 		return hourOfPassage;
 	}
-	public void setRecoveryDate(String hourOfPassage) {
+	public void sethourOfPassage(String hourOfPassage) {
 		this.hourOfPassage = hourOfPassage;
 	}
-	public Long getNbwaitingPatient() {
+	public Long getNbWaitingPatient() {
 		return nbwaitingPatient;
 	}
-	public void setNbwaitingPatient(Long nbaitingPatient) {
-		this.nbwaitingPatient = nbaitingPatient;
+	public void setNbWaitingPatient(Long nbWaitingPatient) {
+		this.nbwaitingPatient = nbWaitingPatient;
 	}
 	
 	
