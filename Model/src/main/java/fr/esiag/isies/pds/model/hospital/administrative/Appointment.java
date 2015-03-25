@@ -1,9 +1,13 @@
 package fr.esiag.isies.pds.model.hospital.administrative;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
+
+
+
 
 import fr.esiag.isies.pds.model.AbstractEntity;
+import fr.esiag.isies.pds.model.referential.organization.Hospital;
 
 /**
  * Model class for an appointment
@@ -36,7 +40,7 @@ public class Appointment extends AbstractEntity{
 	 * list of medical acts
 	 */
 	
-	private Hashtable <String,String> medicalCourse;
+	private ArrayList<String> medicalCourse;
 	/**
 	 * day of the appointment
 	 */
@@ -64,8 +68,19 @@ public class Appointment extends AbstractEntity{
 	 *  reason of the appointment
 	 */
 	
-	private String appointmentReason;
+	private AppointmentType appointmentReason;
 	
+	private AppointmentTypeSpeciality apppointmentSpeciality;
+	
+	
+	/**
+	 * Whether it's a new patient
+	 */
+	private boolean newPatient;
+	
+	private Hospital hospital;
+	
+	private String keyword;
 	
 	public String getAppointmentHour() {
 		return appointmentHour;
@@ -99,10 +114,11 @@ public class Appointment extends AbstractEntity{
 	public void setPatientGender(String patientGender) {
 		this.patientGender = patientGender;
 	}
-	public Hashtable <String,String> getMedicalCourse() {
+	public ArrayList<String> getMedicalCourse() {
 		return medicalCourse;
 	}
-	public void setMedicalCourse(Hashtable<String, String> medicalCourse) {
+	
+	public void setMedicalCourse(ArrayList <String> medicalCourse) {
 		this.medicalCourse = medicalCourse;
 	}
 	public Date getAppointmentDate() {
@@ -129,12 +145,39 @@ public class Appointment extends AbstractEntity{
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public String getAppointmentReason() {
+	public AppointmentType getAppointmentReason() {
 		return appointmentReason;
 	}
-	public void setAppointmentReason(String appointmentReason) {
+	public void setAppointmentReason(AppointmentType appointmentReason) {
 		this.appointmentReason = appointmentReason;
 	}
+	public Hospital getHospital() {
+		return hospital;
+	}
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+	public boolean isNewPatient() {
+		return newPatient;
+	}
+	public void setNewPatient(boolean newPatient) {
+		this.newPatient = newPatient;
+	}
+	
+	
+	public AppointmentTypeSpeciality getApppointmentSpeciality() {
+		return apppointmentSpeciality;
+	}
+	public void setApppointmentSpeciality(AppointmentTypeSpeciality apppointmentSpeciality) {
+		this.apppointmentSpeciality = apppointmentSpeciality;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
 	
 	
 
