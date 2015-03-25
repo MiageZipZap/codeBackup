@@ -6,8 +6,6 @@
 resultOfFrequentation = (ArrayList<AnalyzeResultEmergencyService>) request.getAttribute("resultOfFrequentation");
 Object totalCapacityOfWaitingSalle = request.getAttribute("totalCapacityOfWaitingSalle"); 
 %>
-
-
 <jsp:include page="../include/header.jsp">
 	<jsp:param value="Visualisation situation service d'urgence"
 		name="title" />
