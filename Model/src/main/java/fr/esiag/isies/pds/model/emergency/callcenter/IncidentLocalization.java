@@ -24,8 +24,8 @@ public class IncidentLocalization extends AbstractEntity {
 	public String getIncidentAddress() {
 		return incidentAddress;
 	}
-	public void setIncidentAddress(String IncidentAddress) {
-		this.incidentAddress = IncidentAddress;
+	public void setIncidentAddress(String incidentAddress) {
+		this.incidentAddress = incidentAddress;
 	}
 	public Float getLatitude() {
 		return latitude;

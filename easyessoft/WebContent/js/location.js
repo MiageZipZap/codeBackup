@@ -15,7 +15,6 @@ function initialize() {
 			country: 'long_name',
 			postal_code: 'short_name'
 	};
-
 	var markers = [];
 	var mapOptions = {
 			zoom : 11,
@@ -57,7 +56,8 @@ function initialize() {
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
 		var latitude = document.getElementById('latitude');
 		var longitude = document.getElementById('longitude');
-		
+		var addressVar = document.getElementById('pac-input');
+		var valueAddress = addressVar.value;
 		var places = searchBox.getPlaces();
 		if (places.length == 0) {
 			alert("L'adresse est impr\u00E9cise, veuillez r\u00E9essayer");
@@ -108,7 +108,7 @@ function initialize() {
 					document.getElementById(addressType).value = val;
 				}
 			}
-
+			
 			// Create a marker for each place.
 			var marker = new google.maps.Marker({
 				map : map,
@@ -118,14 +118,14 @@ function initialize() {
 			});
 
 			markers.push(marker);
-
 			bounds.extend(place.geometry.location);
 			latitude.value = place.geometry.location.lat();
 			longitude.value = place.geometry.location.lng();
 			latitude.value=latitude.value.substring(1,8);
 			longitude.value=latitude.value.substring(1,8);
+			addressVar = document.getElementById('addressText');
+			addressVar.value=valueAddress;
 		}
-
 		map.fitBounds(bounds);
 		map.setZoom(16);
 	});
@@ -141,7 +141,8 @@ function initialize() {
 	function fillInAddress() {
 		// Get the place details from the autocomplete object.
 		var place = searchBox.getPlace();
-
+		
+		
 		for (var component in componentForm) {
 			document.getElementById(component).value = '';
 			document.getElementById(component).disabled = false;

@@ -23,7 +23,6 @@ public class EmergencyIncidentTicket extends AbstractEntity{
 	private String remarks;
 	private Caller caller;
 	private IncidentState state;
-//	private IncidentState incidentState;
 	private IncidentPriority priority;
 	private InterventionVehicule vehicule;
 	private IncidentLocalization location;

@@ -1,5 +1,6 @@
 package fr.esiag.isies.pds.controller.emergency.callcenter;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +80,7 @@ public class EmergencyCallCenterIncidentController {
 
 	@RequestMapping(value ="/createLocationTraitement",method = { RequestMethod.POST})
 	public String create(Model model, @ModelAttribute("location") IncidentLocalization location) {
+		System.out.println(location.getIncidentAddress());
 		model.addAttribute("location",new IncidentLocalizationDAO().create(location));
 		ticket.setLocation(location);
 		ticket.setIdLocation(location.getId());
@@ -93,10 +95,10 @@ public class EmergencyCallCenterIncidentController {
 		System.out.println("id location dans ticket :"+ticket.getLocation().getId());
 		ticket.setCaller(caller);
 		ticket.setIdCaller(caller.getId());
+		//state 1
 		IncidentState state = new IncidentState();
 		state = new EmergencyIncidentStateDAO().getById(1);
-		System.out.println(state.getId());
-		ticket.setIdTicketState(state.getId());
+		ticket.setState(state);
 
 		//loading objects to page
 		model.addAttribute("interventionTicket", ticket);
@@ -114,13 +116,15 @@ public class EmergencyCallCenterIncidentController {
 	@RequestMapping(value ="/createIncidentTicket",method = { RequestMethod.POST})
 	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket,
 			final Errors errors,final SessionStatus status) {
-		System.out.println("ticket state: "+ticket.getIdTicketState());
+		System.out.println("ticket state: "+ticket.getState().getLabel());
 		System.out.println("ticket caller: "+ticket.getIdCaller());
 		System.out.println("NbPatients: "+ticket.getInjPatientNumber());
 		System.out.println("Allongement: "+ticket.getNbStretcher());
 		System.out.println("Remarks: "+ticket.getRemarks());
 		System.out.println("Diagnostics: "+ticket.getDiagnostics());
 		System.out.println("Location: "+ticket.getLocation().getId());
+		ticket.setOpenedDate(new Timestamp(System.currentTimeMillis()));
+		System.out.println("OpenDated: "+ticket.getOpenedDate().toLocaleString());
 
 		//loading objects to page
 		model.addAttribute("interventionTicket",new EmergencyTicketDAO().create(ticket));

@@ -24,8 +24,8 @@
 			<column name="tp_common_person_idtp_common_person" precision="5"
 				scale="0" />
 		</property>
-		<property name="idTicketState" type="int">
-			<column name="tp_emergency_incident_status_idtp" precision="5"
+		<property name="injPatientNumber" type="int">
+			<column name="tp_emergency_incident_numberPatients" precision="5"
 				scale="0" />
 		</property>
 		<property name="remarks" type="string" length="4000"
@@ -44,11 +44,15 @@
 		<one-to-one name="emergencyIncidentIntervention"
 			class="fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentIntervention"
 			cascade="all"></one-to-one>
-		<one-to-one name="state"
+		<many-to-one name="state"
 			class="fr.esiag.isies.pds.model.emergency.callcenter.IncidentState"
-			cascade="all"></one-to-one>
-		<one-to-one name="priority"
+			not-null="true" lazy="false">
+			<column name="tp_emergency_incident_status_idtp"></column>
+		</many-to-one>
+		<many-to-one name="priority"
 			class="fr.esiag.isies.pds.model.emergency.callcenter.IncidentPriority"
-			cascade="all"></one-to-one>
+			not-null="true" lazy="false">
+			<column name="tp_emergency_incident_priority_idtp"></column>
+		</many-to-one>
 	</class>
 </hibernate-mapping>
