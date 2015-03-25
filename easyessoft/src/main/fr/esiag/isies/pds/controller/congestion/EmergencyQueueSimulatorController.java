@@ -67,7 +67,6 @@ public class EmergencyQueueSimulatorController {
 	public String dislaySingleService(@ModelAttribute("hospital") Hospital hospital,Model model,final RedirectAttributes redirectAttributes) {
 		List<WaitingQueue> waitingPatients = wqd.getWaitingPatient(hospital.getId(), 1);
 		List<WaitingQueue> treatedPatients = wqd.getTreatedPatient(hospital.getId(), 1);
-		System.out.println("\n\n" + waitingPatients.size() + "\n\n");
 		long nbrBoxes = infrdao.getNbrBoxes(hospital.getId());
 		int waitingRoomCapacity = 30;
 		float waitingRoomCongestion = eci.getSingleCongestionIndicator(nbrBoxes, waitingPatients.size());
@@ -132,13 +131,29 @@ public class EmergencyQueueSimulatorController {
 	 * @param
 	 * @return
 	 */
-	@RequestMapping(value = "RefreshTables",params = "idHospital", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<WaitingQueue> refreshTables(@RequestParam int idHospital,Model model) {
-		List<WaitingQueue> allPatients = wqd.getDayPatients(idHospital, 1);
+	@RequestMapping(value = "RefreshTableWaiting",params = "idHospital", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<WaitingQueue> refreshTableWaiting(@RequestParam int idHospital,Model model) {
+		List<WaitingQueue> waitingPatients = wqd.getWaitingPatient(idHospital, 1);
+
+		System.out.println("\n\nCOOOOOOOL   "+waitingPatients.size()+"\n\n");
+		//model.addAttribute("nbrPatientInQueue", nbrPatientInQueue);
+
+		return waitingPatients;
+
+	}
+	
+	/**
+	 * 
+	 * @param
+	 * @return
+	 */
+	@RequestMapping(value = "RefreshTableTreated",params = "idHospital", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<WaitingQueue> refreshTableTreated(@RequestParam int idHospital,Model model) {
+		List<WaitingQueue> treatedPatients = wqd.getTreatedPatient(idHospital, 1);
 
 		//model.addAttribute("nbrPatientInQueue", nbrPatientInQueue);
 
-		return allPatients;
+		return treatedPatients;
 
 	}
 	

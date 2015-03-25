@@ -28,15 +28,18 @@
 		class="btn btn-success btn-lg" role="button">
 		<i class="glyphicon glyphicon-play"></i> START SIMULATION
 	</button>
-	<button id="stopSimulationButn" type="button" class="btn btn-danger btn-lg" role="button">
+	<button id="stopSimulationButn" type="button"
+		class="btn btn-danger btn-lg" role="button">
 		<i class="glyphicon glyphicon-stop"></i> STOP SIMULATION
 	</button>
 	<form>
 		<div class="form-group">
-			<label>Temps moyen entre chaque arrivée    </label> <input type="text" id="muArr" placeholder="secondes" size="10">
+			<label>Temps moyen entre chaque arrivée </label> <input type="text"
+				id="muArr" placeholder="secondes" size="10">
 		</div>
 		<div class="form-group">
-			<label>Temps moyen de traitement    </label> <input type="text" id="muTrait" placeholder="secondes" size="10">
+			<label>Temps moyen de traitement </label> <input type="text"
+				id="muTrait" placeholder="secondes" size="10">
 		</div>
 	</form>
 	<div class="row">
@@ -204,7 +207,9 @@
 		// Bring life to the dials
 		setInterval(function() {
 			var idHospital = "${hospital.id}";
-			$.getJSON("RefreshChartSingle",{idHospital:idHospital}, function(data) {
+			$.getJSON("RefreshChartSingle", {
+				idHospital : idHospital
+			}, function(data) {
 				var chart = $('#container-congest').highcharts(), points;
 				if (chart) {
 					point = chart.series[0].points[0];
@@ -212,33 +217,40 @@
 				}
 			})
 
-			$.getJSON("RefreshTables",{idHospital:idHospital}, function(data) {
+			$.getJSON("RefreshTableWaiting", {
+				idHospital : idHospital
+			}, function(data) {
 				tableAttente = $('#table_attente').dataTable();
-				tableSortis = $('#table_sortis').dataTable();
 				tableAttente.fnClearTable(this);
-				tableSortis.fnClearTable(this);
 				var cmptAttente = 1;
+				$.each(data, function() {
+					var date = new Date(this.timeQueueState);
+					tableAttente.fnAddData([
+							this.idPatient,
+							"John",
+							"Doe",
+							date.toLocaleDateString() + " "
+									+ date.toLocaleTimeString() ]);
+					cmptAttente++;
+				});
+
+			})
+
+			$.getJSON("RefreshTableTreated", {
+				idHospital : idHospital
+			}, function(data) {
+				tableSortis = $('#table_sortis').dataTable();
+				tableSortis.fnClearTable(this);
 				var cmptSortis = 1;
 				$.each(data, function() {
-					if (this.idBox == 0) {
-						var date = new Date(this.timeQueueState);
-						tableAttente.fnAddData([
-								this.idPatient,
-								this.firstNamePatient,
-								this.lastNamePatient,
-								date.toLocaleDateString() + " "
-										+ date.toLocaleTimeString() ]);
-						cmptAttente++;
-					} else if (this.idBox == 999) {
-						var date = new Date(this.timeQueueState);
-						tableSortis.fnAddData([
-								this.idPatient,
-								this.firstNamePatient,
-								this.lastNamePatient,
-								date.toLocaleDateString() + " "
-										+ date.toLocaleTimeString() ]);
-						cmptSortis++;
-					}
+					var date = new Date(this.timeQueueState);
+					tableSortis.fnAddData([
+							this.idPatient,
+							"John",
+							"Doe",
+							date.toLocaleDateString() + " "
+									+ date.toLocaleTimeString() ]);
+					cmptSortis++;
 				});
 
 			})
@@ -333,16 +345,20 @@
 </script>
 
 <script type="text/javascript">
-
-	$('#startSimulationButn').on('click',function() {
+	$('#startSimulationButn').on('click', function() {
 		var muArr = parseFloat($('#muArr').val());
 		var muSorties = parseFloat($('#muTrait').val());
-		$.getJSON("StartSimulation", {muArr :muArr ,muSorties : muSorties},function(data) {})
+		$.getJSON("StartSimulation", {
+			muArr : muArr,
+			muSorties : muSorties
+		}, function(data) {
+		})
 		alert("Simulation démarrée")
 	});
-	
+
 	$('#stopSimulationButn').on('click', function() {
-		$.getJSON("StopSimulation", function(data) {})
+		$.getJSON("StopSimulation", function(data) {
+		})
 		alert("Simulation stoppée")
 	});
 </script>
