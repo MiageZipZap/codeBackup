@@ -24,7 +24,7 @@ import fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure;
 import fr.esiag.isies.pds.model.referential.organization.Organization;
 /**
  * Controller of Optimization infrastructure
- * @author Oriel Samama
+ * @author OSA
  *
  */
 @Controller

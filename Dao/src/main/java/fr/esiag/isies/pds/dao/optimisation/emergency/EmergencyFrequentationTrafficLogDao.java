@@ -11,7 +11,7 @@ import fr.esiag.isies.pds.model.optimisation.EmergencyFrequentationTrafficLog;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 /**
  * DAO Class to communicate with DB for frequentation emmergency
- * @author Oriel Samama
+ * @author OSA
  *
  */
 public class EmergencyFrequentationTrafficLogDao extends AbstractEntityDao<EmergencyFrequentationTrafficLog>{
