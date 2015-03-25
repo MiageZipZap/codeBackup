@@ -5,26 +5,33 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import fr.esiag.isies.pds.dao.congestion.EmergencyActivityDao;
-import fr.esiag.isies.pds.model.congestion.EmergencyActivity;
+import fr.esiag.isies.pds.dao.referential.person.patient.PatientDao;
+import fr.esiag.isies.pds.dao.waitingqueue.WaitingQueueDAO;
+import fr.esiag.isies.pds.model.referential.person.patient.Patient;
+import fr.esiag.isies.pds.model.waitingqueue.WaitingQueue;
 
 public class PatientEntrance implements Runnable{
 	
 	/*
 	 * Average time between 2 entrances in ms
 	 */
-	protected static final double MU = 5000;
+	protected float MU;
 	
-	protected ConcurrentLinkedQueue<EmergencyActivity> queue;
+	protected ConcurrentLinkedQueue<WaitingQueue> queue;
 	
-	protected EmergencyActivityDao ead;
+	protected WaitingQueueDAO wqd;
+	protected PatientDao patDao;
 	protected int queueSize;
+	protected int idHospital;
 	protected volatile boolean running = true;
 
-	public PatientEntrance(ConcurrentLinkedQueue<EmergencyActivity> queue,int queueSize) {
+	public PatientEntrance(ConcurrentLinkedQueue<WaitingQueue> queue,int queueSize,float MU,int idHospital) {
 		this.queue = queue;
-		ead = new EmergencyActivityDao();
+		wqd = new WaitingQueueDAO();
+		patDao = new PatientDao();
 		this.queueSize = queueSize;
+		this.MU = MU;
+		this.idHospital = idHospital;
 	}
 	
 	public void run(){
@@ -34,10 +41,25 @@ public class PatientEntrance implements Runnable{
 		try {
 			while(queue.size()<queueSize && running){
 				Date date = new Date();
-				EmergencyActivity ea = new EmergencyActivity(i, 1, 1, date,null);
-				System.out.println("\n\nEntree du patient " + ea.getIdPatient() + " " + dateFormat.format(date) + "\nTAUX D'OCCUPATION : "+ 100*queue.size()/queueSize +"%\n");
-				ead.create(ea);
-				queue.add(ea);
+				
+				//int maxPatient = patDao.getNbrPatient();
+				//Patient patient = new Patient();
+				//patient.setId(maxPatient+i+1);
+				//patient.setFirstName("John");
+				//patient.setLastName("Doe");
+				//patient.setIdOrganization(idHospital);
+				//patDao.create(patient);
+				WaitingQueue wq = new WaitingQueue();
+				//wq.setPatient(patient);
+				wq.setIdOrganization(idHospital);
+				wq.setIdPatient(i+1);
+				wq.setIdService(1);
+				wq.setIdBox(0);
+				wq.setTimeQueueState(date);
+				
+				System.out.println("\n\nEntree du patient " + wq.getIdPatient() + " " + dateFormat.format(date) + "\nTAUX D'OCCUPATION : "+ 100*queue.size()/queueSize +"%\n");
+				wqd.create(wq);
+				queue.add(wq);
 				ExponentialGenerator eg = new ExponentialGenerator(MU);
 				long t = eg.generateTimeInterval();
 				Thread.currentThread().sleep(t);

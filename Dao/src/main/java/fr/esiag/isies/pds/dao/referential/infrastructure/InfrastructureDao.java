@@ -48,5 +48,15 @@ public class InfrastructureDao extends AbstractEntityDao<Infrastructure> {
 		//TODO
 		return null;
 	}
+	
+	public long getNbrBoxes(int idHospital){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT count(*) from Infrastructure WHERE idtr_infra_type_ref_infra = :idType and idtr_organization = :idHosp");
+		query.setInteger("idType", 1);
+		query.setInteger("idHosp", 1);
+		return (Long) query.uniqueResult();
+		
+	}
 
 }

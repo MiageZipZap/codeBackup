@@ -1,22 +1,20 @@
 package fr.esiag.isies.pds.dao.waitingqueue;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.PropertiesSubqueryExpression;
-import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Subqueries;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.congestion.EmergencyActivity;
-import fr.esiag.isies.pds.model.referential.organization.Organization;
 import fr.esiag.isies.pds.model.waitingqueue.WaitingQueue;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 
@@ -249,4 +247,80 @@ public List<WaitingQueue> getPatientsByPriority(int idService, int idOrganizatio
 	 * 
 	 * 
 	 */
+	
+	public List<WaitingQueue> getWaitingPatient(int idOrganisation,
+			int idService) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		String hql = "FROM WaitingQueue WHERE tp_waiting_queue_id_organization = "
+				+ idOrganisation
+				+ " AND tp_waiting_queue_id_service = "
+				+ idService + " AND tp_waiting_queue_id_box = 0 AND tp_waiting_queue_id_patient NOT IN (SELECT idPatient FROM WaitingQueue WHERE idOrganization = "
+				+ idOrganisation
+				+ " AND idService = "
+				+ idService
+				+ " AND idBox = 999)";
+		Query query = session.createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<WaitingQueue> results = (List<WaitingQueue>) query.list();
+		session.close();
+		return results;
+
+	}
+
+	public List<WaitingQueue> getTreatedPatient(int idOrganisation,
+			int idService) {
+		GregorianCalendar date = new GregorianCalendar();
+		date.add(Calendar.DAY_OF_MONTH, -1);
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		String hql = "FROM WaitingQueue WHERE tp_waiting_queue_id_organization = "
+				+ idOrganisation
+				+ " AND tp_waiting_queue_id_service = "
+				+ idService
+				+ " AND tp_waiting_queue_id_box = 999 AND tp_waiting_queue_time_queue_state > :date";
+		Query query = session.createQuery(hql);
+		query.setTimestamp("date", date.getTime());
+		@SuppressWarnings("unchecked")
+		List<WaitingQueue> results = (List<WaitingQueue>) query.list();
+		session.close();
+
+		return results;
+	}
+	
+	public List<WaitingQueue> getDayPatients(int idOrganisation,
+			int idService) {
+		GregorianCalendar date = new GregorianCalendar();
+		date.add(Calendar.DAY_OF_MONTH, -1);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		String hql1 = "FROM WaitingQueue WHERE (idPatient,timeQueueState) IN (SELECT idPatient, MAX(timeQueueState) FROM WaitingQueue WHERE idOrganization = "
+				+ idOrganisation
+				+ " AND idService = "
+				+ idService
+				+ "GROUP BY idPatient)";
+		Query query1 = session.createQuery(hql1);
+		@SuppressWarnings("unchecked")
+		List<WaitingQueue> results = (List<WaitingQueue>) query1.list();
+		session.close();
+
+		return results;
+	}
+
+	public int getNbrPatientInQueue(int idOrganisation, int idService) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("select count(*) from WaitingQueue where idOrganization = "
+				+ idOrganisation
+				+ " AND idService = "
+				+ idService
+				+ " AND idBox = :idBox");
+		query.setString("idBox", "0");
+
+		int nbr = ((Long) query.uniqueResult()).intValue();
+		session.close();
+		return nbr;
+	}
 }
