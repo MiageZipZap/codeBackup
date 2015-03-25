@@ -7,9 +7,17 @@ import fr.esiag.isies.pds.model.AbstractEntity;
  *
  */
 public abstract class MedicalAct extends AbstractEntity {
+	
+	
+	
+	private double actPrice;
+	
+	
 	/**
 	 * Act code
 	 */
+	
+	
 	private String codeAct;
 	/**
 	 * Act full name
@@ -48,6 +56,12 @@ public abstract class MedicalAct extends AbstractEntity {
 	}
 	public void setIdtypeAct(int idtypeAct) {
 		this.idtypeAct = idtypeAct;
+	}
+	public double getActPrice() {
+		return actPrice;
+	}
+	public void setActPrice(double actPrice) {
+		this.actPrice = actPrice;
 	}
 	
 }

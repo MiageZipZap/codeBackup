@@ -9,10 +9,7 @@ public class CcamAct extends MedicalAct {
 	/**
 	 * Price of the act
 	 */
-	private double actPrice;
-	/**
-	 * Comment on the medical act
-	 */
+	
 	private String actNote;
 	/**
 	 * Exoneration rule
@@ -33,12 +30,7 @@ public class CcamAct extends MedicalAct {
 	 */
 	private  int isPrincipal;
 	
-	public double getActPrice() {
-		return actPrice;
-	}
-	public void setActPrice(double actPrice) {
-		this.actPrice = actPrice;
-	}
+	
 	public String getActNote() {
 		return actNote;
 	}

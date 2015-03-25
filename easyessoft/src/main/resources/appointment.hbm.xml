@@ -31,9 +31,7 @@
 		<property name="doctorName" type="string">
 			<column name="bt_admin_appointment_doctor_name" length="255" not-null="true" />
 		</property>
-		<property name="newPatient" type="boolean">
-			<column name="bt_admin_appointment_new_patient"  not-null="true" />
-		</property>
+		
 		
 		<many-to-one name="appointmentReason" class="fr.esiag.isies.pds.model.hospital.administrative.AppointmentType" lazy="false"
 			column="idtr_admin_appoint_reason" not-null="true" />
