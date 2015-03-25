@@ -2,7 +2,6 @@ package fr.esiag.isies.pds.dao.referential.emergency.callcenter;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import fr.esiag.isies.pds.dao.AbstractTypeDao;
@@ -24,9 +23,8 @@ public class EmergencyIncidentStateDAO extends AbstractTypeDao<IncidentState> {
 	public List<IncidentState> getAll() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Criteria criteria =session.createCriteria(IncidentState.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		@SuppressWarnings("unchecked")
-		List<IncidentState> list = (List<IncidentState>) criteria.list();
+		List<IncidentState> list = (List<IncidentState>) session.createCriteria(IncidentState.class).list();
 		session.close();
 		return list;
 	}
