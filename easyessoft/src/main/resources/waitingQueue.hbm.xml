@@ -45,8 +45,6 @@
 			class="fr.esiag.isies.pds.model.referential.person.patient.Patient"
 			cascade="save-update" />
 			
-		<one-to-one name="doctor"
-			class="fr.esiag.isies.pds.model.referential.person.staff.StaffMember"
-			cascade="save-update" />
+
 	</class>
 </hibernate-mapping>
