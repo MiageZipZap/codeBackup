@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket;
@@ -40,6 +42,16 @@ public class EmergencyTicketDAO extends AbstractEntityDao<EmergencyIncidentTicke
 		List<EmergencyIncidentTicket> list = (List<EmergencyIncidentTicket>) criteria.list();
 		session.close();
 		return list;
+	}
+	public int getCount(String field,int value) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria criteria =session.createCriteria(EmergencyIncidentTicket.class);
+		int result = Integer.parseInt(criteria
+				.add(Restrictions.eq(field,value))
+				.setProjection(Projections.countDistinct("id")).uniqueResult().toString());
+		session.close();
+		return result;
 	}
 
 }
