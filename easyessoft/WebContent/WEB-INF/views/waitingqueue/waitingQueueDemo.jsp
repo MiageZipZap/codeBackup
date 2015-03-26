@@ -126,7 +126,7 @@
 						<label>&Eacute;tablissement</label>
 						<select id="listOrganization" class="form-control" name="idOrganization" disabled="disabled" >
 							<option value='0' selected="selected">S&eacute;lectionnez</option>
-							<%  for(int iOrganization = 0; iOrganization < 50 ; iOrganization+=1) {  %>
+							<%  for(int iOrganization = 0; iOrganization < 3 ; iOrganization+=1) {  %>
 								<option class="serviceType<%=listOrganization.get(iOrganization).getOrgaType().getId()%>" value="<%=listOrganization.get(iOrganization).getId()%>"><%=listOrganization.get(iOrganization).getName()%></option>
 						    <%  }  %>
 						</select>
