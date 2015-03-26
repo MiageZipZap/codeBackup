@@ -52,7 +52,7 @@
 						<li><a
 							href="/easyessoft/ihm/vehicle/optimalvehicle/vehiclealgorithm">Déterminer
 								le véhicule optimal</a></li>
-						<li><a href="/easyessoft/ihm/doctor/form">Carte</a></li>
+						<li><a href="/easyessoft/ihm/emerg/callcenter/map/MapHome">Carte</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Gestion
