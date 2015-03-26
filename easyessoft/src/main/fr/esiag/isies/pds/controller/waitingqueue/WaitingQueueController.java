@@ -169,10 +169,8 @@ public class WaitingQueueController {
 		}
 		
 		if(request.getParameter("typeInjection").equals("treatment")) {
-			System.out.println("okok");
 			List<WaitingQueue> listPatientsInQueue = waitingQueueManager.getPatientsInQueue();
-			int patientRandom = rand.nextInt((listPatientsInQueue.size()-1 - 0) + 1) + 0;
-			waitingQueueManager.insertPatientInBox(listPatientsInQueue.get(patientRandom).getIdPatient(), listPatientsInQueue.get(patientRandom).getPriority(), 20, rand.nextInt((926 - 802) + 1) + 802, rand.nextInt((10 - 1) + 1) + 1);
+			waitingQueueManager.insertPatientInBox(listPatientsInQueue.get(0).getIdPatient(), listPatientsInQueue.get(0).getPriority(), 20, rand.nextInt((926 - 802) + 1) + 802, rand.nextInt((10 - 1) + 1) + 1);
 			model.addAttribute("successMessage", "YES");
 		}
 		
