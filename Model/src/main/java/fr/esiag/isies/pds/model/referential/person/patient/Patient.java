@@ -8,8 +8,8 @@ public class Patient extends Person{
 	/**
 	 * Social security number of patient 
 	 */
-	private String nir;
-	/**
+	private String nir; 
+	/** 
 	 * Medical Record of patient
 	 */
 	private MedicalRecord medicalRecord;

@@ -1,4 +1,4 @@
-<jsp:include page="../../../include/header.jsp">
+<jsp:include page="../../include/header.jsp">
 	<jsp:param value="Creation Staff" name="title"/>
 </jsp:include>
 
@@ -14,14 +14,13 @@
 			
 	<br />
 	
-	<div id="staffDisplay">
+	<div id="medicalRecordFoundDisplay">
 	
-		<p>Le patient ${patient.lastName} ${patient.firstName} a bien été ajouté au référentiel des patients à l'ID N°${patient.id} </p>
-		
+		<p>Le dossier patient appartenant à ${patient.lastName} ${patient.firstName} a bien été relié au dossier patients à l'ID N°${medicalRecord.id} </p>
 		<br />
 		
 		<a href="/easyessoft/ihm/ref/person/patientCreateForm" class="btn btn-primary btn-lg active" role="button">Ajouter un autre patient</a>
 		
 	</div>
-	
-<jsp:include page="../../../include/footer.jsp"/>
+</div>	
+<jsp:include page="../../include/footer.jsp"/>

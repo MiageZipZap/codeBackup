@@ -5,9 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.esiag.isies.pds.controller.referential.Person.PersonMemberController;
 import fr.esiag.isies.pds.dao.referential.medicalRecord.MedicalRecordDao;
@@ -16,6 +20,7 @@ import fr.esiag.isies.pds.dao.referential.person.patient.PatientDao;
 import fr.esiag.isies.pds.model.referential.medicalRecord.MedicalRecord;
 import fr.esiag.isies.pds.model.referential.person.patient.Patient;
 
+@SessionAttributes( value="medicalRecord", types={MedicalRecord.class} )
 @Controller
 @RequestMapping("ref/medicalRecord")
 public class MedicalRecordController {
@@ -32,129 +37,84 @@ public class MedicalRecordController {
 		this.personDao = new PersonDao();
 		this.patientDao = new PatientDao();
 	}
-	
-	/**
-	 * @param model
-	 * @return form to create a Medical record
-	 */
-	@RequestMapping(value ="/medicalRecordCreateForm",method = { RequestMethod.POST, RequestMethod.GET})
-	public String getMedicalRecordForm(Model model) {
-		// Mock search ID of patient
-		model.addAttribute("medicalRecord", new MedicalRecord());
-		return "ref/healthData/medicalRecordCreate";
-		//Create jsp file and package.
-	}
-	
-	
-	/**
-	 * @param model
-	 * @return form to create a Medical record
-	 */
-/*
-	@RequestMapping(value = "/getPatientDetails/{idPatient}")
-	public String getOrgaDetailsView(@PathVariable("idOrga") int idOrga, Model model) {		
-		Organization organization = orgaDao.getById(idOrga);
-		Set<ServiceType> services = new HashSet<ServiceType>(0);
-		services = organization.getServicesSet();
-		model.addAttribute("organization",organization);
-		model.addAttribute("services",services);
-		LOGGER.info("EASYES Form display : organization Details");
-		return "ref/orga/displayOrganizationDetails";
-	}
-*/	
-	// No existing patient with this ID
-	
-	/**	
-	 * **********************************************						
-	 * CONTROLLER MANAGEMENT FOR SERVICE CHOICE		*
-	 * **********************************************
-	 **/
-	
-	/*
-	
-	@RequestMapping(value = "/choosePatient",method = RequestMethod.POST)
-	public String chooseAService(@RequestParam("name") String name, @RequestParam("id") Integer id, Model model) {
-		List <Patient> listPatientType = p.getAll();
-		model.addAttribute("name",name);
-		model.addAttribute("id",id);
-		service = new Service();
-		model.addAttribute("service",service);
-		model.addAttribute("listServiceType",listServiceType);
-		LOGGER.info("EASYES Form display : service box chooser page");
-		return "ref/orga/chooseServiceOrgaForm";
-	}
-	
-	/**
-	 * This controller sets the link between define services and created organization
-	 * @param organization
-	 * @param service
-	 * @param model
-	 * @return success page if service added
-	 */
-	
-	
-	@RequestMapping(value = "/relateToPatient", method = RequestMethod.POST)
-	public String relateToPatient(@RequestParam("name") String name,@ModelAttribute("patient") Patient patient, Model model) {
-/*		
-		for(int idService:patient.getListIdTypeOfServices()){
-			servType = serviceTypeDao.getById(idService);
-			
-			
-			LOGGER.info("EASYES Form process : add service to an organization");
 
-			patient.getServices().add(servType);
+	@RequestMapping(value = "{patientID}", method = RequestMethod.GET)
+	public String findMRByPatientID(@PathVariable int patientID, Model model) {
+		MedicalRecord mdr = medicalRecordDao.getById(patientID);
+		Patient patient = patientDao.getById(patientID);
+		if (mdr != null && patient != null) {
+			patient.setMedicalRecord(mdr);
+			mdr.setPatient(patient);
+			medicalRecordDao.update(mdr);
+			patientDao.update(patient);
+			model.addAttribute("medicalRecord", mdr);
+			model.addAttribute("patient", patient);
+			return "ref/healthData/medicalRecordFoundDisplay";
 		}
-		servicedao.addServices(service);
-		model.addAttribute("services",service.getServices());
-		model.addAttribute("name",name);
-		LOGGER.info("EASYES Form display : service added success page");
-*/		
-		return "ref/orga/displaySuccessAddService";
+		return "ref/healthData/error400";
 	}
-	
+
+	/**
+	 * @param model
+	 * @return form to create a Medical record
+	 */
+	@RequestMapping(value = "/medicalRecordCreateForm", method = {
+			RequestMethod.POST, RequestMethod.GET })
+	public String getMedicalRecordForm(@ModelAttribute Patient patient,
+			Model model) {
+		// Mock search ID of patient
+		MedicalRecord mdr = new MedicalRecord();
+		mdr.setPatient(patient);
+		String[] listTypePatient = new String[] { "Newborn", "Private",
+				"Under protection" };
+		String[] listStatusPatient = new String[] { "Activate", "Discharge",
+				"Pre-register" };
+		model.addAttribute("listTypePatient", listTypePatient);
+		model.addAttribute("listStatusPatient", listStatusPatient);
+		model.addAttribute("medicalRecord", mdr);
+		return "ref/healthData/medicalRecordCreate";
+		// Create jsp file and package.
+	}
+
+	@RequestMapping(value = "/relateToPatient", method = RequestMethod.POST)
+	public String relateToPatient(@ModelAttribute("patient") Patient patient,
+			final RedirectAttributes redirectAttributes, Model model) {
+		Patient patientFound = (Patient) patientDao.getByNIR(patient.getNir());
+		if (patientFound != null) {
+			redirectAttributes.addFlashAttribute("patient", patientFound);
+			return "redirect:medicalRecordCreateForm";
+		} else {
+			return "ref/person/patient/error400";
+		}
+	}
+
 	// Search for Patient to add relation with the patient record.
 	/**
-	 * This controller sets the link between define services and created organization
-	 * @param organization
-	 * @param service
 	 * @param model
-	 * @return success page if service added
+	 *            Search for Patient to add relation with the patient record.
+	 * @return jsp search by nir
 	 */
-	@RequestMapping(value = "/searchPatient", method = RequestMethod.POST)
-	public String searchPatient(@RequestParam("name") String name, @ModelAttribute("patient") Patient patient, Model model) {
-		// get ID from field = Typing value 
-		// get ID from field from list box value
-		model.addAttribute("listPatient", patientDao.getAll());
-		
-		// Add javascript each time we choose one way to find data clear the other field. ?
-		
-		// IF found return ref/healthData/PatientFound
-		
-		// Not found return ref/healthData/PatientNotFound... Propose link to go to patient create form to add one.
-		
-		// 1st temporaly solution get a patient by name
-		
-		return "ref/healthData/searchRelatedPatient"; // medicalRecordFound JSP
+	@RequestMapping(value = "/searchPatient", method = RequestMethod.GET)
+	public String searchPatient(Model model) {
+		model.addAttribute("patient", new Patient()); // Patient to find
+		return "ref/healthData/searchRelatedPatient";
 	}
-	
+
 	/**
 	 * @param model
 	 * @return form to create a Medical record
 	 */
-	@RequestMapping(value ="/medicalRecordCreateAction",method = { RequestMethod.POST, RequestMethod.GET})
-	public String createMedicalRecord(@RequestParam("name") String name, @ModelAttribute MedicalRecord medicalRecord, Model model) {
-		// Mock search ID of patient=============================
-		Patient patient = (Patient) personDao.getById(8); //We only set on ID=1 for start
-		// after we will make able to search in the jsp for a patient and create it.
-		medicalRecord.setPatient(patient);
-		// End Mock=======================================
-		// Vérifier valeur : date de naisssance + nom + preno 
-		
+	@RequestMapping(value = "/medicalRecordCreateAction", method = {
+			RequestMethod.POST, RequestMethod.GET })
+	public String createMedicalRecord(@ModelAttribute MedicalRecord medicalRecord, SessionStatus status, Model model) {
 		LOGGER.info("EASYES Create Medical Record");
 		medicalRecordDao.create(medicalRecord);
 		model.addAttribute("medicalRecord", medicalRecord);
+		model.addAttribute("patient", medicalRecord.getPatient());
+		LOGGER.info(medicalRecord.getPatient().getFirstName());
+		status.setComplete();
+		LOGGER.info(medicalRecord.getPatient().getFirstName());
 		return "ref/healthData/medicalRecordDisplay";
-		//Create jsp file and package.
 	}
-	
+
 }

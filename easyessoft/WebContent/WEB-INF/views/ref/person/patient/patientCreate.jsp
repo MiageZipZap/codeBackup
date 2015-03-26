@@ -4,6 +4,7 @@
 	<jsp:param value="Create Patient" name="title" />
 </jsp:include>
 
+<script type="text/javascript" src="/easyessoft/js/patient.js"></script>
 
 <div class="container" id="content">
 	<div>
@@ -20,76 +21,31 @@
 				<div class="form-group">
 					<p>
 						<label>Nom de famille</label>
-						<form:input type="text" id="name" class="form-control"
-							path="name" placeholder="Nom de famille" />
+						<form:input type="text" id="firstName" class="form-control"
+							path="firstName" placeholder="Nom de famille" />
 					</p>
 
 					<p>
 						<label>Prénom</label>
-						<form:input type="text" id="surname" class="form-control"
-							path="surname" placeholder="Prénom" />
+						<form:input type="text" id="lastName" class="form-control"
+							path="lastName" placeholder="Prénom" />
 					</p>
 					<p>
 						<label>Age</label>
-						<form:input type="text" id="age" class="form-control"
-							path="age" placeholder="age" />
+						<form:input type="date" id="birthdate" class="form-control"
+							path="birthdate" placeholder="04/10/1991" />
 					</p>
 
 					<p>
 						<label>Sexe</label> <br /> <label class="radio-inline"> <form:radiobutton
-								name="sex" id="genderM" path="sex" value="M" />Homme
+								name="gender" id="genderM" path="gender" value="M" />Homme
 						</label> <label class="radio-inline"> <form:radiobutton
-								name="sex" id="genderF" path="sex" value="F" />Femme
+								name="gender" id="genderF" path="gender" value="F" />Femme
 						</label>
 					</p>
 				</div>
 
-				<br />
-<%-- 
-				<legend>Adresse</legend>
-
-				<div class="form-group">
-
-					<p>
-						<label>Numero de la voie</label>
-						<form:input type="text" id="streetNumber" class="form-control"
-							path="streetNumber" placeholder="Numero" />
-					</p>
-
-					<p>
-						<label>Type de voie</label>
-						<form:input type="text" id="streetType" class="form-control"
-							path="streetType" placeholder="Séléctionnez" />
-					</p>
-
-					<p>
-						<label>Nom de la voie</label>
-						<form:input type="text" id="streetName" class="form-control"
-							path="streetName" placeholder="Nom de la voie" />
-					</p>
-
-					<p>
-						<label>Région</label>
-						<form:input type="text" id="region" class="form-control"
-							path="region" placeholder="Région" />
-					</p>
-
-					<p>
-						<label>Code postal</label>
-						<form:input type="text" id="zipCode" class="form-control"
-							path="zipCode" placeholder="Code postal" />
-					</p>
-
-					<p>
-						<label>Ville</label>
-						<form:input type="text" id="city" class="form-control" path="city"
-							placeholder="Ville" />
-					</p>
-
-				</div>
-
-
-				<br />
+				<br /> <br />
 
 				<legend>Contact</legend>
 
@@ -97,8 +53,8 @@
 
 					<p>
 						<label>Numéro de téléphone bureau</label>
-						<form:input type="text" id="phoneNumberWork" class="form-control"
-							path="phoneNumberWork" placeholder="Numéro fixe" />
+						<form:input type="text" id="phoneNumberHome" class="form-control"
+							path="phoneNumberHome" placeholder="Numéro fixe" />
 					</p>
 
 					<p>
@@ -116,30 +72,33 @@
 				</div>
 
 				<br />
---%>
-				<legend>Informations supplémentaires</legend>
-				<div class="form-group">
-					<label>Numéro de sécurité sociale</label>
-					<form:input type="text" id="nir" class="form-control" path="nir"
-						placeholder="Numéro de sécurité sociale" />
-					<p>
-						<label>Type du patient</label>
-						<form:select id="listTypePatient" class="form-control"
-							path="typePatient">
-							<form:options items="${listTypePatient}"></form:options>
-						</form:select>
 
-						<label>Statut du patient</label>
-						<form:select id="listStatusPatient" class="form-control"
-							path="statusPatient">
-							<form:options items="${listStatusPatient}"></form:options>
+				<legend>Données patient :</legend>
+
+				<div class="form-group">
+
+					<p>
+						<label>Numéro de sécurité sociale</label>
+						<form:input type="text" id="nir" class="form-control" path="nir"
+							placeholder="Numéro fixe" />
+					</p>
+
+					<p>
+						<label>Organisme</label>
+						<form:select disabled="true" id="listOrganization"
+							class="form-control" path="idOrganization">
+							<form:option value='0' label='<Selectionnez>' />
+							<c:forEach items="${listOrganization}" var="organization">
+								<form:option class="organizationType${organization.orgaType.id}"
+									value="${organization.id}">${organization.name}</form:option>
+							</c:forEach>
 						</form:select>
+					</p>
 				</div>
 			</fieldset>
 			<input class="btn btn-primary btn-lg" type="submit" value="create"
 				id="createStaffButton" />
 </div>
-</fieldset>
 <br></br>
 </form:form>
 </div>

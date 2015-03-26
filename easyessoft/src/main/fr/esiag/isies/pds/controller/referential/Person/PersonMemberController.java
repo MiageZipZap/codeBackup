@@ -1,16 +1,25 @@
 package fr.esiag.isies.pds.controller.referential.Person;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 import fr.esiag.isies.pds.dao.referential.person.PersonDao;
+import fr.esiag.isies.pds.dao.referential.person.patient.PatientDao;
 import fr.esiag.isies.pds.model.Address;
 import fr.esiag.isies.pds.model.Person;
 import fr.esiag.isies.pds.model.referential.person.patient.Patient;
+import fr.esiag.isies.pds.model.referential.person.staff.Profession;
+import fr.esiag.isies.pds.model.referential.person.staff.Speciality;
 import fr.esiag.isies.pds.model.referential.person.staff.StaffMember;
 
 /**
@@ -27,9 +36,13 @@ public class PersonMemberController {
 	
 	// Instantiate the DAO
 	private PersonDao personDao;
+	private OrganizationDao organizationDao;
+	private PatientDao patientDao;
 	
 	public PersonMemberController() {
 		this.personDao = new PersonDao();
+		this.organizationDao = new OrganizationDao();
+		this.patientDao = new PatientDao();
 	}
 	
 	/**
@@ -52,16 +65,6 @@ public class PersonMemberController {
 		}
 	}
 	
-	/**
-	 * @param Person
-	 * @param model
-	 * @return a confirmation of Person creation
-	 */
-//	@RequestMapping(value = "/personMember",method = RequestMethod.POST)
-//	public String createPerson(@ModelAttribute Person person, Model model){
-//		LOGGER.info("EASYES Create a person");
-//		return createPersonType(person.getPersonType());	
-// 	}
 	
 	/**
 	 * @param model
@@ -72,7 +75,7 @@ public class PersonMemberController {
 
 		// ////////////////////////////////////////////////////////////////////
 		// Mock of Profession Type
-/*
+
 		List<Profession> listProfessionType = new ArrayList<Profession>();
 		String[] professionType_Type = new String[] { "Médical", "Soignant",
 				"Social", "Administratif, logistique et technique" };
@@ -122,11 +125,8 @@ public class PersonMemberController {
 		}
 		model.addAttribute("listProfession", listProfession);
 		model.addAttribute("listSpeciality", listSpeciality);
-		model.addAttribute("listProfessionType", listProfessionType);
-*/			
-//		StaffMember staffMember = new StaffMember();
-//		staffMember.setPerson(person);
-//		staffMember.setCodeRPPS("12425235T5");
+		model.addAttribute("listProfessionType", listProfessionType);			
+
 		model.addAttribute("staffMember", new StaffMember());
 //		model.addAttribute("listOrganization", organizationDAO.getAll());
 //		model.addAttribute("listOrganizationType", organizationTypeDAO.getAll());
@@ -142,13 +142,16 @@ public class PersonMemberController {
 	 */
 	@RequestMapping(value ="/patientCreateForm",method = { RequestMethod.POST, RequestMethod.GET})
 	public String getPatientMemberForm(Model model) {
-		String[] listTypePatient = new String[] {"Newborn", "Private", "Under protection"};
-		String[] listStatusPatient = new String[] {"Activate", "Discharge", "Pre-register"};
-		model.addAttribute("listTypePatient", listTypePatient);
-		model.addAttribute("listStatusPatient", listStatusPatient);
+//		String[] listTypePatient = new String[] {"Newborn", "Private", "Under protection"};
+//		String[] listStatusPatient = new String[] {"Activate", "Discharge", "Pre-register"};
+//		model.addAttribute("listTypePatient", listTypePatient);
+//		model.addAttribute("listStatusPatient", listStatusPatient);
+		model.addAttribute("listOrganization", organizationDao.getAll());
 		model.addAttribute("patient", new Patient());
 		return "ref/person/patient/patientCreate";
 	}
+	
+	
 	
 	/**
 	 * @param staffMember
@@ -163,15 +166,15 @@ public class PersonMemberController {
 			Address address = new Address();
 			address.setCity("Créteil");
 			address.setStreetNumber("71");
-//			address.setZipCode("94000");
-//			staffMember.setAddress(address);
+			address.setZipCode("94000");
+			staffMember.setAddress(address);
 		//Mock Address ======================================
 		personDao.create(staffMember);
 		return "ref/person/staff/staffMemberDisplay";		
 	}
 	
 	/**
-	 * @param staffMember
+	 * @param patient
 	 * @param model
 	 * @return a confirmation of Person creation 
 	 */
@@ -184,10 +187,24 @@ public class PersonMemberController {
 					address.setCity("Créteil");
 					address.setStreetNumber("71");
 					address.setZipCode("94000");
-//					patient.setAddress(address);
+					patient.setAddress(address);
 				//Mock Address ======================================
 		personDao.create(patient);
 		return "ref/person/patient/patientDisplay";		
+	}
+	
+	@RequestMapping(value="patients/{patientID}", method = RequestMethod.GET)
+	public String findPatientByQR(@PathVariable int patientID, Model model){
+		Patient patientFound = patientDao.getById(patientID);
+		model.addAttribute("patient", patientFound);
+		return "ref/person/patient/patientFoundDisplay";
+	}
+	
+	@RequestMapping(value="patients/testDao", method = RequestMethod.GET)
+	public String testDao(@PathVariable int patientID, Model model){
+		Patient patientFound = patientDao.getById(patientID);
+		model.addAttribute("patient", patientFound);
+		return "ref/person/patient/patientFoundDisplay";
 	}
 	
 	
