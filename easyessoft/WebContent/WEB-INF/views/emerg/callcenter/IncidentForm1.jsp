@@ -55,14 +55,15 @@
 									commandName="location">
 									<div class="form-group">
 										<fieldset>
-											<legend>
-												Localisation
-												<button id="search-button" class="btn btn-mini btn-info"
-													type="button">Mini button</button>
-											</legend>
+											<legend> Localisation </legend>
+
 											<input id="pac-input" class="controls" type="text"
-												placeholder="Saisir l'adresse" name="incidentAddress">
-											<!-- on change or input constuct a string and set maps input -->
+												placeholder="Saisir l'adresse">
+											<div class="form-group has-error has-feedback">
+												<div class="col-sm-6">
+													<input id="addressText" type="hidden" name="incidentAddress" path="incidentAddress" />
+												</div>
+											</div>
 											<div class="form-group has-error has-feedback">
 												<label class="col-sm-4 control-label">Latitude</label>
 												<div class="col-sm-4">

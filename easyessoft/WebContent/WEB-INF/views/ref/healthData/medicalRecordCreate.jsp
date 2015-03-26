@@ -11,9 +11,9 @@
 	</div>
 
 	<br />
-	<form:form id="form_staffMember" method="post"
+	<form:form id="form_medicalRecord" method="post"
 		action="/easyessoft/ihm/ref/medicalRecord/medicalRecordCreateAction"
-		commandName="staffMember">
+		commandName="medicalRecord">
 		<fieldset>
 			<fieldset>
 
@@ -35,6 +35,19 @@
 						<label>Groupe sanguin</label>
 						<form:input type="bloodGroup" id="birthdate" class="form-control"
 							path="bloodGroup" placeholder="0+" />
+					</p>
+					<p>
+						<label>Type du patient</label>
+						<form:select id="listTypePatient" class="form-control"
+							path="typePatient">
+							<form:options items="${listTypePatient}"></form:options>
+						</form:select>
+
+						<label>Statut du patient</label>
+						<form:select id="listStatusPatient" class="form-control"
+							path="statusPatient">
+							<form:options items="${listStatusPatient}"></form:options>
+						</form:select>
 					</p>
 				</div>
 			</fieldset>

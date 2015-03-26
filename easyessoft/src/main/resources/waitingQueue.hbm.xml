@@ -29,8 +29,8 @@
 			<column name="tp_waiting_queue_priority" length="1" not-null="true" />
 		</property>
 		
-		<property name="idMedicalProcedure" type="int">
-			<column name="tp_waiting_queue_medical_procedure" length="5" not-null="true" />
+		<property name="idMedicalAct" type="int">
+			<column name="tp_waiting_queue_medical_act" length="5" not-null="true" />
 		</property>
 		
 		<property name="idBox" type="int">
@@ -44,39 +44,7 @@
 		<one-to-one name="patient"
 			class="fr.esiag.isies.pds.model.referential.person.patient.Patient"
 			cascade="save-update" />
+			
 
-	   	<!--  	
-		<set name="speciality" table="tr_staff_speciality" inverse="false" lazy="true" fetch="join" cascade="all">
-			<key>
-				<column name="idtr_waiting_queue" not-null="true" />
-			</key>
-			<many-to-many entity-name="fr.esiag.isies.pds.model.referential.staff.Speciality">
-				<column name="idtr_staff_speciality" not-null="true" />
-			</many-to-many>
-		</set>
-	
-		<property name="orgaType" type="int">
-			<column name="tr_waiting_queue_orga_type" length="11" not-null="false" />
-		</property>
-	
-		<many-to-one name="adress" class="fr.esiag.isies.pds.model.Adress" cascade="save-update" lazy="false" column="IDtr_waiting_queue"  insert="false" update="false"/>
-
-        <many-to-one name="streetName" class="fr.esiag.isies.pds.model.referential.staff.Adress" not-null="true" lazy="false">
-			<column name="TR_STAFFMEMBER_ADRESS_STREET_NAME"></column>
-		</many-to-one>
-	
-		<many-to-one name="orgaType"
-			class="fr.esiag.isies.pds.model.referential.organization.OrgaType"
-			not-null="true" lazy="false">
-			<column name="IDTR_ORGANIZATION_TYPE"></column>
-		</many-to-one>
-		
-		<joined-subclass
-			name="fr.esiag.isies.pds.model.referential.organization.Hospital"
-			table="TR_ORGA_HOSPITAL" lazy="false">
-			<key column="IDTR_ORGANIZATION"/>
-			<property name="finess" type="string" column="TR_HOSPITAL_FINESS" />
-		</joined-subclass>
-		 -->
 	</class>
 </hibernate-mapping>

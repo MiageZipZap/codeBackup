@@ -9,7 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyTicketDAO;
@@ -46,39 +49,16 @@ public class EmergencyCallCenterController{
 		ticketList = new EmergencyTicketDAO().getAll();
 		ticketList = getOptimalVehicules(ticketList);
 		model.addAttribute("ticketList",ticketList);
-		for(EmergencyIncidentTicket ticket:ticketList){
-			System.out.println("Start -----------------");
-			System.out.println(ticket.getId());
-			System.out.println(ticket.getState().getId());
-			System.out.println(ticket.getState().getLabel());
-			System.out.println(ticket.getIdLocation());
-			System.out.println(ticket.getLocation().getIncidentAddress());
-			System.out.println(ticket.getVehicule().getId());
-			System.out.println(ticket.getVehicule().getCategory());
-			System.out.println(ticket.getPriority().getLabel());
-			System.out.println(ticket.getOpenedDate());
-			System.out.println("End -----------------");
-		}
 		LOGGER.info("EASYES Form display : Call Center treatment Page");
 		return "emerg/callcenter/CallTreatment";
 	}
 
-	//	@RequestMapping(value ="/patients/jsonVehicule",method=RequestMethod.GET,produces = "application/json")
-	//	public @ResponseBody List<InterventionVehicule> getOptimalVehiculesList(){
-	//		List<InterventionVehicule> vehicules=new ArrayList<InterventionVehicule>();
-	//		for(int i=0;i<=3;i++){
-	//			InterventionVehicule vehicule = new InterventionVehicule();
-	//			vehicule.setId(1);
-	//			vehicule.setCategory("Priority1");
-	//			vehicule.setLatitude("0.25451");
-	//			vehicule.setLongitude("0.25451");
-	//			vehicule.setNbPlaces(2);
-	//			vehicules.add(vehicule);
-	//		}
-	//		return vehicules;
-	//	}
-
-
+		@RequestMapping(value ="/getNbPending/{id}",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody String getNbPendingIntervention(@PathVariable("id") int id){
+			int nb = new EmergencyTicketDAO().getCount("state.id",id);
+			System.out.println(nb);
+			return Integer.toString(nb);
+		}
 
 	public List<EmergencyIncidentTicket> getOptimalVehicules(List<EmergencyIncidentTicket> tickets){
 		List<InterventionVehicule> vehicules = new ArrayList<InterventionVehicule>();

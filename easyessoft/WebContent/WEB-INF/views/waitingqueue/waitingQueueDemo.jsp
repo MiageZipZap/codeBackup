@@ -4,19 +4,21 @@
 <%@ page import="java.util.List" %>
 <%@ page import="fr.esiag.isies.pds.model.waitingqueue.WaitingQueue" %>
 <%@ page import="fr.esiag.isies.pds.model.referential.organization.Organization" %>
+<%@ page import="fr.esiag.isies.pds.model.referential.person.staff.StaffMember" %>
 
 <c:set var="idService" value="${idService}"/>
 <c:set var="idOrganization" value="${idOrganization}"/>
 <c:set var="listOrganization" value="${listOrganization}"/>
 <c:set var="listPatient" value="${listPatient}"/>
 <c:set var="listMedicalProcedure" value="${listMedicalProcedure}"/>
+<c:set var="listDoctors" value="${listDoctors}"/>
 
 <% 
 	Integer idService = (Integer) pageContext.getAttribute("idService");
 	Integer idOrganization = (Integer) pageContext.getAttribute("idOrganization");
 	List<Organization> listOrganization = (List<Organization>) pageContext.getAttribute("listOrganization");
 	List<WaitingQueue> listPatient = (List<WaitingQueue>) pageContext.getAttribute("listPatient");
-	// listMedicalProcedure
+	List<StaffMember> listDoctors = (List<StaffMember>) pageContext.getAttribute("listDoctors");
 %>
 
 <jsp:include page="../include/header.jsp">
@@ -124,7 +126,7 @@
 						<label>&Eacute;tablissement</label>
 						<select id="listOrganization" class="form-control" name="idOrganization" disabled="disabled" >
 							<option value='0' selected="selected">S&eacute;lectionnez</option>
-							<%  for(int iOrganization = 0; iOrganization < listOrganization.size() ; iOrganization+=1) {  %>
+							<%  for(int iOrganization = 0; iOrganization < 50 ; iOrganization+=1) {  %>
 								<option class="serviceType<%=listOrganization.get(iOrganization).getOrgaType().getId()%>" value="<%=listOrganization.get(iOrganization).getId()%>"><%=listOrganization.get(iOrganization).getName()%></option>
 						    <%  }  %>
 						</select>
@@ -184,63 +186,36 @@
 					<a id="btnAddPatient"    class="btn btn-primary btn-lg center-block btnRight" disabled="disabled">Ajouter</a>
 					<br /><br /><br /><br />
 					<p>
+						<label>Random</label>
+					</p>	
+					<a id="btnTestExit" class="btn btn-primary btn-lg center-block btnRight" style="width: 18%;" disabled="disabled" href="#">Sortie</a>	
+					<a id="btnTestTreatment" class="btn btn-primary btn-lg center-block btnRight" style="width: 18%;" disabled="disabled" href="#">Prise en charge</a>
+					<a id="btnTestInsert10" class="btn btn-primary btn-lg center-block btnRight" style="width: 18%;" disabled="disabled" href="#">Insert 10</a>
+					<a id="btnTestInsert5" class="btn btn-primary btn-lg center-block btnRight" style="width: 18%;" disabled="disabled" href="#">Insert 5</a>
+					<a id="btnTestInsert1" class="btn btn-primary btn-lg center-block btnRight" style="width: 18%;" disabled="disabled" href="#" >Insert 1</a>
+					<br /><br /><br /><br />
+					<p>
 						<label>Disponibilit&eacute; des m&eacute;decins</label>
 					</p>
 					<table id="tableUpdateDoctor" class="table table-striped">  				
 						<tbody>
-						    <tr style="background-color: rgba(255, 255, 255, 0.2);">
-						        <td>
-									<div class="input-group">
-							        	<span class="input-group-addon">
-							            	<input aria-label="Radio button for following text input" name="vehicule" type="radio">
-							          	</span>
-							          	<input class="form-control" disabled="disabled" type="text" val="">
-							          	<span class="input-group-addon" style="width: 15%; text-align: right;">
-							            	<span class="label label-danger" style="font-size: 14px;">Disponible</span>
-							          	</span>
-							        </div>
-						        </td>
-							</tr>
-						    <tr style="background-color: rgba(255, 255, 255, 0.2);">
-						        <td>
-									<div class="input-group">
-							        	<span class="input-group-addon">
-							            	<input aria-label="Radio button for following text input" name="vehicule" type="radio">
-							          	</span>
-							          	<input class="form-control" disabled="disabled" type="text" val="">
-							          	<span class="input-group-addon" style="width: 15%; text-align: right;">
-							            	<span class="label label-danger" style="font-size: 14px;">En consultation</span>
-							          	</span>
-							        </div>
-						        </td>
-							</tr>
-						    <tr style="background-color: rgba(255, 255, 255, 0.2);">
-						        <td>
-									<div class="input-group">
-							        	<span class="input-group-addon">
-							            	<input aria-label="Radio button for following text input" name="vehicule" type="radio">
-							          	</span>
-							          	<input class="form-control" disabled="disabled" type="text" val="">
-							          	<span class="input-group-addon" style="width: 15%; text-align: right;">
-							            	<span class="label label-danger" style="font-size: 14px;">En pause</span>
-							          	</span>
-							        </div>
-						        </td>
-							</tr>
-						    <tr style="background-color: rgba(255, 255, 255, 0.2);">
-						        <td>
-									<div class="input-group">
-							        	<span class="input-group-addon">
-							            	<input aria-label="Radio button for following text input" name="vehicule" type="radio">
-							          	</span>
-							          	<input class="form-control" disabled="disabled" type="text" val="">
-							          	<span class="input-group-addon" style="width: 15%; text-align: right;">
-							            	<span class="label label-danger" style="font-size: 14px;">Absent</span>
-							          	</span>
-							        </div>
-						        </td>
-							</tr>
-							</tbody>
+						<%  if((idOrganization == 0) && (idService == 0)) {
+								for(int iDoctor = 0; iDoctor < listDoctors.size() ; iDoctor+=1) {  %>
+								<tr style="background-color: rgba(255, 255, 255, 0.2);">
+							        <td>
+										<div class="input-group">
+								        	<span class="input-group-addon">
+								            	<input aria-label="Radio button for following text input" name="<%=listDoctors.get(iDoctor).getId() %>" type="radio" />
+								          	</span>
+								          	<span class="input-group-addon" style="width: 100%; text-align: left;"><%=listDoctors.get(iDoctor).getFirstName()%></span>
+								          	<span class="input-group-addon" style="width: 15%; text-align: right;">
+								            	<span class="label label-danger" style="font-size: 14px;"><%=listDoctors.get(iDoctor).getAvailability()%></span>
+								          	</span>
+								        </div>
+							        </td>
+								</tr>
+						<%  }}  %>
+						</tbody>
 					</table>
 					<a id="btnSetOff" class="btn btn-primary btn-lg center-block btnRight" disabled="disabled" href="#" >Absent</a>
 					<a id="btnSetBreak" class="btn btn-primary btn-lg center-block btnRight" disabled="disabled" href="#">En pause</a>
@@ -263,9 +238,11 @@
 		<input type="hidden" id="formLoadScreenDemo_idOrganization" name="idOrganization" value="${idOrganization}"/>
 	</form:form>	
 	  	
-  	<form:form id="formShowScreenStaff" class="formNewTab" method="post" action="/easyessoft/ihm/waitingQueue/screenStaff">		
-		<input type="hidden" id="formShowScreenStaff_idService" name="idService" value="${idService}"/>
-		<input type="hidden" id="formShowScreenStaff_idOrganization" name="idOrganization" value="${idOrganization}"/>
-	</form:form>	
+  	<form:form id="formTestWaitingQueue" method="post" action="/easyessoft/ihm/waitingQueue/testDemo">		
+		<input type="hidden" id="formTestWaitingQueue_idService" name="idService" value="${idService}"/>
+		<input type="hidden" id="formTestWaitingQueue_idOrganization" name="idOrganization" value="${idOrganization}"/>
+		<input type="hidden" id="formTestWaitingQueue_typeInjection" name="typeInjection" value=""/>
+		<input type="hidden" id="formTestWaitingQueue_number" name="number" value=""/>
+	</form:form>
 
 <jsp:include page="../include/footer.jsp" />

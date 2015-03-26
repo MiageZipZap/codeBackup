@@ -7,27 +7,30 @@
 
 <div class="container" id="content">
 	<div>
-		<h1>Associer un patient à son dossier</h1>
+		<h1>Ajouter un parcours de soins</h1>
 	</div>
 
 	<br />
 	<form:form id="form_staffMember" method="post"
-		action="/easyessoft/ihm/ref/medicalRecord/relateToPatient"
-		commandName="patient">
+		action="/easyessoft/ihm/healthPaths/healthPath/healthPaths/healthPathCreateAction"
+		commandName="healthPathCreate">
 		<fieldset>
 			<fieldset>
-				<legend>Identification du patient à associer</legend>
+
+				<legend>Ajouter une étape du parcours</legend>
 				<div class="form-group">
 					<p>
-						<label>Numéro de sécurité sociale</label>
-						<form:input type="text" id="nir" class="form-control"
-							path="nir" placeholder="Numero de sécurité sociale" />
+						<label>Statut du patient</label>
+						<form:select id="principalActList" class="form-control"
+							path="currentState">
+							<form:options items="${principalActList}"></form:options>
+						</form:select>
 					</p>
 				</div>
 			</fieldset>
 		</fieldset>
-		<input class="btn btn-primary btn-lg" type="submit"
-			value="createRelation" id="createRelationToPatient" />
+		<input class="btn btn-primary btn-lg" type="submit" value="create"
+			id="createStaffButton" />
 		<br></br>
 	</form:form>
 </div>

@@ -27,9 +27,14 @@
 								de santé</a></li>
 						<li><a href="/easyessoft/ihm/ref/person/staffMembercreateForm">Create a staff Member</a></li>
 						<li><a href="/easyessoft/ihm/ref/person/patientCreateForm">Patient</a></li>
-
+						<li><a href="/easyessoft/ihm/ref/person/patients/12">MockScanQRPatient</a></li>
+						<li><a href="/easyessoft/ihm/healthPaths/healthPath/workflowHP">MockWorkflowParcours</a></li>
+						<li><a href="/easyessoft/ihm/ref/medicalRecord/searchPatient">Crꦲ dossier Patient</a></li>
+						<li><a href="/easyessoft/ihm/ref/person/patients/testDao">Infrastructures
+								d'urgence</a></li>
 						<li><a href="/easyessoft/ihm/ref/emergencyDept/homePage">Infrastructures
 								d'urgence</a></li>
+						
 						<li class="divider"></li>
 						<li><a
 							href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Création

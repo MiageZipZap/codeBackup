@@ -105,8 +105,6 @@ public class EmergencyCallCenterIncidentController {
 		//		load set of priorities from database
 		List<IncidentPriority> priorities = new ArrayList<IncidentPriority>();
 		priorities = new EmergencyIncidentPriorityDAO().getAll();
-		System.out.println(priorities.get(0).getId());
-		System.out.println(priorities.get(0).getLabel());
 		model.addAttribute("priorities",priorities);
 
 		LOGGER.info("EASYES Form display : Go to create incident");
@@ -127,30 +125,36 @@ public class EmergencyCallCenterIncidentController {
 		System.out.println("OpenDated: "+ticket.getOpenedDate().toLocaleString());
 
 		//loading objects to page
-		model.addAttribute("interventionTicket",new EmergencyTicketDAO().create(ticket));
 		status.setComplete();
+		model.addAttribute("interventionTicket",new EmergencyTicketDAO().create(ticket));
+		model.addAttribute("vehicules", chooseVehicules(ticket));
 		LOGGER.info("EASYES Form display : Go to create incident");
-		return "emerg/callcenter/CallTreatment";
+		//return "emerg/callcenter/CallHome";
+		return "emerg/callcenter/SuccessIncidentTicket";
 	}
 	@RequestMapping(value ="/cancel")
 	public String processCancel(Model model) {
 		return "canceledView";
 	}
 
-	@RequestMapping(value ="/chooseVehicules",method = { RequestMethod.POST})
-	public String choose(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket) {
+	
+	/**
+	 * Mock of Vehicules
+	 * @param ticket
+	 * @return
+	 */
+	public List<InterventionVehicule> chooseVehicules(EmergencyIncidentTicket ticket) {
 		List<InterventionVehicule> vehicules = new ArrayList<InterventionVehicule>();
 		Boolean altern = false;
 		int y= ticket.getNbStretcher();
 		for(int i=0;i<=ticket.getInjPatientNumber();i++){
-
 			InterventionVehicule vehicule = new InterventionVehicule();
 			vehicule.setId(i);
 			vehicule.setCategory("Priority1");
 			vehicule.setLatitude("0.25451");
 			vehicule.setLongitude("0.25451");
 			if(y!=0){
-				altern=false;
+				altern=true;
 				vehicule.setStretcher(altern);
 				vehicule.setNbPlaces(1);
 				y--;
@@ -161,13 +165,8 @@ public class EmergencyCallCenterIncidentController {
 			}
 			vehicules.add(vehicule);
 		}
-
-		//loading objects to page
-		model.addAttribute("interventionTicket",new EmergencyTicketDAO().create(ticket));
-		model.addAttribute("vehicules",vehicules);
-
-		LOGGER.info("EASYES Form display : Go to create incident");
-		return "emerg/callcenter/IncidentForm3";
+		LOGGER.info("EASYES Form display : return list vehicules");
+		return vehicules;
 	}
 
 

@@ -85,7 +85,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="fa fa-money"></i></span>
-													<form:select path="priority" class="form-control"
+													<form:select path="priority.id" class="form-control"
 														name="priority" id="priority">
 														<c:forEach items="${priorities}" var="selectionType">
 															<form:option value="${selectionType.id}">${selectionType.code}-${selectionType.label}</form:option>

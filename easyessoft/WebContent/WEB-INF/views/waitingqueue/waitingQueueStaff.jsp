@@ -2,8 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
-<%@ page import="fr.esiag.isies.pds.model.waitingqueue.WaitingQueue" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.concurrent.TimeUnit" %>
+<%@ page import="fr.esiag.isies.pds.model.waitingqueue.WaitingQueue" %>
 
 <c:set var="navigationScreen" value="${navigationScreen}"/>
 <c:set var="listPatient" value="${listPatient}"/>
@@ -11,6 +13,7 @@
 <% 
 	String[] priorityColor = new String[]{"danger","danger","warning","success", "info"};
 	String[] priorityLabel = new String[]{"Vitale","&nbsp;&nbsp;Critique &nbsp;&nbsp;","&nbsp;&nbsp;&nbsp;Urgent&nbsp;&nbsp;&nbsp;&nbsp;","&nbsp;Standard&nbsp;&nbsp;", "Non urgent"};
+	String[] progressBarColor = new String[]{"info","info","success","success", "success", "success","warning","warning","warning","danger"};
 	SimpleDateFormat dateFormat_hour = new SimpleDateFormat("HH:mm");
 	String navigationScreen = (String) pageContext.getAttribute("navigationScreen");
 	List<WaitingQueue> listPatient = (List<WaitingQueue>) pageContext.getAttribute("listPatient");
@@ -113,7 +116,7 @@
 						<tr style="background-color: rgba(255, 255, 255, 0.9);">
 						    <td><%=iPatient+1 %></td>
 							<td style="text-align: center;"><span class="label label-<%=priorityColor[listPatient.get(iPatient).getPriority()-1] %>" style="font-size: 14px;"><%=priorityLabel[listPatient.get(iPatient).getPriority()-1] %></span></td>
-						    <td><%=listPatient.get(iPatient).getPatient().getFirstName() %></td>
+						    <td><%=listPatient.get(iPatient).getPatient().getFirstName() %> (n° <%=listPatient.get(iPatient).getIdPatient()%>)</td>
 						    <td><%=listPatient.get(iPatient).getPatient().getLastName() %></td>
 						    <td><%=dateFormat_hour.format(listPatient.get(iPatient).getTimeQueueState()) %></td>
 						    <td>Consultation</td>
@@ -135,22 +138,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%  for(int iPatient = -1; iPatient < listPatient.size() ; iPatient+=1) {  %>
+					<%  for(int iPatient = 0; iPatient < listPatient.size() ; iPatient+=1) {  %>
 						<tr style="background-color: rgba(255, 255, 255, 0.9);">
-						    	<td>Dr. Mario</td>
-						        <td>Jack Wilshere</td>
-						        <td>5</td>
+						    	<td>Dr. House</td>
+						        <td><%=listPatient.get(iPatient).getPatient().getFirstName() + " " + listPatient.get(iPatient).getPatient().getLastName() %> (n° <%=listPatient.get(iPatient).getIdPatient()%>)</td>
+						        <td><%=listPatient.get(iPatient).getIdBox() %></td>
 						        <td>Consultation</td>
 						        <td>
-						        	<p style="float: left; width: 12%;">14:00</p>
-						        	<div style="float: left; width: 76%">
-						        	<div class="progress">
-  										<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-											<p>20 mn</p>
-  										</div>
-									</div>
-									</div>
-									<p style="float: right; width: 12%; text-align: right;">14:30</p>
+						        	<% 
+						        		float percentageMedicalProcedure =  (float) ((TimeUnit.MILLISECONDS.toMinutes((long ) (new Date().getTime() - listPatient.get(iPatient).getTimeQueueState().getTime()))) / (float) 15) * 100;
+						        		if(percentageMedicalProcedure >= 100) { percentageMedicalProcedure = 100; }
+						        		if(percentageMedicalProcedure <= 10) { percentageMedicalProcedure = 10; } 
+						        	%>
+						     
+						        	<p style="float: left; width: 12%;"><%=dateFormat_hour.format(listPatient.get(iPatient).getTimeQueueState()) %></p>
+									<div style="float: left; width: 76%"><div class="progress"><div class="progress-bar progress-bar-<%=progressBarColor[(int) (percentageMedicalProcedure)/10 -1 ] %> progress-bar-striped active" role="progressbar" style="width: <%=percentageMedicalProcedure %>%">
+										<p><%=dateFormat_hour.format( new Date().getTime() - listPatient.get(iPatient).getTimeQueueState().getTime() - (60 * 60 * 1000)) %> mn</p>
+									</div></div></div>
+									<p style="float: right; width: 12%; text-align: right;"><%=dateFormat_hour.format(new Date(listPatient.get(iPatient).getTimeQueueState().getTime() + (15 * 60 * 1000))) %></p>
+								</td>
 						</tr>
 					<%  }  %>
 				</tbody>
@@ -171,16 +177,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%  for(int iPatient = -1; iPatient < listPatient.size() ; iPatient+=1) {  %>
+					<%  for(int iPatient = 0; iPatient < listPatient.size() ; iPatient+=1) {  %>
 						<tr style="background-color: rgba(255, 255, 255, 0.9);">
-						    <td>John Terry</td>
-						    <td>Dr Mario</td>
-						    <td>4</td>
+						    <td><%=listPatient.get(iPatient).getPatient().getFirstName() + " " + listPatient.get(iPatient).getPatient().getLastName() %>  (n° <%=listPatient.get(iPatient).getIdPatient()%>)</td>
+						    <td>Dr. House</td>
+						    <td></td>
 						    <td>Consultation</td>
-						    <td>13:00</td>
-						    <td>13:30</td>
-						    <td>14:05</td>
-						    <td style="text-align: center;"><span class="label label-danger" style="font-size: 14px;">15 mn</span></td>
+						    <td>&nbsp;</td>
+						    <td>&nbsp;</td>
+						    <td><%=dateFormat_hour.format(listPatient.get(iPatient).getTimeQueueState()) %></td>
+						    <td style="text-align: center;"><span class="label label-warning" style="font-size: 14px;">? mn</span></td>
 						</tr>
 					<%  }  %>
 				</tbody>

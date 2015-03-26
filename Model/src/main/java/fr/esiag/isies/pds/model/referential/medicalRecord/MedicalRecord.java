@@ -11,7 +11,7 @@ public class MedicalRecord extends AbstractEntity{
 	/**
 	 * Height of patient
 	 */
-	private String height; 
+	private String height;  
 	/**
 	 * Weight of patient
 	 */

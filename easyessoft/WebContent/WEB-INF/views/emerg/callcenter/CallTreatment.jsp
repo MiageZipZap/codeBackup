@@ -7,8 +7,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta name="description" content="Call center">
+<meta name="author" content="Samuel">
 <!-- Custom CSS -->
 <link href="/easyessoft/dist/css/simple-sidebar.css" rel="stylesheet">
 
@@ -45,7 +45,7 @@
 			<!-- Sidebar -->
 			<div id="sidebar-wrapper">
 				<ul class="sidebar-nav">
-					<li class="sidebar-brand"><a href="#">Gestion d'incidents</a></li>
+					<li class="sidebar-brand"><a id="msg-inbox" href="#">Gestion d'incidents</a></li>
 					<li><a href="#" class="" id="display-dashbord"> <i
 							class="glyphicon glyphicon-dashboard"></i> <span
 							class="hidden-xs">Dashboard</span>
@@ -54,14 +54,14 @@
 							class="glyphicon glyphicon-map-marker"></i> <span
 							class="hidden-xs">Carte des Interventions</span>
 					</a></li>
-					<li><a href="#" class="" id="msg-inbox"> <i
+					<li><a href="#" class="" id="msg-waiting"> <i
 							class="glyphicon glyphicon-exclamation-sign"></i> <span
-							class="hidden-xs">Interventions en attentes <span
-								class="badge">42</span></span>
+							class="hidden-xs">Interventions > En Attente <span id="nb-interv-en-attente"
+								class="badge"></span></span>
 					</a></li>
 					<li><a href="#" class="" id="msg-starred"> <i
 							class="glyphicon glyphicon-repeat"></i> <span class="hidden-xs">Interventions
-								en cours <span class="badge">70</span>
+								> En Cours <span id="nb-interv-en-cours" class="badge"></span>
 						</span>
 					</a></li>
 					<li><a href="#" class="" id="msg-important"> <i
@@ -114,10 +114,11 @@
 											<td>${element.location.incidentAddress}</td>
 											<td>${element.vehicule.id}</td>
 											<td>${element.vehicule.category}</td>
+											<td>${element.priority.label}</td>
+											<td>15</td>
 											<td><a
 												href="/easyessoft/ihm/ref/orga/getOrganizationDetails/1"><i
 													class="glyphicon glyphicon-eye-open"></i></a></td>
-											<td>15</td>
 											<td>Mondor</td>
 											<td>${element.openedDate}</td>
 											<td>${element.closedDate}</td>
@@ -150,7 +151,55 @@
 				});
 			});
 		});
+
+		var statusValue = "";
+		 $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+			var status = data[1]; // use data for the age column
+			if (statusValue === status) {
+				return true;
+			} else if (statusValue===""){
+				return true;
+			}
+			return false;
+		});
 		
+		$('#msg-inbox').click(function() {
+			var table;
+			table = $("#table_id").DataTable();
+			statusValue="";
+			table.draw();
+		});
+		
+		$('#msg-starred').click(function() {
+			var table;
+			table = $("#table_id").DataTable();	
+			statusValue="En Cours";
+			table.draw();
+			getNumber("#nb-interv-en-cours", 2);
+		});
+		$('#msg-waiting').click(function() {
+			var table;
+			table = $("#table_id").DataTable();	
+			statusValue="En Attente";
+			table.draw();
+			getNumber("#nb-interv-en-attente", 1);
+		});
+		
+		function getNumber(element, type) {
+			var result;
+			var nb;
+			if(type==0) 
+				return false;
+			var url = "getNbPending/"+type
+			$.getJSON(url, function(nb) {
+				var value = $(element)[0];
+				value.innerHTML=nb;
+			})
+		};
+		$( "#sidebar-wrapper" ).load(function() {
+			getNumber("#nb-interv-en-cours", 2);
+			getNumber("#nb-interv-en-attente", 1);
+			});
 	</script>
 </body>
 

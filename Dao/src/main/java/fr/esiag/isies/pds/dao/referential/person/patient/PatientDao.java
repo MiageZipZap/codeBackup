@@ -2,7 +2,9 @@ package fr.esiag.isies.pds.dao.referential.person.patient;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.referential.person.patient.Patient;
@@ -31,22 +33,34 @@ public class PatientDao  extends AbstractEntityDao<Patient>{
 		session.close();
 		return list;
 	}
-	/*		
-	public Patient getByAttribute(String firstName, String lastName, Date birthDate) {
+	
+	public Patient getByNIR(String nir) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Patient patient = (Patient) session.get(Patient.class, id);
-		
-		List mothers = session.createQuery(
-			    "select mother from Cat as cat join cat.mother as mother where cat.name = ?")
-			    .setString(0, name)
-			    .list();
-			
-		
+		Criteria cr = session.createCriteria(Patient.class);
+		cr.add(Restrictions.eq("nir", nir));
+		Patient patientFound = (Patient) cr.list().get(0);
 		session.close();
-		return patient;
+		return patientFound;
 	}
-*/
 	
+	public List<Patient> getByOrgaID(int OrgaID) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(Patient.class);
+		cr.add(Restrictions.eq("idOrganization", OrgaID));
+		List<Patient> patientList = cr.list();
+		session.close();
+		return patientList;
+	}
+	
+	public void update(Patient patient){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.merge(patient);
+		session.close();
+		
+	}
 }
