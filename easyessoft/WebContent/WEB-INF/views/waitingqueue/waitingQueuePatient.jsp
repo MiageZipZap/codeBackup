@@ -83,10 +83,8 @@
 	<div class="hiddenParams" id="tableRows">${tableRows}</div>
 	<div class="frame" id="mainFrame">		
 		<div id="tablePatients" class="container">							
-			<form:form id="form" method="post" action="/easyessoft/ihm/ref/staffAdmin/member/createAction" commandName="staffMember2" >	
-				<fieldset>
-					<legend style="vertical-align: middle;">Prochains passages <span id="timeSpan" style="float: right;"><img src="http://icons.iconarchive.com/icons/alecive/flatwoken/128/Apps-Clock-icon.png" style="float: left; width: 28px; height: 28px; margin-right: 10px;"/><div id="clock" style="float: left; width: 92px;"></div></span></legend>
-					<%	if(listPatient != null) {; %>
+			<legend style="vertical-align: middle;">Prochains passages <span id="timeSpan" style="float: right;"><img src="../../dist/img/waitingqueue/icon_clock.png" style="float: left; width: 28px; height: 28px; margin-right: 10px;"/><div id="clock" style="float: left; width: 92px;"></div></span></legend>
+				<%	if((listPatient != null) && (listPatient.size() > 0)) { %>
 					<div class="form-group" >
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			        		<ol class="carousel-indicators" style="bottom: -20px;">
@@ -100,10 +98,11 @@
 						          			<table class="table table-striped">  				
 						            			<thead>
 						              				<tr style="background-color: #222; color: #FFFFFF">
-						                				<th>#</th>
-										                <th>Nom</th>
-										                <th>Pr&eacute;nom</th>
-										                <th>Temps d'attente estimé</th>
+						                				<th style="width: 10%;">#</th>
+						                				<th style="width: 15%;">N°</th>
+										                <th style="width: 25%;">Nom</th>
+										                <th style="width: 25%;">Pr&eacute;nom</th>
+										                <th style="width: 25%;">Temps d'attente estim&eacute;</th>
 						              				</tr>
 						            			</thead>
 						            			<tbody>
@@ -111,11 +110,12 @@
 						              						<tr style="background-color: rgba(255, 255, 255, 0.9);">
 						              							<% if((iPatient + 1 + (tableRows.intValue() * iTable)) <= listPatient.size()) { %>
 						                						<td><%=iPatient + 1 + (tableRows.intValue() * iTable)%></td>
-						                						<td>NOM_PATIENT_<%=listPatient.get(iPatient + (tableRows.intValue() * iTable)).getIdPatient()%></td>
-						                						<td>PRENOM_PATIENT_<%=listPatient.get(iPatient + (tableRows.intValue() * iTable)).getIdPatient()%></td>
-						                						<td><%=tableRows.intValue()%></td>
+						                						<td><%=listPatient.get(iPatient).getIdPatient()%></td>
+						                						<td><%=listPatient.get(iPatient + (tableRows.intValue() * iTable)).getPatient().getLastName() %></td>
+						                						<td><%=listPatient.get(iPatient + (tableRows.intValue() * iTable)).getPatient().getFirstName() %></td>
+						                						<td><%=15 %> mn</td>
 						                						<% } else { %>
-						                						 <td colspan="4">&nbsp</td>
+						                						 <td colspan="5">&nbsp</td>
 						                						 <% } %>
 						             						</tr>
 						             				<%  }  %>
@@ -134,9 +134,7 @@
 					        </a>
 			      		</div>
 					</div>
-					<%	} %>;		 
-				</fieldset>
-			</form:form>
+				<%	} %>		 
   		</div>
   	</div>
 

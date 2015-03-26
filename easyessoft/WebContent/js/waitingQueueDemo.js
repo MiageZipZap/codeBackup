@@ -76,4 +76,37 @@
 		   alert($(this).parent().parent());
 	   });
 
+	   //
+	   $("#btnTestInsert1").click(function() {
+		   $("#formTestWaitingQueue_typeInjection").val("insert");
+		   $("#formTestWaitingQueue_number").val(1);
+		   $("#formTestWaitingQueue").submit();
+	   });
+
+	   //
+	   $("#btnTestInsert5").click(function() {
+		   $("#formTestWaitingQueue_typeInjection").val("insert");
+		   $("#formTestWaitingQueue_number").val(5);
+		   $("#formTestWaitingQueue").submit();
+	   });
+	   
+	   //
+	   $("#btnTestInsert10").click(function() {
+		   $("#formTestWaitingQueue_typeInjection").val("insert");
+		   $("#formTestWaitingQueue_number").val(10);
+		   $("#formTestWaitingQueue").submit();
+	   });
+	   
+	   //
+	   $("#btnTestTreatment").click(function() {
+		   $("#formTestWaitingQueue_typeInjection").val("treatment");
+		   $("#formTestWaitingQueue").submit();
+	   });
+	   
+	   //
+	   $("#btnTestExit").click(function() {
+		   $("#formTestWaitingQueue_typeInjection").val("exit");
+		   $("#formTestWaitingQueue").submit();
+	   });
+	   
 });

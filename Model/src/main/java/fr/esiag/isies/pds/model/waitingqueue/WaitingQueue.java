@@ -3,6 +3,8 @@ package fr.esiag.isies.pds.model.waitingqueue;
 import fr.esiag.isies.pds.model.AbstractEntity;
 import fr.esiag.isies.pds.model.Person;
 import fr.esiag.isies.pds.model.referential.person.patient.Patient;
+import fr.esiag.isies.pds.model.referential.person.staff.StaffMember;
+import fr.esiag.isies.pds.model.hospital.medical.*;
 
 import java.util.Date;
 
@@ -39,7 +41,7 @@ public class WaitingQueue extends AbstractEntity {
 	/**
 	 * Id of the medical procedure
 	 */
-	private int idMedicalProcedure;
+	private int idMedicalAct;
 	/**
 	 * Id of the Box 
 	 */
@@ -53,10 +55,15 @@ public class WaitingQueue extends AbstractEntity {
 	 */
 	private int waitingTime;
 	/**
-	 * Owner of the adress
+	 * Patient in queue
 	 */
 	private Patient patient;
-	
+	/**
+	 * Doctor of Patient
+	 */
+	private StaffMember doctor;
+
+
 	public int getIdQueueState() {
 		return idQueueState;
 	}
@@ -105,12 +112,12 @@ public class WaitingQueue extends AbstractEntity {
 		this.priority = priority;
 	}
 	
-	public int getIdMedicalProcedure() {
-		return idMedicalProcedure;
+	public int getIdMedicalAct() {
+		return idMedicalAct;
 	}
 	
-	public void setIdMedicalProcedure(int idMedicalProcedure) {
-		this.idMedicalProcedure = idMedicalProcedure;
+	public void setIdMedicalAct(int idMedicalAct) {
+		this.idMedicalAct = idMedicalAct;
 	}
 
 	public int getIdBox() {
@@ -143,6 +150,14 @@ public class WaitingQueue extends AbstractEntity {
 
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+
+	public StaffMember getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(StaffMember doctor) {
+		this.doctor = doctor;
 	}
 
 }
