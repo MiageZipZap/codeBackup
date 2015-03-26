@@ -55,21 +55,22 @@ public class StaffMemberController {
 		
 		//////////////////////////////////////////////////////////////////////
 		// Mock of Profession Type
-		List<Profession> listProfessionType = new ArrayList<Profession>();
+//		List<Profession> listProfessionType = new ArrayList<Profession>();
 		String[] professionType_Type = new String[]{"Médical","Soignant","Social","Administratif, logistique et technique"};
-		
+/*		
 		for(int i=0; i < professionType_Type.length; i++) {
 			Profession profession = new Profession();
 			profession.setId(i+1);
 			profession.setType(professionType_Type[i]);
 			listProfessionType.add(profession);
 		}
+*/
 		//////////////////////////////////////////////////////////////////////
 		// Mock of Profession
 		List<Profession> listProfession = new ArrayList<Profession>();
-		String[] profession_TypeId = new String[]{"1","1","1","1", "2","2","2","2", "3","3","3","3", "4","4","4","4"};
-		String[] profession_Label = new String[]{"Chirurgien","Médecin","Pharmacien","Sage-femme","Brancardier","Masseur-kinésithérapeute","Orthophoniste","Psychomotricien","Assistant de service social","Conseiller conjugal et familial","Éducateur technique spécialisé","Psychologue","Assistant de recherche clinique","Ambulancier","Secrétaire médical","Standardiste"};
-		
+//		String[] profession_TypeId = new String[]{"1","1","1","1", "2","2","2","2", "3","3","3","3", "4","4","4","4"};
+//		String[] profession_Label = new String[]{"Chirurgien","Médecin","Pharmacien","Sage-femme","Brancardier","Masseur-kinésithérapeute","Orthophoniste","Psychomotricien","Assistant de service social","Conseiller conjugal et familial","Éducateur technique spécialisé","Psychologue","Assistant de recherche clinique","Ambulancier","Secrétaire médical","Standardiste"};
+/*		
 		for(int i=0; i < profession_Label.length; i++) {
 			Profession profession = new Profession();
 			profession.setId(i+1);
@@ -77,22 +78,25 @@ public class StaffMemberController {
 			profession.setType(profession_TypeId[i]);
 			listProfession.add(profession);
 		}	
+*/
 		//////////////////////////////////////////////////////////////////////
 		// Mock of Profession
 		List<Speciality> listSpeciality = new ArrayList<Speciality>();
-		String[] speciality_profession_TypeId = new String[]{"1","1","1","1", "1","1", "2","2","2","2"};
-		String[] speciality_profession_Label = new String[]{"Addictologie","Alcoologie","Allergologie","Cardiologie","Gastro-entérologie et hépatologie","Génétique","Infantile","Plastique","Vasculaire","Viscérale"};
-		
+//		String[] speciality_profession_TypeId = new String[]{"1","1","1","1", "1","1", "2","2","2","2"};
+//		String[] speciality_profession_Label = new String[]{"Addictologie","Alcoologie","Allergologie","Cardiologie","Gastro-entérologie et hépatologie","Génétique","Infantile","Plastique","Vasculaire","Viscérale"};
+
+/*
 		for(int i=0; i < speciality_profession_TypeId.length; i++) {
 			Speciality speciality = new Speciality();
 			speciality.setId(i+1);
 			speciality.setLabel(speciality_profession_Label[i]);
 			speciality.setCode(Integer.parseInt(speciality_profession_TypeId[i]));
 			listSpeciality.add(speciality);
-		}	
+		}
+*/
 		//////////////////////////////////////////////////////////////////////
 		
-		
+/*		
 		model.addAttribute(new StaffMember()); 
 		model.addAttribute("listProfessionType", listProfessionType);
 		model.addAttribute("listProfession", listProfession);
@@ -101,9 +105,10 @@ public class StaffMemberController {
 		model.addAttribute("listOrganizationType", organizationTypeDAO.getAll());
 		model.addAttribute("listService", serviceTypeDAO.getAll());
 		System.out.println((serviceTypeDAO.getAll()).size());
-		
+*/		
 		return "ref/staff/staffMemberCreate";
 	}
+
 	
 	/**
 	 * @param Staff
