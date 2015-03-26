@@ -71,7 +71,7 @@
 						<li><a href="/easyessoft/ihm/optim/emergencyOptim">Optimisation
 								des services d'urgence</a></li>
 						<li><a
-							href="/easyessoft/ihm/emerg/congestion/simulator/DisplayMain">Monitorer
+							href="/easyessoft/ihm/emerg/congestion/simulator/ChooseHospital">Monitorer
 								l'engorgement des services d'urgences</a></li>
 						<li><a href="/easyessoft/ihm/interactionNetwork/view">Reseau
 								d'interaction</a></li>
