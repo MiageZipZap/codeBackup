@@ -9,6 +9,7 @@ import fr.esiag.isies.pds.model.emergency.callcenter.IncidentLocalization;
 /**
  * create and post the map
  * @author OD
+ 
  */
 
 @Controller
@@ -37,6 +38,7 @@ public class ShowMapContoller {
 		model.addAttribute("incident", incident);
 		
 		
+		//load map
 		
 		// put your initial command
 		//model.addAttribute("interventionTicket", ticket);
