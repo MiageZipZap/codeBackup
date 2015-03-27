@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.optimisation.interactionNetwork.PatientToStaffInteraction" table="tr_PatientToStaffInteraction">
+		<id name="id" type="int">
+			<column name="idtr_patientToStaffInteraction" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="updateDate" type="date">
+			<column name="UPDATE_DATE" length="255" not-null="false" />
+		</property>
+		<property name="createDate" type="date">
+			<column name="CREATE_DATE" length="255" not-null="true" />
+		</property>
+		<property name="updateUser" type="string">
+			<column name="UPDATE_USER" length="255" not-null="true" />
+		</property>
+		
+		<property name="interactionDate" type="date">
+			<column name="tr_interactionDate" length="255" not-null="true" />
+		</property>
+		
+		<!-- Person 1 who is in interaction -->
+		<property name="personInteractId" type="int">
+			<column name="tr_person1Interact_id" precision="5" scale="0" not-null="true" />
+		</property>
+		<property name="personInteractFirstName" type="string">
+			<column name="tr_person1Interact_name" length="255" not-null="true" />
+		</property>
+		
+		<!-- Person 2 who is in interaction -->
+		<property name="person2InteractId" type="int">
+			<column name="tr_person2Interact_id" precision="5" scale="0" not-null="true" />
+		</property>
+		<property name="person2InteractFirstName" type="string">
+			<column name="tr_person2Interact_name" length="255" not-null="true" />
+		</property>
+		
+		<!-- infrastructure -->
+		<property name="infrastructureId" type="int">
+			<column name="tr_infrastructure_id" precision="5" scale="0" not-null="true" />
+		</property>
+		<property name="infrastructureLabel" type="string">
+			<column name="tr_infrastructure_name" length="255" not-null="true" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

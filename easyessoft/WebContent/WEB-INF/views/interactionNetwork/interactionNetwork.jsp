@@ -132,10 +132,8 @@
 							<div id="right-container">
 								<div style="text-align: center;">Légende</div>
 								<ul>
-									<li>Carré rouge : Médicament</li>
-									<li>Carré Violet : Maladie</li>
-									<li>Etoile : Personne</li>
-									<li>Rond : Infrastructure</li>
+									<li>Carré rouge : Personnel</li>
+									<li>Rond Violet : Patient</li>
 								</ul>
 								<br /> <br />
 								<div id="inner-details"></div>
