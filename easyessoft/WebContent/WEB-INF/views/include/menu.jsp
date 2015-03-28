@@ -62,6 +62,7 @@
 						<li><a
 							href="/easyessoft/ihm/admin/appointment/appointmentHome">Rendez-vous</a></li>
 						<li class="divider"></li>
+						<li><a href="/easyessoft/ihm/sorting/form">Tri des patients</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Outils

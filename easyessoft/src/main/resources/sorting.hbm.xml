@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.emergency.sort.Sorting" table="tr_emergency_sorting">
+		<id name="id" type="int">
+			<column name="ID" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+
+		<property name="surname" type="string">
+			<column name="SURNAME" length="255" not-null="true" />
+		</property>
+		<property name="firstname" type="string">
+			<column name="FIRSTNAME" length="255" not-null="true" />
+		</property>
+		
+		
+		<property name="receptiondate" type="date">
+			<column name="RECEPTIONDATE" length="255" not-null="true" />
+		</property>
+		
+		
+		<property name="sortingcategory" type="string">
+			<column name="SORTINGCATEGORY" length="255" not-null="true" />
+		</property>
+		
+		
+		<property name="sortingservice" type="string">
+			<column name="SORTINGSERVICE" length="255" not-null="true" />
+		</property>
+		
+		
+	</class>
+</hibernate-mapping>

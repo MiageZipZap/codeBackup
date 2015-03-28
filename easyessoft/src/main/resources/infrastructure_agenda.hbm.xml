@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.hospital.logistics.InfrastructureAgenda"
+		table="tr_infrastructure_agenda">
+		<id name="id" type="int">
+			<column name="idtr_infrastructure_agenda" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="bookedDate" type="date">
+			<column name="BOOKED_DATE" length="255" not-null="true" />
+		</property>
+		<property name="slotStart" type="int">
+			<column name="SLOT_START" precision="5" scale="0" />
+		</property>
+		<property name="taken" type="boolean">
+			<column name="TAKEN" length="255" not-null="true" />
+		</property>
+		<many-to-one name="infrastructure"
+			class="fr.esiag.isies.pds.model.referential.infrastructure.Infrastructure"
+			lazy="false" column="idtr_infrastructure_ref_infrastructure_agenda" not-null="false" />
+
+	</class>
+</hibernate-mapping>
