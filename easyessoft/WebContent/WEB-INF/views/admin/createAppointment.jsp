@@ -19,41 +19,24 @@
 
 							<form:form id="appointmentForm" class="form-horizontal"
 								method="post" action="/easyessoft/ihm/admin/appointment/create"
-								commandName="appointment" onsubmit="return false;">
+								commandName="appointment" >
 								<fieldset>
 									<legend>Renseignements</legend>
+									
 									<p class="form-group">
+									<c:choose>
+											<c:when test="${empty idPatient}">
+												
 										<label class="col-sm-3 control-label">Nom de famille :</label>
-										<form:input path="patientLastName" type="text"
+										<form:input path="patient.firstName" type="text"
 											id="patientLastName" />
+									</c:when>
+											<c:otherwise>
+												<form:hidden path="patient.id" value="${idPatient}" />
+											</c:otherwise>
+										</c:choose>
 									</p>
-									<p class="form-group">
-										<label class="col-sm-3 control-label">Prénom:</label>
-										<form:input path="patientFirstName" type="text"
-											id="patientFirstName" />
-									</p>
-									<p class="form-group">
-										<label class="col-sm-3 control-label">Sexe :</label> <label
-											class="radio-inline"> <form:radiobutton
-												name="patientGender" id="patientGenderM"
-												path="patientGender" value="M" />Homme
-										</label> <label class="radio-inline"> <form:radiobutton
-												name="patientGender" id="patientGenderF"
-												path="patientGender" value="F" />Femme
-										</label>
-									</p>
-
-									<div class="form-group">
-
-										<label class="col-sm-3 control-label">Date de
-											naissance :</label>
-										<div class="col-sm-5">
-											<form:input type="date" id="patientBithDate"
-												class="form-control" path="patientBirthDate"
-												placeholder="01/01/1970" />
-										</div>
-									</div>
-
+									
 									<legend>Rendez-vous</legend>
 
 									<div class="form-group">
@@ -95,7 +78,7 @@
 								
 
 
-								<div class="form-group">
+								 <div class="form-group">
 
 									<label class="col-sm-3 control-label">Médecin: </label>
 									<div class="col-sm-5">
@@ -112,17 +95,18 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Date du
 										rendez-vous :</label>
-									<div class="col-sm-5">
+									
+							 <div class="col-sm-5">
 										<form:input type="date" id="appointmentDate"
 											class="form-control" path="appointmentDate"
 											placeholder="01/03/2015" />
-									</div>
+									</div> --%>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Heure du
 										rendez-vous: </label>
-									<div class="col-sm-5">
+									 <div class="col-sm-5">
 										<form:select disabled="false" id="lstHour"
 											class="form-control" path="appointmentHour">
 											<form:option value='0' label='<Selectionnez>' />
@@ -133,7 +117,7 @@
 									</div>
 								</div>
 
-								<p class="form-group">
+								 <p class="form-group">
 									<label class="col-sm-3 control-label">Nouveau patient :</label>
 									<form:checkbox path="newPatient" />
 								</p>
@@ -143,15 +127,16 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Acte principal</label>
 									<div class="col-sm-5"></div>
-								</div>
+								
 
-
+								<form:input path="keyword" type="text"
+											id="keyword" />
 </div>
 
-								<div class="form-group">
+								<!--  <div class="form-group">
 									<label class="col-sm-3 control-label">Commentaire: </label>
 									<form:textarea path="comments" rows="6" cols="70" />
-								</div>
+								</div>-->
 								<p class="form-group">
 								<div class="col-sm-9 col-sm-offset-3">
 									<input type="submit" value="Valider" class="btn btn-primary"

@@ -54,12 +54,13 @@ public class CcamActDao  extends AbstractEntityDao <CcamAct> {
 	 * @return
 	 */
 	
-	public CcamAct getActFromModel(String model){
+	@SuppressWarnings("unchecked")
+	public List<CcamAct> getActFromModel(String model){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		CcamAct lst =(CcamAct) session.createCriteria(CcamAct.class)
+		List <CcamAct> lst =(List<CcamAct>) session.createCriteria(CcamAct.class)
 							.add(Restrictions.eq("isPrincipal", 1))
-							.add((Restrictions.like("label", "%"+model+"%")))
+							.add((Restrictions.like("nameAct", "%"+model+"%")))
 							.list();
 		session.close();
 		return lst;

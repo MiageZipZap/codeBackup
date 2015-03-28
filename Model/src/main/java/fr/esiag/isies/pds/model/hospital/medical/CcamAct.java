@@ -31,6 +31,8 @@ public class CcamAct extends MedicalAct {
 	private  int isPrincipal;
 	
 	
+	
+	
 	public String getActNote() {
 		return actNote;
 	}

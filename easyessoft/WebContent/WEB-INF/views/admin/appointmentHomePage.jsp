@@ -35,6 +35,7 @@
 							<div class="col-sm-6">
 								<h3 class="page-header">Créer</h3>
 								<div class="well app-menu">
+									<!-- <a href="/easyessoft/ihm/admin/appointment/createForm"> -->
 									<a href="/easyessoft/ihm/admin/appointment/createForm">
 										<button type="button" class="btn btn-default btn-app"
 											role="button">

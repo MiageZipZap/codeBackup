@@ -6,8 +6,10 @@ import java.util.Date;
 
 
 
+
 import fr.esiag.isies.pds.model.AbstractEntity;
 import fr.esiag.isies.pds.model.referential.organization.Hospital;
+import fr.esiag.isies.pds.model.referential.person.patient.Patient;
 
 /**
  * Model class for an appointment
@@ -16,31 +18,14 @@ import fr.esiag.isies.pds.model.referential.organization.Hospital;
  */
 public class Appointment extends AbstractEntity{
 
-	/**
-	 * Patient last name
-	 */
-	private String patientLastName;
-	/**
-	 * Patient first name
-	 */
-	private String patientFirstName;
+	private Patient patient;
 	/**
 	 * Doctor who the patient will the appointment with
 	 */
 	private String doctorName;
-	/**
-	 * Patient gender
-	 */
-	private String patientGender;
-	/**
-	 * patient birth date
-	 */
-	private Date patientBirthDate;
-	/**
-	 * list of medical acts
-	 */
 	
-	private ArrayList<String> medicalCourse;
+	
+	
 	/**
 	 * day of the appointment
 	 */
@@ -52,11 +37,7 @@ public class Appointment extends AbstractEntity{
 	
 	private String appointmentHour;
 	
-	/**
-	 * Appointment type
-	 */
 	
-	private AppointmentType appointmentType;
 	
 	/** 
 	 * comments for the appointment
@@ -70,7 +51,6 @@ public class Appointment extends AbstractEntity{
 	
 	private AppointmentType appointmentReason;
 	
-	private AppointmentTypeSpeciality apppointmentSpeciality;
 	
 	
 	/**
@@ -95,50 +75,18 @@ public class Appointment extends AbstractEntity{
 		this.doctorName = doctorName;
 	}
 	
-	public String getPatientLastName() {
-		return patientLastName;
-	}
-	public void setPatientLastName(String patientLastName) {
-		this.patientLastName = patientLastName;
-	}
-	public String getPatientFirstName() {
-		return patientFirstName;
-	}
-	public void setPatientFirstName(String patientFirstName) {
-		this.patientFirstName = patientFirstName;
-	}
 	
-	public String getPatientGender() {
-		return patientGender;
-	}
-	public void setPatientGender(String patientGender) {
-		this.patientGender = patientGender;
-	}
-	public ArrayList<String> getMedicalCourse() {
-		return medicalCourse;
-	}
 	
-	public void setMedicalCourse(ArrayList <String> medicalCourse) {
-		this.medicalCourse = medicalCourse;
-	}
+	
+	
 	public Date getAppointmentDate() {
 		return appointmentDate;
 	}
 	public void setAppointmentDate(Date appointmentDate) {
 		this.appointmentDate = appointmentDate;
 	}
-	public AppointmentType getAppointmentType() {
-		return appointmentType;
-	}
-	public void setAppointmentType(AppointmentType appointmentType) {
-		this.appointmentType = appointmentType;
-	}
-	public Date getPatientBirthDate() {
-		return patientBirthDate;
-	}
-	public void setPatientBirthDate(Date patientBirthDate) {
-		this.patientBirthDate = patientBirthDate;
-	}
+	
+	
 	public String getComments() {
 		return comments;
 	}
@@ -165,17 +113,18 @@ public class Appointment extends AbstractEntity{
 	}
 	
 	
-	public AppointmentTypeSpeciality getApppointmentSpeciality() {
-		return apppointmentSpeciality;
-	}
-	public void setApppointmentSpeciality(AppointmentTypeSpeciality apppointmentSpeciality) {
-		this.apppointmentSpeciality = apppointmentSpeciality;
-	}
+	
 	public String getKeyword() {
 		return keyword;
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 	
 	

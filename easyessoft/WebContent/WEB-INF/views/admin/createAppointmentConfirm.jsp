@@ -28,11 +28,12 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>${appointment.patientLastName}</td>
-					<td>${appointment.patientFirstName}</td>
-					<td>${appointment.patientBirthDate}</td>
+					<td>${appointment.patient.lastName}</td>
+					<td>${appointment.patient.firstName}</td>
+					<td>${appointment.patient.birthdate}</td>
 					<td>${appointment.appointmentReason.label}</td>
 					<td>${appointment.appointmentDate}</td>
+					<td>${appointment.appointmentHour}</td>
 					<td>${appointment.doctorName}</td>
 					<td><c:if test="${appointment.newPatient}">oui
 			</c:if> <c:if test="${appointment.newPatient}">non
@@ -40,6 +41,24 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<h1 class=tagline>Liste des Actes</h1>
+		
+		<table border="1">
+            <thead>
+                <tr>
+                    <th>Actes</th>
+               
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${acts}" var="acts">
+                    <tr>
+                        <td><c:out value="${acts}"/></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 	</div>
 </div>
 <jsp:include page="../include/footer.jsp" />

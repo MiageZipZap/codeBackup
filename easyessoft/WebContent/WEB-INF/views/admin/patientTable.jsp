@@ -14,7 +14,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h1 class="boderline">Liste des patients</h1>
+				<h1 class="boderline">Liste des patients </h1>
 			</div>
 			<div class="panel-body">
 				<div class="box-content">
@@ -30,7 +30,6 @@
 								<td>Nom rue</td>
 								<td>Code Postal</td>
 								<td>Ville</td>
-								<td>Département</td>
 								<td>E-mail</td>
 								<td>Téléphone</td>
 
@@ -45,15 +44,14 @@
 									<td>${element.birthdate}</td>
 									<td>${element.nir}</td>
 									<td>${element.address.streetNumber}</td>
-									<td>${element.address.adstreetName}</td>
+									<td>${element.address.streetName}</td>
 									<td>${element.address.zipCode}</td>
 									<td>${element.address.city}</td>
-									<td>${element.address.department}</td>
 									<td>${element.mailAdress}</td>
 									<td>${element.phoneNumberHome}</td>
 
 									<td><a
-										href="/easyessoft/ihm/admin/appointment/getForm/${element.id}">OK</a></td>
+										href="/easyessoft/ihm/admin/appointment/createFormAppoint/${element.id}">OK</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

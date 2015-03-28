@@ -1,10 +1,9 @@
 package fr.esiag.isies.pds.model.hospital.medical;
 
-import java.util.HashSet;
-import java.util.Set;
+
 
 import fr.esiag.isies.pds.model.AbstractEntity;
-import fr.esiag.isies.pds.model.referential.organization.ServiceType;
+
 
 
 
@@ -18,9 +17,9 @@ public class EligibleAct extends AbstractEntity{
 	/**
 	 * id of the primary act in the CCAM
 	 */
-	private int idCcam;
+	private CcamAct idCcam;
 	
-	private int idSubAct;
+	private SubAct idSubAct;
 	
 	/**
 	 * List of subAct for a primary act
@@ -28,13 +27,7 @@ public class EligibleAct extends AbstractEntity{
 	//private Set<SubAct> subAct = new HashSet<SubAct>(0);
 	
 	
-	public int getIdCcam() {
-		return idCcam;
-	}
-
-	public void setIdCcam(int idCcam) {
-		this.idCcam = idCcam;
-	}
+	
 
 	/*public Set<SubAct> getSubAct() {
 		return subAct;
@@ -44,11 +37,21 @@ public class EligibleAct extends AbstractEntity{
 		this.subAct = subAct;
 	}*/
 
-	public int getIdSubAct() {
+	
+
+	public CcamAct getIdCcam() {
+		return idCcam;
+	}
+
+	public void setIdCcam(CcamAct idCcam) {
+		this.idCcam = idCcam;
+	}
+
+	public SubAct getIdSubAct() {
 		return idSubAct;
 	}
 
-	public void setIdSubAct(int idSubAct) {
+	public void setIdSubAct(SubAct idSubAct) {
 		this.idSubAct = idSubAct;
 	}
 

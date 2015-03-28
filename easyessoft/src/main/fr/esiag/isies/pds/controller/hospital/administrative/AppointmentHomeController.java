@@ -11,10 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.esiag.isies.pds.controller.referential.infrastructure.EmergencyDeptController;
+import fr.esiag.isies.pds.dao.hospital.medical.BiologicalActDao;
+import fr.esiag.isies.pds.dao.hospital.medical.CcamActDao;
+import fr.esiag.isies.pds.dao.hospital.medical.EligibleActDao;
+import fr.esiag.isies.pds.dao.hospital.medical.SubActDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.EquipmentDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.InfrastructureDao;
 import fr.esiag.isies.pds.dao.referential.infrastructure.MedicineDao;
 import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
+import fr.esiag.isies.pds.model.hospital.medical.BiologicalAct;
+import fr.esiag.isies.pds.model.hospital.medical.CcamAct;
+import fr.esiag.isies.pds.model.hospital.medical.EligibleAct;
+import fr.esiag.isies.pds.model.hospital.medical.SubAct;
 
 /**
  * Get the http request which concern Appointment views
@@ -26,16 +34,9 @@ import fr.esiag.isies.pds.dao.referential.organization.OrganizationDao;
 @RequestMapping("admin/appointment")
 
 public class AppointmentHomeController {
+	public EligibleActDao elDao = new EligibleActDao();
 	
-	public List<String> lstTest = new ArrayList<String>();
 	
-	public AppointmentHomeController(){
-		lstTest.add("moi");
-		lstTest.add("mi");
-		lstTest.add("mo");
-				
-	}
-
 		/**
 		 * Logger
 		 */
@@ -51,15 +52,13 @@ public class AppointmentHomeController {
 		@RequestMapping("appointmentHome")
 		public String getHomePage(Model model) {
 			LOGGER.info("EASYES Form display : Appointment Home Page");
+			
+			
+			
 			return "admin/appointmentHomePage";
 		}
 
 		
-		@RequestMapping("getPatient/{idHospital}/{idServ}")
-		public String read(@PathVariable("idHospital") int idHospital, Model model) {
-			LOGGER.info("EASYES Form display : Read Equipment, Infrastructure and Medicine which are in an hospital");
-			model.addAttribute("lstTest",lstTest);
-					
-			return "admin/test";
-		}
+		
+		
 }

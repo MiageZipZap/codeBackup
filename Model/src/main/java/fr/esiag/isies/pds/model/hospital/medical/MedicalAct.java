@@ -26,7 +26,7 @@ public abstract class MedicalAct extends AbstractEntity {
 	/**
 	 * Type of the act
 	 */
-	private int idtypeAct;
+	private TypeAct idtypeAct;
 	/**
 	 * Act time
 	 */
@@ -51,17 +51,18 @@ public abstract class MedicalAct extends AbstractEntity {
 	public void setActTime(Integer actTime) {
 		this.actTime = actTime;
 	}
-	public int getIdtypeAct() {
-		return idtypeAct;
-	}
-	public void setIdtypeAct(int idtypeAct) {
-		this.idtypeAct = idtypeAct;
-	}
+	
 	public double getActPrice() {
 		return actPrice;
 	}
 	public void setActPrice(double actPrice) {
 		this.actPrice = actPrice;
+	}
+	public TypeAct getIdtypeAct() {
+		return idtypeAct;
+	}
+	public void setIdtypeAct(TypeAct idtypeAct) {
+		this.idtypeAct = idtypeAct;
 	}
 	
 }

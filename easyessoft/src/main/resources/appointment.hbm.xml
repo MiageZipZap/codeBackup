@@ -16,18 +16,11 @@
 		<property name="updateUser" type="string">
 			<column name="UPDATE_USER" length="255" not-null="true" />
 		</property>
-		<property name="patientLastName" type="string">
-			<column name="bt_admin_appointment_patient_last_name" length="255" not-null="true" />
+		<property name="keyword" type="string">
+			<column name="bt_admin_appointment_keyword" length="255" not-null="true" />
 		</property>
-		<property name="patientFirstName" type="string">
-			<column name="bt_admin_appointment_patient_first_name" length="255" not-null="true" />
-		</property>
-		<property name="patientGender" type="string">
-			<column name="bt_admin_appointment_patient_last_gender" length="255" not-null="true" />
-		</property>
-		<property name="patientBirthDate" type="date">
-			<column name="bt_admin_appointment_patient_birth_date"  not-null="true" />
-		</property>
+		
+			
 		<property name="doctorName" type="string">
 			<column name="bt_admin_appointment_doctor_name" length="255" not-null="true" />
 		</property>
@@ -37,6 +30,8 @@
 			column="idtr_admin_appoint_reason" not-null="true" />
 		<many-to-one name="hospital" class="fr.esiag.isies.pds.model.referential.organization.Hospital" lazy="false"
 			column="idtr_organization" not-null="true" />
+		<many-to-one name="patient" class="fr.esiag.isies.pds.model.referential.person.patient.Patient" lazy="false"
+			column="idtr_person" not-null="true" />
 		
 		
 	</class>

@@ -1,6 +1,5 @@
 package fr.esiag.isies.pds.model.hospital.medical;
 
-import java.util.ArrayList;
 
 import fr.esiag.isies.pds.model.AbstractEntity;
 /**
@@ -17,25 +16,30 @@ public class SubAct extends AbstractEntity {
 	/**
 	 * id sub act from ccam referential
 	 */
-	private int subIdCcam;
+	private CcamAct subIdCcam;
 	
 	/**
 	 * id sub act from nabm referntial
 	 */
-	private int subIdNabm;
-	
-	public int getSubIdCcam() {
-		return subIdCcam;
-	}
-	public void setSubIdCcam(int subIdCcam) {
-		this.subIdCcam = subIdCcam;
-	}
-	public int getSubIdNabm() {
+	private  BiologicalAct subIdNabm;
+
+	public BiologicalAct getSubIdNabm() {
 		return subIdNabm;
 	}
-	public void setSubIdNabm(int subIdNabm) {
+
+	public void setSubIdNabm(BiologicalAct subIdNabm) {
 		this.subIdNabm = subIdNabm;
 	}
+
+	public CcamAct getSubIdCcam() {
+		return subIdCcam;
+	}
+
+	public void setSubIdCcam(CcamAct subIdCcam) {
+		this.subIdCcam = subIdCcam;
+	}
+	
+	
 	
 	
 	
