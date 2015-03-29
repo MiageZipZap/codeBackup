@@ -88,12 +88,19 @@ public class EmergencyCallCenterController{
 	}
 	
 	public List<EmergencyIncidentTicket> getOptimalVehicule(List<EmergencyIncidentTicket> tickets){
+		
+		int nbCat = 3;
 		for(EmergencyIncidentTicket ticket:tickets){
 			int y= ticket.getNbStretcher();
 //			for(int i=0;i<=ticket.getInjPatientNumber();i++){ should be list of vehicule
 				InterventionVehicule vehicule = new InterventionVehicule();
 				vehicule.setId((int)Math.round(Math.random()*100));
-				vehicule.setCategory(new VehiculeTypeDAO().getById(2));
+				if(nbCat!=0){
+					vehicule.setCategory(new VehiculeTypeDAO().getById(nbCat));
+					nbCat--;
+				}else{
+					vehicule.setCategory(new VehiculeTypeDAO().getById(1));
+				}
 				vehicule.setLatitude(new Float(0.25451));
 				vehicule.setLongitude(new Float(0.25451));
 				if(y!=0){

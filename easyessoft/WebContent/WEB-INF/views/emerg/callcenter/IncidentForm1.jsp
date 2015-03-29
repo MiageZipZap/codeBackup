@@ -56,12 +56,12 @@
 									<div class="form-group">
 										<fieldset>
 											<legend> Localisation </legend>
-
 											<input id="pac-input" class="controls" type="text"
 												placeholder="Saisir l'adresse">
 											<div class="form-group has-error has-feedback">
 												<div class="col-sm-6">
-													<input id="addressText" type="hidden" name="incidentAddress" path="incidentAddress" />
+													<input id="addressText" type="hidden"
+														name="incidentAddress" path="incidentAddress" />
 												</div>
 											</div>
 											<div class="form-group has-error has-feedback">

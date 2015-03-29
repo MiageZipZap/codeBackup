@@ -7,6 +7,7 @@ $(document).ready(function() {
 });
 
 function initialize() {
+	var minZoomLevel = 11;
 	var componentForm = {
 			street_number: 'short_name',
 			route: 'long_name',
@@ -17,35 +18,50 @@ function initialize() {
 	};
 	var markers = [];
 	var mapOptions = {
-			zoom : 11,
-			center : new google.maps.LatLng(48.8602, 2.3386),
+			zoom : minZoomLevel,
+			center : new google.maps.LatLng(48.88597, 2.38285),
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 	};
+
 	var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-	/* var defaultBounds = new google.maps.LatLngBounds(
-	        new google.maps.LatLng(48.5000, 2.5150),
-	        new google.maps.LatLng(48.5000, 2.5140));
-	map.fitBounds(defaultBounds); */
+	
+	
+//	var defaultBounds = new google.maps.LatLngBounds(
+//			new google.maps.LatLng(48.8639510891474, 2.317751322994809),
+//			new google.maps.LatLng(48.9091016274857, 2.442720805416684));
+//	map.fitBounds(defaultBounds);
+//	map.setZoom(13);
+//	
+//	var strictBounds = new google.maps.LatLngBounds(
+//	new google.maps.LatLng(48.85897739061302,2.3200219360351184),new google.maps.LatLng(48.90806455223484,2.437048176949247));
+//	Bounds for NorthEst Paris
+
 
 	// Create the search box and link it to the UI element.
 	var input = /** @type {HTMLInputElement} */
 		(document.getElementById('pac-input'));
 	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+	google.maps.event.addListener(map, 'bounds_changed', function() {
+		console.log(map.getBounds().getNorthEast());
+		console.log(map.getBounds().getSouthWest());
+		console.log("test");
+	});
+
 	// text input
-	var region = 'Ile de France';
-	input.onkeypress = function(e) {
-		if (!e)
-			e = window.event;
-		var keyCode = e.keyCode || e.which;
-		if(input.value.slice(-13)!=region){
-			if (keyCode == '13') {
-				input.value = document.getElementById('pac-input').value + ' '
-				+ region;
-				geolocate();
-			}
-		}
-	};
+//	var region = 'Ile de France';
+//	input.onkeypress = function(e) {
+//		if (!e)
+//			e = window.event;
+//		var keyCode = e.keyCode || e.which;
+//		if(input.value.slice(-13)!=region){
+//			if (keyCode == '13') {
+//				input.value = document.getElementById('pac-input').value + ' '
+//				+ region;
+//				geolocate();
+//			}
+//		}
+//	};
 	var searchBox = new google.maps.places.SearchBox(/** @type {HTMLInputElement} */
 			(input),{ types: ['geocode'] });
 
@@ -67,7 +83,7 @@ function initialize() {
 			alert("L'adresse est impr\u00E9cise, veuillez r\u00E9essayer");
 			return;
 		}
-		
+
 		for (var i = 0, marker; marker = markers[i]; i++) {
 			marker.setMap(null);
 		}
@@ -76,18 +92,19 @@ function initialize() {
 		markers = [];
 		var bounds = new google.maps.LatLngBounds();
 		for (var i = 0, place; place = places[i]; i++) {
-			
+
 			//filter country
 			if(place.address_components[5]['long_name']!='France'){
-				alert("La recherche est limit\u00E9e \u00E0 la France");
+				
+				alert("Le pays donne :"+place.address_components[5]['long_name']+ "\nLa recherche est limit\u00E9e \u00E0 la France \nessayez un num\u00E9ero proche!");
 				return;
 			}
 			//filter region
 			if(place.address_components[4]['short_name']!='IDF'){
-				alert("La recherche est limit\u00E9e \u00E0 l'\u00CEle de France");
+				alert("La régon donne"+ place.address_components[4]['short_name']+ "\nLa recherche est limit\u00E9e \u00E0 l'\u00CEle de France \nessayez un num\u00E9ero proche!");
 				return;
 			}
-			
+
 			var image = {
 					url : place.icon,
 					size : new google.maps.Size(71, 71),
@@ -95,8 +112,8 @@ function initialize() {
 					anchor : new google.maps.Point(17, 34),
 					scaledSize : new google.maps.Size(25, 25)
 			};		
-			
-			
+
+
 			for (var component in componentForm) {
 				document.getElementById(component).value = '';
 				document.getElementById(component).disabled = false;
@@ -108,7 +125,7 @@ function initialize() {
 					document.getElementById(addressType).value = val;
 				}
 			}
-			
+
 			// Create a marker for each place.
 			var marker = new google.maps.Marker({
 				map : map,
@@ -141,8 +158,8 @@ function initialize() {
 	function fillInAddress() {
 		// Get the place details from the autocomplete object.
 		var place = searchBox.getPlace();
-		
-		
+
+
 		for (var component in componentForm) {
 			document.getElementById(component).value = '';
 			document.getElementById(component).disabled = false;

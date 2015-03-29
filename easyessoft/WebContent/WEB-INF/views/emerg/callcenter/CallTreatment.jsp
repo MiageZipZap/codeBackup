@@ -45,19 +45,22 @@
 			<!-- Sidebar -->
 			<div id="sidebar-wrapper">
 				<ul class="sidebar-nav">
-					<li class="sidebar-brand"><a id="msg-inbox" href="#">Gestion d'incidents</a></li>
+					<li class="sidebar-brand"><a id="msg-inbox" href="#">Gestion
+							d'incidents</a></li>
 					<li><a href="#" class="" id="display-dashbord"> <i
 							class="glyphicon glyphicon-dashboard"></i> <span
 							class="hidden-xs">Dashboard</span>
 					</a></li>
-					<li><a href="#" class="" id="display-map"> <i
+					<li><a
+						href="/easyessoft/ihm/emerg/callcenter/InterventionMap.jsp"
+						class="" id="display-map"> <i
 							class="glyphicon glyphicon-map-marker"></i> <span
 							class="hidden-xs">Carte des Interventions</span>
 					</a></li>
 					<li><a href="#" class="" id="msg-waiting"> <i
 							class="glyphicon glyphicon-exclamation-sign"></i> <span
-							class="hidden-xs">Interventions > En Attente <span id="nb-interv-en-attente"
-								class="badge"></span></span>
+							class="hidden-xs">Interventions > En Attente <span
+								id="nb-interv-en-attente" class="badge"></span></span>
 					</a></li>
 					<li><a href="#" class="" id="msg-starred"> <i
 							class="glyphicon glyphicon-repeat"></i> <span class="hidden-xs">Interventions
@@ -113,7 +116,7 @@
 											<td>${element.state.label}</td>
 											<td>${element.location.incidentAddress}</td>
 											<td>${element.vehicule.id}</td>
-											<td>${element.vehicule.category}</td>
+											<td>${element.vehicule.category.label}</td>
 											<td>${element.priority.label}</td>
 											<td>15</td>
 											<td><a
@@ -153,53 +156,67 @@
 		});
 
 		var statusValue = "";
-		 $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+		$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
 			var status = data[1]; // use data for the age column
 			if (statusValue === status) {
 				return true;
-			} else if (statusValue===""){
+			} else if (statusValue === "") {
 				return true;
 			}
 			return false;
 		});
-		
+		$('#table_id').on('click', 'tr', function() {
+			var table;
+			table = $("#table_id").DataTable();
+			if ($(this).hasClass('selected')) {
+				$(this).removeClass('selected');
+			} else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		});
+
 		$('#msg-inbox').click(function() {
 			var table;
 			table = $("#table_id").DataTable();
-			statusValue="";
+			statusValue = "";
 			table.draw();
 		});
-		
+
 		$('#msg-starred').click(function() {
 			var table;
-			table = $("#table_id").DataTable();	
-			statusValue="En Cours";
+			table = $("#table_id").DataTable();
+			statusValue = "En Cours";
 			table.draw();
 			getNumber("#nb-interv-en-cours", 2);
 		});
 		$('#msg-waiting').click(function() {
 			var table;
-			table = $("#table_id").DataTable();	
-			statusValue="En Attente";
+			table = $("#table_id").DataTable();
+			statusValue = "En Attente";
 			table.draw();
 			getNumber("#nb-interv-en-attente", 1);
 		});
-		
+		setInterval(function() {
+			getNumber("#nb-interv-en-attente", 1);
+			getNumber("#nb-interv-en-cours", 2);
+		}, 5000);
+
 		function getNumber(element, type) {
 			var result;
 			var nb;
-			if(type==0) 
+			if (type == 0)
 				return false;
-			var url = "getNbPending/"+type
+			var url = "getNbPending/" + type
 			$.getJSON(url, function(nb) {
 				var value = $(element)[0];
-				value.innerHTML=nb;
+				value.innerHTML = nb;
 			})
 		};
-		$( "#sidebar-wrapper" ).load(function() {
+		$("#sidebar-wrapper").load(function() {
 			getNumber("#nb-interv-en-cours", 2);
 			getNumber("#nb-interv-en-attente", 1);
-			});
+		});
 	</script>
 </body>
 

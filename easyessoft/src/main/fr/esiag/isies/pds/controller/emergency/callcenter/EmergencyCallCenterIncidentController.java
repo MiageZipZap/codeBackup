@@ -2,6 +2,7 @@ package fr.esiag.isies.pds.controller.emergency.callcenter;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.CallerDAO;
+import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncidentInterventionDao;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncidentPriorityDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncidentStateDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyTicketDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.IncidentLocalizationDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.VehiculeTypeDAO;
 import fr.esiag.isies.pds.model.emergency.callcenter.Caller;
+import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentIntervention;
 import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket;
 import fr.esiag.isies.pds.model.emergency.callcenter.IncidentLocalization;
 import fr.esiag.isies.pds.model.emergency.callcenter.IncidentPriority;
@@ -58,7 +61,7 @@ public class EmergencyCallCenterIncidentController {
 	public EmergencyCallCenterIncidentController() {
 		init();
 	}
-	
+
 
 	public void init(){
 		location = new IncidentLocalization();
@@ -114,8 +117,7 @@ public class EmergencyCallCenterIncidentController {
 	}
 
 	@RequestMapping(value ="/createIncidentTicket",method = { RequestMethod.POST})
-	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket,
-			final Errors errors,final SessionStatus status) {
+	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket) {
 		System.out.println("ticket state: "+ticket.getState().getLabel());
 		System.out.println("ticket caller: "+ticket.getIdCaller());
 		System.out.println("NbPatients: "+ticket.getInjPatientNumber());
@@ -127,7 +129,6 @@ public class EmergencyCallCenterIncidentController {
 		System.out.println("OpenDated: "+ticket.getOpenedDate().toLocaleString());
 
 		//loading objects to page
-		status.setComplete();
 		model.addAttribute("interventionTicket",new EmergencyTicketDAO().create(ticket));
 		model.addAttribute("vehicules", chooseVehicules(ticket));
 		model.addAttribute("InterventionVehicule", new InterventionVehicule());
@@ -135,35 +136,68 @@ public class EmergencyCallCenterIncidentController {
 		//return "emerg/callcenter/CallHome";
 		return "emerg/callcenter/SuccessIncidentTicket";
 	}
-	
+
 	@RequestMapping(value ="/VehiculeChoiceTraitement",method = { RequestMethod.POST})
-	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket,
-			@ModelAttribute("interventionTicket") InterventionVehicule interventionVehicule) {
-			ticket.setVehicule(interventionVehicule);
-			
-				return "emerg/callcenter/CallTreatment";
-		
+	public String create(Model model, @ModelAttribute("interventionVehicule") InterventionVehicule interventionVehicule,
+			@ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket
+			,final Errors errors,final SessionStatus status) {
+		EmergencyIncidentIntervention intervention = new EmergencyIncidentIntervention();
+		intervention.setCreateDate(new Date(System.currentTimeMillis()));
+		intervention.setIncidentVehicule(interventionVehicule);
+		intervention = new EmergencyIncidentInterventionDao().create(intervention);
+		System.out.println(intervention.getId());
+		System.out.println(interventionVehicule.getId());
+		System.out.println(intervention.getIncidentVehicule().getId());
+		ticket.setVehicule(interventionVehicule);
+		status.setComplete();
+		return "emerg/callcenter/CallHome";
+
 	}
-	
+
 	@RequestMapping(value ="/cancel")
 	public String processCancel(Model model) {
 		return "canceledView";
 	}
 
-	
+
 	/**
 	 * Mock of Vehicules
 	 * @param ticket
 	 * @return
 	 */
 	public List<InterventionVehicule> chooseVehicules(EmergencyIncidentTicket ticket) {
+		//Create categories of vehicules
+		//				VehiculeTypeDAO vehiculeTypeDAO = new VehiculeTypeDAO();
+		//				VehiculeType cat1 = new VehiculeType();
+		//				cat1.setCode("CAT1");
+		//				cat1.setLabel("VSAB - lol");
+		//				
+		//				vehiculeTypeDAO.create(cat1);
+		//				VehiculeType cat2 = new VehiculeType();
+		//				cat2.setCode("CAT2");
+		//				cat2.setLabel("Ambulance privée");
+		//				vehiculeTypeDAO.create(cat2);
+		//				
+		//				VehiculeType cat3 = new VehiculeType();
+		//				cat3.setCode("CAT3");
+		//				cat3.setLabel("SMUR");
+		//				vehiculeTypeDAO.create(cat3);
+
+		int nbCat =3;
+
 		List<InterventionVehicule> vehicules = new ArrayList<InterventionVehicule>();
 		Boolean altern = false;
 		int y= ticket.getNbStretcher();
 		for(int i=0;i<=ticket.getInjPatientNumber();i++){
 			InterventionVehicule vehicule = new InterventionVehicule();
 			vehicule.setId(i);
-			vehicule.setCategory(new VehiculeTypeDAO().getById(1));
+			if(nbCat!=0){
+				vehicule.setCategory(new VehiculeTypeDAO().getById(nbCat));
+				nbCat--;
+			}else{
+				vehicule.setCategory(new VehiculeTypeDAO().getById(1));
+			}
+
 			vehicule.setLatitude(new Float(0.25451));
 			vehicule.setLongitude(new Float(0.25451));
 			if(y!=0){

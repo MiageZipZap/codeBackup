@@ -8,7 +8,7 @@ import fr.esiag.isies.pds.dao.AbstractEntityDao;
 import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentIntervention;
 import fr.esiag.isies.pds.utils.HibernateUtil;
 
-public class EmergencyIncidentDao extends AbstractEntityDao<EmergencyIncidentIntervention> {
+public class EmergencyIncidentInterventionDao extends AbstractEntityDao<EmergencyIncidentIntervention> {
 
 	@Override
 	public EmergencyIncidentIntervention getById(int id) {
