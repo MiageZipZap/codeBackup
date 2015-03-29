@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyTicketDAO;
+import fr.esiag.isies.pds.dao.referential.emergency.callcenter.VehiculeTypeDAO;
 import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket;
 import fr.esiag.isies.pds.model.emergency.callcenter.InterventionVehicule;
 
@@ -40,7 +41,7 @@ public class EmergencyCallCenterController{
 	/**
 	 * 
 	 * @param model
-	 * @return Administration page for Organization referential
+	 * @return Administration page for Incident Management
 	 */
 	@RequestMapping("CallHome")
 	public String getHomePage(final Model model) {
@@ -68,9 +69,9 @@ public class EmergencyCallCenterController{
 
 				InterventionVehicule vehicule = new InterventionVehicule();
 				vehicule.setId((int)Math.round(Math.random()*100));
-				vehicule.setCategory("TypeVehicule1");
-				vehicule.setLatitude("0.25451");
-				vehicule.setLongitude("0.25451");
+				vehicule.setCategory(new VehiculeTypeDAO().getById(1));
+				vehicule.setLatitude(new Float(0.25451));
+				vehicule.setLongitude(new Float(0.25451));
 				if(y!=0){
 					vehicule.setStretcher(true);
 					vehicule.setNbPlaces(1);
@@ -92,9 +93,9 @@ public class EmergencyCallCenterController{
 //			for(int i=0;i<=ticket.getInjPatientNumber();i++){ should be list of vehicule
 				InterventionVehicule vehicule = new InterventionVehicule();
 				vehicule.setId((int)Math.round(Math.random()*100));
-				vehicule.setCategory("Priority1");
-				vehicule.setLatitude("0.25451");
-				vehicule.setLongitude("0.25451");
+				vehicule.setCategory(new VehiculeTypeDAO().getById(2));
+				vehicule.setLatitude(new Float(0.25451));
+				vehicule.setLongitude(new Float(0.25451));
 				if(y!=0){
 					vehicule.setStretcher(true);
 					vehicule.setNbPlaces(1);

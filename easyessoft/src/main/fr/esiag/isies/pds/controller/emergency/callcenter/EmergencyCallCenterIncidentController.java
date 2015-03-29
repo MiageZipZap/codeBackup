@@ -20,12 +20,14 @@ import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncident
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyIncidentStateDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.EmergencyTicketDAO;
 import fr.esiag.isies.pds.dao.referential.emergency.callcenter.IncidentLocalizationDAO;
+import fr.esiag.isies.pds.dao.referential.emergency.callcenter.VehiculeTypeDAO;
 import fr.esiag.isies.pds.model.emergency.callcenter.Caller;
 import fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentTicket;
 import fr.esiag.isies.pds.model.emergency.callcenter.IncidentLocalization;
 import fr.esiag.isies.pds.model.emergency.callcenter.IncidentPriority;
 import fr.esiag.isies.pds.model.emergency.callcenter.IncidentState;
 import fr.esiag.isies.pds.model.emergency.callcenter.InterventionVehicule;
+import fr.esiag.isies.pds.model.emergency.callcenter.VehiculeType;
 
 
 @Controller
@@ -128,10 +130,21 @@ public class EmergencyCallCenterIncidentController {
 		status.setComplete();
 		model.addAttribute("interventionTicket",new EmergencyTicketDAO().create(ticket));
 		model.addAttribute("vehicules", chooseVehicules(ticket));
+		model.addAttribute("InterventionVehicule", new InterventionVehicule());
 		LOGGER.info("EASYES Form display : Go to create incident");
 		//return "emerg/callcenter/CallHome";
 		return "emerg/callcenter/SuccessIncidentTicket";
 	}
+	
+	@RequestMapping(value ="/VehiculeChoiceTraitement",method = { RequestMethod.POST})
+	public String create(Model model, @ModelAttribute("interventionTicket") EmergencyIncidentTicket ticket,
+			@ModelAttribute("interventionTicket") InterventionVehicule interventionVehicule) {
+			ticket.setVehicule(interventionVehicule);
+			
+				return "emerg/callcenter/CallTreatment";
+		
+	}
+	
 	@RequestMapping(value ="/cancel")
 	public String processCancel(Model model) {
 		return "canceledView";
@@ -150,9 +163,9 @@ public class EmergencyCallCenterIncidentController {
 		for(int i=0;i<=ticket.getInjPatientNumber();i++){
 			InterventionVehicule vehicule = new InterventionVehicule();
 			vehicule.setId(i);
-			vehicule.setCategory("Priority1");
-			vehicule.setLatitude("0.25451");
-			vehicule.setLongitude("0.25451");
+			vehicule.setCategory(new VehiculeTypeDAO().getById(1));
+			vehicule.setLatitude(new Float(0.25451));
+			vehicule.setLongitude(new Float(0.25451));
 			if(y!=0){
 				altern=true;
 				vehicule.setStretcher(altern);

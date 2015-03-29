@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="fr.esiag.isies.pds.model.emergency.callcenter.EmergencyIncidentIntervention"
+		table="tp_emergency_incident_intervention" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="idtp_emergency_incident_intervention" precision="5"
+				scale="0" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="hospital"
+			class="fr.esiag.isies.pds.model.referential.organization.Hospital">
+			<column name="tr_orga_hospital_idtr_organization" not-null="true" />
+		</many-to-one>
+		<many-to-one name="incidentVehicule"
+			class="fr.esiag.isies.pds.model.emergency.callcenter.InterventionVehicule"
+			not-null="true" lazy="false">
+			<column name="tp_emergency_vehicule_idtp"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
