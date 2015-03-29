@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="fr.esiag.isies.pds.model.emergency.callcenter.InterventionVehicule"
+		table="tp_emergency_vehicule" dynamic-insert="true">
+		<id name="id" type="int">
+			<column name="idtp_emergency_vehicule" precision="5"
+				scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="nbPlaces" type="int">
+			<column name="tp_emergency_vehicule_nb_place"
+				precision="5" scale="0" />
+		</property>
+		<property name="stretcher" type="boolean">
+			<column name="tp_emergency_vehicule_stretcher"/>
+		</property>		
+		<property name="latitude" type="float">
+			<column name="tp_common_person_idtp_common_person" not-null="false"/>
+		</property>
+		<property name="longitude" type="float">
+			<column name="tp_emergency_incident_numberPatients" not-null="false"/>
+		</property>
+		<many-to-one name="category"
+			class="fr.esiag.isies.pds.model.emergency.callcenter.VehiculeType"
+			not-null="true" lazy="false">
+			<column name="tp_emergency_vehicule_category_idtp"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

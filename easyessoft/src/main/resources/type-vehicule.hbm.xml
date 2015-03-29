@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.esiag.isies.pds.model.emergency.callcenter.VehiculeType"
+		table="tp_emergency_vehicule_category" dynamic-update="true">
+		<id name="id" type="int">
+			<column name="idtp_emergency_vehicule_category" precision="5" scale="0" />
+			<generator class="increment" />
+		</id>
+		<property name="code" type="string">
+			<column name="tp_emergency_vehicule_category_code" length="45" not-null="false" />
+		</property>
+		<property name="label" type="string">
+			<column name="tp_emergency_vehicule_category_description" length="45"
+				not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -3,29 +3,29 @@ package fr.esiag.isies.pds.model.emergency.callcenter;
 import fr.esiag.isies.pds.model.AbstractEntity;
 
 public class InterventionVehicule extends AbstractEntity {
-	private String category;
-	private String latitude;
-	private String longitude;
+	private VehiculeType category;
+	private Float latitude;
+	private Float longitude;
 	private boolean stretcher;
 	private int nbPlaces;
 	
-	
-	public String getCategory() {
+		
+	public VehiculeType getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(VehiculeType category) {
 		this.category = category;
 	}
-	public String getLatitude() {
+	public Float getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude) {
+	public void setLatitude(Float latitude) {
 		this.latitude = latitude;
 	}
-	public String getLongitude() {
+	public Float getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(String longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 	public int getNbPlaces() {
